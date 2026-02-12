@@ -3,9 +3,9 @@ title: SpecLynx
 email: info@speclynx.com
 tagline: Professional API Development Tools
 description: >-
-  SpecLynx provides powerful tools for API development - ApiDOM for semantic parsing,
+  SpecLynx provides powerful tools for API specifications - ApiDOM for semantic parsing,
   Language Service for intelligent editing, and OpenAPI Toolkit for VSCode.
-  Built by industry veterans with 15+ years of Swagger/OpenAPI experience.
+  Full support for OpenAPI, AsyncAPI, Arazzo, and JSON Schema.
 keywords: SpecLynx, ApiDOM, OpenAPI, AsyncAPI, JSON Schema, Arazzo, Language Server, VSCode, API tools
 baseurl: "/website"
 url: "https://speclynx.github.io"
