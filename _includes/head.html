@@ -1,0 +1,19 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  {%- seo -%}
+  <meta name="keywords" content="{{ site.keywords }}">
+  {% if page.google_site_verification %}
+  <meta name="google-site-verification" content="{{ page.google_site_verification }}">
+  {% endif %}
+  <!-- Favicon -->
+  <link rel="icon" href="{{ '/assets/images/speclynx-logo.svg' | relative_url }}" type="image/svg+xml">
+  <link rel="icon" href="{{ '/assets/images/speclynx-logo.png' | relative_url }}" type="image/png">
+  <!-- Styles -->
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <script src="https://cdn.tailwindcss.com"></script>
+  {% if page.launchlist %}
+  <script src="https://getlaunchlist.com/js/widget.js" defer></script>
+  {% endif %}
+</head>

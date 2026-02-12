@@ -1,0 +1,190 @@
+---
+layout: base
+title: SpecLynx ApiDOM - Semantic API Parser
+description: A semantic parser providing a single, unifying structure for describing APIs across all API description languages including OpenAPI, AsyncAPI, JSON Schema, and Arazzo.
+permalink: /apidom/
+---
+
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="flex items-center justify-center mb-4">
+      <span class="badge badge-primary">Library</span>
+    </div>
+    <h1 class="hero-title text-center mb-4">SpecLynx ApiDOM</h1>
+    <p class="hero-subtitle text-center max-w-3xl mx-auto mb-8">
+      A semantic parser providing a single, unifying structure for describing APIs across all API description languages and serialization formats.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="https://github.com/speclynx/apidom" target="_blank" rel="noopener noreferrer" class="primary-cta text-white font-bold py-3 px-6 rounded inline-block">
+        View on GitHub
+      </a>
+      <a href="https://speclynx.github.io/apidom/" target="_blank" rel="noopener noreferrer" class="bg-white border-2 border-gray-300 text-gray-700 font-bold py-3 px-6 rounded inline-block hover:border-gray-400 transition-colors">
+        Try the Playground
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Overview Section -->
+<section class="section-padding bg-white">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <h2 class="text-3xl font-extrabold text-primary-dark text-center mb-8">What is ApiDOM?</h2>
+    <div class="max-w-3xl mx-auto text-gray-700 leading-relaxed">
+      <p class="mb-4">
+        ApiDOM is a semantic parser that provides a single, unifying structure for describing APIs across API description languages and serialization formats. Rather than requiring developers to handle each format individually, ApiDOM offers one consistent structure for all API specifications.
+      </p>
+      <p class="mb-4">
+        Like XML's DOM, ApiDOM provides query capabilities that decouple code from specific document structures, allowing semantic navigation independent of format variations.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="section-padding bg-gray-50">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <h2 class="text-3xl font-extrabold text-primary-dark text-center mb-12">Key Features</h2>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="feature-card">
+        <h3 class="feature-card-title">Semantic Parsing</h3>
+        <p class="text-gray-600">
+          ApiDOM operates through three processing stages - <strong>parse</strong>, <strong>refract</strong>, and <strong>generate</strong> - allowing it to transform various API specifications into a unified representation while preserving semantic meaning.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <h3 class="feature-card-title">Format Unification</h3>
+        <p class="text-gray-600">
+          Support for multiple serialization formats (JSON, YAML) and API description languages, enabling cross-format conversions. Work with a single toolset regardless of the original document format.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <h3 class="feature-card-title">Queryable & Traversable</h3>
+        <p class="text-gray-600">
+          Navigate API specifications semantically, independent of format variations. Query capabilities decouple your code from specific document structures.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <h3 class="feature-card-title">Annotation Layer</h3>
+        <p class="text-gray-600">
+          Expand standard JSON structures by adding metadata (titles, descriptions) while maintaining semantic equivalence with the original data.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Supported Specifications Section -->
+<section class="section-padding bg-white">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <h2 class="text-3xl font-extrabold text-primary-dark text-center mb-8">Supported Specifications</h2>
+    <p class="text-gray-600 text-center mb-8 max-w-2xl mx-auto">
+      ApiDOM includes adapters for all major API description languages
+    </p>
+
+    <div class="overflow-x-auto">
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th>Specification</th>
+            <th>Versions</th>
+            <th>Formats</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="font-semibold">OpenAPI</td>
+            <td>2.0, 3.0.x, 3.1.x</td>
+            <td>JSON, YAML</td>
+          </tr>
+          <tr>
+            <td class="font-semibold">AsyncAPI</td>
+            <td>2.0 - 2.6</td>
+            <td>JSON, YAML</td>
+          </tr>
+          <tr>
+            <td class="font-semibold">JSON Schema</td>
+            <td>Draft 4, 6, 7, 2019-09, 2020-12</td>
+            <td>JSON, YAML</td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Arazzo</td>
+            <td>1.0.0, 1.0.1</td>
+            <td>JSON, YAML</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Installation Section -->
+<section class="section-padding bg-gray-50">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <h2 class="text-3xl font-extrabold text-primary-dark text-center mb-8">Installation</h2>
+
+    <div class="max-w-2xl mx-auto">
+      <p class="text-gray-600 mb-4 text-center">
+        ApiDOM requires Node.js &gt;=16.14.2 &lt;=24. Install individual packages via npm:
+      </p>
+
+      <div class="code-block mb-6">
+        <code>npm install @speclynx/apidom-core</code>
+      </div>
+
+      <p class="text-gray-600 mb-4 text-center">
+        Or install specific adapters for your needs:
+      </p>
+
+      <div class="code-block mb-2">
+        <code>npm install @speclynx/apidom-parser-adapter-openapi-json-3-1</code>
+      </div>
+      <div class="code-block mb-2">
+        <code>npm install @speclynx/apidom-parser-adapter-openapi-yaml-3-1</code>
+      </div>
+      <div class="code-block">
+        <code>npm install @speclynx/apidom-parser-adapter-asyncapi-json-2</code>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Related Products Section -->
+<section class="section-padding bg-white">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <h2 class="text-3xl font-extrabold text-primary-dark text-center mb-8">Related Products</h2>
+    <p class="text-gray-600 text-center mb-8">ApiDOM powers the rest of the SpecLynx ecosystem</p>
+
+    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <div class="product-card">
+        <h3 class="product-card-title">Language Service</h3>
+        <p class="product-card-description">
+          Built on ApiDOM, providing intelligent editing features for API specifications in any editor.
+        </p>
+        <a href="/language-service/" class="product-card-link">
+          Learn more
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="product-card">
+        <h3 class="product-card-title">OpenAPI Toolkit</h3>
+        <p class="product-card-description">
+          VSCode extension powered by ApiDOM and Language Service for the ultimate OpenAPI authoring experience.
+        </p>
+        <a href="/openapi-toolkit/" class="product-card-link">
+          Learn more
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

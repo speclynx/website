@@ -1,0 +1,32 @@
+<footer class="py-8 text-gray-300 text-center text-sm footer-background-color">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-wrap justify-center gap-6 mb-6">
+      <a href="/apidom/" class="hover:text-white">ApiDOM</a>
+      <a href="/language-service/" class="hover:text-white">Language Service</a>
+      <a href="/openapi-toolkit/" class="hover:text-white">OpenAPI Toolkit</a>
+      <a href="/about/" class="hover:text-white">About</a>
+    </div>
+    <p>&copy; {{ 'now' | date: "%Y" }} SpecLynx. All rights reserved.</p>
+    <p class="mt-4">
+      <a href="https://github.com/speclynx" class="hover:underline text-gray-300 inline-flex items-center p-2 rounded-full" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.83 9.504.471.085.678-.231.678-.519 0-.256-.009-.96-.014-1.881-2.782.603-3.371-1.341-3.371-1.341-.454-1.151-1.11-1.459-1.11-1.459-.908-.621.069-.608.069-.608 1.006.07 1.532 1.03 1.532 1.03.89 1.529 2.341 1.089 2.91.831.091-.645.35-.916.635-1.127-2.22-.253-4.555-1.114-4.555-4.945 0-1.091.39-1.984 1.029-2.682-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025.799-.224 1.649-.336 2.5-.341.85.005 1.7.117 2.5.341 1.909-1.295 2.747-1.025 2.747-1.025.546 1.378.202 2.397.098 2.65.64.698 1.029 1.591 1.029 2.682 0 3.84-2.339 4.686-4.566 4.935.359.308.675.918.675 1.85 0 1.341-.012 2.427-.012 2.75 0 .289.206.608.683.503C20.146 20.198 23 16.443 23 12.017 23 6.484 18.522 2 13 2h-1z" clip-rule="evenodd"/>
+        </svg>
+      </a>
+
+      <a href="mailto:info@speclynx.com" class="hover:underline text-gray-300 inline-flex items-center p-2 rounded-full" target="_blank" rel="noopener noreferrer" aria-label="Email">
+        <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.62 5.29a3 3 0 0 1-3.56 0Z"/>
+          <path d="M22.5 6.42a3 3 0 0 0-3-3H4.5a3 3 0 0 0-3 3l8.62 5.29a3 3 0 0 0 3.56 0L22.5 6.42Z"/>
+        </svg>
+      </a>
+    </p>
+  </div>
+</footer>
+
+<script>
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('open');
+  }
+</script>

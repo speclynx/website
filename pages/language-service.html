@@ -1,0 +1,266 @@
+---
+layout: base
+title: SpecLynx Language Service - Intelligent API Editing
+description: A comprehensive Language Service Library implementing LSP features for intelligent API specification editing. Supports OpenAPI, AsyncAPI, JSON Schema, and Arazzo.
+permalink: /language-service/
+---
+
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="flex items-center justify-center mb-4">
+      <span class="badge badge-primary">Library</span>
+    </div>
+    <h1 class="hero-title text-center mb-4">SpecLynx Language Service</h1>
+    <p class="hero-subtitle text-center max-w-3xl mx-auto mb-8">
+      A comprehensive Language Service Library implementing LSP features for intelligent API specification editing in any editor or IDE.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="https://www.npmjs.com/package/@speclynx/apidom-ls" target="_blank" rel="noopener noreferrer" class="primary-cta text-white font-bold py-3 px-6 rounded inline-block">
+        View on npm
+      </a>
+      <a href="https://github.com/speclynx/apidom" target="_blank" rel="noopener noreferrer" class="bg-white border-2 border-gray-300 text-gray-700 font-bold py-3 px-6 rounded inline-block hover:border-gray-400 transition-colors">
+        View on GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Overview Section -->
+<section class="section-padding bg-white">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <h2 class="text-3xl font-extrabold text-primary-dark text-center mb-8">What is Language Service?</h2>
+    <div class="max-w-3xl mx-auto text-gray-700 leading-relaxed">
+      <p class="mb-4">
+        SpecLynx ApiDOM Language Service (<code class="bg-gray-100 px-2 py-1 rounded">@speclynx/apidom-ls</code>) is a language service library that provides intelligent editing features for API description languages.
+      </p>
+      <p class="mb-4">
+        It implements programmatic language features following the <a href="https://microsoft.github.io/language-server-protocol/" target="_blank" rel="noopener noreferrer" class="text-blue-600 font-bold hover:text-blue-800">Language Server Protocol (LSP)</a> specification, making it easy to integrate into any LSP-compatible editor or IDE through a server wrapper.
+      </p>
+      <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mt-6">
+        <p class="text-sm text-blue-800">
+          <strong>Note:</strong> This is a language service, not a language server. A language service is a library that implements language features, while a language server is a separate process that communicates via LSP. This library can be wrapped by an LSP server to expose its features to editors.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="section-padding bg-gray-50">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <h2 class="text-3xl font-extrabold text-primary-dark text-center mb-12">LSP Features</h2>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="feature-card">
+        <h3 class="feature-card-title">Validation</h3>
+        <p class="text-gray-600 text-sm">Syntax and semantic validation with detailed diagnostics</p>
+      </div>
+
+      <div class="feature-card">
+        <h3 class="feature-card-title">Completion</h3>
+        <p class="text-gray-600 text-sm">Context-aware auto-completion suggestions</p>
+      </div>
+
+      <div class="feature-card">
+        <h3 class="feature-card-title">Hover</h3>
+        <p class="text-gray-600 text-sm">Documentation and type information on hover</p>
+      </div>
+
+      <div class="feature-card">
+        <h3 class="feature-card-title">Go to Definition</h3>
+        <p class="text-gray-600 text-sm">Navigate to $ref target definitions</p>
+      </div>
+
+      <div class="feature-card">
+        <h3 class="feature-card-title">Find References</h3>
+        <p class="text-gray-600 text-sm">Find all references to a symbol</p>
+      </div>
+
+      <div class="feature-card">
+        <h3 class="feature-card-title">Document Symbols</h3>
+        <p class="text-gray-600 text-sm">Outline view and breadcrumbs support</p>
+      </div>
+
+      <div class="feature-card">
+        <h3 class="feature-card-title">Semantic Tokens</h3>
+        <p class="text-gray-600 text-sm">Enhanced syntax highlighting</p>
+      </div>
+
+      <div class="feature-card">
+        <h3 class="feature-card-title">Code Actions</h3>
+        <p class="text-gray-600 text-sm">Quick fixes and refactoring options</p>
+      </div>
+
+      <div class="feature-card">
+        <h3 class="feature-card-title">Document Links</h3>
+        <p class="text-gray-600 text-sm">Clickable links in documents</p>
+      </div>
+
+      <div class="feature-card">
+        <h3 class="feature-card-title">Formatting</h3>
+        <p class="text-gray-600 text-sm">Document formatting capabilities</p>
+      </div>
+
+      <div class="feature-card">
+        <h3 class="feature-card-title">Dereferencing</h3>
+        <p class="text-gray-600 text-sm">Resolve all $ref references</p>
+      </div>
+
+      <div class="feature-card">
+        <h3 class="feature-card-title">Format Conversion</h3>
+        <p class="text-gray-600 text-sm">Convert between JSON and YAML</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Supported Languages Section -->
+<section class="section-padding bg-white">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <h2 class="text-3xl font-extrabold text-primary-dark text-center mb-8">Supported Languages</h2>
+
+    <div class="overflow-x-auto">
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th>Language</th>
+            <th>Versions</th>
+            <th>Formats</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="font-semibold">OpenAPI</td>
+            <td>2.0, 3.0.0, 3.0.1, 3.0.2, 3.0.3, 3.0.4, 3.1.0, 3.1.1, 3.1.2</td>
+            <td>JSON, YAML</td>
+          </tr>
+          <tr>
+            <td class="font-semibold">AsyncAPI</td>
+            <td>2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6</td>
+            <td>JSON, YAML</td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Arazzo</td>
+            <td>1.0.0, 1.0.1</td>
+            <td>JSON, YAML</td>
+          </tr>
+          <tr>
+            <td class="font-semibold">JSON Schema</td>
+            <td>Draft 4/5, 6, 7, 2019-09, 2020-12</td>
+            <td>JSON, YAML</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Architecture Section -->
+<section class="section-padding bg-gray-50">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <h2 class="text-3xl font-extrabold text-primary-dark text-center mb-8">Architecture</h2>
+
+    <div class="max-w-2xl mx-auto">
+      <div class="architecture-box mb-4">
+        <p class="font-semibold text-gray-700">Your Application</p>
+        <p class="text-sm text-gray-500">IDE, Editor, CLI, etc.</p>
+      </div>
+      <div class="architecture-arrow text-center">&#8595;</div>
+      <div class="architecture-box mb-4">
+        <p class="font-semibold text-gray-700">LSP Server Wrapper</p>
+        <p class="text-sm text-gray-500">Implements LSP protocol</p>
+      </div>
+      <div class="architecture-arrow text-center">&#8595;</div>
+      <div class="architecture-box architecture-box-highlight mb-4">
+        <p class="font-bold text-primary-dark">SpecLynx ApiDOM Language Service</p>
+        <p class="text-sm text-gray-500">This library</p>
+      </div>
+      <div class="architecture-arrow text-center">&#8595;</div>
+      <div class="architecture-box">
+        <p class="font-semibold text-gray-700">SpecLynx ApiDOM</p>
+        <p class="text-sm text-gray-500">Parsing, data model, traversal</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Installation Section -->
+<section class="section-padding bg-white">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <h2 class="text-3xl font-extrabold text-primary-dark text-center mb-8">Installation</h2>
+
+    <div class="max-w-2xl mx-auto">
+      <div class="code-block mb-6">
+        <code>npm install @speclynx/apidom-ls</code>
+      </div>
+
+      <h3 class="text-xl font-bold text-primary-dark mb-4">Quick Start</h3>
+
+      <div class="code-block text-sm">
+        <pre>import { getLanguageService } from '@speclynx/apidom-ls';
+import { TextDocument } from 'vscode-languageserver-textdocument';
+
+// Create the language service
+const languageService = getLanguageService({});
+
+// Create a document from your API specification
+const spec = `
+openapi: "3.1.0"
+info:
+  title: My API
+  version: 1.0.0
+paths: {}
+`;
+
+const document = TextDocument.create(
+  'file:///api.yaml',
+  'yaml',
+  0,
+  spec
+);
+
+// Get validation diagnostics
+const diagnostics = await languageService.doValidation(document);
+
+// Always terminate when done
+languageService.terminate();</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Related Products Section -->
+<section class="section-padding bg-gray-50">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <h2 class="text-3xl font-extrabold text-primary-dark text-center mb-8">Related Products</h2>
+
+    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <div class="product-card">
+        <h3 class="product-card-title">ApiDOM</h3>
+        <p class="product-card-description">
+          The foundation that Language Service is built upon. Provides parsing, data model, and traversal capabilities.
+        </p>
+        <a href="/apidom/" class="product-card-link">
+          Learn more
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="product-card">
+        <h3 class="product-card-title">OpenAPI Toolkit</h3>
+        <p class="product-card-description">
+          Ready-to-use VSCode extension that wraps the Language Service for an out-of-the-box experience.
+        </p>
+        <a href="/openapi-toolkit/" class="product-card-link">
+          Learn more
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

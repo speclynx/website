@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>SpecLynx Language Service - Intelligent API Editing | SpecLynx</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="SpecLynx Language Service - Intelligent API Editing" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive Language Service Library implementing LSP features for intelligent API specification editing. Supports OpenAPI, AsyncAPI, JSON Schema, and Arazzo." />
+<meta property="og:description" content="A comprehensive Language Service Library implementing LSP features for intelligent API specification editing. Supports OpenAPI, AsyncAPI, JSON Schema, and Arazzo." />
+<link rel="canonical" href="http://localhost:4000/language-service/" />
+<meta property="og:url" content="http://localhost:4000/language-service/" />
+<meta property="og:site_name" content="SpecLynx" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="SpecLynx Language Service - Intelligent API Editing" />
+<meta name="twitter:site" content="@speclynx" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A comprehensive Language Service Library implementing LSP features for intelligent API specification editing. Supports OpenAPI, AsyncAPI, JSON Schema, and Arazzo.","headline":"SpecLynx Language Service - Intelligent API Editing","url":"http://localhost:4000/language-service/"}</script>
+<!-- End Jekyll SEO tag -->
+<meta name="keywords" content="SpecLynx, ApiDOM, OpenAPI, AsyncAPI, JSON Schema, Arazzo, Language Server, VSCode, API tools">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="/assets/images/speclynx-logo.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/images/speclynx-logo.png" type="image/png">
+  <!-- Styles -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+</head>
+<body class="font-sans antialiased bg-gray-50 text-gray-900 flex flex-col h-full"><nav class="nav-container">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="flex items-center justify-between py-4">
+      <a href="/" class="flex items-center">
+        <img src="/assets/images/speclynx-logo.svg" alt="SpecLynx" class="w-10 h-10 mr-3">
+        <span class="text-xl font-bold text-primary-dark">SpecLynx</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="nav-links hidden md:flex items-center space-x-1">
+        <div class="dropdown">
+          <button class="nav-link flex items-center">
+            Products
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="dropdown-menu">
+            <a href="/openapi-toolkit/" class="dropdown-item">OpenAPI Toolkit</a>
+            <a href="/language-service/" class="dropdown-item">Language Service</a>
+            <a href="/apidom/" class="dropdown-item">ApiDOM</a>
+          </div>
+        </div>
+        <a href="/about/" class="nav-link">About</a>
+        <a href="mailto:info@speclynx.com?subject=Enterprise%20Inquiry" class="ml-4 primary-cta text-white text-sm font-semibold py-2 px-4 rounded">
+          Contact Sales
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger -->
+      <button class="hamburger md:hidden" onclick="toggleMobileMenu()">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu md:hidden pb-4">
+      <a href="/openapi-toolkit/" class="block py-2 nav-link">OpenAPI Toolkit</a>
+      <a href="/language-service/" class="block py-2 nav-link">Language Service</a>
+      <a href="/apidom/" class="block py-2 nav-link">ApiDOM</a>
+      <a href="/about/" class="block py-2 nav-link">About</a>
+      <a href="mailto:info@speclynx.com?subject=Enterprise%20Inquiry" class="block py-2 nav-link font-semibold text-primary-light">Contact Sales</a>
+    </div>
+  </div>
+</nav>
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="flex items-center justify-center mb-4">
+      <span class="badge badge-primary">Library</span>
+    </div>
+    <h1 class="hero-title text-center mb-4">SpecLynx Language Service</h1>
+    <p class="hero-subtitle text-center max-w-3xl mx-auto mb-8">
+      A comprehensive Language Service Library implementing LSP features for intelligent API specification editing in any editor or IDE.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="https://www.npmjs.com/package/@speclynx/apidom-ls" target="_blank" rel="noopener noreferrer" class="primary-cta text-white font-bold py-3 px-6 rounded inline-block">
+        View on npm
+      </a>
+      <a href="https://github.com/speclynx/apidom" target="_blank" rel="noopener noreferrer" class="bg-white border-2 border-gray-300 text-gray-700 font-bold py-3 px-6 rounded inline-block hover:border-gray-400 transition-colors">
+        View on GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Overview Section -->
+<section class="section-padding bg-white">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <h2 class="text-3xl font-extrabold text-primary-dark text-center mb-8">What is Language Service?</h2>
+    <div class="max-w-3xl mx-auto text-gray-700 leading-relaxed">
+      <p class="mb-4">
+        SpecLynx ApiDOM Language Service (<code class="bg-gray-100 px-2 py-1 rounded">@speclynx/apidom-ls</code>) is a language service library that provides intelligent editing features for API description languages.
+      </p>
+      <p class="mb-4">
+        It implements programmatic language features following the <a href="https://microsoft.github.io/language-server-protocol/" target="_blank" rel="noopener noreferrer" class="text-blue-600 font-bold hover:text-blue-800">Language Server Protocol (LSP)</a> specification, making it easy to integrate into any LSP-compatible editor or IDE through a server wrapper.
+      </p>
+      <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mt-6">
+        <p class="text-sm text-blue-800">
+          <strong>Note:</strong> This is a language service, not a language server. A language service is a library that implements language features, while a language server is a separate process that communicates via LSP. This library can be wrapped by an LSP server to expose its features to editors.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="section-padding bg-gray-50">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <h2 class="text-3xl font-extrabold text-primary-dark text-center mb-12">LSP Features</h2>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="feature-card">
+        <h3 class="feature-card-title">Validation</h3>
+        <p class="text-gray-600 text-sm">Syntax and semantic validation with detailed diagnostics</p>
+      </div>
+
+      <div class="feature-card">
+        <h3 class="feature-card-title">Completion</h3>
+        <p class="text-gray-600 text-sm">Context-aware auto-completion suggestions</p>
+      </div>
+
+      <div class="feature-card">
+        <h3 class="feature-card-title">Hover</h3>
+        <p class="text-gray-600 text-sm">Documentation and type information on hover</p>
+      </div>
+
+      <div class="feature-card">
+        <h3 class="feature-card-title">Go to Definition</h3>
+        <p class="text-gray-600 text-sm">Navigate to $ref target definitions</p>
+      </div>
+
+      <div class="feature-card">
+        <h3 class="feature-card-title">Find References</h3>
+        <p class="text-gray-600 text-sm">Find all references to a symbol</p>
+      </div>
+
+      <div class="feature-card">
+        <h3 class="feature-card-title">Document Symbols</h3>
+        <p class="text-gray-600 text-sm">Outline view and breadcrumbs support</p>
+      </div>
+
+      <div class="feature-card">
+        <h3 class="feature-card-title">Semantic Tokens</h3>
+        <p class="text-gray-600 text-sm">Enhanced syntax highlighting</p>
+      </div>
+
+      <div class="feature-card">
+        <h3 class="feature-card-title">Code Actions</h3>
+        <p class="text-gray-600 text-sm">Quick fixes and refactoring options</p>
+      </div>
+
+      <div class="feature-card">
+        <h3 class="feature-card-title">Document Links</h3>
+        <p class="text-gray-600 text-sm">Clickable links in documents</p>
+      </div>
+
+      <div class="feature-card">
+        <h3 class="feature-card-title">Formatting</h3>
+        <p class="text-gray-600 text-sm">Document formatting capabilities</p>
+      </div>
+
+      <div class="feature-card">
+        <h3 class="feature-card-title">Dereferencing</h3>
+        <p class="text-gray-600 text-sm">Resolve all $ref references</p>
+      </div>
+
+      <div class="feature-card">
+        <h3 class="feature-card-title">Format Conversion</h3>
+        <p class="text-gray-600 text-sm">Convert between JSON and YAML</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Supported Languages Section -->
+<section class="section-padding bg-white">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <h2 class="text-3xl font-extrabold text-primary-dark text-center mb-8">Supported Languages</h2>
+
+    <div class="overflow-x-auto">
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th>Language</th>
+            <th>Versions</th>
+            <th>Formats</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="font-semibold">OpenAPI</td>
+            <td>2.0, 3.0.0, 3.0.1, 3.0.2, 3.0.3, 3.0.4, 3.1.0, 3.1.1, 3.1.2</td>
+            <td>JSON, YAML</td>
+          </tr>
+          <tr>
+            <td class="font-semibold">AsyncAPI</td>
+            <td>2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6</td>
+            <td>JSON, YAML</td>
+          </tr>
+          <tr>
+            <td class="font-semibold">Arazzo</td>
+            <td>1.0.0, 1.0.1</td>
+            <td>JSON, YAML</td>
+          </tr>
+          <tr>
+            <td class="font-semibold">JSON Schema</td>
+            <td>Draft 4/5, 6, 7, 2019-09, 2020-12</td>
+            <td>JSON, YAML</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Architecture Section -->
+<section class="section-padding bg-gray-50">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <h2 class="text-3xl font-extrabold text-primary-dark text-center mb-8">Architecture</h2>
+
+    <div class="max-w-2xl mx-auto">
+      <div class="architecture-box mb-4">
+        <p class="font-semibold text-gray-700">Your Application</p>
+        <p class="text-sm text-gray-500">IDE, Editor, CLI, etc.</p>
+      </div>
+      <div class="architecture-arrow text-center">&#8595;</div>
+      <div class="architecture-box mb-4">
+        <p class="font-semibold text-gray-700">LSP Server Wrapper</p>
+        <p class="text-sm text-gray-500">Implements LSP protocol</p>
+      </div>
+      <div class="architecture-arrow text-center">&#8595;</div>
+      <div class="architecture-box architecture-box-highlight mb-4">
+        <p class="font-bold text-primary-dark">SpecLynx ApiDOM Language Service</p>
+        <p class="text-sm text-gray-500">This library</p>
+      </div>
+      <div class="architecture-arrow text-center">&#8595;</div>
+      <div class="architecture-box">
+        <p class="font-semibold text-gray-700">SpecLynx ApiDOM</p>
+        <p class="text-sm text-gray-500">Parsing, data model, traversal</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Installation Section -->
+<section class="section-padding bg-white">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <h2 class="text-3xl font-extrabold text-primary-dark text-center mb-8">Installation</h2>
+
+    <div class="max-w-2xl mx-auto">
+      <div class="code-block mb-6">
+        <code>npm install @speclynx/apidom-ls</code>
+      </div>
+
+      <h3 class="text-xl font-bold text-primary-dark mb-4">Quick Start</h3>
+
+      <div class="code-block text-sm">
+        <pre>import { getLanguageService } from '@speclynx/apidom-ls';
+import { TextDocument } from 'vscode-languageserver-textdocument';
+
+// Create the language service
+const languageService = getLanguageService({});
+
+// Create a document from your API specification
+const spec = `
+openapi: "3.1.0"
+info:
+  title: My API
+  version: 1.0.0
+paths: {}
+`;
+
+const document = TextDocument.create(
+  'file:///api.yaml',
+  'yaml',
+  0,
+  spec
+);
+
+// Get validation diagnostics
+const diagnostics = await languageService.doValidation(document);
+
+// Always terminate when done
+languageService.terminate();</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Related Products Section -->
+<section class="section-padding bg-gray-50">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <h2 class="text-3xl font-extrabold text-primary-dark text-center mb-8">Related Products</h2>
+
+    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <div class="product-card">
+        <h3 class="product-card-title">ApiDOM</h3>
+        <p class="product-card-description">
+          The foundation that Language Service is built upon. Provides parsing, data model, and traversal capabilities.
+        </p>
+        <a href="/apidom/" class="product-card-link">
+          Learn more
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="product-card">
+        <h3 class="product-card-title">OpenAPI Toolkit</h3>
+        <p class="product-card-description">
+          Ready-to-use VSCode extension that wraps the Language Service for an out-of-the-box experience.
+        </p>
+        <a href="/openapi-toolkit/" class="product-card-link">
+          Learn more
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="py-8 text-gray-300 text-center text-sm footer-background-color">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-wrap justify-center gap-6 mb-6">
+      <a href="/apidom/" class="hover:text-white">ApiDOM</a>
+      <a href="/language-service/" class="hover:text-white">Language Service</a>
+      <a href="/openapi-toolkit/" class="hover:text-white">OpenAPI Toolkit</a>
+      <a href="/about/" class="hover:text-white">About</a>
+    </div>
+    <p>&copy; 2026 SpecLynx. All rights reserved.</p>
+    <p class="mt-4">
+      <a href="https://github.com/speclynx" class="hover:underline text-gray-300 inline-flex items-center p-2 rounded-full" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.83 9.504.471.085.678-.231.678-.519 0-.256-.009-.96-.014-1.881-2.782.603-3.371-1.341-3.371-1.341-.454-1.151-1.11-1.459-1.11-1.459-.908-.621.069-.608.069-.608 1.006.07 1.532 1.03 1.532 1.03.89 1.529 2.341 1.089 2.91.831.091-.645.35-.916.635-1.127-2.22-.253-4.555-1.114-4.555-4.945 0-1.091.39-1.984 1.029-2.682-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025.799-.224 1.649-.336 2.5-.341.85.005 1.7.117 2.5.341 1.909-1.295 2.747-1.025 2.747-1.025.546 1.378.202 2.397.098 2.65.64.698 1.029 1.591 1.029 2.682 0 3.84-2.339 4.686-4.566 4.935.359.308.675.918.675 1.85 0 1.341-.012 2.427-.012 2.75 0 .289.206.608.683.503C20.146 20.198 23 16.443 23 12.017 23 6.484 18.522 2 13 2h-1z" clip-rule="evenodd"/>
+        </svg>
+      </a>
+
+      <a href="mailto:info@speclynx.com" class="hover:underline text-gray-300 inline-flex items-center p-2 rounded-full" target="_blank" rel="noopener noreferrer" aria-label="Email">
+        <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.62 5.29a3 3 0 0 1-3.56 0Z"/>
+          <path d="M22.5 6.42a3 3 0 0 0-3-3H4.5a3 3 0 0 0-3 3l8.62 5.29a3 3 0 0 0 3.56 0L22.5 6.42Z"/>
+        </svg>
+      </a>
+    </p>
+  </div>
+</footer>
+
+<script>
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('open');
+  }
+</script>
+</body>
+</html>

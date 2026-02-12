@@ -1,0 +1,44 @@
+# Site settings
+title: SpecLynx
+email: info@speclynx.com
+tagline: Professional API Development Tools
+description: >-
+  SpecLynx provides powerful tools for API development - ApiDOM for semantic parsing,
+  Language Service for intelligent editing, and OpenAPI Toolkit for VSCode.
+  Built by industry veterans with 15+ years of Swagger/OpenAPI experience.
+keywords: SpecLynx, ApiDOM, OpenAPI, AsyncAPI, JSON Schema, Arazzo, Language Server, VSCode, API tools
+baseurl: ""
+url: "https://speclynx.com"
+github_username: speclynx
+
+# Social
+twitter:
+  username: "@speclynx"
+  card: summary
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+# Exclude from processing
+exclude:
+  - README.md
+  - LICENSE
+  - NOTICE
+  - .gitignore
+  - .idea
+  - Gemfile
+  - Gemfile.lock
+  - vendor

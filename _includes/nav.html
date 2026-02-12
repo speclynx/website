@@ -1,0 +1,47 @@
+<nav class="nav-container">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="flex items-center justify-between py-4">
+      <a href="/" class="flex items-center">
+        <img src="{{ '/assets/images/speclynx-logo.svg' | relative_url }}" alt="SpecLynx" class="w-10 h-10 mr-3">
+        <span class="text-xl font-bold text-primary-dark">SpecLynx</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="nav-links hidden md:flex items-center space-x-1">
+        <div class="dropdown">
+          <button class="nav-link flex items-center">
+            Products
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="dropdown-menu">
+            <a href="/openapi-toolkit/" class="dropdown-item">OpenAPI Toolkit</a>
+            <a href="/language-service/" class="dropdown-item">Language Service</a>
+            <a href="/apidom/" class="dropdown-item">ApiDOM</a>
+          </div>
+        </div>
+        <a href="/about/" class="nav-link">About</a>
+        <a href="mailto:info@speclynx.com?subject=Enterprise%20Inquiry" class="ml-4 primary-cta text-white text-sm font-semibold py-2 px-4 rounded">
+          Contact Sales
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger -->
+      <button class="hamburger md:hidden" onclick="toggleMobileMenu()">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu md:hidden pb-4">
+      <a href="/openapi-toolkit/" class="block py-2 nav-link">OpenAPI Toolkit</a>
+      <a href="/language-service/" class="block py-2 nav-link">Language Service</a>
+      <a href="/apidom/" class="block py-2 nav-link">ApiDOM</a>
+      <a href="/about/" class="block py-2 nav-link">About</a>
+      <a href="mailto:info@speclynx.com?subject=Enterprise%20Inquiry" class="block py-2 nav-link font-semibold text-primary-light">Contact Sales</a>
+    </div>
+  </div>
+</nav>
