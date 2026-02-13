@@ -285,6 +285,11 @@ html {
     font-weight: 700;
 }
 
+.veterans-graphic {
+    width: 200px;
+    height: 120px;
+}
+
 /* Dropdown menu */
 .dropdown {
     position: relative;
@@ -319,6 +324,16 @@ html {
     color: var(--color-primary-light);
 }
 
+.dropdown-label {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #9CA3AF;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
 /* Utility classes */
 .section-padding {
     padding: 4rem 1rem;
@@ -328,4 +343,61 @@ html {
     .section-padding {
         padding: 6rem 2rem;
     }
+}
+
+/* Lifecycle Graphic Tooltips */
+.lifecycle-graphic {
+    position: relative;
+    width: 100%;
+}
+
+.lifecycle-tooltip {
+    position: absolute;
+    width: 200px;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.813rem;
+    line-height: 1.5;
+    color: white;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    pointer-events: none;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.tooltip-author {
+    background-color: #3A97CC;
+    top: 10%;
+    left: 0;
+    transform: translateX(-105%);
+}
+
+.tooltip-govern {
+    background-color: #77d6f4;
+    color: #092B4E;
+    top: 10%;
+    right: 0;
+    transform: translateX(105%);
+}
+
+.tooltip-build {
+    background-color: #092B4E;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -110%);
+}
+
+.tooltip-monitor {
+    background-color: #3A97CC;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 110%);
+}
+
+/* Show tooltips on hover */
+.lifecycle-tooltip.active {
+    opacity: 1;
+    visibility: visible;
 }

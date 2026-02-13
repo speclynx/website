@@ -9,25 +9,25 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Stop struggling with fragmented API tooling. SpecLynx gives you everything you need to write, validate, and manage OpenAPI specs - from a powerful VSCode extension to enterprise-grade libraries." />
 <meta property="og:description" content="Stop struggling with fragmented API tooling. SpecLynx gives you everything you need to write, validate, and manage OpenAPI specs - from a powerful VSCode extension to enterprise-grade libraries." />
-<link rel="canonical" href="http://localhost:4000/" />
-<meta property="og:url" content="http://localhost:4000/" />
+<link rel="canonical" href="http://localhost:4000/website/" />
+<meta property="og:url" content="http://localhost:4000/website/" />
 <meta property="og:site_name" content="SpecLynx" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="SpecLynx" />
 <meta name="twitter:site" content="@speclynx" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","description":"Stop struggling with fragmented API tooling. SpecLynx gives you everything you need to write, validate, and manage OpenAPI specs - from a powerful VSCode extension to enterprise-grade libraries.","headline":"SpecLynx","name":"SpecLynx","url":"http://localhost:4000/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","description":"Stop struggling with fragmented API tooling. SpecLynx gives you everything you need to write, validate, and manage OpenAPI specs - from a powerful VSCode extension to enterprise-grade libraries.","headline":"SpecLynx","name":"SpecLynx","url":"http://localhost:4000/website/"}</script>
 <!-- End Jekyll SEO tag -->
 <meta name="keywords" content="SpecLynx, ApiDOM, OpenAPI, AsyncAPI, JSON Schema, Arazzo, Language Server, VSCode, API tools">
   
   <meta name="google-site-verification" content="LGoRdHwaV8j4N6AJHPqsRKhTdEbdM7rl6DHCvA-HHI4">
   
   <!-- Favicon -->
-  <link rel="icon" href="/assets/images/speclynx-logo.svg" type="image/svg+xml">
-  <link rel="icon" href="/assets/images/speclynx-logo.png" type="image/png">
+  <link rel="icon" href="/website/assets/images/speclynx-logo.svg" type="image/svg+xml">
+  <link rel="icon" href="/website/assets/images/speclynx-logo.png" type="image/png">
   <!-- Styles -->
-  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/website/assets/css/main.css">
   <script src="https://cdn.tailwindcss.com"></script>
   
   <script src="https://getlaunchlist.com/js/widget.js" defer></script>
@@ -37,7 +37,7 @@
   <div class="container mx-auto px-4 max-w-6xl">
     <div class="flex items-center justify-between py-4">
       <a href="/" class="flex items-center">
-        <img src="/assets/images/speclynx-logo.svg" alt="SpecLynx" class="w-10 h-10 mr-3">
+        <img src="/website/assets/images/speclynx-logo.svg" alt="SpecLynx" class="w-10 h-10 mr-3">
         <span class="text-xl font-bold text-primary-dark">SpecLynx</span>
       </a>
 
@@ -56,10 +56,22 @@
             <a href="/apidom/" class="dropdown-item">ApiDOM</a>
           </div>
         </div>
-        <a href="/about/" class="nav-link">About</a>
-        <a href="mailto:info@speclynx.com?subject=Enterprise%20Inquiry" class="ml-4 primary-cta text-white text-sm font-semibold py-2 px-4 rounded">
-          Contact Sales
-        </a>
+        <div class="dropdown">
+          <button class="nav-link flex items-center">
+            Open Source
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="dropdown-menu">
+            <span class="dropdown-label">Repositories</span>
+            <a href="https://github.com/speclynx/apidom" target="_blank" rel="noopener noreferrer" class="dropdown-item">ApiDOM</a>
+            <a href="https://github.com/speclynx/vscode-openapi-toolkit" target="_blank" rel="noopener noreferrer" class="dropdown-item">OpenAPI Toolkit</a>
+            <span class="dropdown-label">Community</span>
+            <a href="https://github.com/orgs/speclynx/discussions" target="_blank" rel="noopener noreferrer" class="dropdown-item">Discussions</a>
+          </div>
+        </div>
+        <a href="/pricing/" class="nav-link">Pricing</a>
       </div>
 
       <!-- Mobile Hamburger -->
@@ -75,55 +87,74 @@
       <a href="/openapi-toolkit/" class="block py-2 nav-link">OpenAPI Toolkit</a>
       <a href="/language-service/" class="block py-2 nav-link">Language Service</a>
       <a href="/apidom/" class="block py-2 nav-link">ApiDOM</a>
-      <a href="/about/" class="block py-2 nav-link">About</a>
-      <a href="mailto:info@speclynx.com?subject=Enterprise%20Inquiry" class="block py-2 nav-link font-semibold text-primary-light">Contact Sales</a>
+      <span class="block py-2 text-gray-500 text-xs uppercase mt-2">Repositories</span>
+      <a href="https://github.com/speclynx/apidom" target="_blank" rel="noopener noreferrer" class="block py-2 nav-link pl-4">ApiDOM</a>
+      <a href="https://github.com/speclynx/vscode-openapi-toolkit" target="_blank" rel="noopener noreferrer" class="block py-2 nav-link pl-4">OpenAPI Toolkit</a>
+      <span class="block py-2 text-gray-500 text-xs uppercase mt-2">Community</span>
+      <a href="https://github.com/orgs/speclynx/discussions" target="_blank" rel="noopener noreferrer" class="block py-2 nav-link pl-4">Discussions</a>
+      <a href="/pricing/" class="block py-2 nav-link">Pricing</a>
     </div>
   </div>
 </nav>
 <!-- Hero Section -->
 <section class="hero-section py-16 md:py-24">
   <div class="container mx-auto px-4 max-w-6xl">
-    <h1 class="hero-title mb-6">Enterprise ready API tooling</h1>
-    <div class="max-w-3xl mb-8">
-      <p class="hero-subtitle mb-4">If you're working with API specifications and you need tooling that:</p>
-      <ul class="text-gray-600 space-y-2 mb-4 ml-4">
-        <li>&#10003; Supports <a href="https://spec.openapis.org/oas/v2.0" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">OpenAPI 2</a>, <a href="https://spec.openapis.org/oas/v3.0.4" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">OpenAPI 3.0</a>, <a href="https://spec.openapis.org/oas/v3.1.1" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">OpenAPI 3.1</a>, <a href="https://www.asyncapi.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">AsyncAPI 2.x</a>, <a href="https://spec.openapis.org/arazzo/latest.html" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">Arazzo 1.x</a>, and <a href="https://json-schema.org/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">JSON Schema</a>?</li>
-        <li>&#10003; Provides parsers, semantic data models, and building blocks for your own tooling?</li>
-        <li>&#10003; Powers intelligent editing with a Language Service and ready-to-use VSCode extension?</li>
-      </ul>
-      <p class="hero-subtitle font-semibold">SpecLynx has you covered.</p>
-    </div>
-    <div class="flex flex-wrap gap-4 mb-8">
-      <a href="#products" class="primary-cta text-white font-bold py-3 px-6 rounded inline-block">
-        Get Started
-      </a>
-      <a href="mailto:info@speclynx.com?subject=Enterprise%20Inquiry" class="bg-white border-2 border-gray-800 text-gray-800 font-bold py-3 px-6 rounded inline-block hover:bg-gray-100 transition-colors">
-        Contact Sales
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- Why SpecLynx Section -->
-<section class="section-padding bg-white">
-  <div class="container mx-auto px-4 max-w-6xl">
-    <h2 class="text-3xl font-extrabold text-primary-dark text-center mb-4">Why SpecLynx?</h2>
-    <p class="text-gray-600 text-center mb-12 max-w-3xl mx-auto">
-      Stop juggling fragmented API tools. SpecLynx gives you one spec-compliant, semantically-aware ecosystem to:
-    </p>
-
-    <div class="grid md:grid-cols-3 gap-8">
-      <div class="text-center p-6">
-        <h3 class="font-bold text-gray-800 mb-2">Author</h3>
-        <p class="text-gray-600 text-sm">Write specs faster with intelligent editing, real-time validation, and smart autocompletion.</p>
+    <div class="flex flex-col md:flex-row gap-12 items-center">
+      <!-- Left: Text Content -->
+      <div class="flex-1">
+        <h1 class="hero-title mb-6">Enterprise ready API tooling</h1>
+        <p class="hero-subtitle mb-4">API specs are messy. SpecLynx brings order:</p>
+        <ul class="text-gray-600 space-y-2 mb-4 ml-4">
+          <li>&#10003; Supports <a href="https://spec.openapis.org/oas/v2.0" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">OpenAPI 2</a>, <a href="https://spec.openapis.org/oas/v3.0.4" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">OpenAPI 3.0</a>, <a href="https://spec.openapis.org/oas/v3.1.1" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">OpenAPI 3.1</a>, <a href="https://www.asyncapi.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">AsyncAPI 2.x</a>, <a href="https://spec.openapis.org/arazzo/latest.html" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">Arazzo 1.x</a>, and <a href="https://json-schema.org/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">JSON Schema</a></li>
+          <li>&#10003; Provides parsers, semantic data models, and building blocks for your own tooling</li>
+          <li>&#10003; Powers intelligent editing with a Language Service and ready-to-use VSCode extension</li>
+        </ul>
+                <div class="mt-6">
+          <a href="#products" class="primary-cta text-white font-bold py-4 px-8 text-lg rounded inline-block">
+            Get Started
+          </a>
+        </div>
       </div>
-      <div class="text-center p-6">
-        <h3 class="font-bold text-gray-800 mb-2">Govern</h3>
-        <p class="text-gray-600 text-sm">Enforce standards and consistency across teams with validation, linting, and custom rules.</p>
-      </div>
-      <div class="text-center p-6">
-        <h3 class="font-bold text-gray-800 mb-2">Build</h3>
-        <p class="text-gray-600 text-sm">Create custom tooling for your workflows. Parsers, validators, editors - your imagination is the limit.</p>
+      <!-- Right: Abstract Flow Graphic -->
+      <div class="hidden md:flex md:w-1/3 justify-center flex-shrink-0">
+        <div class="lifecycle-graphic">
+          <svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto" role="img" aria-label="SpecLynx API Lifecycle - Author, Govern, Build, Monitor">
+            <style>
+              .node { cursor: pointer; }
+              .node:hover circle { opacity: 1; filter: brightness(1.1); }
+              .node text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+            </style>
+            <!-- Build (center) -->
+            <g class="node" data-tooltip="build">
+              <circle cx="130" cy="90" r="38" fill="#092B4E" opacity="0.95"/>
+              <text x="130" y="95" text-anchor="middle" fill="white" font-size="12" font-weight="bold">Build</text>
+            </g>
+            <!-- Author (top-left) -->
+            <g class="node" data-tooltip="author">
+              <circle cx="45" cy="40" r="30" fill="#3A97CC" opacity="0.95"/>
+              <text x="45" y="45" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Author</text>
+            </g>
+            <!-- Govern (top-right) -->
+            <g class="node" data-tooltip="govern">
+              <circle cx="215" cy="40" r="30" fill="#77d6f4" opacity="0.95"/>
+              <text x="215" y="45" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Govern</text>
+            </g>
+            <!-- Monitor (bottom) -->
+            <g class="node" data-tooltip="monitor">
+              <circle cx="130" cy="170" r="30" fill="#3A97CC" opacity="0.95"/>
+              <text x="130" y="175" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Monitor</text>
+            </g>
+            <!-- Connecting lines -->
+            <line x1="100" y1="65" x2="70" y2="55" stroke="#092B4E" stroke-width="2" opacity="0.5"/>
+            <line x1="160" y1="65" x2="190" y2="55" stroke="#092B4E" stroke-width="2" opacity="0.5"/>
+            <line x1="130" y1="128" x2="130" y2="140" stroke="#092B4E" stroke-width="2" opacity="0.5"/>
+          </svg>
+          <!-- Custom tooltips -->
+          <div class="lifecycle-tooltip tooltip-author">Write specs faster with intelligent editing, real-time validation, and smart autocompletion.</div>
+          <div class="lifecycle-tooltip tooltip-govern">Enforce standards and consistency across teams with validation, linting, and custom rules.</div>
+          <div class="lifecycle-tooltip tooltip-build">Create custom tooling for your workflows. Parsers, validators, editors - your imagination is the limit.</div>
+          <div class="lifecycle-tooltip tooltip-monitor">Integrate with CI/CD pipelines. Validate specs on every commit, catch breaking changes before they ship.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -211,21 +242,10 @@
   </div>
 </section>
 
-<!-- Social Proof / Trust Section -->
-<section class="section-padding bg-white">
-  <div class="container mx-auto px-4 max-w-6xl text-center">
-    <h2 class="text-3xl font-extrabold text-primary-dark mb-4">Built by API Tooling Veterans</h2>
-    <p class="text-gray-600 max-w-2xl mx-auto mb-8">
-      The team behind SpecLynx has spent <strong>15+ years</strong> building and maintaining Swagger and OpenAPI tools used by millions of developers. We know what works - and what doesn't.
-    </p>
-    <a href="/about/" class="text-primary-light font-semibold hover:underline">Meet the team &rarr;</a>
-  </div>
-</section>
-
 <!-- Enterprise Section -->
 <section class="section-padding bg-primary-dark text-white">
   <div class="container mx-auto px-4 max-w-6xl">
-    <div class="grid md:grid-cols-2 gap-12 items-center">
+    <div class="grid md:grid-cols-2 gap-12 items-center mb-12">
       <div>
         <h2 class="text-3xl font-extrabold mb-4">Need Enterprise Support?</h2>
         <p class="text-gray-300 mb-6">
@@ -247,48 +267,107 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- Newsletter Section -->
-<section class="section-padding bg-gray-50">
-  <div class="container mx-auto px-4 max-w-xl text-center">
-    <h2 class="text-2xl font-bold text-primary-dark mb-4">Stay Updated</h2>
-    <p class="text-gray-600 mb-6">Get notified about new features, releases, and API tooling best practices.</p>
-    <div class="launchlist-widget" data-key-id="05SLUz"></div>
-  </div>
-</section>
-<footer class="py-8 text-gray-300 text-center text-sm footer-background-color">
-  <div class="container mx-auto px-4">
-    <div class="flex flex-wrap justify-center gap-6 mb-6">
-      <a href="/apidom/" class="hover:text-white">ApiDOM</a>
-      <a href="/language-service/" class="hover:text-white">Language Service</a>
-      <a href="/openapi-toolkit/" class="hover:text-white">OpenAPI Toolkit</a>
-      <a href="/about/" class="hover:text-white">About</a>
+    <!-- Trusted by -->
+    <div class="text-center border-t border-white/10 pt-10">
+      <p class="text-gray-400 text-xs uppercase tracking-wider mb-6">Trusted by</p>
+      <div class="flex justify-center">
+        <a href="https://jentic.com/" target="_blank" rel="noopener noreferrer" class="opacity-70 hover:opacity-100 transition-opacity" title="Building Jentic OpenAPI/Arazzo Tools with SpecLynx">
+          <img src="https://jentic.com/landing-page/footer/logo-gradient.svg" alt="Jentic" class="h-12 w-auto brightness-0 invert">
+        </a>
+      </div>
     </div>
-    <p>&copy; 2026 SpecLynx. All rights reserved.</p>
-    <p class="mt-4">
-      <a href="https://github.com/speclynx" class="hover:underline text-gray-300 inline-flex items-center p-2 rounded-full" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-        <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.83 9.504.471.085.678-.231.678-.519 0-.256-.009-.96-.014-1.881-2.782.603-3.371-1.341-3.371-1.341-.454-1.151-1.11-1.459-1.11-1.459-.908-.621.069-.608.069-.608 1.006.07 1.532 1.03 1.532 1.03.89 1.529 2.341 1.089 2.91.831.091-.645.35-.916.635-1.127-2.22-.253-4.555-1.114-4.555-4.945 0-1.091.39-1.984 1.029-2.682-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025.799-.224 1.649-.336 2.5-.341.85.005 1.7.117 2.5.341 1.909-1.295 2.747-1.025 2.747-1.025.546 1.378.202 2.397.098 2.65.64.698 1.029 1.591 1.029 2.682 0 3.84-2.339 4.686-4.566 4.935.359.308.675.918.675 1.85 0 1.341-.012 2.427-.012 2.75 0 .289.206.608.683.503C20.146 20.198 23 16.443 23 12.017 23 6.484 18.522 2 13 2h-1z" clip-rule="evenodd"/>
-        </svg>
-      </a>
+  </div>
+</section>
 
-      <a href="mailto:info@speclynx.com" class="hover:underline text-gray-300 inline-flex items-center p-2 rounded-full" target="_blank" rel="noopener noreferrer" aria-label="Email">
-        <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.62 5.29a3 3 0 0 1-3.56 0Z"/>
-          <path d="M22.5 6.42a3 3 0 0 0-3-3H4.5a3 3 0 0 0-3 3l8.62 5.29a3 3 0 0 0 3.56 0L22.5 6.42Z"/>
-        </svg>
-      </a>
-    </p>
+<!-- Veterans Section -->
+<section class="py-24 md:py-32 bg-gray-50">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+      <!-- Left: Graphic -->
+      <div class="flex-shrink-0">
+        <img src="/website/assets/images/building-blocks.svg" alt="Building blocks" class="veterans-graphic">
+      </div>
+      <!-- Right: Text -->
+      <div class="text-center md:text-left">
+        <h2 class="text-3xl font-extrabold text-primary-dark mb-4">Built by API Tooling Veterans</h2>
+        <p class="text-gray-600 mb-3">
+          The team behind SpecLynx has spent <strong>15+ years</strong> building and maintaining Swagger and OpenAPI tools used by millions of developers. We know what works - and what doesn't.
+        </p>
+        <a href="/about/" class="text-primary-light font-semibold hover:underline">Meet the team &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="py-10 text-gray-400 text-sm footer-background-color">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <!-- Main footer grid -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+      <!-- Logo & tagline -->
+      <div class="col-span-2 md:col-span-1">
+        <a href="/" class="flex items-center mb-2">
+          <img src="/website/assets/images/speclynx-logo.svg" alt="SpecLynx" class="w-8 h-8 mr-2 brightness-0 invert opacity-80">
+          <span class="text-lg font-bold text-white">SpecLynx</span>
+        </a>
+        <p class="text-gray-500 text-sm mb-4">Enterprise ready API tooling</p>
+        <div class="launchlist-widget -mb-16 -ml-2" data-key-id="05SLUz"></div>
+      </div>
+
+      <!-- Products -->
+      <div>
+        <h4 class="text-white font-semibold mb-4">Products</h4>
+        <ul class="space-y-2">
+          <li><a href="/openapi-toolkit/" class="hover:text-white transition-colors">OpenAPI Toolkit</a></li>
+          <li><a href="/language-service/" class="hover:text-white transition-colors">Language Service</a></li>
+          <li><a href="/apidom/" class="hover:text-white transition-colors">ApiDOM</a></li>
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div>
+        <h4 class="text-white font-semibold mb-4">Resources</h4>
+        <ul class="space-y-2">
+          <li><a href="https://github.com/orgs/speclynx/repositories" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Open Source</a></li>
+          <li><a href="/pricing/" class="hover:text-white transition-colors">Pricing</a></li>
+          <li><a href="https://github.com/speclynx" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">GitHub</a></li>
+        </ul>
+      </div>
+
+      <!-- Connect -->
+      <div>
+        <h4 class="text-white font-semibold mb-4">Connect</h4>
+        <ul class="space-y-2">
+          <li><a href="/about/" class="hover:text-white transition-colors">About Us</a></li>
+          <li><a href="https://www.linkedin.com/company/speclynx" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">LinkedIn</a></li>
+          <li><a href="mailto:info@speclynx.com" class="hover:text-white transition-colors">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="border-t border-gray-700 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-gray-500">&copy; 2026 SpecLynx. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="https://github.com/speclynx" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white transition-colors" aria-label="GitHub">
+          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.83 9.504.471.085.678-.231.678-.519 0-.256-.009-.96-.014-1.881-2.782.603-3.371-1.341-3.371-1.341-.454-1.151-1.11-1.459-1.11-1.459-.908-.621.069-.608.069-.608 1.006.07 1.532 1.03 1.532 1.03.89 1.529 2.341 1.089 2.91.831.091-.645.35-.916.635-1.127-2.22-.253-4.555-1.114-4.555-4.945 0-1.091.39-1.984 1.029-2.682-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025.799-.224 1.649-.336 2.5-.341.85.005 1.7.117 2.5.341 1.909-1.295 2.747-1.025 2.747-1.025.546 1.378.202 2.397.098 2.65.64.698 1.029 1.591 1.029 2.682 0 3.84-2.339 4.686-4.566 4.935.359.308.675.918.675 1.85 0 1.341-.012 2.427-.012 2.75 0 .289.206.608.683.503C20.146 20.198 23 16.443 23 12.017 23 6.484 18.522 2 13 2h-1z" clip-rule="evenodd"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/company/speclynx" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white transition-colors" aria-label="LinkedIn">
+          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+        <a href="mailto:info@speclynx.com" class="text-gray-500 hover:text-white transition-colors" aria-label="Email">
+          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.62 5.29a3 3 0 0 1-3.56 0Z"/>
+            <path d="M22.5 6.42a3 3 0 0 0-3-3H4.5a3 3 0 0 0-3 3l8.62 5.29a3 3 0 0 0 3.56 0L22.5 6.42Z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
   </div>
 </footer>
 
-<script>
-  function toggleMobileMenu() {
-    const menu = document.getElementById('mobile-menu');
-    menu.classList.toggle('open');
-  }
-</script>
+<script src="/website/assets/js/main.js"></script>
 </body>
 </html>
