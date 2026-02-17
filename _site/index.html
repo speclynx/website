@@ -36,7 +36,7 @@
 <body class="font-sans antialiased bg-gray-50 text-gray-900 flex flex-col h-full"><nav class="nav-container">
   <div class="container mx-auto px-4 max-w-6xl">
     <div class="flex items-center justify-between py-4">
-      <a href="/" class="flex items-center">
+      <a href="/website/" class="flex items-center">
         <img src="/website/assets/images/speclynx-logo.svg" alt="SpecLynx" class="w-[50px] h-[50px] mr-3">
         <span class="text-xl font-bold text-primary-dark">SpecLynx</span>
       </a>
@@ -51,9 +51,9 @@
             </svg>
           </button>
           <div class="dropdown-menu">
-            <a href="/openapi-toolkit/" class="dropdown-item">OpenAPI Toolkit</a>
-            <a href="/language-service/" class="dropdown-item">Language Service</a>
-            <a href="/apidom/" class="dropdown-item">ApiDOM</a>
+            <a href="/website/openapi-toolkit/" class="dropdown-item">OpenAPI Toolkit</a>
+            <a href="/website/language-service/" class="dropdown-item">Language Service</a>
+            <a href="/website/apidom/" class="dropdown-item">ApiDOM</a>
           </div>
         </div>
         <div class="dropdown">
@@ -71,7 +71,7 @@
             <a href="https://github.com/orgs/speclynx/discussions" target="_blank" rel="noopener noreferrer" class="dropdown-item">Discussions</a>
           </div>
         </div>
-        <a href="/pricing/" class="nav-link">Pricing</a>
+        <a href="/website/pricing/" class="nav-link">Pricing</a>
       </div>
 
       <!-- Mobile Hamburger -->
@@ -84,15 +84,15 @@
 
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="mobile-menu md:hidden pb-4">
-      <a href="/openapi-toolkit/" class="block py-2 nav-link">OpenAPI Toolkit</a>
-      <a href="/language-service/" class="block py-2 nav-link">Language Service</a>
-      <a href="/apidom/" class="block py-2 nav-link">ApiDOM</a>
+      <a href="/website/openapi-toolkit/" class="block py-2 nav-link">OpenAPI Toolkit</a>
+      <a href="/website/language-service/" class="block py-2 nav-link">Language Service</a>
+      <a href="/website/apidom/" class="block py-2 nav-link">ApiDOM</a>
       <span class="block py-2 text-gray-500 text-xs uppercase mt-2">Repositories</span>
       <a href="https://github.com/speclynx/apidom" target="_blank" rel="noopener noreferrer" class="block py-2 nav-link pl-4">ApiDOM</a>
       <a href="https://github.com/speclynx/vscode-openapi-toolkit" target="_blank" rel="noopener noreferrer" class="block py-2 nav-link pl-4">OpenAPI Toolkit</a>
       <span class="block py-2 text-gray-500 text-xs uppercase mt-2">Community</span>
       <a href="https://github.com/orgs/speclynx/discussions" target="_blank" rel="noopener noreferrer" class="block py-2 nav-link pl-4">Discussions</a>
-      <a href="/pricing/" class="block py-2 nav-link">Pricing</a>
+      <a href="/website/pricing/" class="block py-2 nav-link">Pricing</a>
     </div>
   </div>
 </nav>
@@ -109,9 +109,22 @@
           <li>&#10003; Provides parsers, semantic data models, and building blocks for your own tooling</li>
           <li>&#10003; Powers intelligent editing with a Language Service and ready-to-use VSCode extension</li>
         </ul>
-                <div class="mt-6">
-          <a href="#products" class="primary-cta text-white font-bold py-4 px-8 text-lg rounded inline-block">
-            Get Started
+        <!-- Quick Start -->
+        <div class="mt-8">
+          <div class="quick-start-content">
+            <p class="text-gray-600 text-sm mb-3">Launch VS Code Quick Open (Ctrl+P), paste and press enter:</p>
+            <div class="code-block">
+              <code>ext install SpecLynx.vscode-openapi-toolkit</code>
+            </div>
+          </div>
+        </div>
+        <!-- CTAs -->
+        <div class="mt-6 flex flex-wrap gap-4">
+          <a href="https://marketplace.visualstudio.com/items?itemName=SpecLynx.vscode-openapi-toolkit" target="_blank" rel="noopener noreferrer" class="primary-cta text-white font-bold py-3 px-6 rounded inline-block">
+            Install VSCode Extension
+          </a>
+          <a href="#products" class="border-2 border-primary-dark text-primary-dark font-bold py-3 px-6 rounded inline-block hover:bg-gray-100 transition-colors">
+            Explore the Ecosystem
           </a>
         </div>
       </div>
@@ -177,7 +190,7 @@
         <h3 class="product-card-title">OpenAPI Toolkit</h3>
         <p class="text-sm text-gray-500 mb-2">VSCode Extension</p>
         <p class="product-card-description">
-          <strong>Write specs 10x faster</strong> with real-time validation, smart autocompletion, and instant preview - all inside VSCode.
+          <strong>Write specs faster</strong> with real-time validation, smart autocompletion, and instant preview - all inside VSCode.
         </p>
         <ul class="text-sm text-gray-600 mb-4 space-y-1">
           <li>&#10003; Context-aware autocompletion</li>
@@ -261,19 +274,27 @@
           Contact Sales
         </a>
       </div>
-      <div class="text-center">
-        <div class="inline-flex items-center justify-center w-32 h-32 bg-white/10 rounded-full">
-          <span class="text-6xl">&#127970;</span>
-        </div>
+      <div>
+        <h3 class="text-xl font-bold mb-4">Secure by Design</h3>
+        <ul class="text-gray-300 space-y-2">
+          <li>&#128274; Your specs never leave your machine</li>
+          <li>&#128274; Offline-first architecture</li>
+          <li>&#128274; No accounts, no tracking, no telemetry</li>
+        </ul>
       </div>
     </div>
     <!-- Trusted by -->
     <div class="text-center border-t border-white/10 pt-10">
       <p class="text-gray-400 text-xs uppercase tracking-wider mb-6">Trusted by</p>
       <div class="flex justify-center">
-        <a href="https://jentic.com/" target="_blank" rel="noopener noreferrer" class="opacity-70 hover:opacity-100 transition-opacity" title="Building Jentic OpenAPI/Arazzo Tools with SpecLynx">
-          <img src="https://jentic.com/landing-page/footer/logo-gradient.svg" alt="Jentic" class="h-12 w-auto brightness-0 invert">
-        </a>
+        <div class="trusted-logo-wrapper">
+          <a href="https://jentic.com/" target="_blank" rel="noopener noreferrer" class="opacity-70 hover:opacity-100 transition-opacity">
+            <img src="https://jentic.com/landing-page/footer/logo-gradient.svg" alt="Jentic" class="h-12 w-auto brightness-0 invert">
+          </a>
+          <div class="trusted-logo-popover">
+            Powering <a href="https://github.com/jentic/jentic-arazzo-tools" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline font-semibold">Arazzo Tools</a> &amp; <a href="https://jentic.com/scorecard" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline font-semibold">API Scorecard</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -316,9 +337,9 @@
       <div>
         <h4 class="text-white font-semibold mb-4">Products</h4>
         <ul class="space-y-2">
-          <li><a href="/openapi-toolkit/" class="hover:text-white transition-colors">OpenAPI Toolkit</a></li>
-          <li><a href="/language-service/" class="hover:text-white transition-colors">Language Service</a></li>
-          <li><a href="/apidom/" class="hover:text-white transition-colors">ApiDOM</a></li>
+          <li><a href="/website/openapi-toolkit/" class="hover:text-white transition-colors">OpenAPI Toolkit</a></li>
+          <li><a href="/website/language-service/" class="hover:text-white transition-colors">Language Service</a></li>
+          <li><a href="/website/apidom/" class="hover:text-white transition-colors">ApiDOM</a></li>
         </ul>
       </div>
 
@@ -327,8 +348,10 @@
         <h4 class="text-white font-semibold mb-4">Resources</h4>
         <ul class="space-y-2">
           <li><a href="https://github.com/orgs/speclynx/repositories" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Open Source</a></li>
-          <li><a href="/pricing/" class="hover:text-white transition-colors">Pricing</a></li>
+          <li><a href="/website/pricing/" class="hover:text-white transition-colors">Pricing</a></li>
           <li><a href="https://github.com/speclynx" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">GitHub</a></li>
+          <li><a href="/website/privacy/" class="hover:text-white transition-colors">Privacy Policy</a></li>
+          <li><a href="/website/terms/" class="hover:text-white transition-colors">Terms of Service</a></li>
         </ul>
       </div>
 
@@ -336,7 +359,7 @@
       <div>
         <h4 class="text-white font-semibold mb-4">Connect</h4>
         <ul class="space-y-2">
-          <li><a href="/about/" class="hover:text-white transition-colors">About Us</a></li>
+          <li><a href="/website/about/" class="hover:text-white transition-colors">About Us</a></li>
           <li><a href="https://www.linkedin.com/company/speclynx" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">LinkedIn</a></li>
           <li><a href="mailto:info@speclynx.com" class="hover:text-white transition-colors">Contact</a></li>
         </ul>

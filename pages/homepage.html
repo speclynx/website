@@ -20,9 +20,22 @@ permalink: /
           <li>&#10003; Provides parsers, semantic data models, and building blocks for your own tooling</li>
           <li>&#10003; Powers intelligent editing with a Language Service and ready-to-use VSCode extension</li>
         </ul>
-                <div class="mt-6">
-          <a href="#products" class="primary-cta text-white font-bold py-4 px-8 text-lg rounded inline-block">
-            Get Started
+        <!-- Quick Start -->
+        <div class="mt-8">
+          <div class="quick-start-content">
+            <p class="text-gray-600 text-sm mb-3">Launch VS Code Quick Open (Ctrl+P), paste and press enter:</p>
+            <div class="code-block">
+              <code>ext install SpecLynx.vscode-openapi-toolkit</code>
+            </div>
+          </div>
+        </div>
+        <!-- CTAs -->
+        <div class="mt-6 flex flex-wrap gap-4">
+          <a href="https://marketplace.visualstudio.com/items?itemName=SpecLynx.vscode-openapi-toolkit" target="_blank" rel="noopener noreferrer" class="primary-cta text-white font-bold py-3 px-6 rounded inline-block">
+            Install VSCode Extension
+          </a>
+          <a href="#products" class="border-2 border-primary-dark text-primary-dark font-bold py-3 px-6 rounded inline-block hover:bg-gray-100 transition-colors">
+            Explore the Ecosystem
           </a>
         </div>
       </div>
@@ -88,7 +101,7 @@ permalink: /
         <h3 class="product-card-title">OpenAPI Toolkit</h3>
         <p class="text-sm text-gray-500 mb-2">VSCode Extension</p>
         <p class="product-card-description">
-          <strong>Write specs 10x faster</strong> with real-time validation, smart autocompletion, and instant preview - all inside VSCode.
+          <strong>Write specs faster</strong> with real-time validation, smart autocompletion, and instant preview - all inside VSCode.
         </p>
         <ul class="text-sm text-gray-600 mb-4 space-y-1">
           <li>&#10003; Context-aware autocompletion</li>
@@ -172,19 +185,27 @@ permalink: /
           Contact Sales
         </a>
       </div>
-      <div class="text-center">
-        <div class="inline-flex items-center justify-center w-32 h-32 bg-white/10 rounded-full">
-          <span class="text-6xl">&#127970;</span>
-        </div>
+      <div>
+        <h3 class="text-xl font-bold mb-4">Secure by Design</h3>
+        <ul class="text-gray-300 space-y-2">
+          <li>&#128274; Your specs never leave your machine</li>
+          <li>&#128274; Offline-first architecture</li>
+          <li>&#128274; No accounts, no tracking, no telemetry</li>
+        </ul>
       </div>
     </div>
     <!-- Trusted by -->
     <div class="text-center border-t border-white/10 pt-10">
       <p class="text-gray-400 text-xs uppercase tracking-wider mb-6">Trusted by</p>
       <div class="flex justify-center">
-        <a href="https://jentic.com/" target="_blank" rel="noopener noreferrer" class="opacity-70 hover:opacity-100 transition-opacity" title="Building Jentic OpenAPI/Arazzo Tools with SpecLynx">
-          <img src="https://jentic.com/landing-page/footer/logo-gradient.svg" alt="Jentic" class="h-12 w-auto brightness-0 invert">
-        </a>
+        <div class="trusted-logo-wrapper">
+          <a href="https://jentic.com/" target="_blank" rel="noopener noreferrer" class="opacity-70 hover:opacity-100 transition-opacity">
+            <img src="https://jentic.com/landing-page/footer/logo-gradient.svg" alt="Jentic" class="h-12 w-auto brightness-0 invert">
+          </a>
+          <div class="trusted-logo-popover">
+            Powering <a href="https://github.com/jentic/jentic-arazzo-tools" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline font-semibold">Arazzo Tools</a> &amp; <a href="https://jentic.com/scorecard" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline font-semibold">API Scorecard</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>

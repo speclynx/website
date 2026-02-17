@@ -1,7 +1,7 @@
 <nav class="nav-container">
   <div class="container mx-auto px-4 max-w-6xl">
     <div class="flex items-center justify-between py-4">
-      <a href="/" class="flex items-center">
+      <a href="{{ '/' | relative_url }}" class="flex items-center">
         <img src="{{ '/assets/images/speclynx-logo.svg' | relative_url }}" alt="SpecLynx" class="w-[50px] h-[50px] mr-3">
         <span class="text-xl font-bold text-primary-dark">SpecLynx</span>
       </a>
@@ -16,9 +16,9 @@
             </svg>
           </button>
           <div class="dropdown-menu">
-            <a href="/openapi-toolkit/" class="dropdown-item">OpenAPI Toolkit</a>
-            <a href="/language-service/" class="dropdown-item">Language Service</a>
-            <a href="/apidom/" class="dropdown-item">ApiDOM</a>
+            <a href="{{ '/openapi-toolkit/' | relative_url }}" class="dropdown-item">OpenAPI Toolkit</a>
+            <a href="{{ '/language-service/' | relative_url }}" class="dropdown-item">Language Service</a>
+            <a href="{{ '/apidom/' | relative_url }}" class="dropdown-item">ApiDOM</a>
           </div>
         </div>
         <div class="dropdown">
@@ -36,7 +36,7 @@
             <a href="https://github.com/orgs/speclynx/discussions" target="_blank" rel="noopener noreferrer" class="dropdown-item">Discussions</a>
           </div>
         </div>
-        <a href="/pricing/" class="nav-link">Pricing</a>
+        <a href="{{ '/pricing/' | relative_url }}" class="nav-link">Pricing</a>
       </div>
 
       <!-- Mobile Hamburger -->
@@ -49,15 +49,15 @@
 
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="mobile-menu md:hidden pb-4">
-      <a href="/openapi-toolkit/" class="block py-2 nav-link">OpenAPI Toolkit</a>
-      <a href="/language-service/" class="block py-2 nav-link">Language Service</a>
-      <a href="/apidom/" class="block py-2 nav-link">ApiDOM</a>
+      <a href="{{ '/openapi-toolkit/' | relative_url }}" class="block py-2 nav-link">OpenAPI Toolkit</a>
+      <a href="{{ '/language-service/' | relative_url }}" class="block py-2 nav-link">Language Service</a>
+      <a href="{{ '/apidom/' | relative_url }}" class="block py-2 nav-link">ApiDOM</a>
       <span class="block py-2 text-gray-500 text-xs uppercase mt-2">Repositories</span>
       <a href="https://github.com/speclynx/apidom" target="_blank" rel="noopener noreferrer" class="block py-2 nav-link pl-4">ApiDOM</a>
       <a href="https://github.com/speclynx/vscode-openapi-toolkit" target="_blank" rel="noopener noreferrer" class="block py-2 nav-link pl-4">OpenAPI Toolkit</a>
       <span class="block py-2 text-gray-500 text-xs uppercase mt-2">Community</span>
       <a href="https://github.com/orgs/speclynx/discussions" target="_blank" rel="noopener noreferrer" class="block py-2 nav-link pl-4">Discussions</a>
-      <a href="/pricing/" class="block py-2 nav-link">Pricing</a>
+      <a href="{{ '/pricing/' | relative_url }}" class="block py-2 nav-link">Pricing</a>
     </div>
   </div>
 </nav>
