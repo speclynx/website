@@ -58,4 +58,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
+  // Add anchor links to headings with IDs or first heading in sections with IDs
+  document.querySelectorAll('main h1[id], main h2[id], main h3[id], main h4[id]').forEach(function(heading) {
+    if (heading.querySelector('.heading-anchor')) return;
+    addAnchor(heading, heading.id);
+  });
+
+  document.querySelectorAll('main section[id]').forEach(function(section) {
+    const heading = section.querySelector(':scope > h1, :scope > h2, :scope > h3, :scope > h4, :scope > div > h1, :scope > div > h2');
+    if (heading && !heading.querySelector('.heading-anchor')) {
+      addAnchor(heading, section.id);
+    }
+  });
+
+  function addAnchor(heading, id) {
+    const anchor = document.createElement('a');
+    anchor.href = '#' + id;
+    anchor.className = 'heading-anchor';
+    anchor.setAttribute('aria-label', 'Link to this section');
+    anchor.textContent = '#';
+    heading.appendChild(anchor);
+  }
+
 });

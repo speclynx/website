@@ -18,6 +18,31 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Offset anchor links for sticky header */
+[id] {
+    scroll-margin-top: 80px;
+}
+
+/* Anchor link on heading hover */
+.heading-anchor {
+    opacity: 0;
+    margin-left: 0.5rem;
+    color: var(--color-primary-light);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.heading-anchor:hover {
+    color: var(--color-primary-dark);
+}
+
+h1:hover .heading-anchor,
+h2:hover .heading-anchor,
+h3:hover .heading-anchor,
+h4:hover .heading-anchor {
+    opacity: 1;
+}
+
 /* Header colors */
 .header-h1-color { color: var(--color-primary-light); }
 .header-p-color { color: var(--color-primary-dark); }
