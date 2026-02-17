@@ -1,111 +1,591 @@
 ---
 layout: base
-title: SpecLynx OpenAPI Toolkit - The OpenAPI Powerhouse for VSCode
-description: Stop wrestling with OpenAPI specs - SpecLynx OpenAPI Toolkit delivers the most effective way to author and manage your API specs, bringing unprecedented ease, pinpoint accuracy, and unmatched power directly to your VSCode workflow.
+title: SpecLynx OpenAPI Toolkit - Documentation
+description: Documentation for SpecLynx OpenAPI Toolkit - the VSCode extension for OpenAPI authoring with validation, linting, and live preview.
 launchlist: true
 permalink: /openapi-toolkit/
 ---
 
-<header class="py-8 bg-white shadow-sm">
-  <div class="container mx-auto px-4">
-    <div class="flex items-center justify-center">
-      <img src="{{ '/assets/images/speclynx-logo.svg' | relative_url }}" alt="SpecLynx OpenAPI Toolkit" class="w-[100px] h-[100px] object-contain mr-[20px]">
-      <div>
-        <h1 class="text-4xl sm:text-5xl font-extrabold header-h1-color mb-1">SpecLynx OpenAPI Toolkit</h1>
-        <p class="text-xl sm:text-2xl header-p-color font-semibold">The OpenAPI Powerhouse for VSCode</p>
+<div class="flex-1">
+<div class="flex">
+  <!-- Sticky Sidebar -->
+  <aside class="hidden lg:block w-64 flex-shrink-0">
+    <nav class="sticky top-20 p-6 space-y-4 text-sm">
+      <div class="font-bold text-primary-dark mb-4">OpenAPI Toolkit</div>
+
+      <a href="#overview" class="block text-gray-600 hover:text-primary-light">Overview</a>
+
+      <div class="pt-2">
+        <span class="font-semibold text-gray-800">Editor</span>
+        <div class="ml-3 mt-2 space-y-2">
+          <a href="#hover" class="block text-gray-600 hover:text-primary-light">Hover Documentation</a>
+          <a href="#completion" class="block text-gray-600 hover:text-primary-light">Autocompletion</a>
+          <a href="#references" class="block text-gray-600 hover:text-primary-light">References & Navigation</a>
+          <a href="#syntax-highlighting" class="block text-gray-600 hover:text-primary-light">Syntax Highlighting</a>
+        </div>
       </div>
-    </div>
-  </div>
-</header>
 
-<section class="flex-grow pt-8 md:pt-8 md:pb-12 bg-gradient-to-br from-blue-50 to-white flex items-start justify-center">
-  <div class="container mx-auto px-4 max-w-6xl text-center">
-    <h2 class="text-xs sm:text-sm md:text-base leading-tight text-gray-800 mb-8 max-w-3xl mx-auto">
-      Stop wrestling with OpenAPI specs - SpecLynx OpenAPI Toolkit delivers the most effective way to author and manage your API specs, bringing unprecedented ease, pinpoint accuracy, and unmatched power directly to your VSCode workflow.
-    </h2>
+      <div class="pt-2">
+        <span class="font-semibold text-gray-800">Tools</span>
+        <div class="ml-3 mt-2 space-y-2">
+          <a href="#formatting" class="block text-gray-600 hover:text-primary-light">Formatting</a>
+          <a href="#conversion" class="block text-gray-600 hover:text-primary-light">JSON/YAML Conversion</a>
+          <a href="#preview" class="block text-gray-600 hover:text-primary-light">Preview</a>
+        </div>
+      </div>
 
-    <div>
-      <a href="https://marketplace.visualstudio.com/items?itemName=SpecLynx.vscode-openapi-toolkit" target="_blank" class="primary-cta text-white font-bold py-4 px-8 text-xl rounded inline-block">
-        Install OpenAPI Toolkit VSCode Extension!
+      <div class="pt-2">
+        <span class="font-semibold text-gray-800">Validation & Linting</span>
+        <div class="ml-3 mt-2 space-y-2">
+          <a href="#validation-modes" class="block text-gray-600 hover:text-primary-light">Validation Modes</a>
+          <a href="#spectral" class="block text-gray-600 hover:text-primary-light">Spectral</a>
+          <a href="#semantic" class="block text-gray-600 hover:text-primary-light">Semantic</a>
+          <a href="#semantic-linting" class="block text-gray-600 hover:text-primary-light">Custom Linting Rules</a>
+        </div>
+      </div>
+
+      <a href="#configuration" class="block text-gray-600 hover:text-primary-light pt-2">Configuration</a>
+      <a href="#why-choose" class="block text-gray-600 hover:text-primary-light">Why Choose?</a>
+      <a href="#installation" class="block text-gray-600 hover:text-primary-light">Installation</a>
+      <a href="#roadmap" class="block text-gray-600 hover:text-primary-light">Roadmap</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 max-w-4xl px-6 py-12">
+    <!-- Overview -->
+    <section id="overview" class="mb-16">
+      <h1 class="text-4xl font-extrabold text-primary-dark mb-4">SpecLynx OpenAPI Toolkit</h1>
+      <p class="text-xl text-gray-600 mb-6">The OpenAPI Powerhouse for VSCode</p>
+
+      <p class="text-gray-700 text-lg mb-6">
+        SpecLynx OpenAPI Toolkit is a VSCode extension providing advanced editing, validation, linting, and preview capabilities for Swagger/OpenAPI specifications.
+      </p>
+
+      <a href="https://marketplace.visualstudio.com/items?itemName=SpecLynx.vscode-openapi-toolkit" target="_blank" rel="noopener noreferrer" class="primary-cta text-white font-bold py-3 px-6 rounded inline-block mb-8">
+        Install Extension
       </a>
-    </div>
 
-    <br><br>
-
-    <div class="launchlist-widget" data-key-id="05SLUz">
-      <p><i>Stay in the loop - <strong>subscribe</strong> for SpecLynx OpenAPI Toolkit updates.</i></p>
-    </div>
-
-    <div class="text-center" style="margin-top: -50px">
-        <p class="text-xs sm:text-sm md:text-base leading-tight text-gray-800 mb-8 max-w-3xl mx-auto">
-            SpecLynx OpenAPI Toolkit is a purpose-built <strong>VSCode extension</strong> for OpenAPI authors,
-            designed to work seamlessly wherever you code - whether on desktop VSCode,
-            in the browser with <a href="https://vscode.dev/" class="text-blue-600 font-bold hover:text-blue-800" target="_blank" rel="noopener noreferrer">vscode.dev</a> or <a href="https://github.dev" class="text-blue-600 font-bold hover:text-blue-800" target="_blank" rel="noopener noreferrer">github.dev</a>,
-            or inside <a href="https://github.com/features/codespaces" class="text-blue-600 font-bold hover:text-blue-800" target="_blank" rel="noopener noreferrer">GitHub Codespaces</a>. No setup headaches, just powerful OpenAPI authoring at your fingertips in any environment.
-        </p>
-        <img src="{{ '/assets/images/speclynx-openapi-toolkit.png' | relative_url }}" alt="SpecLynx OpenAPI Toolkit" width="1567" height="694" class="mx-auto mt-12 mb-8 max-w-full rounded-lg shadow-xl border border-gray-200">
-    </div>
-  </div>
-</section>
-
-<section class="py-4 md:py-8 bg-white">
-  <div class="container mx-auto px-4 max-w-6xl">
-    <h3 class="text-3xl sm:text-4xl font-extrabold text-primary-dark text-center mb-12">Why Choose SpecLynx OpenAPI Toolkit?</h3>
-    <p class="text-lg text-gray-700 leading-relaxed text-center mb-12 max-w-3xl mx-auto">
-      SpecLynx OpenAPI Toolkit is engineered for clarity, control, and confidence, enabling you to focus on designing exceptional APIs.
-    </p>
-
-    <div class="grid md:grid-cols-2 gap-10 mb-8">
-      <div class="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-        <h4 class="text-2xl font-bold text-primary-dark mb-3">OpenAPI Authoring</h4>
-        <p>
-          Get full YAML/JSON autocompletion, inline documentation hints, validation, linting, and live preview as you type - so you catch errors before they cost you time.
-          OpenAPI Toolkit surfaces context-aware suggestions for paths, parameters, responses, components, ...; flags missing or mismatched fields instantly;
-          and renders a side-by-side spec-to-UI preview that updates with every keystroke.
-          Say goodbye to manual spec checks and hello to a fluid authoring experience that keeps your API specs accurate and up-to-date.
+      <div class="bg-blue-50 border-l-4 border-primary-light p-4 mb-6">
+        <p class="text-gray-700">
+          <strong>Works everywhere:</strong> Desktop VSCode, <a href="https://vscode.dev/" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline">vscode.dev</a>, <a href="https://github.dev" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline">github.dev</a>, and <a href="https://github.com/features/codespaces" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline">GitHub Codespaces</a>. A rare capability in the OpenAPI editing landscape.
         </p>
       </div>
 
-      <div class="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-        <h4 class="text-2xl font-bold text-primary-dark mb-3">One-Click Tooling</h4>
-        <ul class="list-disc list-inside text-gray-700 space-y-2">
-          <li>Powered by a powerful <a href="/language-service/" class="text-blue-600 font-bold hover:text-blue-800">Language Server</a></li>
-          <li>JSON Schema Validation</li>
-          <li>Semantic Validation & Linting</li>
-          <li>Spectral Validation & Linting</li>
-          <li>OpenAPI Description dereferencing</li>
-          <li>Workspace-Wide Operations</li>
-        </ul>
-        <p class="mt-8">
-          All these commands - and more - are just a keystroke away in VS Code, so you can focus on designing great APIs instead of wrestling with tooling.
-        </p>
-      </div>
+      <h3 class="text-lg font-semibold text-primary-dark mb-3">Supported Formats</h3>
+      <p class="text-gray-700 mb-2">Full JSON and YAML support with identical features across all versions:</p>
+      <ul class="text-gray-700 space-y-1 mb-6 ml-4">
+        <li>&#10003; OpenAPI 2.0 (Swagger)</li>
+        <li>&#10003; OpenAPI 3.0.x</li>
+        <li>&#10003; OpenAPI 3.1.x</li>
+      </ul>
 
-      <div class="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-        <h4 class="text-2xl font-bold text-primary-dark mb-3">Public Roadmap</h4>
-        <p>
-            We believe in building SpecLynx in the open. Here's our public roadmap, so you can see what's coming next and what we're working on:
-        </p>
-        <br >
-        <ul class="list-disc list-inside text-gray-700 space-y-2">
-          <li>Reformat JSON/YAML</li>
-          <li>Convert into JSON/YAML</li>
-          <li>New file templates</li>
-          <li>OpenAPI change detection</li>
-          <li>OpenAPI versions conversion</li>
-          <li>Enhanced bundling</li>
-          <li>Arazzo</li>
-          <li>Overlays</li>
-          <li>Scalar API-Reference preview</li>
-        </ul>
-      </div>
+      <img src="{{ '/assets/images/openapi-toolkit/main-screenshot.png' | relative_url }}" alt="SpecLynx OpenAPI Toolkit" class="rounded-lg shadow-lg border border-gray-200">
+    </section>
 
-      <div class="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-        <h4 class="text-2xl font-bold text-primary-dark mb-3">Built by Veterans</h4>
-        <p>
-          SpecLynx OpenAPI Toolkit is crafted by <a href="https://vladimirgorej.com/" class="text-blue-600 font-bold hover:text-blue-800" target="_blank" rel="noopener noreferrer">Vladimir Gorej</a> and <a href="https://github.com/frantuma" class="text-blue-600 font-bold hover:text-blue-800" target="_blank" rel="noopener noreferrer">Francesco Tumanischvili</a>, who bring <strong>15+ years of experience maintaining Swagger/OpenAPI tools</strong>. Best practices from building tools used by millions of developers are built into every feature.
-        </p>
-      </div>
+    <!-- Editor Section Divider -->
+    <div class="border-t border-gray-200 pt-8 mb-8">
+      <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">Editor</h2>
     </div>
-  </div>
-</section>
+
+    <!-- Hover Documentation -->
+    <section id="hover" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Hover Documentation</h2>
+      <p class="text-gray-700 mb-4">
+        Hover over any keyword to see context-aware documentation panels matching official OpenAPI specifications. No more switching between your editor and the spec docs.
+      </p>
+      <ul class="text-gray-700 space-y-2 mb-6 ml-4">
+        <li>&#10003; Full specification documentation inline</li>
+        <li>&#10003; Reference targets resolved and displayed in tooltips</li>
+        <li>&#10003; Same documentation appears in completion item details</li>
+      </ul>
+      <img src="{{ '/assets/images/openapi-toolkit/hover.png' | relative_url }}" alt="Hover documentation" class="rounded-lg shadow-md border border-gray-200">
+    </section>
+
+    <!-- Autocompletion -->
+    <section id="completion" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Autocompletion</h2>
+      <p class="text-gray-700 mb-4">
+        Semantic intelligence, not just basic schema-driven suggestions. The completion system understands OpenAPI context and delivers smart, relevant options.
+      </p>
+
+      <h3 class="text-lg font-semibold text-primary-dark mb-3">Completion with Documentation</h3>
+      <p class="text-gray-700 mb-4">
+        Every suggestion includes full specification documentation inline.
+      </p>
+      <img src="{{ '/assets/images/openapi-toolkit/completion.png' | relative_url }}" alt="Autocompletion with documentation" class="rounded-lg shadow-md border border-gray-200 mb-6">
+
+      <h3 class="text-lg font-semibold text-primary-dark mb-3">Reference Completion</h3>
+      <p class="text-gray-700 mb-4">
+        In <code class="bg-gray-100 px-1 rounded">$ref</code> values, suggests compatible targets with in-context preview of the referenced content.
+      </p>
+      <img src="{{ '/assets/images/openapi-toolkit/completion-refs.png' | relative_url }}" alt="Reference completion" class="rounded-lg shadow-md border border-gray-200 mb-6">
+
+      <h3 class="text-lg font-semibold text-primary-dark mb-3">Context-Aware Suggestions</h3>
+      <p class="text-gray-700 mb-4">
+        Adapts to related fields. For example, <code class="bg-gray-100 px-1 rounded">type: integer</code> shows only compatible <code class="bg-gray-100 px-1 rounded">format</code> values.
+      </p>
+      <img src="{{ '/assets/images/openapi-toolkit/completion-context.png' | relative_url }}" alt="Context-aware completion" class="rounded-lg shadow-md border border-gray-200">
+    </section>
+
+    <!-- References & Navigation -->
+    <section id="references" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">References & Navigation</h2>
+      <p class="text-gray-700 mb-4">
+        Navigate complex OpenAPI specifications with ease. Jump between definitions, find usages, and understand your API structure at a glance.
+      </p>
+
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm text-left">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="px-4 py-2 font-semibold">Feature</th>
+              <th class="px-4 py-2 font-semibold">Shortcut</th>
+              <th class="px-4 py-2 font-semibold">Description</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium">Go to Definition</td>
+              <td class="px-4 py-2"><kbd class="bg-gray-100 px-2 py-1 rounded text-xs">F3</kbd></td>
+              <td class="px-4 py-2">Jump to <code class="bg-gray-100 px-1 rounded">$ref</code> targets across files</td>
+            </tr>
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium">Go to References</td>
+              <td class="px-4 py-2"><kbd class="bg-gray-100 px-2 py-1 rounded text-xs">Shift+F12</kbd></td>
+              <td class="px-4 py-2">Open panel listing all available references</td>
+            </tr>
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium">Find All References</td>
+              <td class="px-4 py-2">Right-click menu</td>
+              <td class="px-4 py-2">Locate every usage of selected targets</td>
+            </tr>
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium">Reference Preview</td>
+              <td class="px-4 py-2">Hover</td>
+              <td class="px-4 py-2">Display referenced content without losing focus</td>
+            </tr>
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium">Document Symbols</td>
+              <td class="px-4 py-2"><kbd class="bg-gray-100 px-2 py-1 rounded text-xs">Ctrl+Shift+O</kbd></td>
+              <td class="px-4 py-2">Outline view and breadcrumb navigation</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-2 font-medium">Dereference</td>
+              <td class="px-4 py-2">Command palette</td>
+              <td class="px-4 py-2">Generate dereferenced copies with automatic naming</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4 mb-6">
+        <div>
+          <p class="text-gray-600 text-sm mb-2">Reference Preview in Hover</p>
+          <img src="{{ '/assets/images/openapi-toolkit/hover-reference.png' | relative_url }}" alt="Reference preview in hover" class="rounded-lg shadow-md border border-gray-200">
+        </div>
+        <div>
+          <p class="text-gray-600 text-sm mb-2">Go to Definition</p>
+          <img src="{{ '/assets/images/openapi-toolkit/goto-definition.png' | relative_url }}" alt="Go to definition" class="rounded-lg shadow-md border border-gray-200">
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4 mb-6">
+        <div>
+          <p class="text-gray-600 text-sm mb-2">Go to References</p>
+          <img src="{{ '/assets/images/openapi-toolkit/goto-references.png' | relative_url }}" alt="Go to references" class="rounded-lg shadow-md border border-gray-200">
+        </div>
+        <div>
+          <p class="text-gray-600 text-sm mb-2">Find All References</p>
+          <img src="{{ '/assets/images/openapi-toolkit/find-references.png' | relative_url }}" alt="Find all references" class="rounded-lg shadow-md border border-gray-200">
+        </div>
+      </div>
+      <div>
+        <p class="text-gray-600 text-sm mb-2">Dereference Command</p>
+        <img src="{{ '/assets/images/openapi-toolkit/dereference.png' | relative_url }}" alt="Dereference command" class="rounded-lg shadow-md border border-gray-200">
+      </div>
+    </section>
+
+    <!-- Syntax Highlighting -->
+    <section id="syntax-highlighting" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Syntax Highlighting</h2>
+      <p class="text-gray-700 mb-4">
+        Semantic syntax highlighting that goes beyond basic JSON/YAML coloring. The toolkit distinguishes specific OpenAPI elements with distinct colors and font styles.
+      </p>
+      <ul class="text-gray-700 space-y-2 mb-6 ml-4">
+        <li>&#10003; Operations highlighted distinctly</li>
+        <li>&#10003; Schemas visually differentiated</li>
+        <li>&#10003; References stand out for easy identification</li>
+        <li>&#10003; Improved readability for complex specifications</li>
+      </ul>
+      <img src="{{ '/assets/images/openapi-toolkit/syntax-highlighting.png' | relative_url }}" alt="Syntax highlighting" class="rounded-lg shadow-md border border-gray-200">
+    </section>
+
+    <!-- Tools Section Divider -->
+    <div class="border-t border-gray-200 pt-8 mb-8">
+      <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">Tools</h2>
+    </div>
+
+    <!-- Formatting -->
+    <section id="formatting" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Formatting</h2>
+      <p class="text-gray-700 mb-4">
+        Format your OpenAPI documents using VSCode's built-in formatting commands. The extension respects your editor's tab size and indentation preferences (<code class="bg-gray-100 px-1 rounded">tabSize</code> and <code class="bg-gray-100 px-1 rounded">insertSpaces</code>).
+      </p>
+      <p class="text-gray-700 mb-6">
+        Use <kbd class="bg-gray-100 px-2 py-1 rounded text-sm">Shift+Alt+F</kbd> or right-click and select "Format Document".
+      </p>
+      <img src="{{ '/assets/images/openapi-toolkit/formatting.png' | relative_url }}" alt="Document formatting" class="rounded-lg shadow-md border border-gray-200">
+    </section>
+
+    <!-- JSON/YAML Conversion -->
+    <section id="conversion" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">JSON / YAML Conversion</h2>
+      <p class="text-gray-700 mb-4">
+        Convert between JSON and YAML formats with a single command. Right-click in the editor or use the Command Palette (<kbd class="bg-gray-100 px-2 py-1 rounded text-sm">Ctrl+Shift+P</kbd>):
+      </p>
+      <ul class="text-gray-700 space-y-2 mb-4 ml-4">
+        <li>&#10003; <code class="bg-gray-100 px-1 rounded">SpecLynx: Convert to JSON</code></li>
+        <li>&#10003; <code class="bg-gray-100 px-1 rounded">SpecLynx: Convert to YAML</code></li>
+      </ul>
+      <p class="text-gray-700 mb-6">
+        Default output filename: <code class="bg-gray-100 px-1 rounded">{filename}.{target-extension}</code>
+      </p>
+      <img src="{{ '/assets/images/openapi-toolkit/conversion.png' | relative_url }}" alt="JSON/YAML conversion" class="rounded-lg shadow-md border border-gray-200">
+    </section>
+
+    <!-- Preview -->
+    <section id="preview" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Preview</h2>
+      <p class="text-gray-700 mb-4">
+        See your API documentation rendered live as you edit. Open via Command Palette: <code class="bg-gray-100 px-1 rounded">OpenAPI Toolkit: Show API Document preview</code>
+      </p>
+
+      <h3 class="text-lg font-semibold text-primary-dark mb-3">Available Renderers</h3>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm text-left">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="px-4 py-2 font-semibold">Renderer</th>
+              <th class="px-4 py-2 font-semibold">Description</th>
+              <th class="px-4 py-2 font-semibold">Default</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium">Scalar</td>
+              <td class="px-4 py-2">Modern, clean API reference documentation</td>
+              <td class="px-4 py-2"><span class="text-green-600">Yes</span></td>
+            </tr>
+            <tr>
+              <td class="px-4 py-2 font-medium">SwaggerUI</td>
+              <td class="px-4 py-2">Classic OpenAPI documentation interface</td>
+              <td class="px-4 py-2"><span class="text-gray-500">No</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="text-lg font-semibold text-primary-dark mb-3">Interactive Features</h3>
+      <ul class="text-gray-700 space-y-2 mb-6 ml-4">
+        <li>&#10003; Live rendering of specification changes</li>
+        <li>&#10003; Server selection and authorization</li>
+        <li>&#10003; Direct operation execution for request/response testing</li>
+      </ul>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <img src="{{ '/assets/images/openapi-toolkit/preview-scalar.png' | relative_url }}" alt="Scalar preview" class="rounded-lg shadow-md border border-gray-200">
+        <img src="{{ '/assets/images/openapi-toolkit/preview-swagger.png' | relative_url }}" alt="SwaggerUI preview" class="rounded-lg shadow-md border border-gray-200">
+      </div>
+    </section>
+
+    <!-- Validation Section Divider -->
+    <div class="border-t border-gray-200 pt-8 mb-8">
+      <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">Validation & Linting</h2>
+    </div>
+
+    <!-- Validation Modes -->
+    <section id="validation-modes" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Validation & Linting</h2>
+      <p class="text-gray-700 mb-4">
+        Three combinable validation modes catch issues at different levels. Use them together for comprehensive spec validation.
+      </p>
+
+      <h3 class="text-lg font-semibold text-primary-dark mb-3">Definitions</h3>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm text-left">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="px-4 py-2 font-semibold">Term</th>
+              <th class="px-4 py-2 font-semibold">Meaning</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium">Validation</td>
+              <td class="px-4 py-2">Checks specification conformance - is it valid OpenAPI?</td>
+            </tr>
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium">Linting</td>
+              <td class="px-4 py-2">Enforces best practices and quality standards beyond basic validity</td>
+            </tr>
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium">Semantic Validation</td>
+              <td class="px-4 py-2">Targets semantic properties of OpenAPI elements (e.g., duplicate operationIds)</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-2 font-medium">Semantic Linting</td>
+              <td class="px-4 py-2">Uses semantic element types and JSONPath expressions for custom rules</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="text-lg font-semibold text-primary-dark mb-3">Validation Modes</h3>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm text-left">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="px-4 py-2 font-semibold">Mode</th>
+              <th class="px-4 py-2 font-semibold">Default</th>
+              <th class="px-4 py-2 font-semibold">Description</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium">JSON Schema</td>
+              <td class="px-4 py-2"><span class="text-green-600">Enabled</span></td>
+              <td class="px-4 py-2">Standard OpenAPI spec conformance checks against the official JSON Schema</td>
+            </tr>
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium">Spectral</td>
+              <td class="px-4 py-2"><span class="text-gray-500">Disabled</span></td>
+              <td class="px-4 py-2">Rule-based analysis using external Spectral rulesets for custom standards</td>
+            </tr>
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium">Semantic Validation</td>
+              <td class="px-4 py-2"><span class="text-gray-500">Disabled</span></td>
+              <td class="px-4 py-2">Deep validation of OpenAPI semantics beyond what JSON Schema can catch</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-2 font-medium">Semantic Linting</td>
+              <td class="px-4 py-2"><span class="text-green-600">Enabled</span></td>
+              <td class="px-4 py-2">Custom rules targeting specific semantic element types</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <img src="{{ '/assets/images/openapi-toolkit/validation.png' | relative_url }}" alt="Validation modes" class="rounded-lg shadow-md border border-gray-200">
+    </section>
+
+    <!-- Spectral -->
+    <section id="spectral" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Spectral Integration</h2>
+      <p class="text-gray-700 mb-4">
+        Use <a href="https://stoplight.io/open-source/spectral" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline">Spectral</a> rulesets to enforce your team's API style guides and standards.
+      </p>
+
+      <h3 class="text-lg font-semibold text-primary-dark mb-3">Setup</h3>
+      <p class="text-gray-700 mb-2">Enable Spectral validation in settings, then provide a ruleset via:</p>
+      <ul class="text-gray-700 space-y-1 mb-4 ml-4">
+        <li>&#10003; A <code class="bg-gray-100 px-1 rounded">.spectral.yaml</code>, <code class="bg-gray-100 px-1 rounded">.spectral.yml</code>, or <code class="bg-gray-100 px-1 rounded">.spectral.json</code> at workspace root</li>
+        <li>&#10003; Extension settings or the dedicated command</li>
+      </ul>
+
+      <h3 class="text-lg font-semibold text-primary-dark mb-3">Example Ruleset</h3>
+      <div class="code-block mb-6">
+        <pre><code>extends: spectral:oas
+rules:
+  operation-operationId: error
+  operation-tags: warn</code></pre>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div>
+          <p class="text-gray-600 text-sm mb-2">Create Ruleset</p>
+          <img src="{{ '/assets/images/openapi-toolkit/spectral-create.png' | relative_url }}" alt="Create Spectral ruleset" class="rounded-lg shadow-md border border-gray-200">
+        </div>
+        <div>
+          <p class="text-gray-600 text-sm mb-2">Validation in Action</p>
+          <img src="{{ '/assets/images/openapi-toolkit/spectral-use.png' | relative_url }}" alt="Spectral validation in use" class="rounded-lg shadow-md border border-gray-200">
+        </div>
+      </div>
+    </section>
+
+    <!-- Semantic -->
+    <section id="semantic" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Semantic Validation</h2>
+      <p class="text-gray-700 mb-4">
+        Goes beyond JSON Schema to catch issues that are syntactically valid but semantically incorrect:
+      </p>
+      <ul class="text-gray-700 space-y-2 mb-6 ml-4">
+        <li>&#10003; Duplicate operationIds</li>
+        <li>&#10003; Invalid <code class="bg-gray-100 px-1 rounded">$ref</code> targets</li>
+        <li>&#10003; Missing required fields in context</li>
+        <li>&#10003; Type/format mismatches</li>
+        <li>&#10003; Unused components</li>
+      </ul>
+      <img src="{{ '/assets/images/openapi-toolkit/semantic.png' | relative_url }}" alt="Semantic validation" class="rounded-lg shadow-md border border-gray-200">
+    </section>
+
+    <!-- Semantic Linting -->
+    <section id="semantic-linting" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Custom Linting Rules</h2>
+      <p class="text-gray-700 mb-4">
+        Create custom linting rules targeting specific semantic element types. Define rules in JSON or YAML format with JSONPath expressions for precise targeting.
+      </p>
+
+      <h3 class="text-lg font-semibold text-primary-dark mb-3">Setup</h3>
+      <p class="text-gray-700 mb-2">Enable semantic linting in settings, then provide a ruleset via:</p>
+      <ul class="text-gray-700 space-y-1 mb-6 ml-4">
+        <li>&#10003; A <code class="bg-gray-100 px-1 rounded">.speclynx.yaml</code>, <code class="bg-gray-100 px-1 rounded">.speclynx.yml</code>, or <code class="bg-gray-100 px-1 rounded">.speclynx.json</code> at workspace root</li>
+        <li>&#10003; Extension settings or the dedicated command</li>
+      </ul>
+
+      <h3 class="text-lg font-semibold text-primary-dark mb-3">Rule Structure</h3>
+      <p class="text-gray-700 mb-4">
+        Each rule in your ruleset can include:
+      </p>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm text-left">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="px-4 py-2 font-semibold">Property</th>
+              <th class="px-4 py-2 font-semibold">Description</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium">Rule ID</td>
+              <td class="px-4 py-2">Unique identifier for the rule</td>
+            </tr>
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium">Description</td>
+              <td class="px-4 py-2">Human-readable explanation of what the rule checks</td>
+            </tr>
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium">Severity</td>
+              <td class="px-4 py-2">Error, warning, or info level</td>
+            </tr>
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium">Target Selector</td>
+              <td class="px-4 py-2">Element type and/or JSONPath expression</td>
+            </tr>
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium">Conditions</td>
+              <td class="px-4 py-2">Logic to evaluate against the target</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-2 font-medium">Fixes</td>
+              <td class="px-4 py-2">Optional automated fixes when the rule triggers</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="text-lg font-semibold text-primary-dark mb-3">Supported Element Types</h3>
+      <p class="text-gray-700 mb-4">
+        Target rules to specific OpenAPI elements:
+      </p>
+      <div class="bg-gray-50 p-4 rounded-lg mb-6">
+        <p class="text-gray-600 text-sm font-mono leading-relaxed">
+          callback, components, contact, content, definitions, discriminator, encoding, example, external-documentation, header, headers, info, items, license, link, media-type, oauth-flow, oauth-flows, openapi, openapi3_0, openapi3_1, operation, parameter, parameters-definitions, path-item, paths, path-template, reference, request-body, response, responses, responses-definitions, schema, scopes, security-definitions, security-requirement, security-scheme, server, server-variable, swagger, tag, xml
+        </p>
+      </div>
+      <img src="{{ '/assets/images/openapi-toolkit/semantic-linting-rules.png' | relative_url }}" alt="Semantic linting rules" class="rounded-lg shadow-md border border-gray-200">
+    </section>
+
+    <!-- Configuration -->
+    <section id="configuration" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Configuration</h2>
+      <p class="text-gray-700 mb-4">
+        All extension settings are accessible via <strong>File &rarr; Preferences &rarr; Settings</strong>. Search for <code class="bg-gray-100 px-1 rounded">@ext:SpecLynx.vscode-openapi-toolkit</code> to see all options.
+      </p>
+
+      <h3 class="text-lg font-semibold text-primary-dark mb-3">Key Settings</h3>
+      <ul class="text-gray-700 space-y-2 ml-4">
+        <li>&#10003; <code class="bg-gray-100 px-1 rounded">speclynx.validation.*</code> - Enable/disable validation modes</li>
+        <li>&#10003; <code class="bg-gray-100 px-1 rounded">speclynx.openapi.preview.renderer</code> - Choose preview renderer</li>
+        <li>&#10003; <code class="bg-gray-100 px-1 rounded">speclynx.spectral.ruleset</code> - Path to Spectral ruleset</li>
+      </ul>
+    </section>
+
+    <!-- Why Choose -->
+    <section id="why-choose" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Why Choose SpecLynx OpenAPI Toolkit?</h2>
+      <p class="text-gray-700 mb-6">
+        Engineered for clarity, control, and confidence - enabling you to focus on designing exceptional APIs.
+      </p>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h3 class="font-semibold text-primary-dark mb-2">Catch Errors Early</h3>
+          <p class="text-gray-600 text-sm">Real-time validation flags issues as you type, not after you ship.</p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h3 class="font-semibold text-primary-dark mb-2">Write Faster</h3>
+          <p class="text-gray-600 text-sm">Context-aware autocompletion suggests paths, parameters, responses, and components.</p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h3 class="font-semibold text-primary-dark mb-2">Stay Consistent</h3>
+          <p class="text-gray-600 text-sm">Spectral and semantic linting enforce your team's API standards.</p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h3 class="font-semibold text-primary-dark mb-2">See Changes Live</h3>
+          <p class="text-gray-600 text-sm">Preview panel updates with every keystroke - Scalar or SwaggerUI.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Installation -->
+    <section id="installation" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Installation</h2>
+      <p class="text-gray-600 mb-3">Launch VS Code Quick Open (<kbd class="bg-gray-100 px-2 py-1 rounded text-sm">Ctrl+P</kbd>), paste and press enter:</p>
+      <div class="code-block mb-6">
+        <code>ext install SpecLynx.vscode-openapi-toolkit</code>
+      </div>
+      <div class="flex flex-wrap gap-6">
+        <div>
+          <a href="https://marketplace.visualstudio.com/items?itemName=SpecLynx.vscode-openapi-toolkit" target="_blank" rel="noopener noreferrer" class="text-primary-light font-semibold hover:underline">
+            VS Code Marketplace &rarr;
+          </a>
+          <p class="text-gray-500 text-sm mt-1">For VS Code</p>
+        </div>
+        <div>
+          <a href="https://open-vsx.org/extension/SpecLynx/vscode-openapi-toolkit" target="_blank" rel="noopener noreferrer" class="text-primary-light font-semibold hover:underline">
+            Open VSX Registry &rarr;
+          </a>
+          <p class="text-gray-500 text-sm mt-1">For VSCodium, Gitpod, Eclipse Theia</p>
+        </div>
+        <div>
+          <a href="https://github.com/speclynx/vscode-openapi-toolkit/releases" target="_blank" rel="noopener noreferrer" class="text-primary-light font-semibold hover:underline">
+            GitHub Releases &rarr;
+          </a>
+          <p class="text-gray-500 text-sm mt-1">Download .vsix directly</p>
+        </div>
+        <div>
+          <a href="https://marketplace.visualstudio.com/items/SpecLynx.vscode-openapi-toolkit/changelog" target="_blank" rel="noopener noreferrer" class="text-primary-light font-semibold hover:underline">
+            Changelog &rarr;
+          </a>
+          <p class="text-gray-500 text-sm mt-1">Version history</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section id="roadmap" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Roadmap</h2>
+      <p class="text-gray-700 mb-4">
+        We build in the open. Here's what's coming:
+      </p>
+      <ul class="text-gray-700 space-y-2 ml-4">
+        <li>&#9744; New file templates</li>
+        <li>&#9744; OpenAPI change detection</li>
+        <li>&#9744; OpenAPI version conversion</li>
+        <li>&#9744; Enhanced bundling</li>
+        <li>&#9744; Arazzo support</li>
+        <li>&#9744; Overlays support</li>
+      </ul>
+    </section>
+  </main>
+</div>
+</div>
