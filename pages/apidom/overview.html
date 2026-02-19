@@ -40,7 +40,7 @@ permalink: /apidom/
     <section id="who-is-it-for" class="mb-16">
       <h2 class="text-2xl font-bold text-primary-dark mb-4">Who is it for</h2>
       <p class="text-gray-700 text-lg mb-6">
-        If you're a JavaScript or TypeScript developer looking for tooling to parse, validate, transform, or build on top of <a href="https://spec.openapis.org/oas/" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline">OpenAPI</a>, <a href="https://www.asyncapi.com/" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline">AsyncAPI</a>, <a href="https://spec.openapis.org/arazzo/latest.html" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline">Arazzo</a>, <a href="https://json-schema.org/" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline">JSON Schema</a>, or other API specifications &mdash; you're in the right place.
+        If you're a JavaScript or TypeScript developer looking for tooling to parse, validate, transform, or build on top of <a href="https://spec.openapis.org/oas/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">OpenAPI</a>, <a href="https://www.asyncapi.com/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">AsyncAPI</a>, <a href="https://spec.openapis.org/arazzo/latest.html" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Arazzo</a>, <a href="https://json-schema.org/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">JSON Schema</a>, or other API specifications &mdash; you're in the right place.
       </p>
     </section>
 
@@ -48,7 +48,7 @@ permalink: /apidom/
     <section id="the-problem" class="mb-16">
       <h2 class="text-2xl font-bold text-primary-dark mb-4">The problem you know too well</h2>
       <p class="text-gray-700 text-lg mb-6">
-        API specifications aren't one thing. There's <a href="https://spec.openapis.org/oas/" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline">OpenAPI</a> 2.0, 3.0, and 3.1 &mdash; each with breaking differences. There's <a href="https://www.asyncapi.com/" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline">AsyncAPI</a> for event-driven APIs. <a href="https://spec.openapis.org/arazzo/latest.html" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline">Arazzo</a> for API workflows. <a href="https://json-schema.org/" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline">JSON Schema</a> across multiple drafts. And every one of them can be written in JSON or YAML.
+        API specifications aren't one thing. There's <a href="https://spec.openapis.org/oas/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">OpenAPI</a> 2.0, 3.0, and 3.1 &mdash; each with breaking differences. There's <a href="https://www.asyncapi.com/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">AsyncAPI</a> for event-driven APIs. <a href="https://spec.openapis.org/arazzo/latest.html" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Arazzo</a> for API workflows. <a href="https://json-schema.org/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">JSON Schema</a> across multiple drafts. And every one of them can be written in JSON or YAML.
       </p>
       <p class="text-gray-700 text-lg mb-6">
         If you've built tooling for this world, you've felt the pain. You write a parser for OpenAPI 3.0 in YAML, then realize you need 3.1. Then someone sends a JSON file. Then your team adopts AsyncAPI for their event bus. Each new format means new parsing logic, new data structures, new edge cases.
@@ -62,7 +62,7 @@ permalink: /apidom/
     <section id="what-apidom-does" class="mb-16">
       <h2 class="text-2xl font-bold text-primary-dark mb-4">What ApiDOM does</h2>
       <p class="text-gray-700 text-lg mb-6">
-        Think of <a href="https://babeljs.io/" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline">Babel</a> for JavaScript: it parses any JS syntax into a single AST, and an entire ecosystem of tools works against that AST without caring about the source. ApiDOM does the same for API specifications.
+        Think of <a href="https://babeljs.io/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Babel</a> for JavaScript: it parses any JS syntax into a single AST, and an entire ecosystem of tools works against that AST without caring about the source. ApiDOM does the same for API specifications.
       </p>
       <p class="text-gray-700 text-lg mb-6">
         It parses any supported API description into a unifying structure with namespaces for each specification. OpenAPI 3.1 in YAML, AsyncAPI 2.6 in JSON, an Arazzo workflow &mdash; each gets its own namespace, but they all share the same foundation. Your tooling code works the same way regardless of the input.
@@ -80,7 +80,7 @@ permalink: /apidom/
         Most parsers throw things away. Comments disappear. Key ordering changes. Whitespace gets normalized. If you parse a YAML file and serialize it back, what you get out is not what went in.
       </p>
       <p class="text-gray-700 text-lg mb-6">
-        ApiDOM has been designed to retain all of that low-level detail. Comments, original key ordering, format styles, and raw CST source texts &mdash; everything is preserved in the element tree. Every semantic element carries source maps with full positional data using UTF-16 code units, making them directly compatible with the <a href="https://microsoft.github.io/language-server-protocol/" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline">Language Server Protocol</a>, <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline">VSCode</a>, and <a href="https://microsoft.github.io/monaco-editor/" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline">Monaco Editor</a>.
+        ApiDOM has been designed to retain all of that low-level detail. Comments, original key ordering, format styles, and raw CST source texts &mdash; everything is preserved in the element tree. Every semantic element carries source maps with full positional data using UTF-16 code units, making them directly compatible with the <a href="https://microsoft.github.io/language-server-protocol/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Language Server Protocol</a>, <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">VSCode</a>, and <a href="https://microsoft.github.io/monaco-editor/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Monaco Editor</a>.
       </p>
       <p class="text-gray-700 text-lg">
         Precise diagnostics that point to the exact line and column. Modifications that don't silently rewrite the rest of the file. Comments, formatting, and key ordering that survive every round-trip.
@@ -111,7 +111,7 @@ permalink: /apidom/
             Validation, completion, hover, navigation &mdash; all powered by ApiDOM's semantic element model.
           </p>
           <a href="{{ '/language-service/' | relative_url }}" class="product-card-link">
-            Learn more
+            Explore Language Service
             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
             </svg>
@@ -123,7 +123,7 @@ permalink: /apidom/
             A VSCode extension for OpenAPI authoring &mdash; real-time validation, semantic linting, and live preview.
           </p>
           <a href="{{ '/openapi-toolkit/' | relative_url }}" class="product-card-link">
-            Learn more
+            Explore OpenAPI Toolkit
             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
             </svg>

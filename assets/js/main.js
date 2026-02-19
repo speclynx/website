@@ -58,6 +58,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
+  // Add title to LaunchList widget iframes
+  document.querySelectorAll('.launchlist-widget iframe').forEach(function(iframe) {
+    iframe.setAttribute('title', 'Email signup form');
+  });
+
   // Add anchor links to headings with IDs or first heading in sections with IDs
   document.querySelectorAll('main h1[id], main h2[id], main h3[id], main h4[id]').forEach(function(heading) {
     if (heading.querySelector('.heading-anchor')) return;
