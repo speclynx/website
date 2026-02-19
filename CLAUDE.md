@@ -4,7 +4,7 @@ Project context for AI assistants working on the SpecLynx website.
 
 ## Project Overview
 
-Jekyll static site for SpecLynx — an API tooling company. Hosted on GitHub Pages at `https://speclynx.github.io/website/`.
+Jekyll static site for SpecLynx — an API tooling company. Hosted on GitHub Pages at `https://speclynx.com/`.
 
 Three products:
 - **OpenAPI Toolkit** — Free VSCode extension for API spec authoring (validation, completion, hover, preview, linting)
@@ -125,5 +125,5 @@ Plain-text file at site root describing the company and products for LLM crawler
 - No mention of SmartBear or Swagger as company names in ApiDOM content. The origin story refers to "a large API company."
 - ApiDOM's `traverse` function is in `@speclynx/apidom-traverse` (there is no `visit` function)
 - ApiDOM is lossless: preserves comments, key ordering, format styles, raw CST source texts, and LSP-compatible source maps (UTF-16 code units)
-- The `baseurl` is `/website` — all internal links use `{{ '/path/' | relative_url }}`
-- The `url` will change in production (currently `https://speclynx.github.io`)
+- The `baseurl` is `""` (empty) — internal links use `{{ '/path/' | relative_url }}`
+- The `url` is `https://speclynx.com`

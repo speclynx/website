@@ -6,8 +6,8 @@ description: >-
   API specs are messy. SpecLynx brings order with parsers, semantic data models,
   and intelligent editing tools. Full support for OpenAPI, AsyncAPI, Arazzo, and JSON Schema.
 keywords: SpecLynx, ApiDOM, OpenAPI, AsyncAPI, JSON Schema, Arazzo, Language Server, VSCode, API tools
-baseurl: "/website"
-url: "https://speclynx.github.io"
+baseurl: ""
+url: "https://speclynx.com"
 github_username: speclynx
 
 # Social
