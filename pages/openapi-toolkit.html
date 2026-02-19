@@ -6,6 +6,39 @@ launchlist: true
 permalink: /openapi-toolkit/
 ---
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SpecLynx OpenAPI Toolkit",
+  "description": "{{ page.description }}",
+  "url": "{{ site.url }}{{ site.baseurl }}{{ page.url }}",
+  "applicationCategory": "DeveloperApplication",
+  "applicationSubCategory": "IDE Extension",
+  "operatingSystem": "Windows, macOS, Linux",
+  "license": "https://opensource.org/licenses/Apache-2.0",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "SpecLynx"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site.url }}{{ site.baseurl }}/" },
+    { "@type": "ListItem", "position": 2, "name": "OpenAPI Toolkit", "item": "{{ site.url }}{{ site.baseurl }}/openapi-toolkit/" }
+  ]
+}
+</script>
+
 <div class="flex-1">
 <div class="flex">
   <!-- Sticky Sidebar -->
@@ -48,6 +81,7 @@ permalink: /openapi-toolkit/
       <a href="#configuration" class="block text-gray-600 hover:text-primary-light">Configuration</a>
       <a href="#why-choose" class="block text-gray-600 hover:text-primary-light">Why Choose?</a>
       <a href="#roadmap" class="block text-gray-600 hover:text-primary-light">Roadmap</a>
+      <a href="#faq" class="block text-gray-600 hover:text-primary-light">FAQ</a>
     </nav>
   </aside>
 
@@ -582,6 +616,69 @@ rules:
         <li>&#9744; Overlays support</li>
       </ul>
     </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-6">Frequently Asked Questions</h2>
+      <div class="space-y-6">
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-2">Is SpecLynx OpenAPI Toolkit free?</h3>
+          <p class="text-gray-700">Yes. SpecLynx OpenAPI Toolkit is a free, open-source VSCode extension licensed under Apache 2.0. You can install it from the Visual Studio Code Marketplace at no cost.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-2">What OpenAPI versions does the toolkit support?</h3>
+          <p class="text-gray-700">The toolkit supports Swagger 2.0, OpenAPI 3.0.x, and OpenAPI 3.1.x. It also provides support for AsyncAPI 2.x specifications and Arazzo 1.x workflows.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-2">Does it work with both JSON and YAML files?</h3>
+          <p class="text-gray-700">Yes. All features including validation, completion, hover documentation, and live preview work with both JSON and YAML formats.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-2">Can I use custom linting rules?</h3>
+          <p class="text-gray-700">Yes. The toolkit supports Spectral rulesets for style guide enforcement, as well as its own semantic linting rules that you can configure through the extension settings.</p>
+        </div>
+      </div>
+    </section>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is SpecLynx OpenAPI Toolkit free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. SpecLynx OpenAPI Toolkit is a free, open-source VSCode extension licensed under Apache 2.0. You can install it from the Visual Studio Code Marketplace at no cost."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What OpenAPI versions does the toolkit support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The toolkit supports Swagger 2.0, OpenAPI 3.0.x, and OpenAPI 3.1.x. It also provides support for AsyncAPI 2.x specifications and Arazzo 1.x workflows."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it work with both JSON and YAML files?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. All features including validation, completion, hover documentation, and live preview work with both JSON and YAML formats."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use custom linting rules?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The toolkit supports Spectral rulesets for style guide enforcement, as well as its own semantic linting rules that you can configure through the extension settings."
+          }
+        }
+      ]
+    }
+    </script>
   </main>
 </div>
 </div>

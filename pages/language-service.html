@@ -5,6 +5,39 @@ description: Documentation for SpecLynx ApiDOM Language Service - a comprehensiv
 permalink: /language-service/
 ---
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SpecLynx Language Service",
+  "description": "{{ page.description }}",
+  "url": "{{ site.url }}{{ site.baseurl }}{{ page.url }}",
+  "applicationCategory": "DeveloperApplication",
+  "applicationSubCategory": "Library",
+  "operatingSystem": "Windows, macOS, Linux",
+  "license": "https://opensource.org/licenses/Apache-2.0",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "SpecLynx"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site.url }}{{ site.baseurl }}/" },
+    { "@type": "ListItem", "position": 2, "name": "Language Service", "item": "{{ site.url }}{{ site.baseurl }}/language-service/" }
+  ]
+}
+</script>
+
 <div class="flex-1">
 <div class="flex">
   <!-- Sticky Sidebar -->
@@ -35,6 +68,7 @@ permalink: /language-service/
       <a href="#configuration" class="block text-gray-600 hover:text-primary-light">Configuration</a>
       <a href="#architecture" class="block text-gray-600 hover:text-primary-light">Architecture</a>
       <a href="#support" class="block text-gray-600 hover:text-primary-light">Support</a>
+      <a href="#faq" class="block text-gray-600 hover:text-primary-light">FAQ</a>
     </nav>
   </aside>
 
@@ -406,6 +440,69 @@ const languageService = getLanguageService({
         </div>
       </div>
     </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-6">Frequently Asked Questions</h2>
+      <div class="space-y-6">
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-2">What is SpecLynx Language Service?</h3>
+          <p class="text-gray-700">SpecLynx Language Service is an LSP-compatible library that provides intelligent editing features for API specifications. It powers validation, autocompletion, hover documentation, go-to-definition, and other editor features for OpenAPI, AsyncAPI, Arazzo, and JSON Schema files.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-2">Can I use Language Service outside of VSCode?</h3>
+          <p class="text-gray-700">Yes. Language Service is a standalone npm package (<code>@speclynx/apidom-ls</code>) that implements the Language Server Protocol. You can integrate it into any editor or tool that supports LSP, or use it programmatically in your own applications.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-2">What LSP features are supported?</h3>
+          <p class="text-gray-700">The library supports over 12 LSP features including validation diagnostics, completion, hover, go-to-definition, find references, document symbols, semantic tokens, code actions, formatting, and format conversion between JSON and YAML.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-2">What API specifications are supported?</h3>
+          <p class="text-gray-700">Language Service supports OpenAPI 2.0 (Swagger), OpenAPI 3.0.x, OpenAPI 3.1.x, AsyncAPI 2.x, Arazzo 1.x, and JSON Schema. All features work across these specifications in both JSON and YAML formats.</p>
+        </div>
+      </div>
+    </section>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is SpecLynx Language Service?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "SpecLynx Language Service is an LSP-compatible library that provides intelligent editing features for API specifications. It powers validation, autocompletion, hover documentation, go-to-definition, and other editor features for OpenAPI, AsyncAPI, Arazzo, and JSON Schema files."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use Language Service outside of VSCode?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Language Service is a standalone npm package (@speclynx/apidom-ls) that implements the Language Server Protocol. You can integrate it into any editor or tool that supports LSP, or use it programmatically in your own applications."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What LSP features are supported?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The library supports over 12 LSP features including validation diagnostics, completion, hover, go-to-definition, find references, document symbols, semantic tokens, code actions, formatting, and format conversion between JSON and YAML."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What API specifications are supported?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Language Service supports OpenAPI 2.0 (Swagger), OpenAPI 3.0.x, OpenAPI 3.1.x, AsyncAPI 2.x, Arazzo 1.x, and JSON Schema. All features work across these specifications in both JSON and YAML formats."
+          }
+        }
+      ]
+    }
+    </script>
   </main>
 </div>
 </div>

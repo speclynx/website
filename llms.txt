@@ -1,0 +1,41 @@
+---
+layout: none
+---
+# SpecLynx
+
+> Enterprise-ready API tooling. Parsers, semantic data models, and intelligent editing tools for OpenAPI, AsyncAPI, Arazzo, and JSON Schema.
+
+## Products
+
+### OpenAPI Toolkit
+- VSCode extension for API specification authoring
+- Real-time validation, autocompletion, hover documentation, syntax highlighting, live preview
+- Supports Swagger 2.0, OpenAPI 3.0.x, OpenAPI 3.1.x, AsyncAPI 2.x, Arazzo 1.x
+- Works with JSON and YAML
+- Free, open source (Apache 2.0)
+- Install: https://marketplace.visualstudio.com/items?itemName=SpecLynx.vscode-openapi-toolkit
+- Docs: {{ site.url }}{{ site.baseurl }}/openapi-toolkit/
+
+### Language Service
+- LSP-compatible library for API specification intelligence
+- 12+ LSP features: validation, completion, hover, go-to-definition, find references, document symbols, semantic tokens, code actions, formatting
+- npm package: @speclynx/apidom-ls
+- Integrates with any LSP-compatible editor or tool
+- Free, open source (Apache 2.0)
+- Docs: {{ site.url }}{{ site.baseurl }}/language-service/
+
+### ApiDOM
+- Semantic parser for API specifications
+- Parses OpenAPI, AsyncAPI, Arazzo, and JSON Schema into a unified semantic element tree
+- Lossless: preserves comments, key ordering, format styles, and CST source texts
+- Source maps with UTF-16 code units (LSP/VSCode/Monaco compatible)
+- npm packages under @speclynx/apidom-*
+- Free, open source (Apache 2.0)
+- GitHub: https://github.com/speclynx/apidom
+- Docs: {{ site.url }}{{ site.baseurl }}/apidom/
+
+## Links
+
+- Website: {{ site.url }}{{ site.baseurl }}/
+- GitHub: https://github.com/speclynx
+- Contact: {{ site.email }}

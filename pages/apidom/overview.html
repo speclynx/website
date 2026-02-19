@@ -5,6 +5,40 @@ description: ApiDOM is a semantic parser providing a unified structure for descr
 permalink: /apidom/
 ---
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SpecLynx ApiDOM",
+  "description": "{{ page.description }}",
+  "url": "{{ site.url }}{{ site.baseurl }}{{ page.url }}",
+  "applicationCategory": "DeveloperApplication",
+  "applicationSubCategory": "Library",
+  "operatingSystem": "Windows, macOS, Linux",
+  "license": "https://opensource.org/licenses/Apache-2.0",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "SpecLynx"
+  },
+  "codeRepository": "https://github.com/speclynx/apidom"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site.url }}{{ site.baseurl }}/" },
+    { "@type": "ListItem", "position": 2, "name": "ApiDOM", "item": "{{ site.url }}{{ site.baseurl }}/apidom/" }
+  ]
+}
+</script>
+
 <div class="flex-1">
 <div class="flex">
   <!-- Sticky Sidebar -->
@@ -131,6 +165,69 @@ permalink: /apidom/
         </div>
       </div>
     </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-6">Frequently Asked Questions</h2>
+      <div class="space-y-6">
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-2">What is ApiDOM?</h3>
+          <p class="text-gray-700">ApiDOM is a semantic parser for API specifications. It parses OpenAPI, AsyncAPI, Arazzo, and JSON Schema documents into a unified element tree with semantic meaning, so your tooling code works the same way regardless of the input format or specification version.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-2">What API specifications does ApiDOM support?</h3>
+          <p class="text-gray-700">ApiDOM supports OpenAPI 2.0 (Swagger), OpenAPI 3.0.x, OpenAPI 3.1.x, AsyncAPI 2.x, Arazzo 1.x, and JSON Schema. Each specification gets its own namespace while sharing the same underlying structure.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-2">Is ApiDOM lossless?</h3>
+          <p class="text-gray-700">Yes. ApiDOM preserves comments, original key ordering, format styles, and raw CST source texts. Every element carries source maps with UTF-16 code units, making them directly compatible with LSP, VSCode, and Monaco Editor. What you parse out is what went in.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-2">How is ApiDOM different from a regular YAML or JSON parser?</h3>
+          <p class="text-gray-700">A regular parser gives you generic objects and arrays. ApiDOM produces semantic elements that know what they represent &mdash; an OpenAPI Operation, a Schema Object, a Server URL. This lets you traverse, query, and transform API documents at the specification level rather than working with raw syntax.</p>
+        </div>
+      </div>
+    </section>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is ApiDOM?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ApiDOM is a semantic parser for API specifications. It parses OpenAPI, AsyncAPI, Arazzo, and JSON Schema documents into a unified element tree with semantic meaning, so your tooling code works the same way regardless of the input format or specification version."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What API specifications does ApiDOM support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ApiDOM supports OpenAPI 2.0 (Swagger), OpenAPI 3.0.x, OpenAPI 3.1.x, AsyncAPI 2.x, Arazzo 1.x, and JSON Schema. Each specification gets its own namespace while sharing the same underlying structure."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is ApiDOM lossless?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. ApiDOM preserves comments, original key ordering, format styles, and raw CST source texts. Every element carries source maps with UTF-16 code units, making them directly compatible with LSP, VSCode, and Monaco Editor. What you parse out is what went in."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is ApiDOM different from a regular YAML or JSON parser?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A regular parser gives you generic objects and arrays. ApiDOM produces semantic elements that know what they represent — an OpenAPI Operation, a Schema Object, a Server URL. This lets you traverse, query, and transform API documents at the specification level rather than working with raw syntax."
+          }
+        }
+      ]
+    }
+    </script>
   </main>
 </div>
 </div>
