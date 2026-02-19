@@ -1,0 +1,136 @@
+---
+layout: base
+title: SpecLynx ApiDOM - Overview
+description: ApiDOM is a semantic parser providing a unified structure for describing APIs across all API description languages.
+permalink: /apidom/
+---
+
+<div class="flex-1">
+<div class="flex">
+  <!-- Sticky Sidebar -->
+  <aside class="hidden lg:block w-64 flex-shrink-0">
+    <nav class="sticky top-20 p-6 space-y-4 text-sm">
+      <div class="font-bold text-primary-dark mb-4">ApiDOM</div>
+
+      <a href="{{ '/apidom/' | relative_url }}" class="block text-primary-light font-semibold">Overview</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 max-w-4xl px-6 py-12">
+    <!-- Hero -->
+    <section id="overview" class="mb-16">
+      <div class="flex items-center gap-3 mb-4">
+        <h1 class="text-4xl font-extrabold text-primary-dark">SpecLynx ApiDOM</h1>
+        <span class="badge badge-primary">Open Source</span>
+      </div>
+      <p class="text-xl text-gray-600 mb-8">Semantic parser for API specifications</p>
+
+      <div class="flex flex-wrap gap-4 mb-8">
+        <a href="https://github.com/speclynx/apidom" target="_blank" rel="noopener noreferrer" class="primary-cta text-white font-bold py-3 px-6 rounded inline-block">
+          View on GitHub
+        </a>
+        <a href="https://speclynx.github.io/apidom/" target="_blank" rel="noopener noreferrer" class="bg-white border-2 border-gray-300 text-gray-700 font-bold py-3 px-6 rounded inline-block hover:border-gray-400 transition-colors">
+          Try the Playground
+        </a>
+      </div>
+    </section>
+
+    <!-- Who is it for -->
+    <section id="who-is-it-for" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Who is it for</h2>
+      <p class="text-gray-700 text-lg mb-6">
+        If you're a JavaScript or TypeScript developer looking for tooling to parse, validate, transform, or build on top of <a href="https://spec.openapis.org/oas/" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline">OpenAPI</a>, <a href="https://www.asyncapi.com/" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline">AsyncAPI</a>, <a href="https://spec.openapis.org/arazzo/latest.html" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline">Arazzo</a>, <a href="https://json-schema.org/" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline">JSON Schema</a>, or other API specifications &mdash; you're in the right place.
+      </p>
+    </section>
+
+    <!-- The problem -->
+    <section id="the-problem" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">The problem you know too well</h2>
+      <p class="text-gray-700 text-lg mb-6">
+        API specifications aren't one thing. There's <a href="https://spec.openapis.org/oas/" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline">OpenAPI</a> 2.0, 3.0, and 3.1 &mdash; each with breaking differences. There's <a href="https://www.asyncapi.com/" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline">AsyncAPI</a> for event-driven APIs. <a href="https://spec.openapis.org/arazzo/latest.html" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline">Arazzo</a> for API workflows. <a href="https://json-schema.org/" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline">JSON Schema</a> across multiple drafts. And every one of them can be written in JSON or YAML.
+      </p>
+      <p class="text-gray-700 text-lg mb-6">
+        If you've built tooling for this world, you've felt the pain. You write a parser for OpenAPI 3.0 in YAML, then realize you need 3.1. Then someone sends a JSON file. Then your team adopts AsyncAPI for their event bus. Each new format means new parsing logic, new data structures, new edge cases.
+      </p>
+      <p class="text-gray-700 text-lg">
+        Your actual tooling logic, the part that does something useful, gets buried under format-specific plumbing.
+      </p>
+    </section>
+
+    <!-- What ApiDOM does -->
+    <section id="what-apidom-does" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">What ApiDOM does</h2>
+      <p class="text-gray-700 text-lg mb-6">
+        Think of <a href="https://babeljs.io/" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline">Babel</a> for JavaScript: it parses any JS syntax into a single AST, and an entire ecosystem of tools works against that AST without caring about the source. ApiDOM does the same for API specifications.
+      </p>
+      <p class="text-gray-700 text-lg mb-6">
+        It parses any supported API description into a unifying structure with namespaces for each specification. OpenAPI 3.1 in YAML, AsyncAPI 2.6 in JSON, an Arazzo workflow &mdash; each gets its own namespace, but they all share the same foundation. Your tooling code works the same way regardless of the input.
+      </p>
+      <p class="text-gray-700 text-lg mb-6">
+        But it's not just a generic tree of objects and arrays. ApiDOM produces <em>semantic elements</em> &mdash; nodes that know what they represent. An element knows it's an OpenAPI Operation, a Schema Object, or a Server URL. Your code works with the API's meaning, not its raw syntax.
+      </p>
+
+    </section>
+
+    <!-- Lossless -->
+    <section id="lossless" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">ApiDOM is lossless</h2>
+      <p class="text-gray-700 text-lg mb-6">
+        Most parsers throw things away. Comments disappear. Key ordering changes. Whitespace gets normalized. If you parse a YAML file and serialize it back, what you get out is not what went in.
+      </p>
+      <p class="text-gray-700 text-lg mb-6">
+        ApiDOM has been designed to retain all of that low-level detail. Comments, original key ordering, format styles, and raw CST source texts &mdash; everything is preserved in the element tree. Every semantic element carries source maps with full positional data using UTF-16 code units, making them directly compatible with the <a href="https://microsoft.github.io/language-server-protocol/" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline">Language Server Protocol</a>, <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline">VSCode</a>, and <a href="https://microsoft.github.io/monaco-editor/" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline">Monaco Editor</a>.
+      </p>
+      <p class="text-gray-700 text-lg">
+        Precise diagnostics that point to the exact line and column. Modifications that don't silently rewrite the rest of the file. Comments, formatting, and key ordering that survive every round-trip.
+      </p>
+    </section>
+
+    <!-- Where it comes from -->
+    <section id="where-it-comes-from" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Where it comes from</h2>
+      <p class="text-gray-700 text-lg mb-6">
+        ApiDOM started as an internal tool inside a large API company, born from the day-to-day needs of building and maintaining API tooling at scale. We hit every limitation you can hit: parsers that couldn't round-trip without losing data, format-specific code paths that multiplied with every new specification version, tooling that broke silently when the underlying structure changed.
+      </p>
+      <p class="text-gray-700 text-lg mb-6">
+        That internal tool was eventually open-sourced. SpecLynx ApiDOM is its next evolution &mdash; a complete rewrite that takes everything we learned from years of battle-testing and distills it into a library that solves these problems once, so you don't have to.
+      </p>
+    </section>
+
+    <!-- Built on ApiDOM -->
+    <section id="built-on-apidom" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Built on ApiDOM</h2>
+      <p class="text-gray-700 mb-6">
+        We use ApiDOM ourselves. The rest of the SpecLynx ecosystem is built directly on top of it:
+      </p>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="product-card">
+          <h3 class="product-card-title">Language Service</h3>
+          <p class="product-card-description">
+            Validation, completion, hover, navigation &mdash; all powered by ApiDOM's semantic element model.
+          </p>
+          <a href="{{ '/language-service/' | relative_url }}" class="product-card-link">
+            Learn more
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+        <div class="product-card">
+          <h3 class="product-card-title">OpenAPI Toolkit</h3>
+          <p class="product-card-description">
+            A VSCode extension for OpenAPI authoring &mdash; real-time validation, semantic linting, and live preview.
+          </p>
+          <a href="{{ '/openapi-toolkit/' | relative_url }}" class="product-card-link">
+            Learn more
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+</div>
