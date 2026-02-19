@@ -1,6 +1,7 @@
-# SpecLynx Website
-
-<img src="https://raw.githubusercontent.com/speclynx/website/main/assets/images/speclynx-logo-full.png" alt="SpecLynx" width="200">
+<div align="center">
+    <h1>SpecLynx Website</h1>
+    <a href="https://speclynx.com"><img width="636" height="407" alt="image" src="https://github.com/user-attachments/assets/1cfd6c8e-0206-4d53-9a2c-e4d10be84ca0" /></a>
+</div>
 
 Source code for the [SpecLynx website](https://speclynx.com/) — the home of enterprise-ready API tooling.
 
