@@ -20,7 +20,13 @@ html {
 
 /* Offset anchor links for sticky header */
 [id] {
-    scroll-margin-top: 80px;
+    scroll-margin-top: 82px;
+}
+
+/* Sidebar nav: scroll when taller than viewport */
+aside > nav.sticky {
+    max-height: calc(100vh - 82px);
+    overflow-y: auto;
 }
 
 /* Anchor link on heading hover */
