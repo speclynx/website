@@ -102,7 +102,7 @@ permalink: /apidom/
         It parses any supported API description into a unifying structure with namespaces for each specification. OpenAPI 3.1 in YAML, AsyncAPI 2.6 in JSON, an Arazzo workflow &mdash; each gets its own namespace, but they all share the same foundation. Your tooling code works the same way regardless of the input.
       </p>
       <p class="text-gray-700 text-lg mb-6">
-        But it's not just a generic tree of objects and arrays. ApiDOM produces <em>semantic elements</em> &mdash; nodes that know what they represent. An element knows it's an OpenAPI Operation, a Schema Object, or a Server URL. Your code works with the API's meaning, not its raw syntax.
+        But it's not just a generic tree of objects and arrays. ApiDOM produces a <em>semantic data model</em> that knows what it represents. It knows what's an OpenAPI Operation, a Schema Object, or a Server URL. Your code works with the API's meaning, not its raw syntax.
       </p>
 
     </section>
@@ -114,10 +114,24 @@ permalink: /apidom/
         Most parsers throw things away. Comments disappear. Key ordering changes. Whitespace gets normalized. If you parse a YAML file and serialize it back, what you get out is not what went in.
       </p>
       <p class="text-gray-700 text-lg mb-6">
-        ApiDOM has been designed to retain all of that low-level detail. Comments, original key ordering, format styles, and raw CST source texts &mdash; everything is preserved in the element tree. Every semantic element carries source maps with full positional data using UTF-16 code units, making them directly compatible with the <a href="https://microsoft.github.io/language-server-protocol/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Language Server Protocol</a>, <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">VSCode</a>, and <a href="https://microsoft.github.io/monaco-editor/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Monaco Editor</a>.
+        ApiDOM has been designed to retain all of that low-level detail. Comments, original key ordering, format styles, and raw CST source texts &mdash; everything is preserved in the data model. The data model carries source maps with full positional data using UTF-16 code units, making them directly compatible with the <a href="https://microsoft.github.io/language-server-protocol/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Language Server Protocol</a>, <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">VSCode</a>, and <a href="https://microsoft.github.io/monaco-editor/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Monaco Editor</a>.
       </p>
       <p class="text-gray-700 text-lg">
         Precise diagnostics that point to the exact line and column. Modifications that don't silently rewrite the rest of the file. Comments, formatting, and key ordering that survive every round-trip.
+      </p>
+    </section>
+
+    <!-- Error recovery -->
+    <section id="error-recovery" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">ApiDOM is error recovery capable</h2>
+      <p class="text-gray-700 text-lg mb-6">
+        Real-world API specifications are often incomplete or malformed, especially while being edited. ApiDOM uses <a href="https://tree-sitter.github.io/tree-sitter/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Tree-sitter</a> as its default parser, which provides robust error recovery out of the box. When it encounters invalid syntax, it parses as much of the document as it can and marks the broken parts, rather than failing entirely.
+      </p>
+      <p class="text-gray-700 text-lg mb-6">
+        This is what makes features like real-time validation and autocompletion possible. Your document is always parseable, even mid-keystroke.
+      </p>
+      <p class="text-gray-700 text-lg">
+        If you need strict parsing instead, you can opt out of error recovery and use a strict parser that rejects invalid input. Both modes produce the same ApiDOM data model.
       </p>
     </section>
 
@@ -142,7 +156,7 @@ permalink: /apidom/
         <div class="product-card">
           <h3 class="product-card-title">Language Service</h3>
           <p class="product-card-description">
-            Validation, completion, hover, navigation &mdash; all powered by ApiDOM's semantic element model.
+            Validation, completion, hover, navigation &mdash; all powered by ApiDOM's semantic data model.
           </p>
           <a href="{{ '/language-service/' | relative_url }}" class="product-card-link">
             Explore Language Service
@@ -172,7 +186,7 @@ permalink: /apidom/
       <div class="space-y-6">
         <div>
           <h3 class="font-semibold text-gray-900 mb-2">What is ApiDOM?</h3>
-          <p class="text-gray-700">ApiDOM is a semantic parser for API specifications. It parses OpenAPI, AsyncAPI, Arazzo, and JSON Schema documents into a unified element tree with semantic meaning, so your tooling code works the same way regardless of the input format or specification version.</p>
+          <p class="text-gray-700">ApiDOM is a semantic parser for API specifications. It parses OpenAPI, AsyncAPI, Arazzo, and JSON Schema documents into a unified semantic data model, so your tooling code works the same way regardless of the input format or specification version.</p>
         </div>
         <div>
           <h3 class="font-semibold text-gray-900 mb-2">What API specifications does ApiDOM support?</h3>
@@ -180,11 +194,11 @@ permalink: /apidom/
         </div>
         <div>
           <h3 class="font-semibold text-gray-900 mb-2">Is ApiDOM lossless?</h3>
-          <p class="text-gray-700">Yes. ApiDOM preserves comments, original key ordering, format styles, and raw CST source texts. Every element carries source maps with UTF-16 code units, making them directly compatible with LSP, VSCode, and Monaco Editor. What you parse out is what went in.</p>
+          <p class="text-gray-700">Yes. ApiDOM preserves comments, original key ordering, format styles, and raw CST source texts. The data model carries source maps with UTF-16 code units, making them directly compatible with LSP, VSCode, and Monaco Editor. What you parse out is what went in.</p>
         </div>
         <div>
           <h3 class="font-semibold text-gray-900 mb-2">How is ApiDOM different from a regular YAML or JSON parser?</h3>
-          <p class="text-gray-700">A regular parser gives you generic objects and arrays. ApiDOM produces semantic elements that know what they represent &mdash; an OpenAPI Operation, a Schema Object, a Server URL. This lets you traverse, query, and transform API documents at the specification level rather than working with raw syntax.</p>
+          <p class="text-gray-700">A regular parser gives you generic objects and arrays. ApiDOM produces a semantic data model that knows what it represents &mdash; an OpenAPI Operation, a Schema Object, a Server URL. This lets you traverse, query, and transform API documents at the specification level rather than working with raw syntax.</p>
         </div>
       </div>
     </section>
@@ -198,7 +212,7 @@ permalink: /apidom/
           "name": "What is ApiDOM?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "ApiDOM is a semantic parser for API specifications. It parses OpenAPI, AsyncAPI, Arazzo, and JSON Schema documents into a unified element tree with semantic meaning, so your tooling code works the same way regardless of the input format or specification version."
+            "text": "ApiDOM is a semantic parser for API specifications. It parses OpenAPI, AsyncAPI, Arazzo, and JSON Schema documents into a unified semantic data model, so your tooling code works the same way regardless of the input format or specification version."
           }
         },
         {
@@ -214,7 +228,7 @@ permalink: /apidom/
           "name": "Is ApiDOM lossless?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. ApiDOM preserves comments, original key ordering, format styles, and raw CST source texts. Every element carries source maps with UTF-16 code units, making them directly compatible with LSP, VSCode, and Monaco Editor. What you parse out is what went in."
+            "text": "Yes. ApiDOM preserves comments, original key ordering, format styles, and raw CST source texts. The data model carries source maps with UTF-16 code units, making them directly compatible with LSP, VSCode, and Monaco Editor. What you parse out is what went in."
           }
         },
         {
@@ -222,7 +236,7 @@ permalink: /apidom/
           "name": "How is ApiDOM different from a regular YAML or JSON parser?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A regular parser gives you generic objects and arrays. ApiDOM produces semantic elements that know what they represent — an OpenAPI Operation, a Schema Object, a Server URL. This lets you traverse, query, and transform API documents at the specification level rather than working with raw syntax."
+            "text": "A regular parser gives you generic objects and arrays. ApiDOM produces a semantic data model that knows what it represents — an OpenAPI Operation, a Schema Object, a Server URL. This lets you traverse, query, and transform API documents at the specification level rather than working with raw syntax."
           }
         }
       ]
