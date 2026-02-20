@@ -1,0 +1,21 @@
+/* Custom colors based on your logo for a cohesive look */
+:root {
+    --color-primary-dark: #1E3A8A; /* Dark blue from logo */
+    --color-primary-light: #3B82F6; /* Lighter blue from logo */
+    --color-text-dark: #1F2937; /* Tailwind gray-900 */
+    --color-text-light: #4B5563; /* Tailwind gray-600 */
+}
+
+/* Optional: Smooth scroll for internal links */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Adjusting specific colors as per our inline styles */
+.header-h1-color { color: #3A97CC; }
+.header-p-color { color: #092B4E; }
+.footer-background-color { background-color: #092B4E; }
+
+.primary-cta {
+  background-color: #092B4E;
+}
