@@ -1,0 +1,63 @@
+---
+layout: base
+title: SpecLynx ApiDOM - Installation
+description: Get started with ApiDOM - install the reference package and learn how to parse API specifications into a semantic data model.
+permalink: /apidom/installation/
+---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site.url }}{{ site.baseurl }}/" },
+    { "@type": "ListItem", "position": 2, "name": "ApiDOM", "item": "{{ site.url }}{{ site.baseurl }}/apidom/" },
+    { "@type": "ListItem", "position": 3, "name": "Installation", "item": "{{ site.url }}{{ site.baseurl }}/apidom/installation/" }
+  ]
+}
+</script>
+
+<div class="flex-1">
+<div class="flex">
+  {% include apidom-sidebar.html %}
+
+  <!-- Main Content -->
+  <main class="flex-1 max-w-4xl px-6 py-12">
+    <!-- Installing ApiDOM -->
+    <section id="installing-apidom" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Installing ApiDOM</h2>
+      <p class="text-gray-700 text-lg mb-4">
+        The <code>@speclynx/apidom-reference</code> package is one of the main entry points for working with ApiDOM. Among other capabilities, it can parse any supported API specification into a semantic data model.
+      </p>
+      <pre class="code-block mb-6"><code class="language-bash">npm install @speclynx/apidom-reference</code></pre>
+      <p class="text-gray-700 text-lg mb-4">
+        Requires Node.js &gt;=16.14.2. The package ships with TypeScript type definitions out of the box.
+      </p>
+    </section>
+
+    <!-- Parsing OpenAPI document into data model -->
+    <section id="parsing-openapi-document" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Parsing OpenAPI document into data model</h2>
+      <p class="text-gray-700 text-lg mb-6">
+        Parse an OpenAPI document and access its data model to work with responses, parameters, and other components. ApiDOM has internal autodetection that applies the correct data model to the parsed document automatically.
+      </p>
+      <pre class="code-block mb-6"><code class="language-javascript">import { parse } from '@speclynx/apidom-reference';
+
+const result = await parse('/path/to/openapi.json');
+
+const { responses } = result.api.components;
+const { parameters } = result.api.components;
+
+responses.length; // number of response definitions
+parameters.length; // number of parameter definitions</code></pre>
+
+      <p class="text-gray-700 text-lg mb-4">
+        If you want to explicitly force a specific data model on the parsed document, use the <code>mediaType</code> option:
+      </p>
+      <pre class="code-block mb-6"><code class="language-javascript">const result = await parse('/path/to/openapi.json', {
+  parse: { mediaType: 'application/openapi+json;version=3.1.2' }
+});</code></pre>
+    </section>
+  </main>
+</div>
+</div>
