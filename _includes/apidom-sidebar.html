@@ -3,15 +3,8 @@
   <nav class="sticky top-[82px] p-6 space-y-4 text-sm">
     <div class="font-bold text-primary-dark mb-4">ApiDOM</div>
 
-    {% assign overview_active = false %}
-    {% assign installation_active = false %}
-    {% if page.url == '/apidom/' %}
-      {% assign overview_active = true %}
-    {% elsif page.url == '/apidom/installation/' %}
-      {% assign installation_active = true %}
-    {% endif %}
-
-    <a href="{{ '/apidom/' | relative_url }}" class="block {% if overview_active %}text-primary-light font-semibold{% else %}text-gray-600 hover:text-primary-light{% endif %}">Overview</a>
-    <a href="{{ '/apidom/installation/' | relative_url }}" class="block {% if installation_active %}text-primary-light font-semibold{% else %}text-gray-600 hover:text-primary-light{% endif %}">Installation</a>
+    <a href="{{ '/apidom/' | relative_url }}" class="block {% if page.url == '/apidom/' %}text-primary-light font-semibold{% else %}text-gray-600 hover:text-primary-light{% endif %}">Overview</a>
+    <a href="{{ '/apidom/installation/' | relative_url }}" class="block {% if page.url == '/apidom/installation/' %}text-primary-light font-semibold{% else %}text-gray-600 hover:text-primary-light{% endif %}">Installation</a>
+    <a href="{{ '/apidom/parsing/' | relative_url }}" class="block {% if page.url == '/apidom/parsing/' %}text-primary-light font-semibold{% else %}text-gray-600 hover:text-primary-light{% endif %}">Parsing</a>
   </nav>
 </aside>

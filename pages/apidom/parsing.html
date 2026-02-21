@@ -1,0 +1,165 @@
+---
+layout: base
+title: SpecLynx ApiDOM - Parsing
+description: Parse API specifications from files, URLs, and strings into a semantic data model with error recovery, opt-in source maps, and style preservation.
+permalink: /apidom/parsing/
+---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site.url }}{{ site.baseurl }}/" },
+    { "@type": "ListItem", "position": 2, "name": "ApiDOM", "item": "{{ site.url }}{{ site.baseurl }}/apidom/" },
+    { "@type": "ListItem", "position": 3, "name": "Parsing", "item": "{{ site.url }}{{ site.baseurl }}/apidom/parsing/" }
+  ]
+}
+</script>
+
+<div class="flex-1">
+<div class="flex">
+  {% include apidom-sidebar.html %}
+
+  <!-- Main Content -->
+  <main class="flex-1 max-w-4xl px-6 py-12">
+    <!-- Intro -->
+    <section id="parsing-modes" class="mb-16">
+      <p class="text-gray-700 text-lg mb-6">
+        ApiDOM parses API specifications into a semantic data model. It has two parsing modes &mdash; <strong>strict</strong> and <strong>non-strict</strong>.
+      </p>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b-2 border-gray-200">
+              <th class="py-3 pr-6 text-primary-dark font-semibold"></th>
+              <th class="py-3 px-6 text-primary-dark font-semibold">Strict mode</th>
+              <th class="py-3 pl-6 text-primary-dark font-semibold">Non-strict mode</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <tr class="border-b border-gray-100">
+              <td class="py-3 pr-6 font-medium">Underlying parser</td>
+              <td class="py-3 px-6"><code>JSON.parse</code> / <a href="https://eemeli.org/yaml/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline"><code>yaml</code></a></td>
+              <td class="py-3 pl-6"><a href="https://tree-sitter.github.io/tree-sitter/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Tree-sitter</a></td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="py-3 pr-6 font-medium">Error recovery</td>
+              <td class="py-3 px-6">No &mdash; throws on invalid input</td>
+              <td class="py-3 pl-6">Yes &mdash; resilient to malformed input</td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="py-3 pr-6 font-medium"><a href="#source-maps" class="text-primary-light underline hover:no-underline">Source maps</a></td>
+              <td class="py-3 px-6">Not supported</td>
+              <td class="py-3 pl-6">Opt-in</td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="py-3 pr-6 font-medium"><a href="#style-preservation" class="text-primary-light underline hover:no-underline">Style preservation</a></td>
+              <td class="py-3 px-6">Not supported</td>
+              <td class="py-3 pl-6">Opt-in</td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="py-3 pr-6 font-medium">Performance</td>
+              <td class="py-3 px-6">Faster</td>
+              <td class="py-3 pl-6">Slower</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Parse a file or URL -->
+    <section id="parse-a-file" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Parse a file or URL</h2>
+      <p class="text-gray-700 text-lg mb-6">
+        The most common starting point. Pass a file path or URL to the <code>@speclynx/apidom-reference</code> package and ApiDOM autodetects the specification type and version.
+      </p>
+      <pre class="code-block mb-6"><code class="language-javascript">import { parse } from '@speclynx/apidom-reference';
+
+const fileResult = await parse('/path/to/openapi.json');
+const urlResult = await parse('https://example.com/openapi.json');</code></pre>
+      <p class="text-gray-700 text-lg mb-6">
+        To explicitly force a specific data model instead of autodetection, use the <code>mediaType</code> option:
+      </p>
+      <pre class="code-block mb-6"><code class="language-javascript">import { parse } from '@speclynx/apidom-reference';
+
+const result = await parse('/path/to/openapi.json', {
+  parse: { mediaType: 'application/openapi+json;version=3.1.2' }
+});</code></pre>
+    </section>
+
+    <!-- Parse a string -->
+    <section id="parse-a-string" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Parse a string</h2>
+      <p class="text-gray-700 text-lg mb-6">
+        When you already have the specification content in memory, pass it directly to a parser adapter. Unlike the reference package, parser adapters use non-strict mode by default.
+      </p>
+      <pre class="code-block mb-6"><code class="language-javascript">import { parse } from '@speclynx/apidom-parser-adapter-openapi-json-3-1';
+
+const result = await parse('{"openapi":"3.1.2","info":{"title":"My API"}}');</code></pre>
+      <p class="text-gray-700 text-lg mb-6">
+        If you need to handle multiple formats, use <code>ApiDOMParser</code> to mount several adapters and let it autodetect the right one:
+      </p>
+      <pre class="code-block mb-6"><code class="language-javascript">import ApiDOMParser from '@speclynx/apidom-parser';
+import * as openApiJsonAdapter from '@speclynx/apidom-parser-adapter-openapi-json-3-1';
+import * as openApiYamlAdapter from '@speclynx/apidom-parser-adapter-openapi-yaml-3-1';
+
+const parser = new ApiDOMParser();
+parser.use(openApiJsonAdapter);
+parser.use(openApiYamlAdapter);
+
+const result = await parser.parse('{"openapi":"3.1.2","info":{"title":"My API"}}');</code></pre>
+    </section>
+
+    <!-- Switch to non-strict mode -->
+    <section id="non-strict-mode" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Switch to non-strict mode</h2>
+      <p class="text-gray-700 text-lg mb-6">
+        The reference package uses strict mode by default. Need error recovery on malformed input? Switch to non-strict mode. Non-strict mode also unlocks <a href="#source-maps" class="text-primary-light underline hover:no-underline">source maps</a> and <a href="#style-preservation" class="text-primary-light underline hover:no-underline">style preservation</a>.
+      </p>
+      <pre class="code-block mb-6"><code class="language-javascript">import { parse } from '@speclynx/apidom-reference';
+
+const result = await parse('/path/to/openapi.json', {
+  parse: { parserOpts: { strict: false, sourceMap: true, style: true } }
+});</code></pre>
+      <p class="text-gray-700 text-lg">
+        When using a parser adapter directly, options are passed at the top level:
+      </p>
+      <pre class="code-block mb-6"><code class="language-javascript">import { parse } from '@speclynx/apidom-parser-adapter-openapi-json-3-1';
+
+const result = await parse(source, { sourceMap: true, style: true });</code></pre>
+    </section>
+
+    <!-- Source maps -->
+    <section id="source-maps" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Source maps</h2>
+      <p class="text-gray-700 text-lg mb-6">
+        Source maps track the exact position of every element in the original document. Positions use UTF-16 code units, making them directly compatible with the <a href="https://microsoft.github.io/language-server-protocol/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Language Server Protocol</a>, <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">VSCode</a>, and <a href="https://microsoft.github.io/monaco-editor/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Monaco Editor</a>.
+      </p>
+      <pre class="code-block mb-6"><code class="language-javascript">import { parse } from '@speclynx/apidom-parser-adapter-openapi-json-3-1';
+
+const result = await parse(source, { sourceMap: true });</code></pre>
+      <p class="text-gray-700 text-lg mb-6">
+        Each element in the data model carries six position properties, all zero-based:
+      </p>
+      <pre class="code-block mb-6"><code class="language-javascript">element.startLine;       // line where element begins
+element.startCharacter;  // column where element begins
+element.startOffset;     // character offset from document start
+element.endLine;         // line where element ends
+element.endCharacter;    // column where element ends
+element.endOffset;       // character offset where element ends</code></pre>
+    </section>
+
+    <!-- Style preservation -->
+    <section id="style-preservation" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Style preservation</h2>
+      <p class="text-gray-700 text-lg mb-6">
+        Style preservation captures format-specific details like indentation, key ordering, and raw number representation. This is what makes lossless round-trips possible &mdash; parse a document and serialize it back without losing formatting.
+      </p>
+      <pre class="code-block mb-6"><code class="language-javascript">import { parse } from '@speclynx/apidom-parser-adapter-openapi-json-3-1';
+
+const result = await parse(source, { style: true });</code></pre>
+    </section>
+  </main>
+</div>
+</div>
