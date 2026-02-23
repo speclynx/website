@@ -33,6 +33,7 @@ defaults:
 
 # Exclude from processing
 exclude:
+  - CLAUDE.md
   - README.md
   - LICENSE
   - NOTICE
@@ -41,3 +42,4 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor
+  - archive
