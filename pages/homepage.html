@@ -20,24 +20,30 @@ permalink: /
         <ul class="text-gray-600 space-y-2 mb-4 ml-4">
           <li>&#10003; Supports <a href="https://spec.openapis.org/oas/v2.0" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">OpenAPI 2</a>, <a href="https://spec.openapis.org/oas/v3.0.4" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">OpenAPI 3.0</a>, <a href="https://spec.openapis.org/oas/v3.1.1" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">OpenAPI 3.1</a>, <a href="https://www.asyncapi.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">AsyncAPI 2.x</a>, <a href="https://spec.openapis.org/arazzo/latest.html" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">Arazzo 1.x</a>, and <a href="https://json-schema.org/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">JSON Schema</a></li>
           <li>&#10003; Provides parsers, semantic data models, and building blocks for your own tooling</li>
-          <li>&#10003; Powers intelligent editing with a Language Service and ready-to-use VSCode extension</li>
+          <li>&#10003; Powers intelligent editing with a Language Service and ready-to-use VS Code extension</li>
         </ul>
         <!-- Quick Start -->
         <div class="mt-8">
           <div class="quick-start-content">
-            <p class="text-gray-600 text-sm mb-3">Launch VS Code Quick Open (Ctrl+P), paste and press enter:</p>
-            <div class="code-block">
-              <code>ext install SpecLynx.vscode-openapi-toolkit</code>
-            </div>
+            <p class="text-gray-600 text-sm mb-3">Start editing instantly in your browser: <a href="https://editor.speclynx.com" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline font-semibold">Open SpecLynx Editor</a></p>
+            <details class="mt-4">
+              <summary class="text-gray-600 text-sm cursor-pointer hover:text-primary-light">Or install in VS Code</summary>
+              <div class="mt-3">
+                <p class="text-gray-600 text-sm mb-3">Launch VS Code Quick Open (Ctrl+P), paste and press enter:</p>
+                <div class="code-block">
+                  <code>ext install SpecLynx.vscode-openapi-toolkit</code>
+                </div>
+              </div>
+            </details>
           </div>
         </div>
         <!-- CTAs -->
         <div class="mt-6 flex flex-wrap gap-4">
-          <a href="https://marketplace.visualstudio.com/items?itemName=SpecLynx.vscode-openapi-toolkit" target="_blank" rel="noopener noreferrer" class="primary-cta text-white font-bold py-3 px-6 rounded inline-block">
-            Install VSCode Extension
+          <a href="https://editor.speclynx.com" target="_blank" rel="noopener noreferrer" class="primary-cta text-white font-bold py-3 px-6 rounded inline-block">
+            Try in Browser
           </a>
-          <a href="#products" class="border-2 border-primary-dark text-primary-dark font-bold py-3 px-6 rounded inline-block hover:bg-gray-100 transition-colors">
-            Explore the Ecosystem
+          <a href="https://marketplace.visualstudio.com/items?itemName=SpecLynx.vscode-openapi-toolkit" target="_blank" rel="noopener noreferrer" class="border-2 border-primary-dark text-primary-dark font-bold py-3 px-6 rounded inline-block hover:bg-gray-100 transition-colors">
+            Install VS Code Extension
           </a>
         </div>
       </div>
@@ -94,16 +100,40 @@ permalink: /
       SpecLynx is a complete TypeScript/JavaScript ecosystem for API specifications.
     </p>
 
-    <div class="grid md:grid-cols-3 gap-8">
-      <!-- OpenAPI Toolkit Card -->
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Editor Card -->
       <div class="product-card">
         <div class="mb-4">
           <span class="badge badge-secondary">Start Here</span>
         </div>
-        <h3 class="product-card-title">OpenAPI Toolkit</h3>
-        <p class="text-sm text-gray-500 mb-2">VSCode Extension</p>
+        <h3 class="product-card-title">Editor</h3>
+        <p class="text-sm text-gray-500 mb-2">Browser-Based</p>
         <p class="product-card-description">
-          <strong>Write specs faster</strong> with real-time validation, smart autocompletion, and instant preview - all inside VSCode.
+          <strong>Edit specs instantly</strong> in your browser. No installation, no setup &mdash; just open and start authoring OpenAPI documents.
+        </p>
+        <ul class="text-sm text-gray-600 mb-4 space-y-1">
+          <li>&#10003; Zero installation required</li>
+          <li>&#10003; Real-time validation</li>
+          <li>&#10003; Smart autocompletion</li>
+          <li>&#10003; Works on any device</li>
+        </ul>
+        <a href="{{ '/editor/' | relative_url }}" class="product-card-link">
+          Explore Editor
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- OpenAPI Toolkit Card -->
+      <div class="product-card">
+        <div class="mb-4">
+          <span class="badge badge-primary">VS Code Extension</span>
+        </div>
+        <h3 class="product-card-title">OpenAPI Toolkit</h3>
+        <p class="text-sm text-gray-500 mb-2">VS Code Extension</p>
+        <p class="product-card-description">
+          <strong>Write specs faster</strong> with real-time validation, smart autocompletion, and instant preview &mdash; all inside VS Code.
         </p>
         <ul class="text-sm text-gray-600 mb-4 space-y-1">
           <li>&#10003; Context-aware autocompletion</li>
@@ -225,7 +255,7 @@ permalink: /
       <div class="text-center md:text-left">
         <h2 class="text-3xl font-extrabold text-primary-dark mb-4">Built by API Tooling Veterans</h2>
         <p class="text-gray-600 mb-3">
-          The team behind SpecLynx has spent <strong>15+ years</strong> building and maintaining Swagger and OpenAPI tools used by millions of developers. We know what works - and what doesn't.
+          The team behind SpecLynx has spent <strong>15+ years</strong> building and maintaining Swagger and OpenAPI tools used by millions of developers. <a href="https://stars.github.com/alumni/#:~:text=char0n" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">GitHub Stars</a> alumni. We know what works &mdash; and what doesn't.
         </p>
         <a href="{{ '/about/' | relative_url }}" class="text-primary-light font-semibold hover:underline">Meet the team &rarr;</a>
       </div>

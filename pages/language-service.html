@@ -374,7 +374,7 @@ const languageService = getLanguageService({
       <div class="max-w-md mx-auto">
         <div class="border-2 border-gray-300 rounded-lg p-4 text-center mb-3">
           <p class="font-semibold text-gray-700">Your Application</p>
-          <p class="text-sm text-gray-500">IDE, Editor, CLI, etc.</p>
+          <p class="text-sm text-gray-500">IDE, Editor, CLI, Browser Editor, etc.</p>
         </div>
         <div class="text-center text-gray-400 text-2xl mb-3">&#8595;</div>
         <div class="border-2 border-gray-300 rounded-lg p-4 text-center mb-3">
@@ -413,14 +413,14 @@ const languageService = getLanguageService({
     <!-- Related Products -->
     <section id="related" class="mb-16">
       <h2 class="text-2xl font-bold text-primary-dark mb-6">Related Products</h2>
-      <div class="grid md:grid-cols-2 gap-6">
+      <div class="grid md:grid-cols-3 gap-6">
         <div class="product-card">
-          <h3 class="product-card-title">ApiDOM</h3>
+          <h3 class="product-card-title">Editor</h3>
           <p class="product-card-description">
-            The foundation that Language Service is built upon. Provides parsing, data model, and traversal capabilities.
+            Browser-based OpenAPI editor powered by the Language Service. No installation required.
           </p>
-          <a href="{{ '/apidom/' | relative_url }}" class="product-card-link">
-            Explore ApiDOM
+          <a href="{{ '/editor/' | relative_url }}" class="product-card-link">
+            Explore Editor
             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
             </svg>
@@ -429,10 +429,22 @@ const languageService = getLanguageService({
         <div class="product-card">
           <h3 class="product-card-title">OpenAPI Toolkit</h3>
           <p class="product-card-description">
-            VSCode extension that wraps the Language Service for an out-of-the-box editing experience.
+            VS Code extension that wraps the Language Service for an out-of-the-box editing experience.
           </p>
           <a href="{{ '/openapi-toolkit/' | relative_url }}" class="product-card-link">
             Explore OpenAPI Toolkit
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+        <div class="product-card">
+          <h3 class="product-card-title">ApiDOM</h3>
+          <p class="product-card-description">
+            The foundation that Language Service is built upon. Provides parsing, data model, and traversal capabilities.
+          </p>
+          <a href="{{ '/apidom/' | relative_url }}" class="product-card-link">
+            Explore ApiDOM
             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
             </svg>
@@ -450,7 +462,7 @@ const languageService = getLanguageService({
           <p class="text-gray-700">SpecLynx Language Service is an LSP-compatible library that provides intelligent editing features for API specifications. It powers validation, autocompletion, hover documentation, go-to-definition, and other editor features for OpenAPI, AsyncAPI, Arazzo, and JSON Schema files.</p>
         </div>
         <div>
-          <h3 class="font-semibold text-gray-900 mb-2">Can I use Language Service outside of VSCode?</h3>
+          <h3 class="font-semibold text-gray-900 mb-2">Can I use Language Service outside of VS Code?</h3>
           <p class="text-gray-700">Yes. Language Service is a standalone npm package (<code>@speclynx/apidom-ls</code>) that implements the Language Server Protocol. You can integrate it into any editor or tool that supports LSP, or use it programmatically in your own applications.</p>
         </div>
         <div>
@@ -478,7 +490,7 @@ const languageService = getLanguageService({
         },
         {
           "@type": "Question",
-          "name": "Can I use Language Service outside of VSCode?",
+          "name": "Can I use Language Service outside of VS Code?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Yes. Language Service is a standalone npm package (@speclynx/apidom-ls) that implements the Language Server Protocol. You can integrate it into any editor or tool that supports LSP, or use it programmatically in your own applications."

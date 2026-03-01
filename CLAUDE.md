@@ -6,8 +6,9 @@ Project context for AI assistants working on the SpecLynx website.
 
 Jekyll static site for SpecLynx — an API tooling company. Hosted on GitHub Pages at `https://speclynx.com/`.
 
-Three products:
-- **OpenAPI Toolkit** — Free VSCode extension for API spec authoring (validation, completion, hover, preview, linting)
+Four products:
+- **Editor** — Browser-based OpenAPI editor at `editor.speclynx.com` (fully client-side, open source)
+- **OpenAPI Toolkit** — Free VS Code extension for API spec authoring (validation, completion, hover, preview, linting)
 - **Language Service** — LSP-compatible npm library (`@speclynx/apidom-ls`) for API spec intelligence
 - **ApiDOM** — Semantic parser for API specifications (OpenAPI, AsyncAPI, Arazzo, JSON Schema)
 
@@ -46,6 +47,7 @@ _includes/
   apidom-sidebar.html            # Shared sidebar for ApiDOM pages (active state via page.url)
 pages/
   homepage.html                  # Landing page (permalink: /)
+  editor.html                    # Editor product page (permalink: /editor/)
   openapi-toolkit.html           # Product page with sidebar nav
   language-service.html          # Product page with sidebar nav
   apidom/overview.html           # ApiDOM overview (permalink: /apidom/)
@@ -153,6 +155,11 @@ Key conventions for ApiDOM content:
 - Use "data model" not "element" when referring to the parsed result
 - The package is "one of the main entry points" (not "the main entry point")
 - Official OpenAPI media type: `application/openapi+json;version=3.1.2` (per IETF draft, not `vnd.oai.` prefix)
+
+## Naming Conventions
+
+- Use **"VS Code"** (with a space), not "VSCode". This matches Microsoft's official branding.
+- URLs and package names keep their original casing (e.g., `vscode-openapi-toolkit`, `vscode.dev`)
 
 ## Important Notes
 

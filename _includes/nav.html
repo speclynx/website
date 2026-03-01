@@ -16,6 +16,7 @@
             </svg>
           </button>
           <div class="dropdown-menu">
+            <a href="{{ '/editor/' | relative_url }}" class="dropdown-item">Editor</a>
             <a href="{{ '/openapi-toolkit/' | relative_url }}" class="dropdown-item">OpenAPI Toolkit</a>
             <a href="{{ '/language-service/' | relative_url }}" class="dropdown-item">Language Service</a>
             <a href="{{ '/apidom/' | relative_url }}" class="dropdown-item">ApiDOM</a>
@@ -30,6 +31,7 @@
           </button>
           <div class="dropdown-menu">
             <span class="dropdown-label">Repositories</span>
+            <a href="https://github.com/speclynx/speclynx-editor" target="_blank" rel="noopener noreferrer" class="dropdown-item">Editor</a>
             <a href="https://github.com/speclynx/apidom" target="_blank" rel="noopener noreferrer" class="dropdown-item">ApiDOM</a>
             <a href="https://github.com/speclynx/vscode-openapi-toolkit" target="_blank" rel="noopener noreferrer" class="dropdown-item">OpenAPI Toolkit</a>
             <span class="dropdown-label">Community</span>
@@ -49,10 +51,12 @@
 
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="mobile-menu md:hidden pb-4">
+      <a href="{{ '/editor/' | relative_url }}" class="block py-2 nav-link">Editor</a>
       <a href="{{ '/openapi-toolkit/' | relative_url }}" class="block py-2 nav-link">OpenAPI Toolkit</a>
       <a href="{{ '/language-service/' | relative_url }}" class="block py-2 nav-link">Language Service</a>
       <a href="{{ '/apidom/' | relative_url }}" class="block py-2 nav-link">ApiDOM</a>
       <span class="block py-2 text-gray-500 text-xs uppercase mt-2">Repositories</span>
+      <a href="https://github.com/speclynx/speclynx-editor" target="_blank" rel="noopener noreferrer" class="block py-2 nav-link pl-4">Editor</a>
       <a href="https://github.com/speclynx/apidom" target="_blank" rel="noopener noreferrer" class="block py-2 nav-link pl-4">ApiDOM</a>
       <a href="https://github.com/speclynx/vscode-openapi-toolkit" target="_blank" rel="noopener noreferrer" class="block py-2 nav-link pl-4">OpenAPI Toolkit</a>
       <span class="block py-2 text-gray-500 text-xs uppercase mt-2">Community</span>

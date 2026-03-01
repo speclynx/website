@@ -107,7 +107,7 @@ permalink: /apidom/
         Most parsers throw things away. Comments disappear. Key ordering changes. Whitespace gets normalized. If you parse a YAML file and serialize it back, what you get out is not what went in.
       </p>
       <p class="text-gray-700 text-lg mb-6">
-        ApiDOM has been designed to retain all of that low-level detail. Comments, original key ordering, format styles, and raw CST source texts &mdash; everything is preserved in the data model. The data model carries source maps with full positional data using UTF-16 code units, making them directly compatible with the <a href="https://microsoft.github.io/language-server-protocol/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Language Server Protocol</a>, <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">VSCode</a>, and <a href="https://microsoft.github.io/monaco-editor/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Monaco Editor</a>.
+        ApiDOM has been designed to retain all of that low-level detail. Comments, original key ordering, format styles, and raw CST source texts &mdash; everything is preserved in the data model. The data model carries source maps with full positional data using UTF-16 code units, making them directly compatible with the <a href="https://microsoft.github.io/language-server-protocol/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Language Server Protocol</a>, <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">VS Code</a>, and <a href="https://microsoft.github.io/monaco-editor/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Monaco Editor</a>.
       </p>
       <p class="text-gray-700 text-lg">
         Precise diagnostics that point to the exact line and column. Modifications that don't silently rewrite the rest of the file. Comments, formatting, and key ordering that survive every round-trip.
@@ -134,6 +134,9 @@ permalink: /apidom/
       <p class="text-gray-700 text-lg mb-6">
         ApiDOM works in both Node.js and the browser. The same code that runs on your server runs in a browser environment, making it suitable for building web-based API tooling, editor integrations, and client-side validation without maintaining separate implementations.
       </p>
+      <p class="text-gray-700 text-lg">
+        The <a href="{{ '/editor/' | relative_url }}" class="text-primary-light underline hover:no-underline">SpecLynx Editor</a> is a real-world example: a fully client-side browser application built on ApiDOM that provides intelligent OpenAPI editing with zero server-side processing.
+      </p>
     </section>
 
     <!-- Where it comes from -->
@@ -153,7 +156,19 @@ permalink: /apidom/
       <p class="text-gray-700 mb-6">
         We use ApiDOM ourselves. The rest of the SpecLynx ecosystem is built directly on top of it:
       </p>
-      <div class="grid md:grid-cols-2 gap-6">
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="product-card">
+          <h3 class="product-card-title">Editor</h3>
+          <p class="product-card-description">
+            Browser-based OpenAPI editor &mdash; fully client-side, powered by ApiDOM.
+          </p>
+          <a href="{{ '/editor/' | relative_url }}" class="product-card-link">
+            Explore Editor
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
         <div class="product-card">
           <h3 class="product-card-title">Language Service</h3>
           <p class="product-card-description">
@@ -169,7 +184,7 @@ permalink: /apidom/
         <div class="product-card">
           <h3 class="product-card-title">OpenAPI Toolkit</h3>
           <p class="product-card-description">
-            A VSCode extension for OpenAPI authoring &mdash; real-time validation, semantic linting, and live preview.
+            A VS Code extension for OpenAPI authoring &mdash; real-time validation, semantic linting, and live preview.
           </p>
           <a href="{{ '/openapi-toolkit/' | relative_url }}" class="product-card-link">
             Explore OpenAPI Toolkit
@@ -195,7 +210,7 @@ permalink: /apidom/
         </div>
         <div>
           <h3 class="font-semibold text-gray-900 mb-2">Is ApiDOM lossless?</h3>
-          <p class="text-gray-700">Yes. ApiDOM preserves comments, original key ordering, format styles, and raw CST source texts. The data model carries source maps with UTF-16 code units, making them directly compatible with LSP, VSCode, and Monaco Editor. What you parse out is what went in.</p>
+          <p class="text-gray-700">Yes. ApiDOM preserves comments, original key ordering, format styles, and raw CST source texts. The data model carries source maps with UTF-16 code units, making them directly compatible with LSP, VS Code, and Monaco Editor. What you parse out is what went in.</p>
         </div>
         <div>
           <h3 class="font-semibold text-gray-900 mb-2">How is ApiDOM different from a regular YAML or JSON parser?</h3>
@@ -229,7 +244,7 @@ permalink: /apidom/
           "name": "Is ApiDOM lossless?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. ApiDOM preserves comments, original key ordering, format styles, and raw CST source texts. The data model carries source maps with UTF-16 code units, making them directly compatible with LSP, VSCode, and Monaco Editor. What you parse out is what went in."
+            "text": "Yes. ApiDOM preserves comments, original key ordering, format styles, and raw CST source texts. The data model carries source maps with UTF-16 code units, making them directly compatible with LSP, VS Code, and Monaco Editor. What you parse out is what went in."
           }
         },
         {

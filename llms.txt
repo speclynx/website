@@ -7,8 +7,19 @@ layout: none
 
 ## Products
 
+### Editor
+- Browser-based OpenAPI editor
+- Fully client-side — no data leaves your browser
+- Real-time validation, autocompletion, and live preview
+- Supports OpenAPI, AsyncAPI, Arazzo, and JSON Schema in JSON and YAML
+- Zero installation, no account required
+- Free, open source (Apache 2.0)
+- Editor: https://editor.speclynx.com
+- GitHub: https://github.com/speclynx/speclynx-editor
+- Docs: {{ site.url }}{{ site.baseurl }}/editor/
+
 ### OpenAPI Toolkit
-- VSCode extension for API specification authoring
+- VS Code extension for API specification authoring
 - Real-time validation, autocompletion, hover documentation, syntax highlighting, live preview
 - Supports Swagger 2.0, OpenAPI 3.0.x, OpenAPI 3.1.x, AsyncAPI 2.x, Arazzo 1.x
 - Works with JSON and YAML
@@ -28,7 +39,7 @@ layout: none
 - Semantic parser for API specifications
 - Parses OpenAPI, AsyncAPI, Arazzo, and JSON Schema into a unified semantic element tree
 - Lossless: preserves comments, key ordering, format styles, and CST source texts
-- Source maps with UTF-16 code units (LSP/VSCode/Monaco compatible)
+- Source maps with UTF-16 code units (LSP/VS Code/Monaco compatible)
 - npm packages under @speclynx/apidom-*
 - Free, open source (Apache 2.0)
 - GitHub: https://github.com/speclynx/apidom

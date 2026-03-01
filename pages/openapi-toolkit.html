@@ -1,7 +1,7 @@
 ---
 layout: base
 title: SpecLynx OpenAPI Toolkit - Documentation
-description: Documentation for SpecLynx OpenAPI Toolkit - the VSCode extension for OpenAPI authoring with validation, linting, and live preview.
+description: Documentation for SpecLynx OpenAPI Toolkit - the VS Code extension for OpenAPI authoring with validation, linting, and live preview.
 launchlist: true
 permalink: /openapi-toolkit/
 ---
@@ -89,20 +89,28 @@ permalink: /openapi-toolkit/
   <main class="flex-1 max-w-4xl px-6 py-12">
     <!-- Overview -->
     <section id="overview" class="mb-16">
-      <h1 class="text-4xl font-extrabold text-primary-dark mb-4">SpecLynx OpenAPI Toolkit</h1>
-      <p class="text-xl text-gray-600 mb-6">The OpenAPI Powerhouse for VSCode</p>
+      <div class="flex items-center gap-3 mb-4">
+        <h1 class="text-4xl font-extrabold text-primary-dark">SpecLynx OpenAPI Toolkit</h1>
+        <span class="badge badge-primary">VS Code Extension</span>
+      </div>
+      <p class="text-xl text-gray-600 mb-6">The OpenAPI Powerhouse for VS Code</p>
 
       <p class="text-gray-700 text-lg mb-6">
-        SpecLynx OpenAPI Toolkit is a VSCode extension providing advanced editing, validation, linting, and preview capabilities for Swagger/OpenAPI specifications.
+        SpecLynx OpenAPI Toolkit is a VS Code extension providing advanced editing, validation, linting, and preview capabilities for Swagger/OpenAPI specifications.
       </p>
 
-      <a href="https://marketplace.visualstudio.com/items?itemName=SpecLynx.vscode-openapi-toolkit" target="_blank" rel="noopener noreferrer" class="primary-cta text-white font-bold py-3 px-6 rounded inline-block mb-8">
-        Install Extension
-      </a>
+      <div class="flex flex-wrap gap-4 mb-8">
+        <a href="https://marketplace.visualstudio.com/items?itemName=SpecLynx.vscode-openapi-toolkit" target="_blank" rel="noopener noreferrer" class="primary-cta text-white font-bold py-3 px-6 rounded inline-block">
+          Install Extension
+        </a>
+        <a href="https://editor.speclynx.com" target="_blank" rel="noopener noreferrer" class="border-2 border-primary-dark text-primary-dark font-bold py-3 px-6 rounded inline-block hover:bg-gray-100 transition-colors">
+          Try in Browser
+        </a>
+      </div>
 
       <div class="bg-blue-50 border-l-4 border-primary-light p-4 mb-6">
         <p class="text-gray-700">
-          <strong>Works everywhere:</strong> Desktop VSCode, <a href="https://vscode.dev/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">vscode.dev</a>, <a href="https://github.dev" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">github.dev</a>, and <a href="https://github.com/features/codespaces" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">GitHub Codespaces</a>. A rare capability in the OpenAPI editing landscape.
+          <strong>Works everywhere:</strong> Desktop VS Code, <a href="https://vscode.dev/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">vscode.dev</a>, <a href="https://github.dev" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">github.dev</a>, and <a href="https://github.com/features/codespaces" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">GitHub Codespaces</a>. A rare capability in the OpenAPI editing landscape. Prefer no installation? Try the browser-based <a href="{{ '/editor/' | relative_url }}" class="text-primary-light underline hover:no-underline">SpecLynx Editor</a>.
         </p>
       </div>
 
@@ -263,7 +271,7 @@ permalink: /openapi-toolkit/
     <section id="formatting" class="mb-16">
       <h2 class="text-2xl font-bold text-primary-dark mb-4">Formatting</h2>
       <p class="text-gray-700 mb-4">
-        Format your OpenAPI documents using VSCode's built-in formatting commands. The extension respects your editor's tab size and indentation preferences (<code class="bg-gray-100 px-1 rounded">tabSize</code> and <code class="bg-gray-100 px-1 rounded">insertSpaces</code>).
+        Format your OpenAPI documents using VS Code's built-in formatting commands. The extension respects your editor's tab size and indentation preferences (<code class="bg-gray-100 px-1 rounded">tabSize</code> and <code class="bg-gray-100 px-1 rounded">insertSpaces</code>).
       </p>
       <p class="text-gray-700 mb-6">
         Use <kbd class="bg-gray-100 px-2 py-1 rounded text-sm">Shift+Alt+F</kbd> or right-click and select "Format Document".
@@ -552,10 +560,10 @@ rules:
           <p class="text-gray-500 text-sm mt-1">Download .vsix directly</p>
         </div>
         <div>
-          <a href="https://marketplace.visualstudio.com/items/SpecLynx.vscode-openapi-toolkit/changelog" target="_blank" rel="noopener noreferrer" class="text-primary-light font-semibold hover:underline">
-            Changelog &rarr;
+          <a href="https://editor.speclynx.com" target="_blank" rel="noopener noreferrer" class="text-primary-light font-semibold hover:underline">
+            SpecLynx Editor &rarr;
           </a>
-          <p class="text-gray-500 text-sm mt-1">Version history</p>
+          <p class="text-gray-500 text-sm mt-1">No installation required</p>
         </div>
       </div>
     </section>
@@ -623,7 +631,7 @@ rules:
       <div class="space-y-6">
         <div>
           <h3 class="font-semibold text-gray-900 mb-2">Is SpecLynx OpenAPI Toolkit free?</h3>
-          <p class="text-gray-700">Yes. SpecLynx OpenAPI Toolkit is a free, open-source VSCode extension licensed under Apache 2.0. You can install it from the Visual Studio Code Marketplace at no cost.</p>
+          <p class="text-gray-700">Yes. SpecLynx OpenAPI Toolkit is a free, open-source VS Code extension licensed under Apache 2.0. You can install it from the Visual Studio Code Marketplace at no cost.</p>
         </div>
         <div>
           <h3 class="font-semibold text-gray-900 mb-2">What OpenAPI versions does the toolkit support?</h3>
@@ -637,6 +645,10 @@ rules:
           <h3 class="font-semibold text-gray-900 mb-2">Can I use custom linting rules?</h3>
           <p class="text-gray-700">Yes. The toolkit supports Spectral rulesets for style guide enforcement, JSON Schema validation, as well as its own semantic linting rules that you can configure through the extension settings.</p>
         </div>
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-2">Can I use SpecLynx without installing anything?</h3>
+          <p class="text-gray-700">Yes. The <a href="{{ '/editor/' | relative_url }}" class="text-primary-light underline hover:no-underline">SpecLynx Editor</a> runs entirely in your browser at <a href="https://editor.speclynx.com" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">editor.speclynx.com</a>. It provides real-time validation, autocompletion, and preview without any installation. For multi-file projects and Git integration, use the OpenAPI Toolkit VS Code extension.</p>
+        </div>
       </div>
     </section>
     <script type="application/ld+json">
@@ -649,7 +661,7 @@ rules:
           "name": "Is SpecLynx OpenAPI Toolkit free?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. SpecLynx OpenAPI Toolkit is a free, open-source VSCode extension licensed under Apache 2.0. You can install it from the Visual Studio Code Marketplace at no cost."
+            "text": "Yes. SpecLynx OpenAPI Toolkit is a free, open-source VS Code extension licensed under Apache 2.0. You can install it from the Visual Studio Code Marketplace at no cost."
           }
         },
         {
@@ -674,6 +686,14 @@ rules:
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Yes. The toolkit supports Spectral rulesets for style guide enforcement, JSON Schema validation, as well as its own semantic linting rules that you can configure through the extension settings."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use SpecLynx without installing anything?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The SpecLynx Editor runs entirely in your browser at editor.speclynx.com. It provides real-time validation, autocompletion, and preview without any installation. For multi-file projects and Git integration, use the OpenAPI Toolkit VS Code extension."
           }
         }
       ]

@@ -1,0 +1,288 @@
+---
+layout: base
+title: SpecLynx Editor - Browser-Based OpenAPI Editor
+description: Edit OpenAPI specifications directly in your browser with real-time validation, autocompletion, and live preview. No installation required.
+launchlist: true
+permalink: /editor/
+---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SpecLynx Editor",
+  "description": "{{ page.description }}",
+  "url": "{{ site.url }}{{ site.baseurl }}{{ page.url }}",
+  "applicationCategory": "DeveloperApplication",
+  "applicationSubCategory": "Web Application",
+  "operatingSystem": "Any (browser-based)",
+  "license": "https://opensource.org/licenses/Apache-2.0",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "SpecLynx"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site.url }}{{ site.baseurl }}/" },
+    { "@type": "ListItem", "position": 2, "name": "Editor", "item": "{{ site.url }}{{ site.baseurl }}/editor/" }
+  ]
+}
+</script>
+
+<div class="flex-1">
+<div class="flex">
+  <!-- Sticky Sidebar -->
+  <aside class="hidden lg:block w-64 flex-shrink-0">
+    <nav class="sticky top-[82px] p-6 space-y-4 text-sm">
+      <div class="font-bold text-primary-dark mb-4">Editor</div>
+      <a href="#overview" class="block text-gray-600 hover:text-primary-light">Overview</a>
+      <a href="#features" class="block text-gray-600 hover:text-primary-light">Features</a>
+      <a href="#how-it-works" class="block text-gray-600 hover:text-primary-light">How It Works</a>
+      <a href="#which-one" class="block text-gray-600 hover:text-primary-light">Which One Is Right for You?</a>
+      <a href="#built-with" class="block text-gray-600 hover:text-primary-light">Built With</a>
+      <a href="#faq" class="block text-gray-600 hover:text-primary-light">FAQ</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 max-w-4xl px-6 py-12">
+    <!-- Overview -->
+    <section id="overview" class="mb-16">
+      <div class="flex items-center gap-3 mb-4">
+        <h1 class="text-4xl font-extrabold text-primary-dark">SpecLynx Editor</h1>
+        <span class="badge badge-primary">Web App</span>
+      </div>
+      <p class="text-xl text-gray-600 mb-6">OpenAPI editing in your browser</p>
+
+      <p class="text-gray-700 text-lg mb-6">
+        SpecLynx Editor is a browser-based OpenAPI editor with real-time validation, smart autocompletion, and live preview. No installation, no account, no setup &mdash; just open and start writing.
+      </p>
+
+      <div class="flex flex-wrap gap-4 mb-8">
+        <a href="https://editor.speclynx.com" target="_blank" rel="noopener noreferrer" class="primary-cta text-white font-bold py-3 px-6 rounded inline-block">
+          Open Editor
+        </a>
+        <a href="{{ '/openapi-toolkit/' | relative_url }}" class="border-2 border-primary-dark text-primary-dark font-bold py-3 px-6 rounded inline-block hover:bg-gray-100 transition-colors">
+          Install VS Code Extension
+        </a>
+      </div>
+
+      <div class="bg-blue-50 border-l-4 border-primary-light p-4 mb-6">
+        <p class="text-gray-700">
+          <strong>Fully client-side:</strong> All processing happens in your browser. No data is sent to any server. Your specs never leave your machine.
+        </p>
+      </div>
+
+      <h2 id="supported-formats" class="text-lg font-semibold text-primary-dark mb-3">Supported Formats</h2>
+      <p class="text-gray-700 mb-2">Full JSON and YAML support:</p>
+      <ul class="text-gray-700 space-y-1 mb-6 ml-4">
+        <li>&#10003; OpenAPI 2.0 (Swagger)</li>
+        <li>&#10003; OpenAPI 3.0.x</li>
+        <li>&#10003; OpenAPI 3.1.x</li>
+      </ul>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Features</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h3 id="real-time-validation" class="font-semibold text-primary-dark mb-2">Real-Time Validation</h3>
+          <p class="text-gray-600 text-sm">Errors and warnings appear as you type, not after you save.</p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h3 id="smart-autocompletion" class="font-semibold text-primary-dark mb-2">Smart Autocompletion</h3>
+          <p class="text-gray-600 text-sm">Context-aware suggestions for paths, parameters, responses, and components.</p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h3 id="instant-error-detection" class="font-semibold text-primary-dark mb-2">Instant Error Detection</h3>
+          <p class="text-gray-600 text-sm">Structural and semantic validation catches issues before they reach your API consumers.</p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h3 id="live-preview" class="font-semibold text-primary-dark mb-2">Live Preview</h3>
+          <p class="text-gray-600 text-sm">See your API documentation render in real time as you edit.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-6">How It Works</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="text-3xl font-bold text-primary-light mb-3">1</div>
+          <h3 id="step-open" class="font-bold text-primary-dark mb-2">Open the Editor</h3>
+          <p class="text-gray-600 text-sm">Open the <a href="https://editor.speclynx.com" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">SpecLynx Editor</a>. No account, no install.</p>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-primary-light mb-3">2</div>
+          <h3 id="step-write" class="font-bold text-primary-dark mb-2">Author Your Spec</h3>
+          <p class="text-gray-600 text-sm">Paste or write an OpenAPI specification in JSON or YAML.</p>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-primary-light mb-3">3</div>
+          <h3 id="step-feedback" class="font-bold text-primary-dark mb-2">Get Instant Feedback</h3>
+          <p class="text-gray-600 text-sm">Validation, autocompletion, and preview update as you type.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Which One Is Right for You -->
+    <section id="which-one" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Which One Is Right for You?</h2>
+      <p class="text-gray-700 text-lg mb-6">
+        The Editor and the <a href="{{ '/openapi-toolkit/' | relative_url }}" class="text-primary-light underline hover:no-underline">OpenAPI Toolkit</a> extension are built on the same core &mdash; the same <a href="{{ '/language-service/' | relative_url }}" class="text-primary-light underline hover:no-underline">Language Service</a> and <a href="{{ '/apidom/' | relative_url }}" class="text-primary-light underline hover:no-underline">ApiDOM</a>. The Editor is the fastest way to start. The extension gives you a full development environment.
+      </p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b-2 border-gray-200">
+              <th class="py-3 pr-6 text-primary-dark font-semibold"></th>
+              <th class="py-3 px-6 text-primary-dark font-semibold">Editor</th>
+              <th class="py-3 pl-6 text-primary-dark font-semibold">OpenAPI Toolkit</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <tr class="border-b border-gray-100">
+              <td class="py-3 pr-6 font-medium">Installation</td>
+              <td class="py-3 px-6">None</td>
+              <td class="py-3 pl-6">VS Code required</td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="py-3 pr-6 font-medium">Setup time</td>
+              <td class="py-3 px-6">Instant</td>
+              <td class="py-3 pl-6">1 minute</td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="py-3 pr-6 font-medium">Offline use</td>
+              <td class="py-3 px-6">Yes (clone the repo)</td>
+              <td class="py-3 pl-6">Yes</td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="py-3 pr-6 font-medium">Git integration</td>
+              <td class="py-3 px-6">No</td>
+              <td class="py-3 pl-6">Yes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Powered By -->
+    <section id="built-with" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-6">Built With</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="product-card">
+          <h3 class="product-card-title">OpenAPI Toolkit</h3>
+          <p class="product-card-description">
+            The Editor runs the same VS Code extension in the browser. Same validation, autocompletion, and preview &mdash; no installation required.
+          </p>
+          <a href="{{ '/openapi-toolkit/' | relative_url }}" class="product-card-link">
+            Explore OpenAPI Toolkit
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+        <div class="product-card">
+          <h3 class="product-card-title">Language Service</h3>
+          <p class="product-card-description">
+            LSP-compatible library providing validation, autocompletion, hover documentation, and more.
+          </p>
+          <a href="{{ '/language-service/' | relative_url }}" class="product-card-link">
+            Explore Language Service
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+        <div class="product-card">
+          <h3 class="product-card-title">ApiDOM</h3>
+          <p class="product-card-description">
+            Semantic parser running entirely in the browser. The same code that runs on your server runs client-side in the Editor.
+          </p>
+          <a href="{{ '/apidom/' | relative_url }}" class="product-card-link">
+            Explore ApiDOM
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-6">Frequently Asked Questions</h2>
+      <div class="space-y-6">
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-2">Is the SpecLynx Editor free?</h3>
+          <p class="text-gray-700">Yes. SpecLynx Editor is free, open-source, and licensed under Apache 2.0. No account or signup required.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-2">What API specifications does the Editor support?</h3>
+          <p class="text-gray-700">The Editor supports OpenAPI 2.0 (Swagger), OpenAPI 3.0.x, and OpenAPI 3.1.x in both JSON and YAML formats.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-2">Do I need to install anything?</h3>
+          <p class="text-gray-700">No. The Editor runs entirely in your browser. Just open editor.speclynx.com and start editing. All processing happens client-side &mdash; no data is sent to any server.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-2">What is the difference between the Editor and the OpenAPI Toolkit?</h3>
+          <p class="text-gray-700">The Editor is a lightweight build of VS Code with the OpenAPI Toolkit extension built in, packaged for the browser. No installation, no account &mdash; just open and start authoring. The OpenAPI Toolkit is the same extension running in desktop VS Code, with access to the full VS Code extensions ecosystem and Git integration.</p>
+        </div>
+      </div>
+    </section>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is the SpecLynx Editor free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. SpecLynx Editor is free, open-source, and licensed under Apache 2.0. No account or signup required."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What API specifications does the Editor support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Editor supports OpenAPI 2.0 (Swagger), OpenAPI 3.0.x, and OpenAPI 3.1.x in both JSON and YAML formats."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to install anything?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The Editor runs entirely in your browser. Just open editor.speclynx.com and start editing. All processing happens client-side — no data is sent to any server."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between the Editor and the OpenAPI Toolkit?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Editor is a lightweight build of VS Code with the OpenAPI Toolkit extension built in, packaged for the browser. No installation, no account — just open and start authoring. The OpenAPI Toolkit is the same extension running in desktop VS Code, with access to the full VS Code extensions ecosystem and Git integration."
+          }
+        }
+      ]
+    }
+    </script>
+  </main>
+</div>
+</div>
