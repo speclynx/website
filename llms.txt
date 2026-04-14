@@ -27,6 +27,16 @@ layout: none
 - Install: https://marketplace.visualstudio.com/items?itemName=SpecLynx.vscode-openapi-toolkit
 - Docs: {{ site.url }}{{ site.baseurl }}/openapi-toolkit/
 
+### CLI
+- Command-line tool for managing API specifications
+- Apply Overlay 1.x documents to API definitions
+- Supports any JSON or YAML document as a target
+- Multiple overlay chaining, strict validation, format auto-detection
+- npm package: @speclynx/cli
+- Free, open source (Apache 2.0)
+- GitHub: https://github.com/speclynx/speclynx-cli
+- Docs: {{ site.url }}{{ site.baseurl }}/cli/
+
 ### Language Service
 - LSP-compatible library for API specification intelligence
 - 12+ LSP features: validation, completion, hover, go-to-definition, find references, document symbols, semantic tokens, code actions, formatting
