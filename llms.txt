@@ -30,7 +30,7 @@ layout: none
 ### CLI
 - Command-line tool for managing API specifications
 - Apply Overlay 1.x documents to API definitions
-- Supports any JSON or YAML document as target
+- Supports any JSON or YAML document as a target
 - Multiple overlay chaining, strict validation, format auto-detection
 - npm package: @speclynx/cli
 - Free, open source (Apache 2.0)
