@@ -1,0 +1,341 @@
+---
+layout: base
+title: SpecLynx CLI - Command-Line Tool for API Specifications
+description: Manage API specifications from the command line. Apply overlays, dereference, bundle, convert, and validate. Free, open source, built on ApiDOM.
+permalink: /cli/
+---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SpecLynx CLI",
+  "description": "{{ page.description }}",
+  "url": "{{ site.url }}{{ site.baseurl }}{{ page.url }}",
+  "applicationCategory": "DeveloperApplication",
+  "applicationSubCategory": "CommandLineTool",
+  "operatingSystem": "Windows, macOS, Linux",
+  "license": "https://opensource.org/licenses/Apache-2.0",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "SpecLynx"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site.url }}{{ site.baseurl }}/" },
+    { "@type": "ListItem", "position": 2, "name": "CLI", "item": "{{ site.url }}{{ site.baseurl }}/cli/" }
+  ]
+}
+</script>
+
+<div class="flex-1">
+<div class="flex">
+  <!-- Sticky Sidebar -->
+  <aside class="hidden lg:block w-64 flex-shrink-0">
+    <nav class="sticky top-[82px] p-6 space-y-4 text-sm">
+      <div class="font-bold text-primary-dark mb-4">CLI</div>
+      <a href="#overview" class="block text-gray-600 hover:text-primary-light">Overview</a>
+      <a href="#installation" class="block text-gray-600 hover:text-primary-light">Installation</a>
+      <a href="#overlay-apply" class="block text-gray-600 hover:text-primary-light">Commands</a>
+      <div class="pl-3 space-y-2 mt-2">
+        <a href="#overlay-apply" class="block text-gray-500 hover:text-primary-light text-xs">Overlay Apply</a>
+      </div>
+      <a href="#features" class="block text-gray-600 hover:text-primary-light">Features</a>
+      <a href="#roadmap" class="block text-gray-600 hover:text-primary-light">Roadmap</a>
+      <a href="#built-with" class="block text-gray-600 hover:text-primary-light">Built With</a>
+      <a href="#faq" class="block text-gray-600 hover:text-primary-light">FAQ</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 max-w-4xl px-6 py-12">
+    <!-- Overview -->
+    <section id="overview" class="mb-16">
+      <div class="flex items-center gap-3 mb-4">
+        <h1 class="text-4xl font-extrabold text-primary-dark">SpecLynx CLI</h1>
+        <span class="badge badge-primary">CLI Tool</span>
+      </div>
+      <p class="text-xl text-gray-600 mb-6">Messy API specs? Bring order from the command line.</p>
+
+      <p class="text-gray-700 text-lg mb-6">
+        SpecLynx CLI is a command-line tool for working with API specifications. Apply <a href="https://spec.openapis.org/overlay/latest.html" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Overlay</a> documents to any JSON or YAML API definition from the terminal or CI/CD pipeline.
+      </p>
+
+      <div class="mb-6">
+        <p class="text-gray-600 text-sm mb-3">Install globally via npm:</p>
+        <pre class="code-block mb-4"><code class="language-bash">npm install -g @speclynx/cli</code></pre>
+        <p class="text-gray-600 text-sm mb-3">Or run directly with npx:</p>
+        <pre class="code-block"><code class="language-bash">npx @speclynx/cli overlay apply overlay.json openapi.json</code></pre>
+      </div>
+
+      <div class="flex flex-wrap gap-4 mb-8">
+        <a href="https://www.npmjs.com/package/@speclynx/cli" target="_blank" rel="noopener noreferrer" class="primary-cta text-white font-bold py-3 px-6 rounded inline-block">
+          View on npm
+        </a>
+        <a href="https://github.com/speclynx/speclynx-cli" target="_blank" rel="noopener noreferrer" class="border-2 border-primary-dark text-primary-dark font-bold py-3 px-6 rounded inline-block hover:bg-gray-100 transition-colors">
+          View on GitHub
+        </a>
+      </div>
+
+      <div class="bg-blue-50 border-l-4 border-primary-light p-4 mb-6">
+        <p class="text-gray-700">
+          <strong>Early release:</strong> SpecLynx CLI currently ships the <code class="bg-gray-100 px-1 rounded">overlay apply</code> command. More commands &mdash; validate, dereference, bundle, and convert &mdash; are coming soon.
+        </p>
+      </div>
+    </section>
+
+    <!-- Installation -->
+    <section id="installation" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Installation</h2>
+
+      <h3 id="global-install" class="text-lg font-semibold text-primary-dark mb-3">Global Install</h3>
+      <p class="text-gray-700 mb-3">Install globally to use the <code class="bg-gray-100 px-1 rounded">speclynx</code> command anywhere:</p>
+      <pre class="code-block mb-6"><code class="language-bash">npm install -g @speclynx/cli</code></pre>
+
+      <h3 id="run-without-installing" class="text-lg font-semibold text-primary-dark mb-3">Run Without Installing</h3>
+      <p class="text-gray-700 mb-3">Use npx to run without a global install:</p>
+      <pre class="code-block mb-6"><code class="language-bash">npx @speclynx/cli overlay apply overlay.json openapi.json</code></pre>
+
+      <h3 id="verify-installation" class="text-lg font-semibold text-primary-dark mb-3">Verify Installation</h3>
+      <pre class="code-block mb-2"><code class="language-bash">speclynx --help</code></pre>
+    </section>
+
+    <!-- Commands: Overlay Apply -->
+    <section id="overlay-apply" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Commands</h2>
+
+      <h3 id="overlay-apply-command" class="text-lg font-semibold text-primary-dark mb-3">overlay apply</h3>
+      <p class="text-gray-700 mb-4">
+        Apply <a href="https://spec.openapis.org/overlay/latest.html" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Overlay 1.x</a> documents to API definitions. Supports any JSON or YAML document as a target.
+      </p>
+
+      <pre class="code-block mb-6"><code class="language-bash">speclynx overlay apply [options] &lt;overlay&gt; [target]</code></pre>
+
+      <p class="text-gray-700 mb-2">Supported Overlay versions:</p>
+      <ul class="text-gray-700 space-y-1 mb-6 ml-4">
+        <li>&#10003; Overlay 1.0.0</li>
+        <li>&#10003; Overlay 1.1.0</li>
+      </ul>
+
+      <h3 id="overlay-apply-arguments" class="text-lg font-semibold text-primary-dark mb-3">Arguments</h3>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm text-left">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="px-4 py-2 font-semibold">Argument</th>
+              <th class="px-4 py-2 font-semibold">Description</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">&lt;overlay&gt;</code></td>
+              <td class="px-4 py-2">Path to overlay document (JSON or YAML)</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">[target]</code></td>
+              <td class="px-4 py-2">Path to target document. Optional if the overlay contains an <code class="bg-gray-100 px-1 rounded">extends</code> field</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="overlay-apply-options" class="text-lg font-semibold text-primary-dark mb-3">Options</h3>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm text-left">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="px-4 py-2 font-semibold">Option</th>
+              <th class="px-4 py-2 font-semibold">Description</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">--overlay &lt;path&gt;</code></td>
+              <td class="px-4 py-2">Apply additional overlays sequentially (repeatable)</td>
+            </tr>
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">-o, --output &lt;file&gt;</code></td>
+              <td class="px-4 py-2">Write output to a file instead of stdout</td>
+            </tr>
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">-f, --format &lt;format&gt;</code></td>
+              <td class="px-4 py-2">Output format: <code class="bg-gray-100 px-1 rounded">json</code> or <code class="bg-gray-100 px-1 rounded">yaml</code> (auto-detected by default)</td>
+            </tr>
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">--strict</code></td>
+              <td class="px-4 py-2">Fail if action targets match zero nodes</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">--verbose</code></td>
+              <td class="px-4 py-2">Display detailed trace information</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="overlay-apply-examples" class="text-lg font-semibold text-primary-dark mb-3">Usage Examples</h3>
+
+      <p class="text-gray-600 text-sm mb-2">Apply an overlay to an OpenAPI document:</p>
+      <pre class="code-block mb-4"><code class="language-bash">speclynx overlay apply overlay.json openapi.json</code></pre>
+
+      <p class="text-gray-600 text-sm mb-2">Use the overlay's <code class="bg-gray-100 px-1 rounded">extends</code> field to resolve the target:</p>
+      <pre class="code-block mb-4"><code class="language-bash">speclynx overlay apply overlay.yaml</code></pre>
+
+      <p class="text-gray-600 text-sm mb-2">Write result to a file:</p>
+      <pre class="code-block mb-4"><code class="language-bash">speclynx overlay apply overlay.json openapi.json -o result.json</code></pre>
+
+      <p class="text-gray-600 text-sm mb-2">Force YAML output:</p>
+      <pre class="code-block mb-4"><code class="language-bash">speclynx overlay apply overlay.json openapi.json -f yaml</code></pre>
+
+      <p class="text-gray-600 text-sm mb-2">Chain multiple overlays:</p>
+      <pre class="code-block mb-4"><code class="language-bash">speclynx overlay apply first.json openapi.json --overlay second.json --overlay third.json</code></pre>
+
+      <p class="text-gray-600 text-sm mb-2">Strict mode &mdash; fail if any action targets match nothing:</p>
+      <pre class="code-block mb-4"><code class="language-bash">speclynx overlay apply overlay.json openapi.json --strict</code></pre>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Features</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h3 id="overlay-application" class="font-semibold text-primary-dark mb-2">Overlay Application</h3>
+          <p class="text-gray-600 text-sm">Apply Overlay 1.0.0 and 1.1.0 documents to any JSON or YAML API definition.</p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h3 id="multiple-overlay-chaining" class="font-semibold text-primary-dark mb-2">Multiple Overlay Chaining</h3>
+          <p class="text-gray-600 text-sm">Apply multiple overlays in sequence with a single command using the repeatable <code class="bg-gray-100 px-1 rounded">--overlay</code> option.</p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h3 id="format-auto-detection" class="font-semibold text-primary-dark mb-2">Format Auto-Detection</h3>
+          <p class="text-gray-600 text-sm">Automatically detects JSON or YAML format from input files. Override with <code class="bg-gray-100 px-1 rounded">-f</code> when needed.</p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h3 id="strict-validation-mode" class="font-semibold text-primary-dark mb-2">Strict Validation Mode</h3>
+          <p class="text-gray-600 text-sm">Catch overlay misconfigurations early &mdash; strict mode fails if any action target matches zero nodes.</p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h3 id="file-output" class="font-semibold text-primary-dark mb-2">File Output</h3>
+          <p class="text-gray-600 text-sm">Write results directly to a file or pipe stdout into your existing toolchain.</p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h3 id="verbose-tracing" class="font-semibold text-primary-dark mb-2">Verbose Tracing</h3>
+          <p class="text-gray-600 text-sm">Detailed trace output for debugging overlay application and understanding what changed.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section id="roadmap" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Roadmap</h2>
+      <p class="text-gray-700">
+        &#9745; Overlay apply &nbsp;&middot;&nbsp; &#9744; Validate &nbsp;&middot;&nbsp; &#9744; Dereference &nbsp;&middot;&nbsp; &#9744; Bundle &nbsp;&middot;&nbsp; &#9744; Convert
+      </p>
+    </section>
+
+    <!-- Built With -->
+    <section id="built-with" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-6">Built With</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="product-card">
+          <h3 class="product-card-title">ApiDOM</h3>
+          <p class="product-card-description">
+            The foundation that the CLI is built upon. Provides parsing, data model, and traversal capabilities.
+          </p>
+          <a href="{{ '/apidom/' | relative_url }}" class="product-card-link">
+            Explore ApiDOM
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+        <div class="product-card">
+          <h3 class="product-card-title">Language Service</h3>
+          <p class="product-card-description">
+            LSP-compatible library providing the validation and intelligence layer used by the CLI.
+          </p>
+          <a href="{{ '/language-service/' | relative_url }}" class="product-card-link">
+            Explore Language Service
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-6">Frequently Asked Questions</h2>
+      <div class="space-y-6">
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-2">Is SpecLynx CLI free?</h3>
+          <p class="text-gray-700">Yes. SpecLynx CLI is free, open-source, and licensed under Apache 2.0. Install it from npm at no cost.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-2">What can SpecLynx CLI do?</h3>
+          <p class="text-gray-700">Currently, SpecLynx CLI can apply Overlay 1.x documents to any JSON or YAML API definition. Validate, dereference, bundle, and convert commands are on the roadmap.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-2">What is an Overlay document?</h3>
+          <p class="text-gray-700">An Overlay is a specification defined by the OpenAPI Initiative that describes modifications to an existing API definition. It lets you apply targeted changes &mdash; like adding descriptions, updating metadata, or injecting security schemes &mdash; without editing the original file.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-2">How does SpecLynx CLI relate to the other SpecLynx tools?</h3>
+          <p class="text-gray-700">SpecLynx CLI is built on the same foundation as the rest of the ecosystem &mdash; ApiDOM and the Language Service. The Editor and OpenAPI Toolkit are visual tools; the CLI brings the same capabilities to your terminal and CI/CD pipelines.</p>
+        </div>
+      </div>
+    </section>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is SpecLynx CLI free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. SpecLynx CLI is free, open-source, and licensed under Apache 2.0. Install it from npm at no cost."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What can SpecLynx CLI do?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Currently, SpecLynx CLI can apply Overlay 1.x documents to any JSON or YAML API definition. Validate, dereference, bundle, and convert commands are on the roadmap."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is an Overlay document?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An Overlay is a specification defined by the OpenAPI Initiative that describes modifications to an existing API definition. It lets you apply targeted changes — like adding descriptions, updating metadata, or injecting security schemes — without editing the original file."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does SpecLynx CLI relate to the other SpecLynx tools?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "SpecLynx CLI is built on the same foundation as the rest of the ecosystem — ApiDOM and the Language Service. The Editor and OpenAPI Toolkit are visual tools; the CLI brings the same capabilities to your terminal and CI/CD pipelines."
+          }
+        }
+      ]
+    }
+    </script>
+  </main>
+</div>
+</div>

@@ -6,9 +6,10 @@ Project context for AI assistants working on the SpecLynx website.
 
 Jekyll static site for SpecLynx — an API tooling company. Hosted on GitHub Pages at `https://speclynx.com/`.
 
-Four products:
+Five products:
 - **Editor** — Browser-based OpenAPI editor at `editor.speclynx.com` (fully client-side, open source)
 - **OpenAPI Toolkit** — Free VS Code extension for API spec authoring (validation, completion, hover, preview, linting)
+- **CLI** — Command-line tool (`@speclynx/cli`) for overlay, dereference, bundle, convert, and validate operations
 - **Language Service** — LSP-compatible npm library (`@speclynx/apidom-ls`) for API spec intelligence
 - **ApiDOM** — Semantic parser for API specifications (OpenAPI, AsyncAPI, Arazzo, JSON Schema)
 
@@ -49,6 +50,7 @@ pages/
   homepage.html                  # Landing page (permalink: /)
   editor.html                    # Editor product page (permalink: /editor/)
   openapi-toolkit.html           # Product page with sidebar nav
+  cli.html                       # CLI product page (permalink: /cli/)
   language-service.html          # Product page with sidebar nav
   apidom/overview.html           # ApiDOM overview (permalink: /apidom/)
   apidom/installation.html       # ApiDOM installation guide (permalink: /apidom/installation/)
