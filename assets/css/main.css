@@ -502,16 +502,18 @@ h4:hover .heading-anchor {
 }
 
 .lightbox-content img {
+    width: auto;
+    height: auto;
     max-width: 90vw;
     max-height: 90vh;
-    object-fit: contain;
+    display: block;
     border-radius: 0.5rem;
 }
 
 .lightbox-close {
     position: absolute;
-    top: -40px;
-    right: 0;
+    top: 1rem;
+    right: 1.5rem;
     background: none;
     border: none;
     color: white;

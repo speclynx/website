@@ -1,11 +1,11 @@
 # Site settings
 title: SpecLynx
 email: info@speclynx.com
-tagline: Enterprise ready API tooling
+tagline: Enterprise-ready API tooling
 description: >-
-  API specs are messy. SpecLynx brings order with parsers, semantic data models,
-  and intelligent editing tools. Full support for OpenAPI, AsyncAPI, Arazzo, and JSON Schema.
-keywords: SpecLynx, ApiDOM, OpenAPI, AsyncAPI, JSON Schema, Arazzo, Language Server, VSCode, API tools, browser editor
+  SpecLynx is enterprise-ready API tooling for parsing, validating, transforming, and working
+  with OpenAPI, AsyncAPI, Arazzo, Overlay, and JSON Schema.
+keywords: SpecLynx, ApiDOM, OpenAPI, AsyncAPI, Arazzo, Overlay, JSON Schema, Language Service, API tooling, API specifications
 baseurl: ""
 url: "https://speclynx.com"
 github_username: speclynx

@@ -56,7 +56,6 @@ pages/
   apidom/installation.html       # ApiDOM installation guide (permalink: /apidom/installation/)
   apidom/parsing.html            # ApiDOM parsing guide (permalink: /apidom/parsing/)
   about.html                     # Team page
-  pricing.html                   # Free + Enterprise tiers
   privacy.html, terms.html       # Legal pages
 assets/
   css/main.css                   # Custom CSS + CSS variables
