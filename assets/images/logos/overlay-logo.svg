@@ -1,0 +1,12 @@
+<svg width="580" height="160" viewBox="0 0 580 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Icon (128x128 scaled to 160x160, centered vertically) -->
+  <g transform="translate(0,0) scale(1.25)">
+    <g stroke-linejoin="round" stroke-linecap="round">
+      <path d="M18 72L64 46L110 72L64 98L18 72Z" stroke="#222222" stroke-width="8"/>
+      <path d="M18 58L64 32L110 58L64 84L18 58Z" fill="#E8F6D8" stroke="#6DBB2D" stroke-width="8"/>
+      <path d="M18 44L64 18L110 44L64 70L18 44Z" stroke="#6DBB2D" stroke-width="8"/>
+    </g>
+  </g>
+  <!-- "Overlay" text -->
+  <text x="175" y="115" font-family="Ubuntu, 'Segoe UI', Arial, sans-serif" font-size="90" font-weight="700" fill="#252525">Overlay</text>
+</svg>
