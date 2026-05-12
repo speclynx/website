@@ -1,7 +1,7 @@
 ---
 layout: base
 title: SpecLynx
-description: API specs are messy. SpecLynx brings order with parsers, semantic data models, and intelligent editing tools. Full support for OpenAPI, AsyncAPI, Arazzo, and JSON Schema.
+description: Parse, validate, transform, and work with OpenAPI, AsyncAPI, Arazzo, Overlay, and JSON Schema using one consistent toolchain. Free and open source.
 google_site_verification: LGoRdHwaV8j4N6AJHPqsRKhTdEbdM7rl6DHCvA-HHI4
 launchlist: true
 permalink: /
@@ -14,102 +14,177 @@ permalink: /
     <div class="flex flex-col md:flex-row gap-12 items-center">
       <!-- Left: Text Content -->
       <div class="flex-1">
-        <h1 class="hero-title mb-6">Enterprise ready API tooling</h1>
-        <p class="hero-subtitle mb-4">Messy API specs? Ship APIs with confidence.</p>
-        <p class="text-gray-500 text-sm mb-4">In the age of AI, clean API specs matter more than ever.</p>
-        <ul class="text-gray-600 space-y-2 mb-4 ml-4">
-          <li>&#10003; Supports <a href="https://spec.openapis.org/oas/v2.0" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">OpenAPI 2</a>, <a href="https://spec.openapis.org/oas/v3.0.4" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">OpenAPI 3.0</a>, <a href="https://spec.openapis.org/oas/v3.1.1" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">OpenAPI 3.1</a>, <a href="https://www.asyncapi.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">AsyncAPI 2.x</a>, <a href="https://spec.openapis.org/arazzo/latest.html" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">Arazzo 1.x</a>, and <a href="https://json-schema.org/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">JSON Schema</a></li>
-          <li>&#10003; Provides parsers, semantic data models, and building blocks for your own tooling</li>
-          <li>&#10003; Powers intelligent editing with a Language Service and ready-to-use VS Code extension</li>
-        </ul>
-        <!-- Quick Start -->
-        <div class="mt-8">
-          <div class="quick-start-content">
-            <p class="text-gray-600 text-sm mb-3">Start editing instantly in your browser: <a href="https://editor.speclynx.com" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline font-semibold">Open SpecLynx Editor</a></p>
-            <details class="mt-4">
-              <summary class="text-gray-600 text-sm cursor-pointer hover:text-primary-light">Or install in VS Code</summary>
-              <div class="mt-3">
-                <p class="text-gray-600 text-sm mb-3">Launch VS Code Quick Open (Ctrl+P), paste and press enter:</p>
-                <div class="code-block">
-                  <code>ext install SpecLynx.vscode-openapi-toolkit</code>
-                </div>
-              </div>
-            </details>
-          </div>
+        <h1 class="hero-title mb-6">Enterprise-ready API tooling</h1>
+        <p class="hero-subtitle mb-6">Parse, validate, transform, and work with OpenAPI, AsyncAPI, Arazzo, Overlay, and JSON Schema using one consistent toolchain.</p>
+        <!-- Credibility -->
+        <div class="border-t border-gray-200 pt-5 mb-8">
+          <p class="text-gray-500 text-sm">Built by Swagger alumni, OpenAPI Initiative contributors, and AsyncAPI spec maintainers. <a href="{{ '/about/' | relative_url }}" class="product-card-link">Meet the team &rarr;</a></p>
         </div>
         <!-- CTAs -->
-        <div class="mt-6 flex flex-wrap gap-4">
-          <a href="https://editor.speclynx.com" target="_blank" rel="noopener noreferrer" class="primary-cta text-white font-bold py-3 px-6 rounded inline-block">
-            Try in Browser
+        <div class="mt-2 flex flex-wrap gap-4">
+          <a href="#products" class="primary-cta text-white font-bold py-3 px-6 rounded inline-block">
+            Explore the stack
           </a>
-          <a href="https://marketplace.visualstudio.com/items?itemName=SpecLynx.vscode-openapi-toolkit" target="_blank" rel="noopener noreferrer" class="border-2 border-primary-dark text-primary-dark font-bold py-3 px-6 rounded inline-block hover:bg-gray-100 transition-colors">
-            Install VS Code Extension
+          <a href="https://editor.speclynx.com" target="_blank" rel="noopener noreferrer" class="border-2 border-primary-dark text-primary-dark font-bold py-3 px-6 rounded inline-block hover:bg-gray-100 transition-colors">
+            Try the editor
           </a>
         </div>
       </div>
-      <!-- Right: Abstract Flow Graphic -->
+      <!-- Right: Hero Graphic -->
       <div class="hidden md:flex md:w-1/3 justify-center flex-shrink-0">
-        <div class="lifecycle-graphic">
-          <svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto" role="img" aria-label="SpecLynx API Lifecycle - Author, Govern, Build, Monitor">
-            <style>
-              .node { cursor: pointer; }
-              .node:hover circle { opacity: 1; filter: brightness(1.1); }
-              .node text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
-            </style>
-            <!-- Build (center) -->
-            <g class="node" data-tooltip="build">
-              <circle cx="130" cy="90" r="38" fill="#092B4E" opacity="0.95"/>
-              <text x="130" y="95" text-anchor="middle" fill="white" font-size="12" font-weight="bold">Build</text>
-            </g>
-            <!-- Author (top-left) -->
-            <g class="node" data-tooltip="author">
-              <circle cx="45" cy="40" r="30" fill="#3A97CC" opacity="0.95"/>
-              <text x="45" y="45" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Author</text>
-            </g>
-            <!-- Govern (top-right) -->
-            <g class="node" data-tooltip="govern">
-              <circle cx="215" cy="40" r="30" fill="#77d6f4" opacity="0.95"/>
-              <text x="215" y="45" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Govern</text>
-            </g>
-            <!-- Monitor (bottom) -->
-            <g class="node" data-tooltip="monitor">
-              <circle cx="130" cy="170" r="30" fill="#3A97CC" opacity="0.95"/>
-              <text x="130" y="175" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Monitor</text>
-            </g>
-            <!-- Connecting lines -->
-            <line x1="100" y1="65" x2="70" y2="55" stroke="#092B4E" stroke-width="2" opacity="0.5"/>
-            <line x1="160" y1="65" x2="190" y2="55" stroke="#092B4E" stroke-width="2" opacity="0.5"/>
-            <line x1="130" y1="128" x2="130" y2="140" stroke="#092B4E" stroke-width="2" opacity="0.5"/>
-          </svg>
-          <!-- Custom tooltips -->
-          <div class="lifecycle-tooltip tooltip-author">Write specs faster with intelligent editing, real-time validation, and smart autocompletion.</div>
-          <div class="lifecycle-tooltip tooltip-govern">Enforce standards and consistency across teams with validation, linting, and custom rules.</div>
-          <div class="lifecycle-tooltip tooltip-build">Create custom tooling for your workflows. Parsers, validators, editors - your imagination is the limit.</div>
-          <div class="lifecycle-tooltip tooltip-monitor">Integrate with CI/CD pipelines. Validate specs on every commit, catch breaking changes before they ship.</div>
-        </div>
+        <picture>
+          <source srcset="{{ '/assets/images/hero-graphics.webp' | relative_url }}" type="image/webp">
+          <img src="{{ '/assets/images/hero-graphics.png' | relative_url }}" alt="SpecLynx editor and validation interface" class="w-full h-auto lightbox-trigger cursor-pointer">
+        </picture>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Solution Section -->
+<!-- Problem Framing Section -->
+<section class="py-12 md:py-16 bg-gray-50">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="max-w-2xl mx-auto text-center mb-10">
+      <h2 class="text-3xl font-extrabold text-primary-dark mb-4">Why API specification work still gets messy</h2>
+      <p class="text-gray-600">Modern teams work across multiple specification formats, tools, and workflows. Editing is only one part of the problem. Consistency, validation, transformation, and integration across the stack are where the real complexity shows up.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-white rounded-lg p-6 border-l-4 border-primary-dark">
+        <p class="font-semibold text-primary-dark">Specs live across different formats and tools</p>
+      </div>
+      <div class="bg-white rounded-lg p-6 border-l-4 border-primary-dark">
+        <p class="font-semibold text-primary-dark">Syntax checks do not fix fragmented workflows</p>
+      </div>
+      <div class="bg-white rounded-lg p-6 border-l-4 border-primary-dark">
+        <p class="font-semibold text-primary-dark">Teams need tooling that works in editors, CI, and internal platforms</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Use-case Pillars Section -->
+<section class="section-padding bg-white">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <h2 class="text-3xl font-extrabold text-primary-dark text-center mb-12">One toolchain, multiple use cases</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-gray-50 rounded-lg p-8 border-t-4 border-primary-dark">
+        <h3 class="text-lg font-bold text-primary-dark mb-3">Normalize across formats</h3>
+        <p class="text-gray-600">Work consistently with OpenAPI, AsyncAPI, Arazzo, Overlay, and JSON Schema.</p>
+      </div>
+      <div class="bg-gray-50 rounded-lg p-8 border-t-4 border-primary-light">
+        <h3 class="text-lg font-bold text-primary-dark mb-3">Validate and transform specifications</h3>
+        <p class="text-gray-600">Catch issues early, improve consistency, and convert specifications across workflows and tools.</p>
+      </div>
+      <div class="bg-gray-50 rounded-lg p-8 border-t-4 border-primary-dark">
+        <h3 class="text-lg font-bold text-primary-dark mb-3">Integrate into editors, CI, and internal tooling</h3>
+        <p class="text-gray-600">Use SpecLynx as a building block in editors, CI pipelines, and internal tooling.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Supported Formats Strip -->
+<section class="py-8 bg-white border-y border-gray-100">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="flex flex-wrap justify-center items-center gap-3">
+      <span class="text-gray-500 text-xs uppercase tracking-wider mr-2">Supports</span>
+      <span class="bg-gray-100 text-primary-dark text-sm font-semibold px-4 py-2 rounded-full">OpenAPI</span>
+      <span class="bg-gray-100 text-primary-dark text-sm font-semibold px-4 py-2 rounded-full">AsyncAPI</span>
+      <span class="bg-gray-100 text-primary-dark text-sm font-semibold px-4 py-2 rounded-full">Arazzo</span>
+      <span class="bg-gray-100 text-primary-dark text-sm font-semibold px-4 py-2 rounded-full">Overlay</span>
+      <span class="bg-gray-100 text-primary-dark text-sm font-semibold px-4 py-2 rounded-full">JSON Schema</span>
+    </div>
+  </div>
+</section>
+
+<!-- Products Section -->
 <section id="products" class="section-padding bg-gray-50">
   <div class="container mx-auto px-4 max-w-6xl">
-    <h2 class="text-3xl font-extrabold text-primary-dark text-center mb-4">One Ecosystem. Everything You Need.</h2>
+    <h2 class="text-3xl font-extrabold text-primary-dark text-center mb-4">One ecosystem for working with API specifications</h2>
     <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-      SpecLynx is a complete TypeScript/JavaScript ecosystem for API specifications.
+      SpecLynx combines core tooling, developer workflows, and editing surfaces into one consistent stack.
     </p>
 
     <div class="grid md:grid-cols-2 gap-8">
+      <!-- ApiDOM Card -->
+      <div class="product-card relative overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-[#1a74a5]"></div>
+        <div class="mb-4">
+          <span class="badge badge-primary">Core library</span>
+        </div>
+        <h3 class="product-card-title">ApiDOM</h3>
+        <p class="product-card-description">
+          Parse and work with API and workflow specifications through one consistent structure.
+        </p>
+        <ul class="text-sm text-gray-600 mb-4 space-y-1">
+          <li>&#10003; One API for all specs</li>
+          <li>&#10003; Semantic parsing</li>
+          <li>&#10003; Query &amp; traverse</li>
+          <li>&#10003; Format conversion</li>
+        </ul>
+        <a href="{{ '/apidom/' | relative_url }}" class="product-card-link">
+          Explore ApiDOM
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Language Service Card -->
+      <div class="product-card relative overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-[#1a74a5]"></div>
+        <div class="mb-4">
+          <span class="badge badge-primary">Integration library</span>
+        </div>
+        <h3 class="product-card-title">Language Service</h3>
+        <p class="product-card-description">
+          Add specification-aware validation, navigation, and tooling features to your own editor or platform.
+        </p>
+        <ul class="text-sm text-gray-600 mb-4 space-y-1">
+          <li>&#10003; 12+ LSP features</li>
+          <li>&#10003; Multi-spec support</li>
+          <li>&#10003; Easy to integrate</li>
+          <li>&#10003; 15+ years of Swagger/OpenAPI expertise</li>
+        </ul>
+        <a href="{{ '/language-service/' | relative_url }}" class="product-card-link">
+          Explore Language Service
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- CLI Card -->
+      <div class="product-card">
+        <div class="mb-4">
+          <span class="badge badge-primary">Command line</span>
+        </div>
+        <h3 class="product-card-title">CLI</h3>
+        <p class="product-card-description">
+          Run validation, transformation, and specification processing in local workflows and CI.
+        </p>
+        <ul class="text-sm text-gray-600 mb-4 space-y-1">
+          <li>&#10003; CLI-first workflow</li>
+          <li>&#10003; Overlay 1.x support</li>
+          <li>&#10003; JSON &amp; YAML</li>
+          <li>&#10003; npm or npx</li>
+        </ul>
+        <a href="{{ '/cli/' | relative_url }}" class="product-card-link">
+          Explore CLI
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
       <!-- Editor Card -->
       <div class="product-card">
         <div class="mb-4">
-          <span class="badge badge-secondary">Start Here</span>
+          <span class="badge badge-secondary">Browser editor</span>
         </div>
         <h3 class="product-card-title">Editor</h3>
-        <p class="text-sm text-gray-500 mb-2">Browser-Based</p>
         <p class="product-card-description">
-          <strong>Edit specs instantly</strong> in your browser. No installation, no setup &mdash; just open and start authoring OpenAPI documents.
+          The fastest way to work with specifications in the browser, built on the same core as the rest of SpecLynx.
         </p>
         <ul class="text-sm text-gray-600 mb-4 space-y-1">
           <li>&#10003; Zero installation required</li>
@@ -128,18 +203,17 @@ permalink: /
       <!-- OpenAPI Toolkit Card -->
       <div class="product-card">
         <div class="mb-4">
-          <span class="badge badge-primary">VS Code Extension</span>
+          <span class="badge badge-primary">VS Code extension</span>
         </div>
         <h3 class="product-card-title">OpenAPI Toolkit</h3>
-        <p class="text-sm text-gray-500 mb-2">VS Code Extension</p>
         <p class="product-card-description">
-          <strong>Write specs faster</strong> with real-time validation, smart autocompletion, and instant preview &mdash; all inside VS Code.
+          Bring SpecLynx capabilities into VS Code for editing, validation, and feedback while you work.
         </p>
         <ul class="text-sm text-gray-600 mb-4 space-y-1">
           <li>&#10003; Context-aware autocompletion</li>
           <li>&#10003; Instant error detection</li>
           <li>&#10003; Live API preview</li>
-          <li>&#10003; Works in browser & desktop</li>
+          <li>&#10003; Works in browser &amp; desktop</li>
         </ul>
         <a href="{{ '/openapi-toolkit/' | relative_url }}" class="product-card-link">
           Explore OpenAPI Toolkit
@@ -148,118 +222,58 @@ permalink: /
           </svg>
         </a>
       </div>
-
-      <!-- CLI Card -->
-      <div class="product-card">
-        <div class="mb-4">
-          <span class="badge badge-primary">CLI Tool</span>
-        </div>
-        <h3 class="product-card-title">CLI</h3>
-        <p class="text-sm text-gray-500 mb-2">Command Line</p>
-        <p class="product-card-description">
-          <strong>Messy API specs?</strong> Bring order from the command line &mdash; overlay, dereference, bundle, convert, and validate.
-        </p>
-        <ul class="text-sm text-gray-600 mb-4 space-y-1">
-          <li>&#10003; CLI-first workflow</li>
-          <li>&#10003; Overlay 1.x support</li>
-          <li>&#10003; JSON &amp; YAML</li>
-          <li>&#10003; npm or npx</li>
-        </ul>
-        <a href="{{ '/cli/' | relative_url }}" class="product-card-link">
-          Explore CLI
-          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-          </svg>
-        </a>
-      </div>
-
-      <!-- Language Service Card -->
-      <div class="product-card">
-        <div class="mb-4">
-          <span class="badge badge-primary">For Tool Builders</span>
-        </div>
-        <h3 class="product-card-title">Language Service</h3>
-        <p class="product-card-description">
-          <strong>Build your own integrations</strong> with our LSP-compatible library. Add API spec intelligence to any editor or tool.
-        </p>
-        <ul class="text-sm text-gray-600 mb-4 space-y-1">
-          <li>&#10003; 12+ LSP features</li>
-          <li>&#10003; Multi-spec support</li>
-          <li>&#10003; Easy to integrate</li>
-          <li>&#10003; 15+ years of Swagger/OpenAPI expertise</li>
-        </ul>
-        <a href="{{ '/language-service/' | relative_url }}" class="product-card-link">
-          Explore Language Service
-          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-          </svg>
-        </a>
-      </div>
-
-      <!-- ApiDOM Card -->
-      <div class="product-card">
-        <div class="mb-4">
-          <span class="badge badge-primary">For Developers</span>
-        </div>
-        <h3 class="product-card-title">ApiDOM</h3>
-        <p class="product-card-description">
-          <strong>Parse any API spec</strong> into a unified structure. Build tooling that works across OpenAPI, AsyncAPI, Arazzo, and JSON Schema.
-        </p>
-        <ul class="text-sm text-gray-600 mb-4 space-y-1">
-          <li>&#10003; One API for all specs</li>
-          <li>&#10003; Semantic parsing</li>
-          <li>&#10003; Query & traverse</li>
-          <li>&#10003; Format conversion</li>
-        </ul>
-        <a href="{{ '/apidom/' | relative_url }}" class="product-card-link">
-          Explore ApiDOM
-          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-          </svg>
-        </a>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- Enterprise Section -->
-<section class="section-padding bg-primary-dark text-white">
+<!-- Work with us Section -->
+<section class="section-padding bg-white">
   <div class="container mx-auto px-4 max-w-6xl">
-    <div class="grid md:grid-cols-2 gap-12 items-center mb-12">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
       <div>
-        <h2 class="text-3xl font-extrabold mb-4">Need Enterprise Support?</h2>
-        <p class="text-gray-300 mb-6">
-          Managing API specs at scale? We can help with priority support, custom integrations, and standardizing API practices across your organization.
+        <h2 class="text-3xl font-extrabold text-primary-dark mb-4">Work with us</h2>
+        <p class="text-gray-600 mb-8">
+          SpecLynx is free to use. We help teams integrate it into internal tooling, standardize API and workflow specifications, and adopt it across their platform.
         </p>
-        <ul class="text-gray-300 space-y-2 mb-8">
-          <li>&#10003; Priority support & SLAs</li>
-          <li>&#10003; Custom feature development</li>
-          <li>&#10003; Training & onboarding</li>
-          <li>&#10003; Architecture consulting</li>
-        </ul>
-        <a href="mailto:info@speclynx.com?subject=Enterprise%20Inquiry" class="bg-white text-primary-dark font-bold py-3 px-6 rounded inline-block hover:bg-gray-100 transition-colors">
-          Contact Sales
+        <a href="mailto:info@speclynx.com?subject=Expert%20Help" class="primary-cta text-white font-bold py-3 px-6 rounded inline-block">
+          Talk to an expert
         </a>
+        <div class="mt-8 pt-6 border-t border-gray-200">
+          <p class="text-xs text-gray-500 uppercase tracking-wider mb-3">In use by teams building API tooling and internal platforms</p>
+          <div class="flex items-center gap-3">
+            <a href="https://jentic.com/" target="_blank" rel="noopener noreferrer" class="opacity-40 hover:opacity-80 transition-all flex-shrink-0">
+              <img src="{{ '/assets/images/jentic-logo.svg' | relative_url }}" alt="Jentic" class="h-5 w-auto grayscale">
+            </a>
+            <span class="text-sm text-gray-500">Powering <a href="https://github.com/jentic/jentic-arazzo-tools" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Arazzo Tools</a> &amp; <a href="https://jentic.com/scorecard" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">API Scorecard</a></span>
+          </div>
+        </div>
       </div>
       <div>
-        <h3 class="text-xl font-bold mb-4">Secure by Design</h3>
-        <ul class="text-gray-300 space-y-2">
-          <li>&#128274; Your specs never leave your machine</li>
-          <li>&#128274; Offline-first architecture</li>
-          <li>&#128274; No accounts, no tracking, no telemetry</li>
-        </ul>
-      </div>
-    </div>
-    <!-- Trusted by -->
-    <div class="text-center border-t border-white/10 pt-10">
-      <p class="text-gray-400 text-xs uppercase tracking-wider mb-6">Trusted by</p>
-      <div class="flex justify-center">
-        <div class="trusted-logo-wrapper">
-          <a href="https://jentic.com/" target="_blank" rel="noopener noreferrer" class="opacity-70 hover:opacity-100 transition-opacity">
-            <img src="https://jentic.com/landing-page/footer/logo-gradient.svg" alt="Jentic" class="h-12 w-auto brightness-0 invert">
-          </a>
-          <div class="trusted-logo-popover">
-            Powering <a href="https://github.com/jentic/jentic-arazzo-tools" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline font-semibold">Arazzo Tools</a> &amp; <a href="https://jentic.com/scorecard" target="_blank" rel="noopener noreferrer" class="text-primary-light hover:underline font-semibold">API Scorecard</a>
+        <h3 class="text-xl font-bold text-primary-dark mb-6">Local-first by default</h3>
+        <div class="grid grid-cols-2 gap-3">
+          <div class="bg-gray-50 rounded-lg px-4 py-4 flex items-center gap-3">
+            <svg class="w-5 h-5 text-primary-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+            <span class="text-sm font-semibold text-primary-dark">Runs locally</span>
+          </div>
+          <div class="bg-gray-50 rounded-lg px-4 py-4 flex items-center gap-3">
+            <svg class="w-5 h-5 text-primary-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+            <span class="text-sm font-semibold text-primary-dark">Works offline</span>
+          </div>
+          <div class="bg-gray-50 rounded-lg px-4 py-4 flex items-center gap-3">
+            <svg class="w-5 h-5 text-primary-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+            </svg>
+            <span class="text-sm font-semibold text-primary-dark">No accounts</span>
+          </div>
+          <div class="bg-gray-50 rounded-lg px-4 py-4 flex items-center gap-3">
+            <svg class="w-5 h-5 text-primary-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+            <span class="text-sm font-semibold text-primary-dark">No telemetry</span>
           </div>
         </div>
       </div>
@@ -267,23 +281,4 @@ permalink: /
   </div>
 </section>
 
-<!-- Veterans Section -->
-<section class="py-24 md:py-32 bg-gray-50">
-  <div class="container mx-auto px-4 max-w-6xl">
-    <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-      <!-- Left: Graphic -->
-      <div class="flex-shrink-0">
-        <img src="{{ '/assets/images/building-blocks.svg' | relative_url }}" alt="Building blocks" class="veterans-graphic">
-      </div>
-      <!-- Right: Text -->
-      <div class="text-center md:text-left">
-        <h2 class="text-3xl font-extrabold text-primary-dark mb-4">Built by API Tooling Veterans</h2>
-        <p class="text-gray-600 mb-3">
-          The team behind SpecLynx has spent <strong>15+ years</strong> building and maintaining Swagger and OpenAPI tools used by millions of developers. <a href="https://stars.github.com/alumni/#:~:text=char0n" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">GitHub Stars</a> alumni. We know what works &mdash; and what doesn't.
-        </p>
-        <a href="{{ '/about/' | relative_url }}" class="text-primary-light font-semibold hover:underline">Meet the team &rarr;</a>
-      </div>
-    </div>
-  </div>
-</section>
 </main>
