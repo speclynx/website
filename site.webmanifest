@@ -1,0 +1,35 @@
+---
+layout: none
+permalink: /site.webmanifest
+---
+{
+  "name": "SpecLynx",
+  "short_name": "SpecLynx",
+  "description": "Enterprise-ready API tooling for parsing, validating, transforming, and working with OpenAPI, AsyncAPI, Arazzo, Overlay, and JSON Schema.",
+  "lang": "en",
+  "id": "/",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#092B4E",
+  "icons": [
+    {
+      "src": "{{ '/assets/images/favicons/favicon-512x512.png' | relative_url }}",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "{{ '/assets/images/logos/speclynx-logo.svg' | relative_url }}",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "{{ '/assets/images/favicons/favicon-512x512-maskable.png' | relative_url }}",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
