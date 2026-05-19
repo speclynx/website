@@ -55,6 +55,7 @@ pages/
   apidom/overview.html           # ApiDOM overview (permalink: /apidom/)
   apidom/installation.html       # ApiDOM installation guide (permalink: /apidom/installation/)
   apidom/parsing.html            # ApiDOM parsing guide (permalink: /apidom/parsing/)
+  apidom/data-model.html         # ApiDOM data model guide (permalink: /apidom/data-model/)
   about.html                     # Team page
   privacy.html, terms.html       # Legal pages
 assets/
@@ -147,6 +148,7 @@ ApiDOM has a multi-page documentation section with a shared sidebar (`_includes/
 - **Overview** (`/apidom/`) — what ApiDOM is, key properties (lossless, error recovery, isomorphic)
 - **Installation** (`/apidom/installation/`) — npm install, Node.js >=16.14.2, TypeScript types, quick try example
 - **Parsing** (`/apidom/parsing/`) — parsing modes (strict/non-strict comparison table), parse from file/URL/string, non-strict mode options, source maps, style preservation
+- **The Data Model** (`/apidom/data-model/`) — what `parse()` returns: parse result, elements (`element`/`content`/`meta`/`attributes`), primitive elements, semantic elements, namespaces, reading the model, where metadata lives
 
 Key conventions for ApiDOM content:
 - Use "strict mode" and "non-strict mode" consistently — don't mention underlying parsers (Tree-sitter, JSON.parse, yaml) outside the comparison table

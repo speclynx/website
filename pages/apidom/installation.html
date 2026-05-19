@@ -42,13 +42,14 @@ permalink: /apidom/installation/
         Parse an API specification and access its data model right away:
       </p>
       <pre class="code-block mb-6"><code class="language-javascript">import { parse } from '@speclynx/apidom-reference';
+import { toValue } from '@speclynx/apidom-core';
 
 const result = await parse('/path/to/openapi.json');
 
-result.api.info.title; // document title
-result.api.info.version; // document version</code></pre>
+toValue(result.api.info.title);   // document title
+toValue(result.api.info.version); // document version</code></pre>
       <p class="text-gray-700 text-lg">
-        See the <a href="{{ '/apidom/parsing/' | relative_url }}" class="text-primary-light underline hover:no-underline">Parsing</a> page for more options including source maps, style preservation, and parsing from strings.
+        <code>parse()</code> returns a data model of typed elements; <code>toValue()</code> from <code>@speclynx/apidom-core</code> turns any element back into its plain JavaScript value. See <a href="{{ '/apidom/data-model/' | relative_url }}" class="text-primary-light underline hover:no-underline">The Data Model</a> for the full shape of what comes back, or the <a href="{{ '/apidom/parsing/' | relative_url }}" class="text-primary-light underline hover:no-underline">Parsing</a> page for source maps, style preservation, and parsing from strings.
       </p>
     </section>
   </main>

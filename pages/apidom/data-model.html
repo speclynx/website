@@ -1,0 +1,385 @@
+---
+layout: base
+title: SpecLynx ApiDOM - The Data Model
+description: Understand what ApiDOM hands back from parse() — elements, namespaces, primitives, semantic types, and the metadata that travels with every node.
+permalink: /apidom/data-model/
+---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site.url }}{{ site.baseurl }}/" },
+    { "@type": "ListItem", "position": 2, "name": "ApiDOM", "item": "{{ site.url }}{{ site.baseurl }}/apidom/" },
+    { "@type": "ListItem", "position": 3, "name": "The Data Model", "item": "{{ site.url }}{{ site.baseurl }}/apidom/data-model/" }
+  ]
+}
+</script>
+
+<div class="flex-1">
+<div class="flex">
+  {% include apidom-sidebar.html %}
+
+  <!-- Main Content -->
+  <main class="flex-1 max-w-4xl px-6 py-12">
+    <!-- Intro -->
+    <section id="what-you-got-back" class="mb-16">
+      <p class="text-gray-700 text-lg mb-6">
+        A parser that hands back generic objects and arrays only gets you halfway. The moment your tool reaches for an operation, a schema, or a server URL, it's back to matching strings against keys &mdash; the work the parser refused to do.
+      </p>
+      <p class="text-gray-700 text-lg mb-6">
+        ApiDOM hands back something different: a tree that already knows what every piece of it represents. An operation is an <code>OperationElement</code>. A schema is a <code>SchemaElement</code>. A server URL isn't just a string &mdash; it's a string tagged as a URL, in a namespace, with source positions attached.
+      </p>
+      <p class="text-gray-700 text-lg">
+        This chapter is the shape of that tree.
+      </p>
+    </section>
+
+    <!-- Three principles -->
+    <section id="three-principles" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Three principles</h2>
+      <p class="text-gray-700 text-lg mb-6">
+        The whole data model is built around three ideas. They show up everywhere in the rest of this chapter, so it's worth naming them up front.
+      </p>
+      <div class="space-y-6">
+        <div>
+          <h3 id="uniform-shape" class="font-bold text-primary-dark mb-2">Uniform shape</h3>
+          <p class="text-gray-700 text-lg">
+            Every node is an element, and every element has the same four parts. A traversal that handles one element handles them all &mdash; no special cases hiding in the corners.
+          </p>
+        </div>
+        <div>
+          <h3 id="semantic-typing" class="font-bold text-primary-dark mb-2">Semantic typing</h3>
+          <p class="text-gray-700 text-lg">
+            Every element answers what it represents, not just what kind of value it carries. Two strings that look identical in JSON can mean very different things &mdash; a server URL and a description are both quoted text, but they're not the same element. Tools can ask "give me every <code>OperationElement</code>" instead of "find every node whose parent key matches an HTTP method" &mdash; the parser already did that classification.
+          </p>
+        </div>
+        <div>
+          <h3 id="clean-separation" class="font-bold text-primary-dark mb-2">Clean separation</h3>
+          <p class="text-gray-700 text-lg">
+            The value of the document and ApiDOM's bookkeeping never mix. <code>content</code> holds what came from the source; <code>meta</code> and <code>attributes</code> hold everything ApiDOM computed about it. A round-trip serializer can write the document back without leaking any of ApiDOM's own state.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ParseResult -->
+    <section id="parse-result" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">The parse result</h2>
+      <p class="text-gray-700 text-lg mb-6">
+        <code>parse()</code> doesn't hand you the root document directly. It hands you a <strong>parse result</strong>: a small wrapper that carries the parsed data alongside everything ApiDOM noticed on the way in.
+      </p>
+      <pre class="code-block mb-6"><code class="language-javascript">import { parse } from '@speclynx/apidom-reference';
+
+const result = await parse('/path/to/openapi.json');
+
+result.api;          // the root data model — your OpenAPI document
+result.annotations;  // diagnostics collected while parsing</code></pre>
+      <p class="text-gray-700 text-lg mb-6">
+        When you parse a clean document, <code>result.api</code> is what you came for and the annotations list is empty. When you parse a malformed one in non-strict mode, the broken parts surface as annotations rather than crashing the parse. Either way, the shape is the same &mdash; one place to look for the data, one place to look for what went wrong.
+      </p>
+      <p class="text-gray-700 text-lg">
+        What you have at this point is strictly a <strong>tree</strong>: every element has exactly one parent, and there are no cycles. <code>$ref</code> pointers stay as reference elements rather than getting inlined. Resolving them in a later chapter can relax both constraints &mdash; shared references break the single-parent rule and the structure becomes a <strong>directed acyclic graph</strong>, while circular references break the no-cycle rule and it becomes a <strong>directed cyclic graph</strong>. <code>parse()</code> itself never does either.
+      </p>
+    </section>
+
+    <!-- Everything is an element -->
+    <section id="everything-is-an-element" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Everything is an element</h2>
+      <p class="text-gray-700 text-lg mb-6">
+        Inside <code>result.api</code> you won't find plain JavaScript objects. You'll find <strong>elements</strong>. Every node in the tree is one &mdash; the root document, every operation, every schema, every string, every number.
+      </p>
+      <p class="text-gray-700 text-lg mb-6">
+        An element is a small object with four parts:
+      </p>
+      <!-- Element anatomy: SVG for md+ viewports, stacked card fallback below. Keep label text in sync across both. -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 440" class="w-full h-auto hidden md:block mx-auto my-6 max-w-2xl" role="img" aria-labelledby="element-anatomy-title element-anatomy-desc">
+        <title id="element-anatomy-title">Anatomy of an element</title>
+        <desc id="element-anatomy-desc">Every element has four parts: element (the kind), content (the value), meta (metadata such as classes and identifiers), and attributes (semantic attributes specific to that element).</desc>
+
+        <!-- Leader lines from the central Element box to each labelled part -->
+        <g stroke="var(--color-primary-light)" stroke-width="1.5" fill="none">
+          <line x1="280" y1="200" x2="240" y2="110"/>
+          <line x1="420" y1="200" x2="460" y2="110"/>
+          <line x1="280" y1="240" x2="240" y2="330"/>
+          <line x1="420" y1="240" x2="460" y2="330"/>
+        </g>
+
+        <!-- Central Element box -->
+        <g>
+          <rect x="280" y="185" width="140" height="70" rx="8" fill="var(--color-primary-dark)"/>
+          <text x="350" y="218" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="22" font-weight="700" fill="#ffffff">Element</text>
+          <text x="350" y="242" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#c5d6e6">one node in the tree</text>
+        </g>
+
+        <!-- Top-left: element.element -->
+        <g>
+          <rect x="20" y="20" width="220" height="90" rx="6" fill="#ffffff" stroke="var(--color-primary-light)" stroke-width="1.5"/>
+          <text x="35" y="50" font-family="ui-monospace,Menlo,monospace" font-size="15" font-weight="700" fill="var(--color-primary-dark)">element.element</text>
+          <text x="35" y="74" font-family="system-ui,sans-serif" font-size="14" fill="#374151">the kind</text>
+          <text x="35" y="95" font-family="ui-monospace,Menlo,monospace" font-size="12" fill="#6b7280">"string", "operation"</text>
+        </g>
+
+        <!-- Top-right: element.content -->
+        <g>
+          <rect x="460" y="20" width="220" height="90" rx="6" fill="#ffffff" stroke="var(--color-primary-light)" stroke-width="1.5"/>
+          <text x="475" y="50" font-family="ui-monospace,Menlo,monospace" font-size="15" font-weight="700" fill="var(--color-primary-dark)">element.content</text>
+          <text x="475" y="74" font-family="system-ui,sans-serif" font-size="14" fill="#374151">the value</text>
+          <text x="475" y="95" font-family="system-ui,sans-serif" font-size="12" fill="#6b7280">varies by kind</text>
+        </g>
+
+        <!-- Bottom-left: element.meta -->
+        <g>
+          <rect x="20" y="330" width="220" height="90" rx="6" fill="#ffffff" stroke="var(--color-primary-light)" stroke-width="1.5"/>
+          <text x="35" y="360" font-family="ui-monospace,Menlo,monospace" font-size="15" font-weight="700" fill="var(--color-primary-dark)">element.meta</text>
+          <text x="35" y="384" font-family="system-ui,sans-serif" font-size="14" fill="#374151">metadata</text>
+          <text x="35" y="405" font-family="system-ui,sans-serif" font-size="12" fill="#6b7280">classes, identifiers, titles</text>
+        </g>
+
+        <!-- Bottom-right: element.attributes -->
+        <g>
+          <rect x="460" y="330" width="220" height="90" rx="6" fill="#ffffff" stroke="var(--color-primary-light)" stroke-width="1.5"/>
+          <text x="475" y="360" font-family="ui-monospace,Menlo,monospace" font-size="15" font-weight="700" fill="var(--color-primary-dark)">element.attributes</text>
+          <text x="475" y="384" font-family="system-ui,sans-serif" font-size="14" fill="#374151">semantic attributes</text>
+          <text x="475" y="405" font-family="system-ui,sans-serif" font-size="12" fill="#6b7280">specific to the element kind</text>
+        </g>
+      </svg>
+
+      <!-- Mobile fallback: stacked cards (shown below md breakpoint where SVG text becomes hard to read) -->
+      <div class="md:hidden space-y-3 my-6">
+        <div class="bg-white border border-gray-200 rounded-lg p-4">
+          <p class="font-mono font-bold text-primary-dark text-sm mb-1">element.element</p>
+          <p class="text-sm text-gray-700">the kind &mdash; <code class="text-xs">"string"</code>, <code class="text-xs">"operation"</code></p>
+        </div>
+        <div class="bg-white border border-gray-200 rounded-lg p-4">
+          <p class="font-mono font-bold text-primary-dark text-sm mb-1">element.content</p>
+          <p class="text-sm text-gray-700">the value &mdash; varies by kind</p>
+        </div>
+        <div class="bg-white border border-gray-200 rounded-lg p-4">
+          <p class="font-mono font-bold text-primary-dark text-sm mb-1">element.meta</p>
+          <p class="text-sm text-gray-700">metadata &mdash; classes, identifiers, titles</p>
+        </div>
+        <div class="bg-white border border-gray-200 rounded-lg p-4">
+          <p class="font-mono font-bold text-primary-dark text-sm mb-1">element.attributes</p>
+          <p class="text-sm text-gray-700">semantic attributes specific to the element kind</p>
+        </div>
+      </div>
+
+      <p class="text-gray-700 text-lg">
+        <code>element.element</code> is the part that makes the model semantic. Two strings that look identical in JSON can mean different things &mdash; a server URL is not a description, even if both are quoted text. ApiDOM keeps that distinction by tagging every element with what it is.
+      </p>
+    </section>
+
+    <!-- Three kinds of element -->
+    <section id="three-kinds-of-element" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Three kinds of element</h2>
+      <p class="text-gray-700 text-lg mb-6">
+        Every element in the tree is one of three kinds, and each kind builds on the last. The base sets the shape, primitives specialise for JSON's data types, and semantic elements layer in spec-specific meaning on top.
+      </p>
+
+      <div class="flex flex-col md:flex-row items-stretch gap-3 mb-6">
+        <div class="flex-1 bg-white border border-gray-200 rounded-lg p-5">
+          <p class="text-xs uppercase tracking-wider text-gray-500 mb-2 font-semibold">Base</p>
+          <h3 class="text-lg font-bold text-primary-dark mb-3">Element</h3>
+          <p class="text-sm text-gray-700">Every node in the tree. Same four parts on every one: <code>element</code>, <code>content</code>, <code>meta</code>, <code>attributes</code>.</p>
+        </div>
+        <div class="hidden md:flex items-center text-3xl text-primary-light px-1" aria-hidden="true">&rarr;</div>
+        <div class="flex md:hidden items-center justify-center text-3xl text-primary-light py-1" aria-hidden="true">&darr;</div>
+        <div class="flex-1 bg-white border border-gray-200 rounded-lg p-5">
+          <p class="text-xs uppercase tracking-wider text-gray-500 mb-2 font-semibold">Extends Element</p>
+          <h3 class="text-lg font-bold text-primary-dark mb-3">Primitive elements</h3>
+          <p class="text-sm text-gray-700">One per JSON data type &mdash; null, boolean, number, string, array, object, member. The leaves of every tree.</p>
+        </div>
+        <div class="hidden md:flex items-center text-3xl text-primary-light px-1" aria-hidden="true">&rarr;</div>
+        <div class="flex md:hidden items-center justify-center text-3xl text-primary-light py-1" aria-hidden="true">&darr;</div>
+        <div class="flex-1 bg-white border border-gray-200 rounded-lg p-5">
+          <p class="text-xs uppercase tracking-wider text-gray-500 mb-2 font-semibold">Extends a primitive</p>
+          <h3 class="text-lg font-bold text-primary-dark mb-3">Semantic elements</h3>
+          <p class="text-sm text-gray-700">One per spec concept &mdash; operations, schemas, servers, paths, info objects. Grouped into namespaces by specification.</p>
+        </div>
+      </div>
+
+      <p class="text-gray-700 text-lg">
+        Everything that follows &mdash; reading values, walking the tree, validating, round-tripping &mdash; works against this hierarchy. The next two sections fill in the primitive and semantic layers.
+      </p>
+    </section>
+
+    <!-- Primitive elements -->
+    <section id="primitive-elements" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Primitive elements</h2>
+      <p class="text-gray-700 text-lg mb-6">
+        At the leaves of the tree sit the <strong>primitives</strong>. They map one-to-one to the JSON data model:
+      </p>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
+        <div class="bg-white border border-gray-200 rounded-lg p-3">
+          <p class="font-mono font-semibold text-primary-dark text-sm">NullElement</p>
+          <p class="text-sm text-gray-600 mt-1"><code>null</code></p>
+        </div>
+        <div class="bg-white border border-gray-200 rounded-lg p-3">
+          <p class="font-mono font-semibold text-primary-dark text-sm">BooleanElement</p>
+          <p class="text-sm text-gray-600 mt-1"><code>true</code> / <code>false</code></p>
+        </div>
+        <div class="bg-white border border-gray-200 rounded-lg p-3">
+          <p class="font-mono font-semibold text-primary-dark text-sm">NumberElement</p>
+          <p class="text-sm text-gray-600 mt-1">a number</p>
+        </div>
+        <div class="bg-white border border-gray-200 rounded-lg p-3">
+          <p class="font-mono font-semibold text-primary-dark text-sm">StringElement</p>
+          <p class="text-sm text-gray-600 mt-1">a string</p>
+        </div>
+        <div class="bg-white border border-gray-200 rounded-lg p-3">
+          <p class="font-mono font-semibold text-primary-dark text-sm">ArrayElement</p>
+          <p class="text-sm text-gray-600 mt-1">ordered list of elements</p>
+        </div>
+        <div class="bg-white border border-gray-200 rounded-lg p-3">
+          <p class="font-mono font-semibold text-primary-dark text-sm">ObjectElement</p>
+          <p class="text-sm text-gray-600 mt-1">set of members</p>
+        </div>
+        <div class="bg-white border border-gray-200 rounded-lg p-3">
+          <p class="font-mono font-semibold text-primary-dark text-sm">MemberElement</p>
+          <p class="text-sm text-gray-600 mt-1">key/value pair (both elements)</p>
+        </div>
+      </div>
+      <p class="text-gray-700 text-lg">
+        These are the bricks. Everything else &mdash; an entire OpenAPI document &mdash; is built from them.
+      </p>
+    </section>
+
+    <!-- Semantic elements -->
+    <section id="semantic-elements" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Semantic elements</h2>
+      <p class="text-gray-700 text-lg mb-6">
+        The <strong>semantic elements</strong> are where ApiDOM earns its name. They extend the primitives, but each one carries meaning specific to a specification. An <code>OperationElement</code> is still an object underneath &mdash; but it answers to <code>element === 'operation'</code>, exposes the fields you'd expect from an operation, and can be located by traversal without inspecting keys.
+      </p>
+      <pre class="code-block mb-6"><code class="language-javascript">import { parse } from '@speclynx/apidom-reference';
+
+const result = await parse('/path/to/openapi.json');
+
+result.api.element;       // "openApi3_1"
+result.api.info.element;  // "info"
+result.api.paths.element; // "paths"</code></pre>
+      <p class="text-gray-700 text-lg">
+        This is what makes the model semantic rather than syntactic. Your code can ask "give me every operation" without walking strings and matching keys, because every operation in the tree has already been tagged as one.
+      </p>
+    </section>
+
+    <!-- Namespaces -->
+    <section id="namespaces" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Namespaces</h2>
+      <p class="text-gray-700 text-lg mb-6">
+        Each supported specification lives in its own <strong>namespace</strong>. A namespace is a bag of semantic elements specific to that spec &mdash; OpenAPI 3.1, OpenAPI 3.0, OpenAPI 2.0, Overlay 1.x, AsyncAPI 2.x, Arazzo 1.x, JSON Schema.
+      </p>
+      <p class="text-gray-700 text-lg mb-6">
+        When ApiDOM parses your document, it picks the matching namespace and produces semantic elements from it. The primitives are shared across all namespaces; the semantic elements are not. An <code>InfoElement</code> from the OpenAPI 3.1 namespace is not the same type as the one from AsyncAPI 2.6, even though both extend the same primitive object element.
+      </p>
+      <p class="text-gray-700 text-lg">
+        This is how a single library covers every shape of API document without conflating them. Tooling that wants to handle all of them can work against the shared primitives; tooling that targets a single spec can lean on the semantic types of that namespace.
+      </p>
+    </section>
+
+    <!-- A document in tree form -->
+    <section id="a-document-in-tree-form" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">A document in tree form</h2>
+      <p class="text-gray-700 text-lg mb-6">
+        Put it all together. A short OpenAPI snippet on the left, the tree ApiDOM produces from it on the right &mdash; semantic elements at the branches, primitives at the leaves, every node sharing the same four-part shape.
+      </p>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div>
+          <p class="text-xs uppercase tracking-wider text-gray-500 mb-2 font-semibold">Source</p>
+          <pre class="code-block"><code class="language-yaml">openapi: "3.1.2"
+info:
+  title: Pet Store
+  version: "1.0.0"
+paths:
+  /pets:
+    get:
+      summary: List pets</code></pre>
+        </div>
+        <div>
+          <p class="text-xs uppercase tracking-wider text-gray-500 mb-2 font-semibold">Data model</p>
+          <pre class="code-block"><code>OpenApi3_1Element
+├─ openapi:  StringElement   "3.1.2"
+├─ info:     InfoElement
+│  ├─ title:    StringElement "Pet Store"
+│  └─ version:  StringElement "1.0.0"
+└─ paths:    PathsElement
+   └─ /pets:  PathItemElement
+      └─ get:  OperationElement
+         └─ summary: StringElement "List pets"</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reading the model -->
+    <section id="reading-the-model" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Reading the model</h2>
+      <p class="text-gray-700 text-lg mb-6">
+        Even though everything is an element, you don't need to remember that to read a document. Semantic elements expose the fields you'd reach for naturally:
+      </p>
+      <pre class="code-block mb-6"><code class="language-javascript">import { parse } from '@speclynx/apidom-reference';
+import { toValue } from '@speclynx/apidom-core';
+
+const result = await parse('/path/to/openapi.yaml');
+
+result.api.info.title;            // StringElement
+toValue(result.api.info.title);   // "Pet Store" — raw JavaScript string
+toValue(result.api.info.version); // "1.0.0"
+
+result.api.paths.forEach((pathItem) => {
+  pathItem.element; // "pathItem"
+});</code></pre>
+      <p class="text-gray-700 text-lg mb-4">
+        Field accessors return child elements, not raw values &mdash; a title lookup yields a <code>StringElement</code>, not a primitive string.
+      </p>
+      <p class="text-gray-700 text-lg">
+        <strong>Opting out of the data model is a single function call.</strong> <code>toValue()</code> from <code>@speclynx/apidom-core</code> returns the plain JavaScript representation of any element &mdash; a string for primitives, an object or array for compound elements. It works at any depth, including the root: <code>toValue(result.api)</code> returns the entire document as a plain object.
+      </p>
+    </section>
+
+    <!-- Metadata and attributes -->
+    <section id="metadata-and-attributes" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">Where the extras live</h2>
+      <p class="text-gray-700 text-lg mb-6">
+        <code>meta</code> and <code>attributes</code> are where ApiDOM stores everything that isn't the value itself. Classifications, identifiers, computed properties, references resolved &mdash; they all live here. <a href="{{ '/apidom/parsing/#source-maps' | relative_url }}" class="text-primary-light underline hover:no-underline">Source map positions</a> are exposed directly on each element for convenience, but the data backing them comes from this same metadata layer.
+      </p>
+      <p class="text-gray-700 text-lg">
+        The separation is deliberate. <code>content</code> stays a faithful representation of what the document said. Everything ApiDOM <em>added</em> during parsing lives alongside it, never inside it &mdash; so a round-trip serialization can write the document back without leaking ApiDOM's own bookkeeping into the output.
+      </p>
+    </section>
+
+    <!-- When to drop down -->
+    <section id="when-to-drop-down" class="mb-16">
+      <h2 class="text-2xl font-bold text-primary-dark mb-4">When to drop down</h2>
+      <p class="text-gray-700 text-lg mb-6">
+        There's no separate API layer to opt into. Three ways of working with the tree share the same nodes &mdash; you move between them as you need to.
+      </p>
+      <p class="text-gray-700 text-lg mb-4">
+        Most navigation works through the <strong>semantic accessors</strong>. They return child elements, not raw values:
+      </p>
+      <pre class="code-block mb-6"><code class="language-javascript">result.api.info.title;                          // StringElement
+result.api.paths.get('/pets').get('get').summary; // StringElement</code></pre>
+      <p class="text-gray-700 text-lg mb-4">
+        Call <code>toValue()</code> from <code>@speclynx/apidom-core</code> when you just want the <strong>plain JavaScript value</strong>:
+      </p>
+      <pre class="code-block mb-6"><code class="language-javascript">import { toValue } from '@speclynx/apidom-core';
+
+toValue(result.api.info.title);   // "Pet Store"
+toValue(result.api.info.version); // "1.0.0"
+toValue(result.api);              // the whole document, as a plain object</code></pre>
+      <p class="text-gray-700 text-lg mb-4">
+        Drop to the <strong>element level</strong> when you need information the value alone can't carry:
+      </p>
+      <ul class="text-gray-700 text-lg list-disc pl-6 mb-6 space-y-2">
+        <li><strong>Source positions</strong> &mdash; where in the original document a value came from</li>
+        <li><strong>Classifications and identifiers</strong> &mdash; metadata the parser attached during recognition</li>
+        <li><strong>The element kind</strong> &mdash; whether this string is a server URL or a description</li>
+        <li><strong>Custom traversal</strong> &mdash; finding nodes by predicate or visiting every element of a kind</li>
+      </ul>
+      <p class="text-gray-700 text-lg">
+        Same tree either way. The chapters that follow build on it.
+      </p>
+    </section>
+  </main>
+</div>
+</div>
