@@ -1,7 +1,7 @@
 ---
 layout: base
 title: SpecLynx CLI - Command-Line Tool for API Specifications
-description: Manage API specifications from the command line. Apply overlays, dereference, bundle, convert, and validate. Free, open source, built on ApiDOM.
+description: Manage API specifications from the command line. Apply and diff overlays, dereference, bundle, convert, and validate. Free, open source, built on ApiDOM.
 permalink: /cli/
 ---
 
@@ -49,6 +49,7 @@ permalink: /cli/
       <a href="#commands" class="block text-gray-600 hover:text-primary-light">Commands</a>
       <div class="pl-3 space-y-2 mt-2">
         <a href="#overlay-apply-command" class="block text-gray-500 hover:text-primary-light text-xs">Overlay Apply</a>
+        <a href="#overlay-diff-command" class="block text-gray-500 hover:text-primary-light text-xs">Overlay Diff</a>
       </div>
       <a href="#features" class="block text-gray-600 hover:text-primary-light">Features</a>
       <a href="#roadmap" class="block text-gray-600 hover:text-primary-light">Roadmap</a>
@@ -89,7 +90,7 @@ permalink: /cli/
 
       <div class="bg-blue-50 border-l-4 border-primary-light p-4 mb-6">
         <p class="text-gray-700">
-          <strong>Early release:</strong> SpecLynx CLI currently ships the <code class="bg-gray-100 px-1 rounded">overlay apply</code> command. More commands &mdash; validate, dereference, bundle, and convert &mdash; are coming soon.
+          <strong>Early release:</strong> SpecLynx CLI currently ships the <code class="bg-gray-100 px-1 rounded">overlay apply</code> and <code class="bg-gray-100 px-1 rounded">overlay diff</code> commands. More commands &mdash; validate, dereference, bundle, and convert &mdash; are coming soon.
         </p>
       </div>
     </section>
@@ -127,7 +128,7 @@ permalink: /cli/
         <li>&#10003; Overlay 1.1.0</li>
       </ul>
 
-      <h3 id="overlay-apply-arguments" class="text-lg font-semibold text-primary-dark mb-3">Arguments</h3>
+      <h4 id="overlay-apply-arguments" class="text-base font-semibold text-primary-dark mb-3">Arguments</h4>
       <div class="overflow-x-auto mb-6">
         <table class="w-full text-sm text-left">
           <thead class="bg-gray-100">
@@ -149,7 +150,7 @@ permalink: /cli/
         </table>
       </div>
 
-      <h3 id="overlay-apply-options" class="text-lg font-semibold text-primary-dark mb-3">Options</h3>
+      <h4 id="overlay-apply-options" class="text-base font-semibold text-primary-dark mb-3">Options</h4>
       <div class="overflow-x-auto mb-6">
         <table class="w-full text-sm text-left">
           <thead class="bg-gray-100">
@@ -183,7 +184,7 @@ permalink: /cli/
         </table>
       </div>
 
-      <h3 id="overlay-apply-examples" class="text-lg font-semibold text-primary-dark mb-3">Usage Examples</h3>
+      <h4 id="overlay-apply-examples" class="text-base font-semibold text-primary-dark mb-3">Usage Examples</h4>
 
       <p class="text-gray-600 text-sm mb-2">Apply an overlay to an OpenAPI document:</p>
       <pre class="code-block mb-4"><code class="language-bash">speclynx overlay apply overlay.json openapi.json</code></pre>
@@ -202,6 +203,77 @@ permalink: /cli/
 
       <p class="text-gray-600 text-sm mb-2">Strict mode &mdash; fail if any action targets match nothing:</p>
       <pre class="code-block mb-4"><code class="language-bash">speclynx overlay apply overlay.json openapi.json --strict</code></pre>
+
+      <hr class="my-10 border-gray-200">
+
+      <h3 id="overlay-diff-command" class="text-lg font-semibold text-primary-dark mb-3">overlay diff</h3>
+      <p class="text-gray-700 mb-4">
+        Generate an <a href="https://spec.openapis.org/overlay/latest.html" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Overlay 1.x</a> document by comparing two API specifications. The produced overlay, when applied to the <em>before</em> document, transforms it into the <em>after</em> document &mdash; perfect for tracking API evolution as discrete, reusable overlay files.
+      </p>
+
+      <pre class="code-block mb-6"><code class="language-bash">speclynx overlay diff [options] &lt;before&gt; &lt;after&gt;</code></pre>
+
+      <h4 id="overlay-diff-arguments" class="text-base font-semibold text-primary-dark mb-3">Arguments</h4>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm text-left">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="px-4 py-2 font-semibold">Argument</th>
+              <th class="px-4 py-2 font-semibold">Description</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">&lt;before&gt;</code></td>
+              <td class="px-4 py-2">Path to the initial API document (JSON or YAML)</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">&lt;after&gt;</code></td>
+              <td class="px-4 py-2">Path to the modified API document (JSON or YAML)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4 id="overlay-diff-options" class="text-base font-semibold text-primary-dark mb-3">Options</h4>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm text-left">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="px-4 py-2 font-semibold">Option</th>
+              <th class="px-4 py-2 font-semibold">Description</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">-o, --output &lt;file&gt;</code></td>
+              <td class="px-4 py-2">Write the generated overlay to a file instead of stdout</td>
+            </tr>
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">-f, --format &lt;format&gt;</code></td>
+              <td class="px-4 py-2">Output format: <code class="bg-gray-100 px-1 rounded">json</code> or <code class="bg-gray-100 px-1 rounded">yaml</code> (inferred from input by default)</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">--fail-on-empty</code></td>
+              <td class="px-4 py-2">Exit with code 1 when both documents are identical &mdash; useful for CI</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4 id="overlay-diff-examples" class="text-base font-semibold text-primary-dark mb-3">Usage Examples</h4>
+
+      <p class="text-gray-600 text-sm mb-2">Diff two OpenAPI documents:</p>
+      <pre class="code-block mb-4"><code class="language-bash">speclynx overlay diff openapi-v1.json openapi-v2.json</code></pre>
+
+      <p class="text-gray-600 text-sm mb-2">Save the generated overlay to a file:</p>
+      <pre class="code-block mb-4"><code class="language-bash">speclynx overlay diff openapi-v1.yaml openapi-v2.yaml -o migration.yaml</code></pre>
+
+      <p class="text-gray-600 text-sm mb-2">Force a specific output format:</p>
+      <pre class="code-block mb-4"><code class="language-bash">speclynx overlay diff openapi-v1.yaml openapi-v2.yaml -f json</code></pre>
+
+      <p class="text-gray-600 text-sm mb-2">Fail the build when two specs are identical:</p>
+      <pre class="code-block mb-4"><code class="language-bash">speclynx overlay diff openapi-v1.json openapi-v2.json --fail-on-empty</code></pre>
     </section>
 
     <!-- Features -->
@@ -211,6 +283,10 @@ permalink: /cli/
         <div class="bg-gray-50 p-4 rounded-lg">
           <h3 id="overlay-application" class="font-semibold text-primary-dark mb-2">Overlay Application</h3>
           <p class="text-gray-600 text-sm">Apply Overlay 1.0.0 and 1.1.0 documents to any JSON or YAML API definition.</p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h3 id="overlay-diffing" class="font-semibold text-primary-dark mb-2">Overlay Diffing</h3>
+          <p class="text-gray-600 text-sm">Compare two API specs and generate a reusable Overlay document capturing the changes between them.</p>
         </div>
         <div class="bg-gray-50 p-4 rounded-lg">
           <h3 id="multiple-overlay-chaining" class="font-semibold text-primary-dark mb-2">Multiple Overlay Chaining</h3>
@@ -239,7 +315,7 @@ permalink: /cli/
     <section id="roadmap" class="mb-16">
       <h2 class="text-2xl font-bold text-primary-dark mb-4">Roadmap</h2>
       <p class="text-gray-700">
-        &#9745; Overlay apply &nbsp;&middot;&nbsp; &#9744; Validate &nbsp;&middot;&nbsp; &#9744; Dereference &nbsp;&middot;&nbsp; &#9744; Bundle &nbsp;&middot;&nbsp; &#9744; Convert
+        &#9745; Overlay apply &nbsp;&middot;&nbsp; &#9745; Overlay diff &nbsp;&middot;&nbsp; &#9744; Validate &nbsp;&middot;&nbsp; &#9744; Dereference &nbsp;&middot;&nbsp; &#9744; Bundle &nbsp;&middot;&nbsp; &#9744; Convert
       </p>
     </section>
 
@@ -284,7 +360,7 @@ permalink: /cli/
         </div>
         <div>
           <h3 class="font-semibold text-gray-900 mb-2">What can SpecLynx CLI do?</h3>
-          <p class="text-gray-700">Currently, SpecLynx CLI can apply Overlay 1.x documents to any JSON or YAML API definition. Validate, dereference, bundle, and convert commands are on the roadmap.</p>
+          <p class="text-gray-700">SpecLynx CLI ships two commands today: <code class="bg-gray-100 px-1 rounded">overlay apply</code> applies Overlay 1.x documents to any JSON or YAML API definition, and <code class="bg-gray-100 px-1 rounded">overlay diff</code> generates an overlay by comparing two specs. Validate, dereference, bundle, and convert are on the roadmap.</p>
         </div>
         <div>
           <h3 class="font-semibold text-gray-900 mb-2">What is an Overlay document?</h3>
@@ -314,7 +390,7 @@ permalink: /cli/
           "name": "What can SpecLynx CLI do?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Currently, SpecLynx CLI can apply Overlay 1.x documents to any JSON or YAML API definition. Validate, dereference, bundle, and convert commands are on the roadmap."
+            "text": "SpecLynx CLI ships two commands today: overlay apply applies Overlay 1.x documents to any JSON or YAML API definition, and overlay diff generates an overlay by comparing two specs. Validate, dereference, bundle, and convert are on the roadmap."
           }
         },
         {

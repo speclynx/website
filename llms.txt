@@ -30,6 +30,7 @@ layout: none
 ### CLI
 - Command-line tool for managing API specifications
 - Apply Overlay 1.x documents to API definitions
+- Generate an Overlay document by diffing two API specs (overlay diff)
 - Supports any JSON or YAML document as a target
 - Multiple overlay chaining, strict validation, format auto-detection
 - npm package: @speclynx/cli
