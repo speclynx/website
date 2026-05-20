@@ -17,6 +17,7 @@ layout: none
 - Editor: https://editor.speclynx.com
 - GitHub: https://github.com/speclynx/speclynx-editor
 - Docs: {{ site.url }}{{ site.baseurl }}/editor/
+- Google CodeWiki (AI-generated architecture reference by Google): https://codewiki.google/github.com/speclynx/speclynx-editor
 
 ### OpenAPI Toolkit
 - VS Code extension for API specification authoring
@@ -55,6 +56,7 @@ layout: none
 - Free, open source (Apache 2.0)
 - GitHub: https://github.com/speclynx/apidom
 - Docs: {{ site.url }}{{ site.baseurl }}/apidom/
+- Google CodeWiki (AI-generated architecture reference by Google): https://codewiki.google/github.com/speclynx/apidom
 
 ## Links
 
