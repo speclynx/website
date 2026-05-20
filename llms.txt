@@ -3,7 +3,7 @@ layout: none
 ---
 # SpecLynx
 
-> Enterprise-ready API tooling. Parsers, semantic data models, and intelligent editing tools for OpenAPI, AsyncAPI, Arazzo, and JSON Schema.
+> Enterprise-ready API tooling. Parsers, semantic data models, and intelligent editing tools for OpenAPI, AsyncAPI, Arazzo, Overlay, and JSON Schema.
 
 ## Products
 
@@ -48,7 +48,7 @@ layout: none
 
 ### ApiDOM
 - Semantic parser for API specifications
-- Parses OpenAPI, AsyncAPI, Arazzo, and JSON Schema into a unified semantic element tree
+- Parses OpenAPI, AsyncAPI, Arazzo, Overlay, and JSON Schema into a unified semantic element tree
 - Lossless: preserves comments, key ordering, format styles, and CST source texts
 - Source maps with UTF-16 code units (LSP/VS Code/Monaco compatible)
 - npm packages under @speclynx/apidom-*

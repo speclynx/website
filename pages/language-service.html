@@ -147,6 +147,11 @@ permalink: /language-service/
               <td class="px-4 py-2">1.0.0, 1.0.1</td>
               <td class="px-4 py-2">JSON, YAML</td>
             </tr>
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium"><a href="https://spec.openapis.org/overlay/latest.html" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Overlay</a></td>
+              <td class="px-4 py-2">1.0.0, 1.1.0</td>
+              <td class="px-4 py-2">JSON, YAML</td>
+            </tr>
             <tr>
               <td class="px-4 py-2 font-medium"><a href="https://json-schema.org/" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">JSON Schema</a></td>
               <td class="px-4 py-2">Draft 4/5, 6, 7, 2019-09, 2020-12</td>
@@ -459,7 +464,7 @@ const languageService = getLanguageService({
       <div class="space-y-6">
         <div>
           <h3 class="font-semibold text-gray-900 mb-2">What is SpecLynx Language Service?</h3>
-          <p class="text-gray-700">SpecLynx Language Service is an LSP-compatible library that provides intelligent editing features for API specifications. It powers validation, autocompletion, hover documentation, go-to-definition, and other editor features for OpenAPI, AsyncAPI, Arazzo, and JSON Schema files.</p>
+          <p class="text-gray-700">SpecLynx Language Service is an LSP-compatible library that provides intelligent editing features for API specifications. It powers validation, autocompletion, hover documentation, go-to-definition, and other editor features for OpenAPI, AsyncAPI, Arazzo, Overlay, and JSON Schema files.</p>
         </div>
         <div>
           <h3 class="font-semibold text-gray-900 mb-2">Can I use Language Service outside of VS Code?</h3>
@@ -471,7 +476,7 @@ const languageService = getLanguageService({
         </div>
         <div>
           <h3 class="font-semibold text-gray-900 mb-2">What API specifications are supported?</h3>
-          <p class="text-gray-700">Language Service supports OpenAPI 2.0 (Swagger), OpenAPI 3.0.x, OpenAPI 3.1.x, AsyncAPI 2.x, Arazzo 1.x, and JSON Schema. All features work across these specifications in both JSON and YAML formats.</p>
+          <p class="text-gray-700">Language Service supports OpenAPI 2.0 (Swagger), OpenAPI 3.0.x, OpenAPI 3.1.x, AsyncAPI 2.x, Arazzo 1.x, Overlay 1.x, and JSON Schema. All features work across these specifications in both JSON and YAML formats.</p>
         </div>
       </div>
     </section>
@@ -485,7 +490,7 @@ const languageService = getLanguageService({
           "name": "What is SpecLynx Language Service?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "SpecLynx Language Service is an LSP-compatible library that provides intelligent editing features for API specifications. It powers validation, autocompletion, hover documentation, go-to-definition, and other editor features for OpenAPI, AsyncAPI, Arazzo, and JSON Schema files."
+            "text": "SpecLynx Language Service is an LSP-compatible library that provides intelligent editing features for API specifications. It powers validation, autocompletion, hover documentation, go-to-definition, and other editor features for OpenAPI, AsyncAPI, Arazzo, Overlay, and JSON Schema files."
           }
         },
         {
@@ -509,7 +514,7 @@ const languageService = getLanguageService({
           "name": "What API specifications are supported?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Language Service supports OpenAPI 2.0 (Swagger), OpenAPI 3.0.x, OpenAPI 3.1.x, AsyncAPI 2.x, Arazzo 1.x, and JSON Schema. All features work across these specifications in both JSON and YAML formats."
+            "text": "Language Service supports OpenAPI 2.0 (Swagger), OpenAPI 3.0.x, OpenAPI 3.1.x, AsyncAPI 2.x, Arazzo 1.x, Overlay 1.x, and JSON Schema. All features work across these specifications in both JSON and YAML formats."
           }
         }
       ]
