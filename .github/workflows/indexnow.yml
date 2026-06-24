@@ -1,0 +1,64 @@
+name: IndexNow
+
+# Notifies IndexNow-participating search engines (Bing, Yandex, Seznam, Naver,
+# Yep) when the site changes. Triggers on `page_build`, which fires after GitHub
+# Pages finishes deploying, so the live sitemap and key file are already public
+# by the time we submit.
+on:
+  page_build:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    # On a Pages deploy, only proceed once the build actually succeeded — never
+    # submit after a failed/errored build. Manual runs have no build object.
+    if: github.event_name == 'workflow_dispatch' || github.event.build.status == 'built'
+    steps:
+      - name: Submit sitemap URLs to IndexNow
+        env:
+          HOST: speclynx.com
+          KEY: fffae626
+        run: |
+          set -euo pipefail
+
+          # Pull URLs from the live sitemap (the source of truth for what's published).
+          urls=$(curl -fsSL "https://${HOST}/sitemap.xml" \
+            | grep -o '<loc>[^<]*</loc>' \
+            | sed -e 's/<loc>//' -e 's#</loc>##')
+
+          if [ -z "$urls" ]; then
+            echo "No URLs found in sitemap; nothing to submit."
+            exit 0
+          fi
+
+          count=$(printf '%s\n' "$urls" | wc -l)
+          echo "Submitting $count URLs to IndexNow:"
+          printf '  %s\n' $urls
+
+          # Build the bulk-submission payload (https://www.indexnow.org/documentation).
+          url_json=$(printf '%s\n' "$urls" | jq -R . | jq -s .)
+          payload=$(jq -n \
+            --arg host "$HOST" \
+            --arg key "$KEY" \
+            --arg keyLocation "https://${HOST}/${KEY}.txt" \
+            --argjson urlList "$url_json" \
+            '{host: $host, key: $key, keyLocation: $keyLocation, urlList: $urlList}')
+
+          http_code=$(curl -sS -o /tmp/indexnow-resp.txt -w '%{http_code}' \
+            -X POST 'https://api.indexnow.org/indexnow' \
+            -H 'Content-Type: application/json; charset=utf-8' \
+            --data "$payload")
+
+          echo "IndexNow responded: HTTP $http_code"
+          cat /tmp/indexnow-resp.txt || true
+          echo
+
+          # 200 OK and 202 Accepted (key validation pending) are both success.
+          case "$http_code" in
+            200|202) echo "Submission accepted." ;;
+            *) echo "IndexNow submission failed."; exit 1 ;;
+          esac
