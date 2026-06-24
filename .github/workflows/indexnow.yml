@@ -21,7 +21,7 @@ jobs:
       - name: Submit sitemap URLs to IndexNow
         env:
           HOST: speclynx.com
-          KEY: b5b517c024b2577774fc7b94f2b1cb60
+          KEY: fffae626
         run: |
           set -euo pipefail
 
