@@ -25,40 +25,13 @@ jobs:
         run: |
           set -euo pipefail
 
-          # Pull URLs from the live sitemap (the source of truth for what's published).
-          urls=$(curl -fsSL "https://${HOST}/sitemap.xml" \
+          # IndexNow takes URLs, not a sitemap, so read the URLs from the live
+          # sitemap and ping one GET per URL. The key file at the site root is
+          # auto-discovered, so no JSON payload or keyLocation is needed.
+          curl -fsSL "https://${HOST}/sitemap.xml" \
             | grep -o '<loc>[^<]*</loc>' \
-            | sed -e 's/<loc>//' -e 's#</loc>##')
-
-          if [ -z "$urls" ]; then
-            echo "No URLs found in sitemap; nothing to submit."
-            exit 0
-          fi
-
-          count=$(printf '%s\n' "$urls" | wc -l)
-          echo "Submitting $count URLs to IndexNow:"
-          printf '  %s\n' $urls
-
-          # Build the bulk-submission payload (https://www.indexnow.org/documentation).
-          url_json=$(printf '%s\n' "$urls" | jq -R . | jq -s .)
-          payload=$(jq -n \
-            --arg host "$HOST" \
-            --arg key "$KEY" \
-            --arg keyLocation "https://${HOST}/${KEY}.txt" \
-            --argjson urlList "$url_json" \
-            '{host: $host, key: $key, keyLocation: $keyLocation, urlList: $urlList}')
-
-          http_code=$(curl -sS -o /tmp/indexnow-resp.txt -w '%{http_code}' \
-            -X POST 'https://api.indexnow.org/indexnow' \
-            -H 'Content-Type: application/json; charset=utf-8' \
-            --data "$payload")
-
-          echo "IndexNow responded: HTTP $http_code"
-          cat /tmp/indexnow-resp.txt || true
-          echo
-
-          # 200 OK and 202 Accepted (key validation pending) are both success.
-          case "$http_code" in
-            200|202) echo "Submission accepted." ;;
-            *) echo "IndexNow submission failed."; exit 1 ;;
-          esac
+            | sed -e 's/<loc>//' -e 's#</loc>##' \
+            | while read -r url; do
+                echo "Submitting: $url"
+                curl -fsS "https://api.indexnow.org/indexnow?url=${url}&key=${KEY}"
+              done
