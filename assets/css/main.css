@@ -239,6 +239,60 @@ h4:hover .heading-anchor {
     color: #10B981;
 }
 
+/* Terminal window (CLI output preview) */
+.terminal {
+    background: #1F2937;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 10px 25px -8px rgba(9, 43, 78, 0.35);
+    max-width: 100%;
+}
+
+.terminal-titlebar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    background: #111827;
+    border-bottom: 1px solid #374151;
+}
+
+.terminal-dot {
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 9999px;
+}
+
+.terminal-dot-red { background: #FF5F56; }
+.terminal-dot-yellow { background: #FFBD2E; }
+.terminal-dot-green { background: #27C93F; }
+
+.terminal-title {
+    margin-left: 0.4rem;
+    color: #9CA3AF;
+    font-size: 0.75rem;
+    font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+}
+
+.terminal-body {
+    margin: 0;
+    padding: 1rem 1.25rem;
+    font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+    font-size: 0.8125rem;
+    line-height: 1.65;
+    color: #E5E7EB;
+    white-space: pre;
+    overflow-x: auto;
+}
+
+.terminal-prompt { color: #34D399; }
+.t-file { color: #FFFFFF; font-weight: 700; }
+.t-loc { color: #AEB6C2; }
+.t-error { color: #F87171; }
+.t-code { color: #3DD6EE; }
+.t-msg { color: #E5E7EB; }
+.t-fail { color: #F87171; font-weight: 700; }
+
 /* Tables */
 .spec-table {
     width: 100%;

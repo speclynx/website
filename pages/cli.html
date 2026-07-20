@@ -1,7 +1,7 @@
 ---
 layout: base
 title: SpecLynx CLI - Command-Line Tool for API Specifications
-description: Manage API specifications from the command line. Apply and diff overlays, dereference, bundle, convert, and validate. Free, open source, built on ApiDOM.
+description: Validate OpenAPI, AsyncAPI, Arazzo, and Overlay documents and apply or diff overlays from the command line. Free, open source, built on ApiDOM.
 permalink: /cli/
 ---
 
@@ -50,6 +50,7 @@ permalink: /cli/
       <div class="pl-3 space-y-2 mt-2">
         <a href="#overlay-apply-command" class="block text-gray-500 hover:text-primary-light text-xs">Overlay Apply</a>
         <a href="#overlay-diff-command" class="block text-gray-500 hover:text-primary-light text-xs">Overlay Diff</a>
+        <a href="#validate-command" class="block text-gray-500 hover:text-primary-light text-xs">Validate</a>
       </div>
       <a href="#features" class="block text-gray-600 hover:text-primary-light">Features</a>
       <a href="#roadmap" class="block text-gray-600 hover:text-primary-light">Roadmap</a>
@@ -66,17 +67,17 @@ permalink: /cli/
         <h1 class="text-4xl font-extrabold text-primary-dark">SpecLynx CLI</h1>
         <span class="badge badge-primary">Command line</span>
       </div>
-      <p class="text-xl text-gray-600 mb-6">Messy API specs? Bring order from the command line.</p>
+      <p class="text-xl text-gray-600 mb-6">Validate, overlay, and reshape your API specs &mdash; one consistent toolchain, from the command line.</p>
 
       <p class="text-gray-700 text-lg mb-6">
-        SpecLynx CLI is a command-line tool for working with API specifications. Apply <a href="https://spec.openapis.org/overlay/latest.html" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Overlay</a> documents to any JSON or YAML API definition from the terminal or CI/CD pipeline.
+        SpecLynx CLI is a command-line tool for working with API specifications. Validate OpenAPI, AsyncAPI, Arazzo, and Overlay documents, and apply or diff <a href="https://spec.openapis.org/overlay/latest.html" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Overlay</a> documents &mdash; all from your terminal or CI/CD pipeline.
       </p>
 
       <div class="mb-6">
         <p class="text-gray-600 text-sm mb-3">Install globally via npm:</p>
         <pre class="code-block mb-4"><code class="language-bash">npm install -g @speclynx/cli</code></pre>
         <p class="text-gray-600 text-sm mb-3">Or run directly with npx:</p>
-        <pre class="code-block"><code class="language-bash">npx @speclynx/cli overlay apply overlay.json openapi.json</code></pre>
+        <pre class="code-block"><code class="language-bash">npx @speclynx/cli validate openapi.json</code></pre>
       </div>
 
       <div class="flex flex-wrap gap-4 mb-8">
@@ -90,7 +91,7 @@ permalink: /cli/
 
       <div class="bg-blue-50 border-l-4 border-primary-light p-4 mb-6">
         <p class="text-gray-700">
-          <strong>Early release:</strong> SpecLynx CLI currently ships the <code class="bg-gray-100 px-1 rounded">overlay apply</code> and <code class="bg-gray-100 px-1 rounded">overlay diff</code> commands. More commands &mdash; validate, dereference, bundle, and convert &mdash; are coming soon.
+          <strong>Early release:</strong> SpecLynx CLI currently ships the <code class="bg-gray-100 px-1 rounded">overlay apply</code>, <code class="bg-gray-100 px-1 rounded">overlay diff</code>, and <code class="bg-gray-100 px-1 rounded">validate</code> commands. More commands &mdash; dereference, bundle, and convert &mdash; are coming soon.
         </p>
       </div>
     </section>
@@ -274,6 +275,118 @@ permalink: /cli/
 
       <p class="text-gray-600 text-sm mb-2">Fail the build when two specs are identical:</p>
       <pre class="code-block mb-4"><code class="language-bash">speclynx overlay diff openapi-v1.json openapi-v2.json --fail-on-empty</code></pre>
+
+      <hr class="my-10 border-gray-200">
+
+      <h3 id="validate-command" class="text-lg font-semibold text-primary-dark mb-3">validate</h3>
+      <p class="text-gray-700 mb-4">
+        Validate an API document &mdash; a local file or a remote URL &mdash; against its specification. SpecLynx CLI auto-detects the document type and reports problems as color-coded, human-readable diagnostics &mdash; or as a machine-readable JSON array for CI/CD.
+      </p>
+
+      <pre class="code-block mb-6"><code class="language-bash">speclynx validate [options] &lt;uri&gt;</code></pre>
+
+      <p class="text-gray-600 text-sm mb-3">Problems are reported as a color-coded <code class="bg-gray-100 px-1 rounded">location&nbsp;&nbsp;severity&nbsp;&nbsp;code&nbsp;&nbsp;message</code> table, ending with a severity-count summary:</p>
+      <!-- role="img" exposes the whole block via aria-label; descendants are presentational, so no aria-hidden needed. -->
+      <div class="terminal mb-8" role="img" aria-label="Terminal running 'speclynx validate openapi.json'. The report lists two errors — line 3: should always have a 'version' (code 3030501); line 7: operationId must be a string (code 3080500) — and ends with the summary: 2 problems, 2 errors.">
+        <div class="terminal-titlebar">
+          <span class="terminal-dot terminal-dot-red"></span>
+          <span class="terminal-dot terminal-dot-yellow"></span>
+          <span class="terminal-dot terminal-dot-green"></span>
+          <span class="terminal-title">bash</span>
+        </div>
+        <!-- terminal-body uses white-space: pre — keep lines flush-left; source indentation would render literally. -->
+<pre class="terminal-body"><span class="terminal-prompt">$ speclynx validate openapi.json</span>
+<span class="t-file">openapi.json</span>
+  <span class="t-loc">3:3-3:9  </span>  <span class="t-error">error</span>  <span class="t-code">3030501</span>  <span class="t-msg">should always have a 'version'</span>
+  <span class="t-loc">7:24-7:26</span>  <span class="t-error">error</span>  <span class="t-code">3080500</span>  <span class="t-msg">operationId must be a string</span>
+
+<span class="t-fail">&#10006; 2 problems (2 errors)</span></pre>
+      </div>
+
+      <p class="text-gray-700 mb-2">Supported specifications:</p>
+      <ul class="text-gray-700 space-y-1 mb-6 ml-4">
+        <li>&#10003; OpenAPI 2.0 (Swagger), 3.0.x, 3.1.x</li>
+        <li>&#10003; AsyncAPI 2.x</li>
+        <li>&#10003; Arazzo 1.x</li>
+        <li>&#10003; Overlay 1.x</li>
+      </ul>
+
+      <h4 id="validate-checks" class="text-base font-semibold text-primary-dark mb-3">What Gets Checked</h4>
+      <p class="text-gray-700 mb-3">Three categories of checks run against every document:</p>
+      <ul class="text-gray-700 space-y-2 mb-6 ml-4 list-disc list-outside pl-4">
+        <li><strong>Semantic validation</strong> &mdash; checks the document against the <em>meaning</em> of its specification, not just its JSON/YAML syntax: required fields are present, values have the correct types, and objects are shaped as the spec requires.</li>
+        <li><strong>Reference validation</strong> &mdash; checks that every <code class="bg-gray-100 px-1 rounded">$ref</code> resolves to something that actually exists.</li>
+        <li><strong>Semantic linting</strong> &mdash; applies style and best-practice rules on top of validation, such as flagging an empty <code class="bg-gray-100 px-1 rounded">enum</code>.</li>
+      </ul>
+
+      <h4 id="validate-arguments" class="text-base font-semibold text-primary-dark mb-3">Arguments</h4>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm text-left">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="px-4 py-2 font-semibold">Argument</th>
+              <th class="px-4 py-2 font-semibold">Description</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <tr>
+              <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">&lt;uri&gt;</code></td>
+              <td class="px-4 py-2">Local path or URL to the API document (JSON or YAML)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4 id="validate-options" class="text-base font-semibold text-primary-dark mb-3">Options</h4>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm text-left">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="px-4 py-2 font-semibold">Option</th>
+              <th class="px-4 py-2 font-semibold">Description</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">-f, --format &lt;format&gt;</code></td>
+              <td class="px-4 py-2">Output format for diagnostics: <code class="bg-gray-100 px-1 rounded">stylish</code> (default) or <code class="bg-gray-100 px-1 rounded">json</code></td>
+            </tr>
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">--json</code></td>
+              <td class="px-4 py-2">Shorthand for <code class="bg-gray-100 px-1 rounded">--format json</code> (wins if both are given)</td>
+            </tr>
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">--json-schema-validation</code></td>
+              <td class="px-4 py-2">Enable JSON Schema (AJV) validation, with friendlier error messages</td>
+            </tr>
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">--max-problems &lt;n&gt;</code></td>
+              <td class="px-4 py-2">Maximum number of problems to report</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">--fail-severity &lt;severity&gt;</code></td>
+              <td class="px-4 py-2">Minimum diagnostic severity that fails the run: <code class="bg-gray-100 px-1 rounded">error</code> (default), <code class="bg-gray-100 px-1 rounded">warning</code>, <code class="bg-gray-100 px-1 rounded">info</code>, or <code class="bg-gray-100 px-1 rounded">hint</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4 id="validate-examples" class="text-base font-semibold text-primary-dark mb-3">Usage Examples</h4>
+
+      <p class="text-gray-600 text-sm mb-2">Validate a local OpenAPI document:</p>
+      <pre class="code-block mb-4"><code class="language-bash">speclynx validate openapi.json</code></pre>
+
+      <p class="text-gray-600 text-sm mb-2">Validate a document straight from a URL:</p>
+      <pre class="code-block mb-4"><code class="language-bash">speclynx validate https://example.com/openapi.yaml</code></pre>
+
+      <p class="text-gray-600 text-sm mb-2">Emit machine-readable JSON diagnostics:</p>
+      <pre class="code-block mb-4"><code class="language-bash">speclynx validate openapi.yaml --format json</code></pre>
+
+      <p class="text-gray-600 text-sm mb-2">Also validate against the official JSON Schema:</p>
+      <pre class="code-block mb-4"><code class="language-bash">speclynx validate openapi.json --json-schema-validation</code></pre>
+
+      <p class="text-gray-600 text-sm mb-2">Fail the build on warnings as well as errors:</p>
+      <pre class="code-block mb-4"><code class="language-bash">speclynx validate openapi.json --fail-severity warning</code></pre>
     </section>
 
     <!-- Features -->
@@ -281,32 +394,20 @@ permalink: /cli/
       <h2 class="text-2xl font-bold text-primary-dark mb-4">Features</h2>
       <div class="grid md:grid-cols-2 gap-4">
         <div class="bg-gray-50 p-4 rounded-lg">
-          <h3 id="overlay-application" class="font-semibold text-primary-dark mb-2">Overlay Application</h3>
-          <p class="text-gray-600 text-sm">Apply Overlay 1.0.0 and 1.1.0 documents to any JSON or YAML API definition.</p>
+          <h3 id="multi-spec-validation" class="font-semibold text-primary-dark mb-2">Multi-Spec Validation</h3>
+          <p class="text-gray-600 text-sm">Validate OpenAPI, AsyncAPI, Arazzo, and Overlay documents with layered semantic, <code class="bg-gray-100 px-1 rounded">$ref</code>, and best-practice checks.</p>
         </div>
         <div class="bg-gray-50 p-4 rounded-lg">
-          <h3 id="overlay-diffing" class="font-semibold text-primary-dark mb-2">Overlay Diffing</h3>
-          <p class="text-gray-600 text-sm">Compare two API specs and generate a reusable Overlay document capturing the changes between them.</p>
+          <h3 id="overlay-tooling" class="font-semibold text-primary-dark mb-2">Overlay Tooling</h3>
+          <p class="text-gray-600 text-sm">Apply and diff Overlay 1.0.0 / 1.1.0 documents, and chain multiple overlays in a single command.</p>
         </div>
         <div class="bg-gray-50 p-4 rounded-lg">
-          <h3 id="multiple-overlay-chaining" class="font-semibold text-primary-dark mb-2">Multiple Overlay Chaining</h3>
-          <p class="text-gray-600 text-sm">Apply multiple overlays in sequence with a single command using the repeatable <code class="bg-gray-100 px-1 rounded">--overlay</code> option.</p>
+          <h3 id="local-or-remote" class="font-semibold text-primary-dark mb-2">Local or Remote, JSON or YAML</h3>
+          <p class="text-gray-600 text-sm">Auto-detects format and reads from a local file or a URL. Write results to a file or pipe stdout into your toolchain.</p>
         </div>
         <div class="bg-gray-50 p-4 rounded-lg">
-          <h3 id="format-auto-detection" class="font-semibold text-primary-dark mb-2">Format Auto-Detection</h3>
-          <p class="text-gray-600 text-sm">Automatically detects JSON or YAML format from input files. Override with <code class="bg-gray-100 px-1 rounded">-f</code> when needed.</p>
-        </div>
-        <div class="bg-gray-50 p-4 rounded-lg">
-          <h3 id="strict-validation-mode" class="font-semibold text-primary-dark mb-2">Strict Validation Mode</h3>
-          <p class="text-gray-600 text-sm">Catch overlay misconfigurations early &mdash; strict mode fails if any action target matches zero nodes.</p>
-        </div>
-        <div class="bg-gray-50 p-4 rounded-lg">
-          <h3 id="file-output" class="font-semibold text-primary-dark mb-2">File Output</h3>
-          <p class="text-gray-600 text-sm">Write results directly to a file or pipe stdout into your existing toolchain.</p>
-        </div>
-        <div class="bg-gray-50 p-4 rounded-lg">
-          <h3 id="verbose-tracing" class="font-semibold text-primary-dark mb-2">Verbose Tracing</h3>
-          <p class="text-gray-600 text-sm">Detailed trace output for debugging overlay application and understanding what changed.</p>
+          <h3 id="built-for-ci-cd" class="font-semibold text-primary-dark mb-2">Built for CI/CD</h3>
+          <p class="text-gray-600 text-sm">Strict modes, severity gates, and machine-readable JSON output let you fail a build on exactly the problems that matter.</p>
         </div>
       </div>
     </section>
@@ -315,7 +416,7 @@ permalink: /cli/
     <section id="roadmap" class="mb-16">
       <h2 class="text-2xl font-bold text-primary-dark mb-4">Roadmap</h2>
       <p class="text-gray-700">
-        &#9745; Overlay apply &nbsp;&middot;&nbsp; &#9745; Overlay diff &nbsp;&middot;&nbsp; &#9744; Validate &nbsp;&middot;&nbsp; &#9744; Dereference &nbsp;&middot;&nbsp; &#9744; Bundle &nbsp;&middot;&nbsp; &#9744; Convert
+        &#9745; Overlay apply &nbsp;&middot;&nbsp; &#9745; Overlay diff &nbsp;&middot;&nbsp; &#9745; Validate &nbsp;&middot;&nbsp; &#9744; Dereference &nbsp;&middot;&nbsp; &#9744; Bundle &nbsp;&middot;&nbsp; &#9744; Convert
       </p>
     </section>
 
@@ -360,7 +461,11 @@ permalink: /cli/
         </div>
         <div>
           <h3 class="font-semibold text-gray-900 mb-2">What can SpecLynx CLI do?</h3>
-          <p class="text-gray-700">SpecLynx CLI ships two commands today: <code class="bg-gray-100 px-1 rounded">overlay apply</code> applies Overlay 1.x documents to any JSON or YAML API definition, and <code class="bg-gray-100 px-1 rounded">overlay diff</code> generates an overlay by comparing two specs. Validate, dereference, bundle, and convert are on the roadmap.</p>
+          <p class="text-gray-700">SpecLynx CLI ships three commands today: <code class="bg-gray-100 px-1 rounded">validate</code> checks OpenAPI, AsyncAPI, Arazzo, and Overlay documents against their specification; <code class="bg-gray-100 px-1 rounded">overlay apply</code> applies Overlay 1.x documents to any JSON or YAML API definition; and <code class="bg-gray-100 px-1 rounded">overlay diff</code> generates an overlay by comparing two specs. Dereference, bundle, and convert are on the roadmap.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-900 mb-2">Which specifications can it validate?</h3>
+          <p class="text-gray-700">The <code class="bg-gray-100 px-1 rounded">validate</code> command supports OpenAPI 2.0 (Swagger), 3.0.x, and 3.1.x; AsyncAPI 2.x; Arazzo 1.x; and Overlay 1.x. It accepts a local file or a remote URL, runs semantic validation, <code class="bg-gray-100 px-1 rounded">$ref</code> resolution checks, and best-practice linting, and can optionally validate documents against their official JSON Schema.</p>
         </div>
         <div>
           <h3 class="font-semibold text-gray-900 mb-2">What is an Overlay document?</h3>
@@ -390,7 +495,15 @@ permalink: /cli/
           "name": "What can SpecLynx CLI do?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "SpecLynx CLI ships two commands today: overlay apply applies Overlay 1.x documents to any JSON or YAML API definition, and overlay diff generates an overlay by comparing two specs. Validate, dereference, bundle, and convert are on the roadmap."
+            "text": "SpecLynx CLI ships three commands today: validate checks OpenAPI, AsyncAPI, Arazzo, and Overlay documents against their specification; overlay apply applies Overlay 1.x documents to any JSON or YAML API definition; and overlay diff generates an overlay by comparing two specs. Dereference, bundle, and convert are on the roadmap."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which specifications can it validate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The validate command supports OpenAPI 2.0 (Swagger), 3.0.x, and 3.1.x; AsyncAPI 2.x; Arazzo 1.x; and Overlay 1.x. It accepts a local file or a remote URL, runs semantic validation, $ref resolution checks, and best-practice linting, and can optionally validate documents against their official JSON Schema."
           }
         },
         {
