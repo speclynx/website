@@ -40,14 +40,19 @@ _config.yml                      # Site config (title, url, baseurl, plugins)
 _layouts/
   base.html                      # HTML skeleton: head, nav, content, footer, org schema
   default.html                   # Wraps content in container (inherits base)
+_layouts/
+  post.html                      # Blog post layout (breadcrumb, byline, TechArticle JSON-LD)
 _includes/
   head.html                      # <head> with seo tag, meta, CDN scripts
   nav.html                       # Responsive navbar with dropdowns
   footer.html                    # Footer with links and social icons
   schema-organization.html       # Organization JSON-LD (included sitewide)
   apidom-sidebar.html            # Shared sidebar for ApiDOM pages (active state via page.url)
+_posts/
+  YYYY-MM-DD-title.md            # Blog posts (Markdown, rendered with post layout)
 pages/
   homepage.html                  # Landing page (permalink: /)
+  blog.html                      # Blog index (permalink: /blog/, cards grouped by year)
   editor.html                    # Editor product page (permalink: /editor/)
   openapi-toolkit.html           # Product page with sidebar nav
   cli.html                       # CLI product page (permalink: /cli/)
@@ -126,7 +131,7 @@ Key accessibility decisions:
 ## AEO (Answer Engine Optimization)
 
 ### Schema.org JSON-LD Structured Data
-- **Organization** — sitewide via `_includes/schema-organization.html` (name, logo, email, sameAs)
+- **Organization** — sitewide via `_includes/schema-organization.html` (name, logo, email, sameAs). Carries `"@id"` (the site root URL) so other JSON-LD blocks can reference it, e.g. blog posts' `"publisher": { "@id": ... }`
 - **SoftwareApplication** — on each product page (category, license, price, author)
 - **BreadcrumbList** — on each product page (Home > Product Name) and ApiDOM subpages (Home > ApiDOM > Page Name)
 - **Person** — on About page (both co-founders with jobTitle, URLs, sameAs)
@@ -158,6 +163,21 @@ Key conventions for ApiDOM content:
 - Use "data model" not "element" when referring to the parsed result
 - The package is "one of the main entry points" (not "the main entry point")
 - Official OpenAPI media type: `application/openapi+json;version=3.1.2` (per IETF draft, not `vnd.oai.` prefix)
+
+## Blog
+
+- Posts live in `_posts/` as Markdown with permalink `/blog/:title/` (set via `collections.posts` in `_config.yml`)
+- Front matter: `title`, `description`, `date`, `image` (`path`/`width`/`height`/`alt`/`caption`); optional `author`/`author_url`/`author_link` overrides. `image` is required — templates assume it. Titles and descriptions must not contain literal double quotes (JSON-LD interpolates them raw, no `jsonify`)
+- **Every post must have a catchy hero image** (quobix.com/articles style: custom illustration, brand colors, no photography). No SpecLynx logo or wordmark in the image — the topic illustration owns the whole frame. 1280×520 WebP in `assets/images/blog/`, named after the post slug. Workflow: hand-craft an SVG in an HTML wrapper, rasterize with `google-chrome --headless --screenshot --window-size=1280,520`, convert to WebP with Python PIL (`quality=85, method=6`)
+- **Post prose is written by humans.** AI assistants build blog infrastructure and hero images but never draft or rewrite article content
+- **Author is always a Person, never the Organization.** Defaults to Vladimír Gorej via `_config.yml` front matter defaults; SpecLynx appears only as `publisher` in JSON-LD. The visible byline links to `/about/#vladimir-gorej` (`author_link`); JSON-LD Person `url` is `https://vladimirgorej.com/` (`author_url`)
+- About page anchors: `#our-team` (section), `#vladimir-gorej` and `#francesco-tumanischvili` (team cards)
+- `_layouts/post.html` emits TechArticle + BreadcrumbList (Home > Blog > title) JSON-LD; `jekyll-seo-tag` adds its own BlogPosting. Byline shows date, linked author, and reading time (words / 200)
+- `pages/blog.html` features the latest post large (image + text split card), then remaining posts as image-top cards grouped by year; emits Blog JSON-LD with a `blogPost` list
+- Markdown output is styled by `.post-content` rules in `main.css` (Tailwind preflight strips defaults); fenced code blocks get Prism highlighting automatically
+- Internal links inside post Markdown use Liquid, same as pages: `[text]({{ '/path/' | relative_url }})` — never bare `(/path/)`
+- RSS feed at `/feed.xml` via `jekyll-feed`; linked from the blog index
+- The blog is linked in the nav (desktop + mobile), footer Resources, and `llms.txt`
 
 ## Naming Conventions
 
