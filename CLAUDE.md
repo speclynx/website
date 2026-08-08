@@ -167,7 +167,7 @@ Key conventions for ApiDOM content:
 ## Blog
 
 - Posts live in `_posts/` as Markdown with permalink `/blog/:title/` (set via `collections.posts` in `_config.yml`)
-- Front matter: `title`, `description`, `date`, `image` (`path`/`width`/`height`/`alt`/`caption`); optional `author`/`author_url`/`author_link` overrides. `image` is required — templates assume it. Titles and descriptions must not contain literal double quotes (JSON-LD interpolates them raw, no `jsonify`)
+- Front matter: `title`, `description`, `date`, `image` (`path`/`width`/`height`/`alt`/`caption`); optional `author`/`author_url`/`author_link` overrides. `image` is required — templates assume it. Free-text values (title, description, author) go through `jsonify` in JSON-LD, so any characters are safe
 - **Every post must have a catchy hero image** (quobix.com/articles style: custom illustration, brand colors, no photography). No SpecLynx logo or wordmark in the image — the topic illustration owns the whole frame. 1280×520 WebP in `assets/images/blog/`, named after the post slug. Workflow: hand-craft an SVG in an HTML wrapper, rasterize with `google-chrome --headless --screenshot --window-size=1280,520`, convert to WebP with Python PIL (`quality=85, method=6`)
 - **Post prose is written by humans.** AI assistants build blog infrastructure and hero images but never draft or rewrite article content
 - **Author is always a Person, never the Organization.** Defaults to Vladimír Gorej via `_config.yml` front matter defaults; SpecLynx appears only as `publisher` in JSON-LD. The visible byline links to `/about/#vladimir-gorej` (`author_link`); JSON-LD Person `url` is `https://vladimirgorej.com/` (`author_url`)

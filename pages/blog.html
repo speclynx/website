@@ -10,18 +10,18 @@ permalink: /blog/
   "@context": "https://schema.org",
   "@type": "Blog",
   "name": "SpecLynx Blog",
-  "description": "{{ page.description }}",
+  "description": {{ page.description | jsonify }},
   "url": "{{ '/blog/' | absolute_url }}",
   "publisher": { "@id": "{{ '/' | absolute_url }}" },
   "blogPost": [
     {% for post in site.posts %}{
       "@type": "TechArticle",
-      "headline": "{{ post.title }}",
-      "description": "{{ post.description }}",
+      "headline": {{ post.title | jsonify }},
+      "description": {{ post.description | jsonify }},
       "url": "{{ post.url | absolute_url }}",
       "image": "{{ post.image.path | absolute_url }}",
       "datePublished": "{{ post.date | date_to_xmlschema }}",
-      "author": { "@type": "Person", "name": "{{ post.author }}", "url": "{{ post.author_url }}" }
+      "author": { "@type": "Person", "name": {{ post.author | jsonify }}, "url": "{{ post.author_url }}" }
     }{% unless forloop.last %},
     {% endunless %}{% endfor %}
   ]
