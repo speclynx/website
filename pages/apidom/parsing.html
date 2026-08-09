@@ -156,9 +156,55 @@ element.endOffset;       // character offset where element ends</code></pre>
       <p class="text-gray-700 text-lg mb-6">
         Style preservation captures format-specific details like indentation, key ordering, and raw number representation. This is what makes lossless round-trips possible &mdash; parse a document and serialize it back without losing formatting.
       </p>
-      <pre class="code-block mb-6"><code class="language-javascript">import { parse } from '@speclynx/apidom-parser-adapter-openapi-json-3-1';
+      <p class="text-gray-700 text-lg mb-6">
+        Here it is in action. Start from a YAML document with distinctive formatting &mdash; four-space indentation, a single-quoted title, a block scalar description, a quoted response code:
+      </p>
+      <pre class="code-block mb-6"><code class="language-yaml">openapi: 3.1.2
+info:
+    title: 'Payments API'
+    version: 1.0.0
+    description: |-
+        Create and track payments.
+        Refunds are handled by a separate API.
+paths:
+    /payments/{paymentId}:
+        get:
+            summary: Get a payment
+            operationId: getPayment
+            responses:
+                "200":
+                    description: OK</code></pre>
+      <p class="text-gray-700 text-lg mb-6">
+        Parse it with <code>style: true</code>, add a property to the data model, and serialize it back:
+      </p>
+      <pre class="code-block mb-6"><code class="language-javascript">import { parse } from '@speclynx/apidom-parser-adapter-openapi-yaml-3-1';
+import { toYAML } from '@speclynx/apidom-core';
 
-const result = await parse(source, { style: true });</code></pre>
+const parseResult = await parse(source, { style: true });
+const api = parseResult.api;
+
+api.get('info').set('summary', 'Payment processing endpoints.');
+
+const output = toYAML(api, { preserveStyle: true });</code></pre>
+      <p class="text-gray-700 text-lg mb-6">
+        The output is the original document, byte for byte &mdash; same indentation, same quoting, same block scalar, same key order &mdash; with only the new property added:
+      </p>
+      <pre class="code-block mb-6"><code class="language-yaml">openapi: 3.1.2
+info:
+    title: 'Payments API'
+    version: 1.0.0
+    description: |-
+        Create and track payments.
+        Refunds are handled by a separate API.
+    summary: Payment processing endpoints.
+paths:
+    /payments/{paymentId}:
+        get:
+            summary: Get a payment
+            operationId: getPayment
+            responses:
+                "200":
+                    description: OK</code></pre>
     </section>
   </main>
 </div>
