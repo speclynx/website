@@ -4,3 +4,8 @@
 /.jekyll-metadata
 /.bundle
 /vendor
+
+# Project-scoped Claude Code skills are part of the repo harness —
+# override the user-level global ignore of .claude
+!.claude/
+.claude/settings.local.json
