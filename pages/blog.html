@@ -60,8 +60,8 @@ permalink: /blog/
     <!-- Featured latest article -->
     <section class="mb-14">
       <article class="product-card !p-0 overflow-hidden lg:grid lg:grid-cols-2">
-        <a href="{{ latest.url | relative_url }}" class="block" aria-hidden="true" tabindex="-1">
-          <img src="{{ latest.image.path | relative_url }}" width="{{ latest.image.width }}" height="{{ latest.image.height }}" alt="" class="w-full h-full object-cover object-left">
+        <a href="{{ latest.url | relative_url }}" class="block blog-hero-frame" aria-hidden="true" tabindex="-1">
+          <img src="{{ latest.image.path | relative_url }}" width="{{ latest.image.width }}" height="{{ latest.image.height }}" alt="" class="w-full h-full object-contain">
         </a>
         <div class="p-8 flex flex-col justify-center">
           <p class="text-sm text-gray-500 mb-3">
@@ -93,7 +93,7 @@ permalink: /blog/
         {% for post in year.items %}
         <article class="product-card !p-0 overflow-hidden flex flex-col">
           <a href="{{ post.url | relative_url }}" class="block" aria-hidden="true" tabindex="-1">
-            <img loading="lazy" src="{{ post.image.path | relative_url }}" width="{{ post.image.width }}" height="{{ post.image.height }}" alt="" class="w-full h-40 object-cover object-left">
+            <img loading="lazy" src="{{ post.image.path | relative_url }}" width="{{ post.image.width }}" height="{{ post.image.height }}" alt="" class="w-full h-auto">
           </a>
           <div class="p-6 flex flex-col flex-1">
             <p class="text-sm text-gray-500 mb-3">

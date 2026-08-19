@@ -621,6 +621,13 @@ h4:hover .heading-anchor {
     margin-bottom: 0.75rem;
 }
 
+/* Blog index: featured hero shows the whole 1280x520 image on the heroes' shared navy base
+   instead of cropping it to the text column's height */
+.blog-hero-frame {
+    background: linear-gradient(135deg, #092B4E 0%, #0C3A66 50%, #092B4E 100%);
+    min-height: 100%;
+}
+
 .post-content blockquote {
     border-left: 4px solid var(--color-primary-light);
     background: #EFF6FF;
