@@ -13,7 +13,7 @@ github_username: speclynx
 # Social
 twitter:
   username: "@speclynx"
-  card: summary
+  card: summary_large_image
 
 # Build settings
 markdown: kramdown
@@ -35,6 +35,11 @@ defaults:
       path: ""
     values:
       layout: default
+      image:
+        path: /assets/images/social/speclynx-logo-full.png
+        width: 1200
+        height: 630
+        alt: "SpecLynx logo"
   - scope:
       path: ""
       type: posts
