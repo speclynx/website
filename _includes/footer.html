@@ -1,14 +1,14 @@
 <footer class="py-10 text-gray-400 text-sm footer-background-color">
   <div class="container mx-auto px-4 max-w-6xl">
     <!-- Main footer grid -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-8">
       <!-- Logo & tagline -->
       <div class="col-span-2 md:col-span-1">
         <a href="/" class="flex items-center mb-2">
           <img src="{{ '/assets/images/logos/speclynx-logo.svg' | relative_url }}" alt="SpecLynx" class="w-8 h-8 mr-2 brightness-0 invert opacity-80">
           <span class="text-lg font-bold text-white">SpecLynx</span>
         </a>
-        <p class="text-gray-400 text-sm mb-4">Enterprise-ready API tooling</p>
+        <p class="text-gray-400 text-sm mb-4">One toolchain for every API spec</p>
         <div class="launchlist-widget -mb-16 -ml-2" data-key-id="05SLUz"></div>
       </div>
 
@@ -28,11 +28,11 @@
       <div>
         <p class="text-white font-semibold mb-4">Resources</p>
         <ul class="space-y-2">
+          <li><a href="{{ '/docs/' | relative_url }}" class="hover:text-white transition-colors">Docs</a></li>
           <li><a href="{{ '/blog/' | relative_url }}" class="hover:text-white transition-colors">Blog</a></li>
-          <li><a href="https://github.com/orgs/speclynx/repositories" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Open Source</a></li>
-          <li><a href="https://github.com/speclynx" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">GitHub</a></li>
-          <li><a href="{{ '/privacy/' | relative_url }}" class="hover:text-white transition-colors">Privacy Policy</a></li>
-          <li><a href="{{ '/terms/' | relative_url }}" class="hover:text-white transition-colors">Terms of Service</a></li>
+          <li><a href="{{ '/maintainers-note/' | relative_url }}" class="hover:text-white transition-colors">Manifesto</a></li>
+          <li><a href="{{ '/feed.xml' | relative_url }}" class="hover:text-white transition-colors">RSS Feed</a></li>
+          <li><a href="https://github.com/orgs/speclynx/repositories" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Source Code</a></li>
         </ul>
       </div>
 
@@ -41,8 +41,17 @@
         <p class="text-white font-semibold mb-4">Connect</p>
         <ul class="space-y-2">
           <li><a href="{{ '/about/' | relative_url }}" class="hover:text-white transition-colors">About Us</a></li>
-          <li><a href="https://www.linkedin.com/company/speclynx" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">LinkedIn</a></li>
+          <li><a href="https://github.com/orgs/speclynx/discussions" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Discussions</a></li>
           <li><a href="mailto:info@speclynx.com" class="hover:text-white transition-colors">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div>
+        <p class="text-white font-semibold mb-4">Legal</p>
+        <ul class="space-y-2">
+          <li><a href="{{ '/privacy/' | relative_url }}" class="hover:text-white transition-colors">Privacy Policy</a></li>
+          <li><a href="{{ '/terms/' | relative_url }}" class="hover:text-white transition-colors">Terms of Service</a></li>
         </ul>
       </div>
     </div>

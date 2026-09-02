@@ -88,3 +88,30 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
 });
+
+// Terminal tabs (hero demo switcher)
+document.querySelectorAll('[data-terminal-tabs]').forEach(function (root) {
+  var tabs = Array.prototype.slice.call(root.querySelectorAll('[role="tab"]'));
+  var panels = tabs.map(function (tab) {
+    return document.getElementById(tab.getAttribute('aria-controls'));
+  });
+  function select(index) {
+    tabs.forEach(function (tab, i) {
+      var active = i === index;
+      tab.setAttribute('aria-selected', active ? 'true' : 'false');
+      tab.tabIndex = active ? 0 : -1;
+      panels[i].hidden = !active;
+    });
+  }
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () { select(i); });
+    tab.addEventListener('keydown', function (e) {
+      var next = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : null;
+      if (next === null) return;
+      e.preventDefault();
+      next = (next + tabs.length) % tabs.length;
+      select(next);
+      tabs[next].focus();
+    });
+  });
+});

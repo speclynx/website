@@ -1,7 +1,7 @@
 ---
 layout: base
 title: SpecLynx
-description: Parse, validate, transform, and work with OpenAPI, AsyncAPI, Arazzo, Overlay, and JSON Schema using one consistent toolchain. Free and open source.
+description: One toolchain for every API spec. Parse, validate, transform, and lint OpenAPI, AsyncAPI, Arazzo, Overlay, and JSON Schema. Local-first, free, and open source.
 google_site_verification: LGoRdHwaV8j4N6AJHPqsRKhTdEbdM7rl6DHCvA-HHI4
 launchlist: true
 permalink: /
@@ -14,38 +14,85 @@ permalink: /
     <div class="flex flex-col md:flex-row gap-12 items-center">
       <!-- Left: Text Content -->
       <div class="flex-1">
-        <h1 class="hero-title mb-6">Enterprise-ready API tooling</h1>
-        <p class="hero-subtitle mb-6">Parse, validate, transform, and work with OpenAPI, AsyncAPI, Arazzo, Overlay, and JSON Schema using one consistent toolchain.</p>
+        <p class="text-primary-light text-xs font-bold uppercase tracking-wider mb-4">Open source &middot; Apache 2.0</p>
+        <h1 class="hero-title mb-6">One toolchain for every API spec</h1>
+        <p class="hero-subtitle mb-6">Parse, validate, transform, and lint OpenAPI, AsyncAPI, Arazzo, Overlay, and JSON Schema through one shared semantic structure. Local-first and lossless.</p>
         <!-- Credibility -->
         <div class="border-t border-gray-200 pt-5 mb-8">
-          <p class="text-gray-500 text-sm">Built by Swagger alumni, OpenAPI Initiative contributors, and AsyncAPI spec maintainers. <a href="{{ '/about/' | relative_url }}" class="product-card-link">Meet the team &rarr;</a></p>
+          <p class="text-gray-500 text-sm">Built by long-time maintainers of Swagger UI and Swagger Editor, OpenAPI Initiative contributors, and AsyncAPI spec maintainers. <a href="{{ '/about/' | relative_url }}" class="product-card-link">Meet the team &rarr;</a></p>
         </div>
         <!-- CTAs -->
-        <div class="mt-2 flex flex-wrap gap-4">
-          <a href="#products" class="primary-cta text-white font-bold py-3 px-6 rounded inline-block">
-            Explore the stack
+        <div class="mt-2 flex flex-wrap items-center gap-4">
+          <a href="{{ '/docs/' | relative_url }}" class="primary-cta text-white font-bold py-3 px-6 rounded inline-block">
+            Get started
           </a>
           <a href="https://editor.speclynx.com" target="_blank" rel="noopener noreferrer" class="border-2 border-primary-dark text-primary-dark font-bold py-3 px-6 rounded inline-block hover:bg-gray-100 transition-colors">
             Try the editor
           </a>
+          <a href="https://github.com/speclynx" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-primary-dark font-bold py-3 px-4 rounded hover:bg-gray-100 transition-colors">
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.83 9.504.471.085.678-.231.678-.519 0-.256-.009-.96-.014-1.881-2.782.603-3.371-1.341-3.371-1.341-.454-1.151-1.11-1.459-1.11-1.459-.908-.621.069-.608.069-.608 1.006.07 1.532 1.03 1.532 1.03.89 1.529 2.341 1.089 2.91.831.091-.645.35-.916.635-1.127-2.22-.253-4.555-1.114-4.555-4.945 0-1.091.39-1.984 1.029-2.682-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025.799-.224 1.649-.336 2.5-.341.85.005 1.7.117 2.5.341 1.909-1.295 2.747-1.025 2.747-1.025.546 1.378.202 2.397.098 2.65.64.698 1.029 1.591 1.029 2.682 0 3.84-2.339 4.686-4.566 4.935.359.308.675.918.675 1.85 0 1.341-.012 2.427-.012 2.75 0 .289.206.608.683.503C20.146 20.198 23 16.443 23 12.017 23 6.484 18.522 2 13 2h-1z" clip-rule="evenodd"/>
+            </svg>
+            GitHub
+          </a>
         </div>
       </div>
-      <!-- Right: Hero Graphic -->
-      <div class="hidden md:flex md:w-1/3 justify-center flex-shrink-0">
-        <picture>
-          <source srcset="{{ '/assets/images/hero-graphics.webp' | relative_url }}" type="image/webp">
-          <img src="{{ '/assets/images/hero-graphics.png' | relative_url }}" alt="SpecLynx editor and validation interface" class="w-full h-auto lightbox-trigger cursor-pointer">
-        </picture>
+      <!-- Right: Hero Terminal Demos -->
+      <div class="hidden md:block md:w-1/2 flex-shrink-0">
+        <div class="terminal" data-terminal-tabs>
+          <div class="terminal-titlebar">
+            <span class="terminal-dot terminal-dot-red"></span>
+            <span class="terminal-dot terminal-dot-yellow"></span>
+            <span class="terminal-dot terminal-dot-green"></span>
+            <div class="terminal-tabs" role="tablist" aria-label="SpecLynx demos">
+              <button type="button" role="tab" id="hero-tab-validate" aria-controls="hero-panel-validate" aria-selected="true" class="terminal-tab">validate</button>
+              <button type="button" role="tab" id="hero-tab-overlay" aria-controls="hero-panel-overlay" aria-selected="false" tabindex="-1" class="terminal-tab">overlay</button>
+              <button type="button" role="tab" id="hero-tab-diff" aria-controls="hero-panel-diff" aria-selected="false" tabindex="-1" class="terminal-tab">diff</button>
+            </div>
+          </div>
+<pre class="terminal-body terminal-panel" role="tabpanel" id="hero-panel-validate" aria-labelledby="hero-tab-validate" tabindex="0"><span class="terminal-prompt">$ npx @speclynx/cli validate openapi.yaml</span>
+<span class="t-file">openapi.yaml</span>
+  <span class="t-loc">3:3-3:9  </span>  <span class="t-error">error</span>  <span class="t-code">3030501</span>  <span class="t-msg">should always have a 'version'</span>
+  <span class="t-loc">7:24-7:26</span>  <span class="t-error">error</span>  <span class="t-code">3080500</span>  <span class="t-msg">operationId must be a string</span>
+
+<span class="t-fail">&#10006; 2 problems (2 errors)</span></pre>
+<pre class="terminal-body terminal-panel" role="tabpanel" id="hero-panel-overlay" aria-labelledby="hero-tab-overlay" tabindex="0" hidden><span class="terminal-prompt">$ npx @speclynx/cli overlay apply overlay.yaml openapi.yaml</span>
+openapi: 3.1.0
+info:
+  title: Museum API
+  version: 1.0.0
+  contact:
+    email: api@museum.example
+paths:
+  /tickets:
+    get:
+      operationId: listTickets
+      responses:
+        '200':
+          description: OK</pre>
+<pre class="terminal-body terminal-panel" role="tabpanel" id="hero-panel-diff" aria-labelledby="hero-tab-diff" tabindex="0" hidden><span class="terminal-prompt">$ npx @speclynx/cli overlay diff openapi-v1.yaml openapi-v2.yaml</span>
+overlay: 1.1.0
+info:
+  title: API diff
+  version: 0.0.0
+extends: /specs/openapi-v1.yaml
+actions:
+  - target: $['info']
+    update:
+      description: Buy and manage museum tickets.
+  - target: $['info']['version']
+    update: 1.1.0</pre>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Supported Specs Strip -->
-<section class="py-8 bg-white border-y border-gray-100">
+<section class="py-10 bg-white border-y border-gray-100">
   <div class="container mx-auto px-4 max-w-6xl">
-    <p class="text-gray-400 text-xs uppercase tracking-wider text-center mb-5">Works with</p>
-    <div class="flex flex-wrap justify-center items-center gap-x-10 gap-y-6">
+    <p class="text-gray-500 text-xs uppercase tracking-wider mb-5">One semantic structure. Every API spec.</p>
+    <div class="flex flex-wrap items-center gap-x-10 gap-y-6">
       <div class="relative group inline-flex items-center">
         <img src="{{ '/assets/images/logos/openapi-logo.png' | relative_url }}" alt="OpenAPI" class="h-8 object-contain" loading="lazy">
         <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">OpenAPI Specification</span>
@@ -67,15 +114,86 @@ permalink: /
         <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">Overlay Specification</span>
       </div>
     </div>
+
+    <!-- Testimonials: PLACEHOLDERS ONLY. Never publish invented quotes -
+         replace each card with a real, attributed quote before committing,
+         or comment this grid out. Each placeholder names the kind of quote
+         to collect. -->
+    <p class="text-gray-500 text-xs uppercase tracking-wider mt-16 mb-6">Testimonials</p>
+    <div class="grid md:grid-cols-3 gap-8">
+      <figure class="product-card relative overflow-hidden flex flex-col">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-primary-dark"></div>
+        <div class="text-primary-light text-5xl font-serif leading-none mb-3" aria-hidden="true">&ldquo;</div>
+        <blockquote class="text-gray-700 mb-6 flex-1">[Quote from a platform team: which per-format tools SpecLynx replaced in their CI, and what got simpler.]</blockquote>
+        <figcaption class="flex items-center gap-3 border-t border-gray-200 pt-4">
+          <svg class="w-10 h-10 rounded-full flex-shrink-0" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" fill="#092B4E"/><circle cx="14" cy="15" r="9" fill="#1a74a5"/><rect x="18" y="20" width="18" height="18" rx="4" fill="#EFF6FF" opacity="0.9"/></svg>
+          <span>
+            <span class="block text-sm font-semibold text-primary-dark">[Name]</span>
+            <span class="block text-sm text-gray-500">[Role, Company]</span>
+          </span>
+        </figcaption>
+      </figure>
+      <figure class="product-card relative overflow-hidden flex flex-col">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-[#1a74a5]"></div>
+        <div class="text-primary-light text-5xl font-serif leading-none mb-3" aria-hidden="true">&ldquo;</div>
+        <blockquote class="text-gray-700 mb-6 flex-1">[Quote from an API author: catching spec errors in the editor or VS Code before they cost review time.]</blockquote>
+        <figcaption class="flex items-center gap-3 border-t border-gray-200 pt-4">
+          <svg class="w-10 h-10 rounded-full flex-shrink-0" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" fill="#1a74a5"/><path d="M0 40 L20 8 L40 40 Z" fill="#092B4E"/><circle cx="28" cy="13" r="7" fill="#EFF6FF" opacity="0.9"/></svg>
+          <span>
+            <span class="block text-sm font-semibold text-primary-dark">[Name]</span>
+            <span class="block text-sm text-gray-500">[Role, Company]</span>
+          </span>
+        </figcaption>
+      </figure>
+      <figure class="product-card relative overflow-hidden flex flex-col">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-primary-dark"></div>
+        <div class="text-primary-light text-5xl font-serif leading-none mb-3" aria-hidden="true">&ldquo;</div>
+        <blockquote class="text-gray-700 mb-6 flex-1">[Quote from a tool builder: what they built on ApiDOM or the Language Service, and why lossless parsing mattered.]</blockquote>
+        <figcaption class="flex items-center gap-3 border-t border-gray-200 pt-4">
+          <svg class="w-10 h-10 rounded-full flex-shrink-0" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" fill="#092B4E"/><rect x="-6" y="18" width="30" height="30" rx="6" fill="#1a74a5" transform="rotate(-15 9 33)"/><circle cx="30" cy="12" r="8" fill="#EFF6FF" opacity="0.9"/></svg>
+          <span>
+            <span class="block text-sm font-semibold text-primary-dark">[Name]</span>
+            <span class="block text-sm text-gray-500">[Role, Company]</span>
+          </span>
+        </figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
 <!-- Problem Framing Section -->
 <section class="py-12 md:py-16 bg-gray-50">
   <div class="container mx-auto px-4 max-w-6xl">
-    <div class="max-w-2xl mx-auto text-center mb-10">
-      <h2 class="text-3xl font-extrabold text-primary-dark mb-4">Why API specification work still gets messy</h2>
-      <p class="text-gray-600">Your API specs may be standardized, but the workflows around them rarely are. Teams still have one script for bundling specs, another for linting them in CI, another for converting them for docs, and another for preparing them for release. The result is duplicated logic, inconsistent checks, and fragile automation around the contracts your systems depend on.</p>
+    <div class="max-w-2xl mb-10">
+      <h2 class="text-3xl font-extrabold text-[#1D4F7C] mb-4">Why API specification work still gets messy</h2>
+      <p class="text-gray-600">Your API specs may be standardized, but the tooling around them rarely is. You standardized on OpenAPI, then AsyncAPI arrived for your events, Arazzo for your workflows, Overlay for your edits, and JSON Schema underneath it all. Every format brought its own validator, linter, and converter, and every job brought another script in CI. The result is duplicated logic, checks that disagree, and fragile automation around the contracts your systems depend on.</p>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works Section -->
+<section id="how-it-works" class="section-padding bg-white">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <h2 class="text-3xl font-extrabold text-[#1D4F7C] mb-4">How SpecLynx works</h2>
+    <p class="text-gray-600 mb-12 max-w-2xl">
+      Every supported spec is parsed into <a href="{{ '/apidom/' | relative_url }}" class="text-primary-light underline hover:no-underline">ApiDOM</a>, one shared semantic structure, with spec-level semantics layered on top. Everything else runs on that structure. That is why every SpecLynx tool behaves the same way across every spec and format, and why it recovers from broken documents instead of choking on them.
+    </p>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-gray-50 rounded-lg p-8">
+        <p class="text-primary-light font-mono text-sm font-bold mb-3">01</p>
+        <h3 class="text-lg font-bold text-primary-dark mb-3">Parse</h3>
+        <p class="text-gray-600">Any supported spec, in JSON or YAML. Parsing is lossless: comments, key ordering, and formatting survive the round trip.</p>
+      </div>
+      <div class="bg-gray-50 rounded-lg p-8">
+        <p class="text-primary-light font-mono text-sm font-bold mb-3">02</p>
+        <h3 class="text-lg font-bold text-primary-dark mb-3">One semantic structure</h3>
+        <p class="text-gray-600">Everything becomes ApiDOM: one structure to query, traverse, and transform, with the semantics of each specification layered on top.</p>
+      </div>
+      <div class="bg-gray-50 rounded-lg p-8">
+        <p class="text-primary-light font-mono text-sm font-bold mb-3">03</p>
+        <h3 class="text-lg font-bold text-primary-dark mb-3">Your tools</h3>
+        <p class="text-gray-600">Validation, linting, editing intelligence, and transforms all run on the same structure: in the editor, in CI, and in your own platform.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -83,19 +201,20 @@ permalink: /
 <!-- Use-case Pillars Section -->
 <section class="section-padding bg-white">
   <div class="container mx-auto px-4 max-w-6xl">
-    <h2 class="text-3xl font-extrabold text-primary-dark text-center mb-12">One toolchain, multiple use cases</h2>
+    <h2 class="text-3xl font-extrabold text-[#1D4F7C] mb-12">Why SpecLynx is different</h2>
     <div class="grid md:grid-cols-3 gap-8">
       <div class="bg-gray-50 rounded-lg p-8 border-t-4 border-primary-dark">
-        <h3 class="text-lg font-bold text-primary-dark mb-3">Use one workflow across specification standards</h3>
-        <p class="text-gray-600">Work consistently with OpenAPI, AsyncAPI, Arazzo, Overlay, and JSON Schema, whether your specs are written in JSON or YAML.</p>
+        <h3 class="text-lg font-bold text-primary-dark mb-3">One semantic structure, not five parsers</h3>
+        <p class="text-gray-600">Every spec becomes one lossless, error-recovering structure, with the semantics of each specification layered on top. Tools built on it work across every supported spec.</p>
       </div>
       <div class="bg-gray-50 rounded-lg p-8 border-t-4 border-primary-light">
-        <h3 class="text-lg font-bold text-primary-dark mb-3">Validate specs the same way everywhere</h3>
-        <p class="text-gray-600">Use the same validation, normalization, and transformation logic in editors, CI pipelines, review workflows, and internal platforms.</p>
+        <h3 class="text-lg font-bold text-primary-dark mb-3">Local-first, always</h3>
+        <p class="text-gray-600">Runs on your machine. No accounts, no telemetry, and it works offline. Your specs never leave your environment.</p>
       </div>
       <div class="bg-gray-50 rounded-lg p-8 border-t-4 border-primary-dark">
-        <h3 class="text-lg font-bold text-primary-dark mb-3">Build on top of SpecLynx</h3>
-        <p class="text-gray-600">Use SpecLynx as a programmable layer for developer platforms, documentation systems, governance workflows, and custom specification tooling.</p>
+        <h3 class="text-lg font-bold text-primary-dark mb-3">Built by the people who built the ecosystem</h3>
+        <p class="text-gray-600">Long-time maintainers of Swagger UI and Swagger Editor, OpenAPI Initiative contributors, and AsyncAPI spec maintainers.</p>
+        <p class="mt-4"><a href="{{ '/maintainers-note/' | relative_url }}" class="text-primary-light underline hover:no-underline">Read the maintainers' note &rarr;</a></p>
       </div>
     </div>
   </div>
@@ -104,173 +223,77 @@ permalink: /
 <!-- Products Section -->
 <section id="products" class="section-padding bg-gray-50">
   <div class="container mx-auto px-4 max-w-6xl">
-    <h2 class="text-3xl font-extrabold text-primary-dark text-center mb-4">One ecosystem for working with API specifications</h2>
-    <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+    <h2 class="text-3xl font-extrabold text-[#1D4F7C] mb-4">The tools</h2>
+    <p class="text-gray-600 mb-12 max-w-2xl">
       SpecLynx combines core tooling, developer workflows, and editing surfaces into one consistent stack.
     </p>
 
-    <div class="grid md:grid-cols-2 gap-8">
-      <!-- ApiDOM Card -->
-      <div class="product-card relative overflow-hidden">
-        <div class="absolute top-0 left-0 right-0 h-1 bg-[#1a74a5]"></div>
-        <div class="mb-4">
-          <span class="badge badge-primary">Core library</span>
-        </div>
-        <h3 class="product-card-title">ApiDOM</h3>
-        <p class="product-card-description">
-          Parse and work with API and workflow specifications through one consistent structure.
-        </p>
-        <ul class="text-sm text-gray-600 mb-4 space-y-1">
-          <li>&#10003; One API for all specs</li>
-          <li>&#10003; Semantic parsing</li>
-          <li>&#10003; Query &amp; traverse</li>
-          <li>&#10003; Format conversion</li>
-        </ul>
-        <a href="{{ '/apidom/' | relative_url }}" class="product-card-link">
-          Explore ApiDOM
-          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-          </svg>
-        </a>
-      </div>
-
-      <!-- Language Service Card -->
-      <div class="product-card relative overflow-hidden">
-        <div class="absolute top-0 left-0 right-0 h-1 bg-[#1a74a5]"></div>
-        <div class="mb-4">
-          <span class="badge badge-primary">Integration library</span>
-        </div>
-        <h3 class="product-card-title">Language Service</h3>
-        <p class="product-card-description">
-          Add specification-aware validation, navigation, and tooling features to your own editor or platform.
-        </p>
-        <ul class="text-sm text-gray-600 mb-4 space-y-1">
-          <li>&#10003; 12+ LSP features</li>
-          <li>&#10003; Multi-spec support</li>
-          <li>&#10003; Easy to integrate</li>
-          <li>&#10003; 15+ years of Swagger/OpenAPI expertise</li>
-        </ul>
-        <a href="{{ '/language-service/' | relative_url }}" class="product-card-link">
-          Explore Language Service
-          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-          </svg>
-        </a>
-      </div>
-
-      <!-- CLI Card -->
-      <div class="product-card">
-        <div class="mb-4">
-          <span class="badge badge-primary">Command line</span>
-        </div>
-        <h3 class="product-card-title">CLI</h3>
-        <p class="product-card-description">
-          Run validation, transformation, and specification processing in local workflows and CI.
-        </p>
-        <ul class="text-sm text-gray-600 mb-4 space-y-1">
-          <li>&#10003; CLI-first workflow</li>
-          <li>&#10003; Overlay 1.x support</li>
-          <li>&#10003; JSON &amp; YAML</li>
-          <li>&#10003; npm or npx</li>
-        </ul>
-        <a href="{{ '/cli/' | relative_url }}" class="product-card-link">
-          Explore CLI
-          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-          </svg>
-        </a>
-      </div>
-
-      <!-- Editor Card -->
-      <div class="product-card">
-        <div class="mb-4">
-          <span class="badge badge-secondary">Browser editor</span>
-        </div>
-        <h3 class="product-card-title">Editor</h3>
-        <p class="product-card-description">
-          The fastest way to work with specifications in the browser, built on the same core as the rest of SpecLynx.
-        </p>
-        <ul class="text-sm text-gray-600 mb-4 space-y-1">
-          <li>&#10003; Zero installation required</li>
-          <li>&#10003; Real-time validation</li>
-          <li>&#10003; Smart autocompletion</li>
-          <li>&#10003; Works on any device</li>
-        </ul>
-        <a href="{{ '/editor/' | relative_url }}" class="product-card-link">
-          Explore Editor
-          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-          </svg>
-        </a>
-      </div>
-
-      <!-- OpenAPI Toolkit Card -->
-      <div class="product-card">
-        <div class="mb-4">
-          <span class="badge badge-primary">VS Code extension</span>
-        </div>
-        <h3 class="product-card-title">OpenAPI Toolkit</h3>
-        <p class="product-card-description">
-          Bring SpecLynx capabilities into VS Code for editing, validation, and feedback while you work.
-        </p>
-        <ul class="text-sm text-gray-600 mb-4 space-y-1">
-          <li>&#10003; Context-aware autocompletion</li>
-          <li>&#10003; Instant error detection</li>
-          <li>&#10003; Live API preview</li>
-          <li>&#10003; Works in browser &amp; desktop</li>
-        </ul>
-        <a href="{{ '/openapi-toolkit/' | relative_url }}" class="product-card-link">
-          Explore OpenAPI Toolkit
-          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-          </svg>
-        </a>
-      </div>
+    <div class="rounded-lg border border-gray-200 divide-y divide-gray-200 overflow-hidden shadow-sm">
+      <a href="{{ '/apidom/' | relative_url }}" class="flex flex-wrap md:flex-nowrap items-baseline gap-x-6 gap-y-1 px-6 py-5 bg-white hover:bg-gray-50 transition-colors group">
+        <span class="w-44 flex-shrink-0 font-bold text-primary-dark group-hover:text-[#1a74a5] transition-colors">ApiDOM</span>
+        <span class="text-gray-600 flex-1">Parse any API spec into one lossless semantic structure.</span>
+        <span class="text-sm text-gray-500 flex-shrink-0">Core library</span>
+        <svg class="w-4 h-4 text-gray-400 group-hover:text-[#1a74a5] flex-shrink-0 self-center transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </a>
+      <a href="{{ '/language-service/' | relative_url }}" class="flex flex-wrap md:flex-nowrap items-baseline gap-x-6 gap-y-1 px-6 py-5 bg-white hover:bg-gray-50 transition-colors group">
+        <span class="w-44 flex-shrink-0 font-bold text-primary-dark group-hover:text-[#1a74a5] transition-colors">Language Service</span>
+        <span class="text-gray-600 flex-1">LSP intelligence for API specs, in any editor or platform.</span>
+        <span class="text-sm text-gray-500 flex-shrink-0">Integration library</span>
+        <svg class="w-4 h-4 text-gray-400 group-hover:text-[#1a74a5] flex-shrink-0 self-center transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </a>
+      <a href="{{ '/cli/' | relative_url }}" class="flex flex-wrap md:flex-nowrap items-baseline gap-x-6 gap-y-1 px-6 py-5 bg-white hover:bg-gray-50 transition-colors group">
+        <span class="w-44 flex-shrink-0 font-bold text-primary-dark group-hover:text-[#1a74a5] transition-colors">CLI</span>
+        <span class="text-gray-600 flex-1">Validate specs and apply overlays from the terminal and CI.</span>
+        <span class="text-sm text-gray-500 flex-shrink-0">Command line</span>
+        <svg class="w-4 h-4 text-gray-400 group-hover:text-[#1a74a5] flex-shrink-0 self-center transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </a>
+      <a href="{{ '/editor/' | relative_url }}" class="flex flex-wrap md:flex-nowrap items-baseline gap-x-6 gap-y-1 px-6 py-5 bg-white hover:bg-gray-50 transition-colors group">
+        <span class="w-44 flex-shrink-0 font-bold text-primary-dark group-hover:text-[#1a74a5] transition-colors">Editor</span>
+        <span class="text-gray-600 flex-1">Write and validate specs in the browser, nothing to install.</span>
+        <span class="text-sm text-gray-500 flex-shrink-0">Browser editor</span>
+        <svg class="w-4 h-4 text-gray-400 group-hover:text-[#1a74a5] flex-shrink-0 self-center transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </a>
+      <a href="{{ '/openapi-toolkit/' | relative_url }}" class="flex flex-wrap md:flex-nowrap items-baseline gap-x-6 gap-y-1 px-6 py-5 bg-white hover:bg-gray-50 transition-colors group">
+        <span class="w-44 flex-shrink-0 font-bold text-primary-dark group-hover:text-[#1a74a5] transition-colors">OpenAPI Toolkit</span>
+        <span class="text-gray-600 flex-1">Validation, completion, and preview while you author specs.</span>
+        <span class="text-sm text-gray-500 flex-shrink-0">VS Code extension</span>
+        <svg class="w-4 h-4 text-gray-400 group-hover:text-[#1a74a5] flex-shrink-0 self-center transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- Work with us Section -->
-<section class="section-padding bg-white">
+<!-- Community Section -->
+<section class="section-padding bg-gray-50">
   <div class="container mx-auto px-4 max-w-6xl">
-    <div class="grid md:grid-cols-2 gap-12 items-center">
-      <div>
-        <h2 class="text-3xl font-extrabold text-primary-dark mb-4">Get help from the maintainers</h2>
-        <p class="text-gray-600 mb-8">
+    <h2 class="text-3xl font-extrabold text-[#1D4F7C]">Community</h2>
+    <div class="w-16 h-1 bg-primary-light rounded mt-3 mb-12" style="background-color: var(--color-primary-light);"></div>
+    <div class="grid md:grid-cols-2 gap-12">
+      <div class="flex flex-col">
+        <h3 class="text-base uppercase tracking-wider text-gray-500 mb-4">Built in the open</h3>
+        <p class="text-gray-600 mb-8 flex-1">
+          Every part of SpecLynx is open source under Apache 2.0. Contributions, issues, and questions are welcome.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="https://github.com/speclynx" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-white border border-gray-300 text-primary-dark font-semibold py-2 px-4 rounded hover:bg-gray-100 transition-colors">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+            Star on GitHub
+          </a>
+          <a href="https://github.com/orgs/speclynx/discussions" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-white border border-gray-300 text-primary-dark font-semibold py-2 px-4 rounded hover:bg-gray-100 transition-colors">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+            Join the discussions
+          </a>
+        </div>
+      </div>
+      <div class="flex flex-col">
+        <h3 class="text-base uppercase tracking-wider text-gray-500 mb-4">Get help from the maintainers</h3>
+        <p class="text-gray-600 mb-8 flex-1">
           SpecLynx is free to use. We can help developers and teams integrate the tooling, standardize API and workflow specifications, and adopt it across their platform.
         </p>
-        <a href="mailto:info@speclynx.com?subject=Help%20with%20SpecLynx" class="primary-cta text-white font-bold py-3 px-6 rounded inline-block">
+        <a href="mailto:info@speclynx.com?subject=Help%20with%20SpecLynx" class="self-start inline-flex items-center gap-2 bg-white border border-gray-300 text-primary-dark font-semibold py-2 px-4 rounded hover:bg-gray-100 transition-colors">
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
           Talk to the maintainers
         </a>
-      </div>
-      <div>
-        <h3 class="text-xl font-bold text-primary-dark mb-6">Local-first by default</h3>
-        <div class="grid grid-cols-2 gap-3">
-          <div class="bg-gray-50 rounded-lg px-4 py-4 flex items-center gap-3">
-            <svg class="w-5 h-5 text-primary-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-            </svg>
-            <span class="text-sm font-semibold text-primary-dark">Runs locally</span>
-          </div>
-          <div class="bg-gray-50 rounded-lg px-4 py-4 flex items-center gap-3">
-            <svg class="w-5 h-5 text-primary-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-            </svg>
-            <span class="text-sm font-semibold text-primary-dark">Works offline</span>
-          </div>
-          <div class="bg-gray-50 rounded-lg px-4 py-4 flex items-center gap-3">
-            <svg class="w-5 h-5 text-primary-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-            </svg>
-            <span class="text-sm font-semibold text-primary-dark">No accounts</span>
-          </div>
-          <div class="bg-gray-50 rounded-lg px-4 py-4 flex items-center gap-3">
-            <svg class="w-5 h-5 text-primary-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-            </svg>
-            <span class="text-sm font-semibold text-primary-dark">No telemetry</span>
-          </div>
-        </div>
       </div>
     </div>
   </div>

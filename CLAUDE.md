@@ -9,7 +9,7 @@ Jekyll static site for SpecLynx — an API tooling company. Hosted on GitHub Pag
 Five products:
 - **Editor** — Browser-based OpenAPI editor at `editor.speclynx.com` (fully client-side, open source)
 - **OpenAPI Toolkit** — Free VS Code extension for API spec authoring (validation, completion, hover, preview, linting)
-- **CLI** — Command-line tool (`@speclynx/cli`) currently shipping `overlay apply` and `overlay diff`; dereference, bundle, convert, and validate are on the roadmap
+- **CLI** — Command-line tool (`@speclynx/cli`) currently shipping `overlay apply`, `overlay diff`, and `validate` (validation + linting for OpenAPI, AsyncAPI, Arazzo, Overlay; single file or URL per run); dereference, bundle, and convert are on the roadmap
 - **Language Service** — LSP-compatible npm library (`@speclynx/apidom-ls`) for API spec intelligence
 - **ApiDOM** — Semantic parser for API specifications (OpenAPI, AsyncAPI, Arazzo, JSON Schema)
 
@@ -159,6 +159,7 @@ Key conventions for ApiDOM content:
 - Use "strict mode" and "non-strict mode" consistently — don't mention underlying parsers (Tree-sitter, JSON.parse, yaml) outside the comparison table
 - Source maps and style preservation are **opt-in**, not automatic
 - Reference package (`@speclynx/apidom-reference`) defaults to **strict mode**; parser adapters default to **non-strict mode**
+- Reference package `FileResolver` ships with an **empty `fileAllowList`** (default deny): parsing a local file requires passing a configured `FileResolver`; parsing from a URL works with no extra configuration
 - Reference package options nest under `parse.parserOpts`; adapter options are top-level
 - Use "data model" not "element" when referring to the parsed result
 - The package is "one of the main entry points" (not "the main entry point")
