@@ -1,10 +1,10 @@
 # Site settings
 title: SpecLynx
 email: info@speclynx.com
-tagline: Enterprise-ready API tooling
+tagline: One toolchain for every API spec
 description: >-
-  SpecLynx is enterprise-ready API tooling for parsing, validating, transforming, and working
-  with OpenAPI, AsyncAPI, Arazzo, Overlay, and JSON Schema.
+  SpecLynx is one toolchain for every API spec: parse, validate, transform, and lint
+  OpenAPI, AsyncAPI, Arazzo, Overlay, and JSON Schema. Local-first, free, and open source.
 keywords: SpecLynx, ApiDOM, OpenAPI, AsyncAPI, Arazzo, Overlay, JSON Schema, Language Service, API tooling, API specifications
 baseurl: ""
 url: "https://speclynx.com"

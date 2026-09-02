@@ -783,3 +783,38 @@ h4:hover .heading-anchor {
 .lightbox-trigger:hover {
     opacity: 0.9;
 }
+
+/* Terminal tabs (hero demo switcher) */
+.terminal-tabs {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-left: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.terminal-tab {
+    font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+    font-size: 0.75rem;
+    color: #9CA3AF;
+    background: transparent;
+    border: 0;
+    padding: 0.3rem 0.7rem;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.terminal-tab:hover {
+    color: #E5E7EB;
+}
+
+.terminal-tab[aria-selected="true"] {
+    background: #1F2937;
+    color: #E5E7EB;
+}
+
+.terminal-panel {
+    height: 22rem;
+    overflow-y: auto;
+}
