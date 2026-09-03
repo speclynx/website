@@ -5,12 +5,6 @@
 
 Source code for the [SpecLynx website](https://speclynx.com/) — the home of enterprise-ready API tooling.
 
-## Products
-
-- **[OpenAPI Toolkit](https://speclynx.com/openapi-toolkit/)** — VSCode extension for API specification authoring
-- **[Language Service](https://speclynx.com/language-service/)** — LSP-compatible library for API spec intelligence
-- **[ApiDOM](https://speclynx.com/apidom/)** — Semantic parser for API specifications
-
 ## Development
 
 ```bash
