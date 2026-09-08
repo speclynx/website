@@ -1,0 +1,57 @@
+---
+layout: default
+title: Manifesto
+description: Why we built SpecLynx - a note from the maintainers on spec fragmentation, lossless tooling, and where API tooling should go next.
+permalink: /manifesto/
+---
+
+<!--
+  Maintainers' note - PROSE IS WRITTEN BY THE MAINTAINERS, not generated.
+  Outline agreed from the GTM founders'-note structure (Sept 2026):
+    01 Where we come from       - the ecosystem work, years in core API tooling
+    02 What's broken            - fragmented tools, one spec at a time, lossy parsing, closed platforms
+    03 What we believe          - one open, local-first, programmable semantic foundation
+    04 Why our perspective is unique - we built the layer others build on
+    05 What SpecLynx is, and isn't   - open foundation, not a walled SaaS
+    06 Where we're going        - short roadmap point of view + invitation to build on it
+    Sign-off                    - maintainers by name
+  Status (Sept 2026): drafted from the maintainers' own answers to a
+  written interview; other companies' tools are deliberately unnamed.
+  Section 06 promises still need the maintainers' sign-off.
+-->
+
+<section class="py-16 md:py-24">
+  <div class="container mx-auto px-4 max-w-3xl">
+    <p class="text-primary-light text-xs font-bold uppercase tracking-wider mb-4">Manifesto</p>
+    <h1 class="text-4xl font-extrabold text-primary-dark mb-6">A note from the maintainers</h1>
+    <p class="text-xl text-gray-600 mb-10">Why we built SpecLynx, and what we are promising.</p>
+    <p class="text-primary-light font-mono text-sm font-bold mt-10 mb-2" aria-hidden="true">01</p>
+    <h2 id="where-we-come-from" class="text-xl font-extrabold text-[#1D4F7C] mb-3">Where we come from</h2>
+    <p class="text-gray-700 leading-relaxed mb-4">We maintained Swagger Editor and Swagger UI, and on the Java side Swagger Core and Swagger Codegen, for years. We contributed to the OpenAPI, Arazzo, and AsyncAPI specifications themselves. That is where we learned what API tooling looks like from the inside, and where ApiDOM was born.</p>
+    <p class="text-primary-light font-mono text-sm font-bold mt-10 mb-2" aria-hidden="true">02</p>
+    <h2 id="what-was-broken" class="text-xl font-extrabold text-[#1D4F7C] mb-3">What was broken</h2>
+    <p class="text-gray-700 leading-relaxed mb-4">Our own tools worked on strings and plain JavaScript objects. Finding the line for an error meant translating a JSON Pointer back into a position. Dereferencing a <code class="bg-gray-100 px-1 rounded">$ref</code> was done with JSON Patch, which was complicated, hard to maintain, and never quite right. And the moment a document had a syntax error the parser threw, and syntax highlighting went out of the window. That is the normal state of a document while a human is writing it.</p>
+    <p class="text-gray-700 leading-relaxed mb-4">Other parsers took a different route and forced every specification into one canonical model. Not every feature of every spec fits such a model, so things got lost in translation, and each new spec version meant reworking the model.</p>
+    <p class="text-primary-light font-mono text-sm font-bold mt-10 mb-2" aria-hidden="true">03</p>
+    <h2 id="what-we-believe" class="text-xl font-extrabold text-[#1D4F7C] mb-3">What we believe</h2>
+    <p class="text-gray-700 leading-relaxed mb-4">Tooling should work on an abstract representation of the parsed document, not on strings or objects. One underlying structure shared by every specification, with the semantics of each spec layered on top rather than squeezed into a canonical model. That structure has to represent documents with recoverable syntax errors, because that is what editing looks like. Given that structure, proper traversal, dereferencing, and bundling become ordinary work instead of heroics.</p>
+    <p class="text-primary-light font-mono text-sm font-bold mt-10 mb-2" aria-hidden="true">04</p>
+    <h2 id="why-our-perspective-is-unique" class="text-xl font-extrabold text-[#1D4F7C] mb-3">Why our perspective is unique</h2>
+    <p class="text-gray-700 leading-relaxed mb-4">We built the layer other tools are built on, and we lived with its limitations. ApiDOM started while we were still there. SpecLynx is what we could do with it once we left: the work we knew was needed, and never found the time for.</p>
+    <p class="text-primary-light font-mono text-sm font-bold mt-10 mb-2" aria-hidden="true">05</p>
+    <h2 id="what-speclynx-is-and-isnt" class="text-xl font-extrabold text-[#1D4F7C] mb-3">What SpecLynx is, and is not</h2>
+    <p class="text-gray-700 leading-relaxed mb-4">SpecLynx is ApiDOM and the tools we build on it: the Language Service, the CLI, the browser Editor, and the VS Code extension. All of it is open source under Apache 2.0, runs on your machine, and needs no account. It is not a hosted platform, and we are not building one.</p>
+    <p class="text-primary-light font-mono text-sm font-bold mt-10 mb-2" aria-hidden="true">06</p>
+    <h2 id="where-we-are-going" class="text-xl font-extrabold text-[#1D4F7C] mb-3">Where we are going</h2>
+    <p class="text-gray-700 leading-relaxed mb-4">We commit to three things. Everything our tools run on is published to npm under Apache 2.0. The packages that power the CLI and the Editor are the same ones you install, with nothing held back. Keeping up with the specifications as they ship new versions, as we did for OpenAPI 3.1, Arazzo 1.1, and Overlay 1.1. And keeping the foundation open and local-first. We do not promise dates.</p>
+    <p class="text-gray-700 leading-relaxed mb-4">If you write specs, run the CLI on your own document. If you build tooling, build it on ApiDOM and tell us what is missing.</p>
+    <p class="text-gray-700 leading-relaxed mt-12 mb-10">
+      <span class="block font-semibold"><a href="{{ '/about/#vladimir-gorej' | relative_url }}" class="text-primary-dark underline hover:no-underline">Vladim&iacute;r Gorej</a> and <a href="{{ '/about/#francesco-tumanischvili' | relative_url }}" class="text-primary-dark underline hover:no-underline">Francesco Tumanischvili</a></span>
+      <span class="block text-gray-500">Maintainers, SpecLynx</span>
+    </p>
+    <div class="flex flex-wrap gap-4">
+      <a href="{{ '/about/' | relative_url }}" class="primary-cta text-white font-bold py-3 px-6 rounded inline-block">Meet the maintainers</a>
+      <a href="https://github.com/orgs/speclynx/discussions" target="_blank" rel="noopener noreferrer" class="border-2 border-primary-dark text-primary-dark font-bold py-3 px-6 rounded inline-block hover:bg-gray-100 transition-colors">Join the discussions</a>
+    </div>
+  </div>
+</section>
