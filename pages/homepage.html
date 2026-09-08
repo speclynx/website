@@ -50,13 +50,28 @@ permalink: /
               <button type="button" role="tab" id="hero-tab-diff" aria-controls="hero-panel-diff" aria-selected="false" tabindex="-1" class="terminal-tab">diff</button>
             </div>
           </div>
-<pre class="terminal-body terminal-panel" role="tabpanel" id="hero-panel-validate" aria-labelledby="hero-tab-validate" tabindex="0"><span class="terminal-prompt">$ npx @speclynx/cli validate openapi.yaml</span>
+<!-- Validate panel: four real CLI runs. JS types each command and reveals its
+     output in a loop; without JS (or with reduced motion) the runs render stacked.
+     Output is verbatim from `npx @speclynx/cli validate` on sample files. -->
+<pre class="terminal-body terminal-panel" role="tabpanel" id="hero-panel-validate" aria-labelledby="hero-tab-validate" tabindex="0" data-terminal-typewriter><span class="terminal-run"><span class="terminal-prompt"><span class="t-dollar">$</span> npx @speclynx/cli validate <span class="t-arg">openapi.yaml</span></span>
 <span class="t-file">openapi.yaml</span>
-  <span class="t-loc">3:3-3:9  </span>  <span class="t-error">error</span>  <span class="t-code">3030501</span>  <span class="t-msg">should always have a 'version'</span>
-  <span class="t-loc">7:24-7:26</span>  <span class="t-error">error</span>  <span class="t-code">3080500</span>  <span class="t-msg">operationId must be a string</span>
+  <span class="t-loc">2:1-2:5  </span>  <span class="t-error">error</span>  <span class="t-code">3030501</span>  <span class="t-msg">should always have a 'version'</span>
+  <span class="t-loc">7:20-7:22</span>  <span class="t-error">error</span>  <span class="t-code">3080500</span>  <span class="t-msg">operationId must be a string</span>
 
-<span class="t-fail">&#10006; 2 problems (2 errors)</span></pre>
-<pre class="terminal-body terminal-panel" role="tabpanel" id="hero-panel-overlay" aria-labelledby="hero-tab-overlay" tabindex="0" hidden><span class="terminal-prompt">$ npx @speclynx/cli overlay apply overlay.yaml openapi.yaml</span>
+<span class="t-fail">&#10006; 2 problems (2 errors)</span></span><span class="terminal-run"><span class="terminal-prompt"><span class="t-dollar">$</span> npx @speclynx/cli validate <span class="t-arg">asyncapi.yaml</span></span>
+<span class="t-file">asyncapi.yaml</span>
+  <span class="t-loc">6:3-6:13</span>  <span class="t-error">error</span>  <span class="t-code">100201</span>  <span class="t-msg">should always have a 'protocol'</span>
+
+<span class="t-fail">&#10006; 1 problem (1 error)</span></span><span class="terminal-run"><span class="terminal-prompt"><span class="t-dollar">$</span> npx @speclynx/cli validate <span class="t-arg">arazzo.yaml</span></span>
+<span class="t-file">arazzo.yaml</span>
+  <span class="t-loc">16:9-20:1</span>  <span class="t-warn">warning</span>  <span class="t-code">9050201</span>  <span class="t-msg">Step 'description' should be present and non-empty string.</span>
+
+<span class="t-warnsum">&#9888; 1 problem (1 warning)</span></span><span class="terminal-run"><span class="terminal-prompt"><span class="t-dollar">$</span> npx @speclynx/cli validate <span class="t-arg">overlay.yaml</span></span>
+<span class="t-file">overlay.yaml</span>
+  <span class="t-loc">11:13-11:16</span>  <span class="t-error">error</span>  <span class="t-code">10030500</span>  <span class="t-msg">remove must be a boolean</span>
+
+<span class="t-fail">&#10006; 1 problem (1 error)</span></span></pre>
+<pre class="terminal-body terminal-panel" role="tabpanel" id="hero-panel-overlay" aria-labelledby="hero-tab-overlay" tabindex="0" hidden data-terminal-typewriter><span class="terminal-run"><span class="terminal-prompt"><span class="t-dollar">$</span> npx @speclynx/cli overlay apply <span class="t-arg">overlay.yaml</span> <span class="t-arg">openapi.yaml</span></span>
 openapi: 3.1.0
 info:
   title: Museum API
@@ -69,8 +84,8 @@ paths:
       operationId: listTickets
       responses:
         '200':
-          description: OK</pre>
-<pre class="terminal-body terminal-panel" role="tabpanel" id="hero-panel-diff" aria-labelledby="hero-tab-diff" tabindex="0" hidden><span class="terminal-prompt">$ npx @speclynx/cli overlay diff openapi-v1.yaml openapi-v2.yaml</span>
+          description: OK</span></pre>
+<pre class="terminal-body terminal-panel" role="tabpanel" id="hero-panel-diff" aria-labelledby="hero-tab-diff" tabindex="0" hidden data-terminal-typewriter><span class="terminal-run"><span class="terminal-prompt"><span class="t-dollar">$</span> npx @speclynx/cli overlay diff <span class="t-arg">openapi-v1.yaml</span> <span class="t-arg">openapi-v2.yaml</span></span>
 overlay: 1.1.0
 info:
   title: API diff
@@ -81,7 +96,7 @@ actions:
     update:
       description: Buy and manage museum tickets.
   - target: $['info']['version']
-    update: 1.1.0</pre>
+    update: 1.1.0</span></pre>
         </div>
       </div>
     </div>

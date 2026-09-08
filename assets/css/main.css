@@ -296,13 +296,18 @@ h4:hover .heading-anchor {
     overflow-x: auto;
 }
 
-.terminal-prompt { color: #34D399; }
-.t-file { color: #FFFFFF; font-weight: 700; }
+.terminal-prompt { color: #34D399; font-weight: 700; }
+.t-dollar { color: #AEB6C2; font-weight: 400; }
+.t-arg { color: #C9D1D9; font-weight: 400; }
+.t-file { color: #AEB6C2; font-weight: 400; }
 .t-loc { color: #AEB6C2; }
 .t-error { color: #F87171; }
 .t-code { color: #3DD6EE; }
 .t-msg { color: #E5E7EB; }
 .t-fail { color: #F87171; font-weight: 700; }
+.t-warn { color: #FBBF24; }
+.t-warnsum { color: #FBBF24; font-weight: 700; }
+.t-ok { color: #34D399; }
 
 /* Tables */
 .spec-table {
@@ -815,6 +820,25 @@ h4:hover .heading-anchor {
 }
 
 .terminal-panel {
-    height: 22rem;
+    height: 23.5rem;
     overflow-y: auto;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
 }
+
+/* Visually hidden but available to assistive tech (also provided by Tailwind; kept here
+   because the typewriter adds it at runtime). */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+/* Typewriter loop in the hero validate panel */
+.terminal-run { display: block; }
+.terminal-run + .terminal-run { margin-top: 0.7em; }
+.terminal-cursor {
+    display: inline-block;
+    width: 0.55em;
+    height: 1.1em;
+    vertical-align: text-bottom;
+    background: #E5E7EB;
+    animation: terminal-blink 1s steps(2, start) infinite;
+}
+@keyframes terminal-blink { to { visibility: hidden; } }
