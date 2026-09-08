@@ -175,26 +175,204 @@ actions:
 <section id="how-it-works" class="section-padding bg-white">
   <div class="container mx-auto px-4 max-w-6xl">
     <h2 class="text-3xl font-extrabold text-[#1D4F7C] mb-4">How SpecLynx works</h2>
-    <p class="text-gray-600 mb-12 max-w-2xl">
+    <p class="text-gray-600 mb-10 max-w-2xl">
       Every supported spec is parsed into <a href="{{ '/apidom/' | relative_url }}" class="text-primary-light underline hover:no-underline">ApiDOM</a>, one shared semantic structure, with spec-level semantics layered on top. Everything else runs on that structure. That is why every SpecLynx tool behaves the same way across every spec and format, and why it recovers from broken documents instead of choking on them.
     </p>
-    <div class="grid md:grid-cols-3 gap-8">
-      <div class="bg-gray-50 rounded-lg p-8">
-        <p class="text-primary-light font-mono text-sm font-bold mb-3">01</p>
-        <h3 class="text-lg font-bold text-primary-dark mb-3">Parse</h3>
-        <p class="text-gray-600">Any supported spec, in JSON or YAML. Parsing is lossless: comments, key ordering, and formatting survive the round trip.</p>
-      </div>
-      <div class="bg-gray-50 rounded-lg p-8">
-        <p class="text-primary-light font-mono text-sm font-bold mb-3">02</p>
-        <h3 class="text-lg font-bold text-primary-dark mb-3">One semantic structure</h3>
-        <p class="text-gray-600">Everything becomes ApiDOM: one structure to query, traverse, and transform, with the semantics of each specification layered on top.</p>
-      </div>
-      <div class="bg-gray-50 rounded-lg p-8">
-        <p class="text-primary-light font-mono text-sm font-bold mb-3">03</p>
-        <h3 class="text-lg font-bold text-primary-dark mb-3">Your tools</h3>
-        <p class="text-gray-600">Validation, linting, editing intelligence, and transforms all run on the same structure: in the editor, in CI, and in your own platform.</p>
-      </div>
+    <!-- Pipeline diagram: inline so text stays real and it scales with the container.
+         Scrolls horizontally on narrow screens (min-w) instead of shrinking to illegibility. -->
+    <div class="hidden md:block mb-10">
+    <svg class="w-full h-auto" viewBox="0 0 1240 330" role="img" aria-labelledby="hiw-title-wide" xmlns="http://www.w3.org/2000/svg">
+      <title id="hiw-title-wide">SpecLynx pipeline: OpenAPI, AsyncAPI, Arazzo, Overlay, and JSON Schema documents are parsed into one ApiDOM structure, which is traversed, transformed, and serialized back to JSON or YAML.</title>
+      <defs>
+        <filter id="hiw-glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="28"/></filter>
+        <marker id="hiw-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3A97CC"/></marker>
+        <style>
+          #how-it-works .hiw-lbl { font-family: inherit; font-weight: 700; font-size: 19px; fill: #092B4E; }
+          #how-it-works .hiw-chip { font-family: inherit; font-weight: 600; font-size: 14px; fill: #092B4E; }
+          #how-it-works .hiw-cap { font-family: inherit; font-size: 14px; fill: #4b5563; }
+          #how-it-works .hiw-edge { stroke: #3A97CC; stroke-width: 2; fill: none; }
+          #how-it-works .hiw-tree { stroke: #092B4E; stroke-width: 2; fill: none; }
+          #how-it-works .hiw-node { fill: #ffffff; stroke: #092B4E; stroke-width: 2; }
+          #how-it-works .hiw-node-on { fill: #77D6F4; stroke: #092B4E; stroke-width: 2; }
+          #how-it-works .hiw-node-new { fill: #7EE0B2; stroke: #092B4E; stroke-width: 2; }
+          #how-it-works .hiw-path-on { stroke: #3A97CC; stroke-width: 4; fill: none; stroke-linecap: round; }
+          #how-it-works .hiw-box { fill: #ffffff; stroke: #BEE9FA; stroke-width: 2; }
+          #how-it-works .hiw-doc { fill: #ffffff; stroke: #092B4E; stroke-width: 2; stroke-linejoin: round; }
+          #how-it-works .hiw-line { stroke: #3A97CC; stroke-width: 3; stroke-linecap: round; }
+          #how-it-works .hiw-line-c { stroke: #7EE0B2; stroke-width: 3; stroke-linecap: round; }
+        </style>
+      </defs>
+      <circle cx="560" cy="170" r="150" fill="#BEE9FA" opacity=".55" filter="url(#hiw-glow)"/>
+      <circle cx="900" cy="150" r="120" fill="#BEE9FA" opacity=".35" filter="url(#hiw-glow)"/>
+      <!-- inputs -->
+      <g transform="translate(20,52)"><rect class="hiw-box" width="136" height="34" rx="17"/><text class="hiw-chip" x="68" y="22" text-anchor="middle">OpenAPI</text></g>
+      <g transform="translate(20,102)"><rect class="hiw-box" width="136" height="34" rx="17"/><text class="hiw-chip" x="68" y="22" text-anchor="middle">AsyncAPI</text></g>
+      <g transform="translate(20,152)"><rect class="hiw-box" width="136" height="34" rx="17"/><text class="hiw-chip" x="68" y="22" text-anchor="middle">Arazzo</text></g>
+      <g transform="translate(20,202)"><rect class="hiw-box" width="136" height="34" rx="17"/><text class="hiw-chip" x="68" y="22" text-anchor="middle">Overlay</text></g>
+      <g transform="translate(20,252)"><rect class="hiw-box" width="136" height="34" rx="17"/><text class="hiw-chip" x="68" y="22" text-anchor="middle">JSON Schema</text></g>
+      <path class="hiw-edge" d="M156 69 C 200 69, 200 169, 236 169"/>
+      <path class="hiw-edge" d="M156 119 C 200 119, 200 169, 236 169"/>
+      <path class="hiw-edge" d="M156 169 L 236 169" marker-end="url(#hiw-arrow)"/>
+      <path class="hiw-edge" d="M156 219 C 200 219, 200 169, 236 169"/>
+      <path class="hiw-edge" d="M156 269 C 200 269, 200 169, 236 169"/>
+      <!-- 01 Parse -->
+      <g transform="translate(240,0)">
+        <g transform="translate(24,104)">
+        <path class="hiw-doc" d="M0 0 H50 L72 22 V130 H0 Z"/>
+        <path class="hiw-doc" d="M50 0 V22 H72"/>
+        <line class="hiw-line-c" x1="14" y1="40" x2="40" y2="40"/>
+        <line class="hiw-line" x1="14" y1="58" x2="56" y2="58"/>
+        <line class="hiw-line" x1="24" y1="76" x2="56" y2="76"/>
+        <line class="hiw-line" x1="24" y1="94" x2="48" y2="94"/>
+        <line class="hiw-line" x1="14" y1="112" x2="56" y2="112"/>
+        </g>
+        <text class="hiw-lbl" x="60" y="292" text-anchor="middle">Parse</text>
+        <text class="hiw-cap" x="60" y="314" text-anchor="middle">JSON or YAML, lossless</text>
+      </g>
+      <path class="hiw-edge" d="M330 169 H 400" marker-end="url(#hiw-arrow)"/>
+      <!-- 02 One structure -->
+      <g transform="translate(410,0)">
+        <g transform="translate(0,96)">
+        <line class="hiw-tree" x1="80" y1="14" x2="40" y2="62"/><line class="hiw-tree" x1="80" y1="14" x2="120" y2="62"/>
+        <line class="hiw-tree" x1="40" y1="62" x2="16" y2="118"/><line class="hiw-tree" x1="40" y1="62" x2="64" y2="118"/>
+        <line class="hiw-tree" x1="120" y1="62" x2="96" y2="118"/><line class="hiw-tree" x1="120" y1="62" x2="144" y2="118"/>
+        <circle class="hiw-node" cx="80" cy="14" r="12"/>
+        <circle class="hiw-node" cx="40" cy="62" r="10"/><circle class="hiw-node" cx="120" cy="62" r="10"/>
+        <circle class="hiw-node" cx="16" cy="118" r="8"/><circle class="hiw-node" cx="64" cy="118" r="8"/>
+        <circle class="hiw-node" cx="96" cy="118" r="8"/><circle class="hiw-node" cx="144" cy="118" r="8"/>
+        </g>
+        <text class="hiw-lbl" x="80" y="292" text-anchor="middle">One structure</text>
+        <text class="hiw-cap" x="80" y="314" text-anchor="middle">ApiDOM, spec semantics on top</text>
+      </g>
+      <path class="hiw-edge" d="M570 169 H 640" marker-end="url(#hiw-arrow)"/>
+      <!-- 03 Traverse -->
+      <g transform="translate(650,0)">
+        <g transform="translate(0,96)">
+        <line class="hiw-tree" x1="80" y1="14" x2="40" y2="62"/><line class="hiw-tree" x1="80" y1="14" x2="120" y2="62"/>
+        <line class="hiw-tree" x1="40" y1="62" x2="16" y2="118"/><line class="hiw-tree" x1="40" y1="62" x2="64" y2="118"/>
+        <line class="hiw-tree" x1="120" y1="62" x2="96" y2="118"/><line class="hiw-tree" x1="120" y1="62" x2="144" y2="118"/>
+        <path class="hiw-path-on" d="M80 14 L120 62 L96 118"/>
+        <circle class="hiw-node-on" cx="80" cy="14" r="12"/>
+        <circle class="hiw-node" cx="40" cy="62" r="10"/><circle class="hiw-node-on" cx="120" cy="62" r="10"/>
+        <circle class="hiw-node" cx="16" cy="118" r="8"/><circle class="hiw-node" cx="64" cy="118" r="8"/>
+        <circle class="hiw-node-on" cx="96" cy="118" r="8"/><circle class="hiw-node" cx="144" cy="118" r="8"/>
+        </g>
+        <text class="hiw-lbl" x="80" y="292" text-anchor="middle">Traverse</text>
+        <text class="hiw-cap" x="80" y="314" text-anchor="middle">query, validate, lint</text>
+      </g>
+      <path class="hiw-edge" d="M810 169 H 880" marker-end="url(#hiw-arrow)"/>
+      <!-- 04 Transform -->
+      <g transform="translate(890,0)">
+        <g transform="translate(0,96)">
+        <line class="hiw-tree" x1="80" y1="14" x2="40" y2="62"/><line class="hiw-tree" x1="80" y1="14" x2="120" y2="62"/>
+        <line class="hiw-tree" x1="40" y1="62" x2="16" y2="118"/><line class="hiw-tree" x1="40" y1="62" x2="64" y2="118"/>
+        <line class="hiw-tree" x1="120" y1="62" x2="96" y2="118"/><line class="hiw-tree" x1="120" y1="62" x2="144" y2="118"/>
+        <line class="hiw-tree" x1="120" y1="62" x2="160" y2="96" stroke-dasharray="4 4"/>
+        <circle class="hiw-node" cx="80" cy="14" r="12"/>
+        <circle class="hiw-node" cx="40" cy="62" r="10"/><circle class="hiw-node" cx="120" cy="62" r="10"/>
+        <circle class="hiw-node" cx="16" cy="118" r="8"/><circle class="hiw-node" cx="64" cy="118" r="8"/>
+        <circle class="hiw-node-new" cx="96" cy="118" r="8"/><circle class="hiw-node" cx="144" cy="118" r="8"/>
+        <circle class="hiw-node-new" cx="160" cy="96" r="8"/>
+        </g>
+        <text class="hiw-lbl" x="80" y="292" text-anchor="middle">Transform</text>
+        <text class="hiw-cap" x="80" y="314" text-anchor="middle">overlay, edit, convert</text>
+      </g>
+      <path class="hiw-edge" d="M1050 169 H 1106" marker-end="url(#hiw-arrow)"/>
+      <!-- 05 Serialize -->
+      <g transform="translate(1110,0)">
+        <g transform="translate(14,104)">
+        <path class="hiw-doc" d="M0 0 H50 L72 22 V130 H0 Z"/>
+        <path class="hiw-doc" d="M50 0 V22 H72"/>
+        <line class="hiw-line-c" x1="14" y1="40" x2="40" y2="40"/>
+        <line class="hiw-line" x1="14" y1="58" x2="56" y2="58"/>
+        <line class="hiw-line" x1="24" y1="76" x2="56" y2="76"/>
+        <line class="hiw-line-c" x1="24" y1="94" x2="48" y2="94"/>
+        <line class="hiw-line" x1="14" y1="112" x2="56" y2="112"/>
+        </g>
+        <text class="hiw-lbl" x="50" y="292" text-anchor="middle">Serialize</text>
+        <text class="hiw-cap" x="50" y="314" text-anchor="middle">back to JSON or YAML</text>
+      </g>
+    </svg>
     </div>
+    <!-- Vertical variant for narrow screens: same stages stacked. -->
+    <div class="md:hidden mb-10">
+    <svg class="w-full h-auto max-w-sm" viewBox="0 0 400 870" role="img" aria-labelledby="hiw-title-narrow" xmlns="http://www.w3.org/2000/svg">
+      <title id="hiw-title-narrow">SpecLynx pipeline: OpenAPI, AsyncAPI, Arazzo, Overlay, and JSON Schema documents are parsed into one ApiDOM structure, which is traversed, transformed, and serialized back to JSON or YAML.</title>
+    <g transform="translate(26,8)"><rect class="hiw-box" width="108" height="32" rx="16"/><text class="hiw-chip" x="54" y="21" text-anchor="middle">OpenAPI</text></g>
+    <g transform="translate(146,8)"><rect class="hiw-box" width="108" height="32" rx="16"/><text class="hiw-chip" x="54" y="21" text-anchor="middle">AsyncAPI</text></g>
+    <g transform="translate(266,8)"><rect class="hiw-box" width="108" height="32" rx="16"/><text class="hiw-chip" x="54" y="21" text-anchor="middle">Arazzo</text></g>
+    <g transform="translate(86,50)"><rect class="hiw-box" width="108" height="32" rx="16"/><text class="hiw-chip" x="54" y="21" text-anchor="middle">Overlay</text></g>
+    <g transform="translate(206,50)"><rect class="hiw-box" width="108" height="32" rx="16"/><text class="hiw-chip" x="54" y="21" text-anchor="middle">JSON Schema</text></g>
+    <path class="hiw-edge" d="M200 90 V 112 H 84 V 140" marker-end="url(#hiw-arrow)"/>
+    <g transform="translate(16,150) scale(0.85)">
+    <g transform="translate(64,0)">
+      <path class="hiw-doc" d="M0 0 H50 L72 22 V130 H0 Z"/>
+      <path class="hiw-doc" d="M50 0 V22 H72"/>
+      <line class="hiw-line-c" x1="14" y1="40" x2="40" y2="40"/>
+      <line class="hiw-line" x1="14" y1="58" x2="56" y2="58"/>
+      <line class="hiw-line" x1="24" y1="76" x2="56" y2="76"/>
+      <line class="hiw-line" x1="24" y1="94" x2="48" y2="94"/>
+      <line class="hiw-line" x1="14" y1="112" x2="56" y2="112"/>
+    </g>
+    </g>
+    <text class="hiw-lbl" x="175" y="206">Parse</text>
+    <text class="hiw-cap" x="175" y="228">JSON or YAML, lossless</text>
+    <path class="hiw-edge" d="M84 266 V 292" marker-end="url(#hiw-arrow)"/>
+    <g transform="translate(16,300) scale(0.85)">
+      <line class="hiw-tree" x1="80" y1="14" x2="40" y2="62"/><line class="hiw-tree" x1="80" y1="14" x2="120" y2="62"/>
+      <line class="hiw-tree" x1="40" y1="62" x2="16" y2="118"/><line class="hiw-tree" x1="40" y1="62" x2="64" y2="118"/>
+      <line class="hiw-tree" x1="120" y1="62" x2="96" y2="118"/><line class="hiw-tree" x1="120" y1="62" x2="144" y2="118"/>
+      <circle class="hiw-node" cx="80" cy="14" r="12"/>
+      <circle class="hiw-node" cx="40" cy="62" r="10"/><circle class="hiw-node" cx="120" cy="62" r="10"/>
+      <circle class="hiw-node" cx="16" cy="118" r="8"/><circle class="hiw-node" cx="64" cy="118" r="8"/>
+      <circle class="hiw-node" cx="96" cy="118" r="8"/><circle class="hiw-node" cx="144" cy="118" r="8"/>
+    </g>
+    <text class="hiw-lbl" x="175" y="356">One structure</text>
+    <text class="hiw-cap" x="175" y="378">ApiDOM, spec semantics on top</text>
+    <path class="hiw-edge" d="M84 416 V 442" marker-end="url(#hiw-arrow)"/>
+    <g transform="translate(16,450) scale(0.85)">
+      <line class="hiw-tree" x1="80" y1="14" x2="40" y2="62"/><line class="hiw-tree" x1="80" y1="14" x2="120" y2="62"/>
+      <line class="hiw-tree" x1="40" y1="62" x2="16" y2="118"/><line class="hiw-tree" x1="40" y1="62" x2="64" y2="118"/>
+      <line class="hiw-tree" x1="120" y1="62" x2="96" y2="118"/><line class="hiw-tree" x1="120" y1="62" x2="144" y2="118"/>
+      <path class="hiw-path-on" d="M80 14 L120 62 L96 118"/>
+      <circle class="hiw-node-on" cx="80" cy="14" r="12"/>
+      <circle class="hiw-node" cx="40" cy="62" r="10"/><circle class="hiw-node-on" cx="120" cy="62" r="10"/>
+      <circle class="hiw-node" cx="16" cy="118" r="8"/><circle class="hiw-node" cx="64" cy="118" r="8"/>
+      <circle class="hiw-node-on" cx="96" cy="118" r="8"/><circle class="hiw-node" cx="144" cy="118" r="8"/>
+    </g>
+    <text class="hiw-lbl" x="175" y="506">Traverse</text>
+    <text class="hiw-cap" x="175" y="528">query, validate, lint</text>
+    <path class="hiw-edge" d="M84 566 V 592" marker-end="url(#hiw-arrow)"/>
+    <g transform="translate(16,600) scale(0.85)">
+      <line class="hiw-tree" x1="80" y1="14" x2="40" y2="62"/><line class="hiw-tree" x1="80" y1="14" x2="120" y2="62"/>
+      <line class="hiw-tree" x1="40" y1="62" x2="16" y2="118"/><line class="hiw-tree" x1="40" y1="62" x2="64" y2="118"/>
+      <line class="hiw-tree" x1="120" y1="62" x2="96" y2="118"/><line class="hiw-tree" x1="120" y1="62" x2="144" y2="118"/>
+      <line class="hiw-tree" x1="120" y1="62" x2="160" y2="96" stroke-dasharray="4 4"/>
+      <circle class="hiw-node" cx="80" cy="14" r="12"/>
+      <circle class="hiw-node" cx="40" cy="62" r="10"/><circle class="hiw-node" cx="120" cy="62" r="10"/>
+      <circle class="hiw-node" cx="16" cy="118" r="8"/><circle class="hiw-node" cx="64" cy="118" r="8"/>
+      <circle class="hiw-node-new" cx="96" cy="118" r="8"/><circle class="hiw-node" cx="144" cy="118" r="8"/>
+      <circle class="hiw-node-new" cx="160" cy="96" r="8"/>
+    </g>
+    <text class="hiw-lbl" x="175" y="656">Transform</text>
+    <text class="hiw-cap" x="175" y="678">overlay, edit, convert</text>
+    <path class="hiw-edge" d="M84 716 V 742" marker-end="url(#hiw-arrow)"/>
+    <g transform="translate(16,750) scale(0.85)">
+    <g transform="translate(64,0)">
+      <path class="hiw-doc" d="M0 0 H50 L72 22 V130 H0 Z"/>
+      <path class="hiw-doc" d="M50 0 V22 H72"/>
+      <line class="hiw-line-c" x1="14" y1="40" x2="40" y2="40"/>
+      <line class="hiw-line" x1="14" y1="58" x2="56" y2="58"/>
+      <line class="hiw-line" x1="24" y1="76" x2="56" y2="76"/>
+      <line class="hiw-line-c" x1="24" y1="94" x2="48" y2="94"/>
+      <line class="hiw-line" x1="14" y1="112" x2="56" y2="112"/>
+    </g>
+    </g>
+    <text class="hiw-lbl" x="175" y="806">Serialize</text>
+    <text class="hiw-cap" x="175" y="828">back to JSON or YAML</text>
+    </svg>
+    </div>
+    <a href="{{ '/docs/' | relative_url }}" class="primary-cta text-white font-bold py-3 px-6 rounded inline-block">Get started</a>
   </div>
 </section>
 
