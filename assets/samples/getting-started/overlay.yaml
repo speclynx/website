@@ -1,0 +1,12 @@
+overlay: 1.0.0
+info:
+  title: Add a description and a server
+  version: 1.0.0
+actions:
+  - target: $.info
+    update:
+      description: Internal Petstore API
+  - target: $
+    update:
+      servers:
+        - url: https://api.petstore.example.com

@@ -48,11 +48,14 @@ _includes/
   footer.html                    # Footer with links and social icons
   schema-organization.html       # Organization JSON-LD (included sitewide)
   apidom-sidebar.html            # Shared sidebar for ApiDOM pages (active state via page.url)
+  docs-sidebar.html              # Sidebar for docs guide pages: outline of the current guide only, from page.toc
 _posts/
   YYYY-MM-DD-title.md            # Blog posts (Markdown, rendered with post layout)
 pages/
   homepage.html                  # Landing page (permalink: /)
   blog.html                      # Blog index (permalink: /blog/, cards grouped by year)
+  docs.html                      # Docs landing (permalink: /docs/): Guides cards + Tutorials placeholder
+  docs/guides/getting-started.html  # Getting-started guide (permalink: /docs/guides/getting-started/)
   editor.html                    # Editor product page (permalink: /editor/)
   openapi-toolkit.html           # Product page with sidebar nav
   cli.html                       # CLI product page (permalink: /cli/)
@@ -67,6 +70,7 @@ assets/
   css/main.css                   # Custom CSS + CSS variables
   js/main.js                     # Mobile menu, lightbox, tooltips, heading anchors
   images/                        # Logos, diagrams, screenshots
+  samples/getting-started/       # Downloadable sample spec + overlay used by the getting-started guide
 robots.txt                       # Sitemap directive (uses Jekyll variables)
 llms.txt                         # LLM crawler discovery file
 ```
@@ -169,7 +173,7 @@ Key conventions for ApiDOM content:
 
 - Posts live in `_posts/` as Markdown with permalink `/blog/:title/` (set via `collections.posts` in `_config.yml`)
 - Front matter: `title`, `description`, `date`, `image` (`path`/`width`/`height`/`alt`/`caption`); optional `author`/`author_url`/`author_link` overrides. `image` is required — templates assume it. Free-text values (title, description, author) go through `jsonify` in JSON-LD, so any characters are safe
-- **Every post must have a catchy hero image** (quobix.com/articles style: custom illustration, brand colors, no photography). No SpecLynx logo or wordmark in the image — the topic illustration owns the whole frame. 1280×520 WebP in `assets/images/blog/`, named after the post slug. Use the `blog-hero-image` skill (`.claude/skills/blog-hero-image/`): it holds the design rules, a lint+render script (`scripts/render.py`: SVG → headless Chrome PNG → PIL WebP), and the claude.ai prompt template for designing the SVG externally
+- **Every post must have a catchy hero image** (quobix.com/articles style: custom illustration, brand colors, no photography). No SpecLynx logo or wordmark in the image — the topic illustration owns the whole frame. 1280×520 WebP in `assets/images/blog/`, named after the post slug, plus a PNG sibling with the same name for social link previews (Facebook and LinkedIn do not render WebP `og:image`). Front matter: `image.path` is the WebP (page, cards, our JSON-LD), `image.social` is the PNG; `_includes/head.html` swaps the PNG into the `jekyll-seo-tag` output (`og:image`, `twitter:image`, the plugin's JSON-LD) whenever `image.social` is set. The render script writes both files. Use the `blog-hero-image` skill (`.claude/skills/blog-hero-image/`): it holds the design rules, a lint+render script (`scripts/render.py`: SVG → headless Chrome PNG → PIL WebP), and the claude.ai prompt template for designing the SVG externally
 - **Post prose is written by humans.** AI assistants build blog infrastructure and hero images but never draft or rewrite article content
 - **Author is always a Person, never the Organization.** Defaults to Vladimír Gorej via `_config.yml` front matter defaults; SpecLynx appears only as `publisher` in JSON-LD. The visible byline links to `/about/#vladimir-gorej` (`author_link`); JSON-LD Person `url` is `https://vladimirgorej.com/` (`author_url`)
 - About page anchors: `#our-team` (section), `#vladimir-gorej` and `#francesco-tumanischvili` (team cards)
@@ -179,6 +183,21 @@ Key conventions for ApiDOM content:
 - Internal links inside post Markdown use Liquid, same as pages: `[text]({{ '/path/' | relative_url }})` — never bare `(/path/)`
 - RSS feed at `/feed.xml` via `jekyll-feed`; linked from the blog index
 - The blog is linked in the nav (desktop + mobile), footer Resources, and `llms.txt`
+
+## Docs
+
+Structure mirrors usearazzo.com/docs: a landing page at `/docs/` with **Guides** and **Tutorials** as card grids. Headings and intros are left-aligned like the rest of the site (only the text inside placeholder cards is centered); the header has a "What are you looking for?" pill row linking to the sections. Every grid row is filled to three: real cards, then one dashed `.product-card-placeholder` with centered "More guides/tutorials on the way" text (linking to Discussions), then empty dashed placeholders (`aria-hidden`, hidden below the breakpoint where they would wrap) so the row never looks half-empty. This matches usearazzo.com exactly. No API reference section yet; a reference section is planned, and the landing intro does not mention reference docs.
+
+- Guides are long-form, problem-first, and may span several products. Tutorials (when added) are one use case, one tool, finishable in a sitting. Route new docs work through the `developer-marketing` skill
+- The ApiDOM pages (`/apidom/...`) are product documentation, not guides; they are not listed on the docs landing. Product pages never move
+- `/docs/guides/getting-started/` follows one sample OpenAPI document through all five products: fix the two errors in the Editor (step 2; the reader pastes over the `petstore-3.1.yaml` fixture the Editor opens with, since the Editor cannot load from a URL), extend the fixed file with a response schema and a `components` `Pet` schema in VS Code (step 3), CLI validate + CI (step 4, validates the broken original as `broken.yaml`), CLI overlay apply (step 5), ApiDOM (step 6). Each step moves the same document forward; no step is throwaway. It only uses shipped CLI commands. All terminal output and the ApiDOM snippet were run for real; re-run them if the CLI or packages change
+- Guides get a hero image like blog posts (same `blog-hero-image` skill and rules), stored in `assets/images/docs/<slug>.webp` with a `<slug>.png` sibling, declared in the guide's `image` front matter (`path` = WebP, `social` = PNG, same social-preview mechanism as blog posts), shown in a `<figure>` under the guide intro and as the thumbnail on its landing card
+- Guide screenshots live in `assets/images/docs/getting-started/` (user-supplied PNG converted to WebP with Pillow at quality 85, `lightbox-trigger` + `loading="lazy"` like the Toolkit page). Present: `editor-errors.webp` (step 2) and `ref-completion.webp` (step 3, captured in the browser Editor on the exact step 3 file; the caption says so, since the Editor runs the same Toolkit extension as VS Code)
+- Sample files live in `assets/samples/getting-started/` (`openapi.yaml` has two deliberate errors: missing `info.version`, numeric `operationId`; `overlay.yaml` adds a description and a server). Keep them in sync with the listings in the guide
+- Every **Get started** CTA (nav desktop + mobile, homepage hero + pipeline section, manifesto) links to the getting-started guide. Plain **Docs** links (nav, footer) go to `/docs/`
+- Terminal mocks use `.t-add` (green) for lines an operation added to a document
+- The docs landing uses `layout: base` with full-bleed sections whose backgrounds alternate (hero gradient header, then `bg-white` / `bg-gray-50` per section, like the homepage). Keep alternating as sections are added
+- Guide pages use `layout: base` with `_includes/docs-sidebar.html` on the left (same wrapper as ApiDOM pages). The sidebar is specific to the current guide: a back link to `/docs/#guides` ("← Guides", also used for the "Back to guides" link at the foot of the page), the guide title (`sidebar_title` front matter, falls back to `title`), and the guide's section anchors from a `toc` list in front matter (`title` + `anchor` per item). The in-page "On this page" box renders the same `toc` and is `lg:hidden`, so it only appears when the sidebar is hidden. Keep `toc` anchors in sync with the heading IDs
 
 ## Naming Conventions
 

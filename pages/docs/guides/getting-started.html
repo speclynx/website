@@ -1,0 +1,295 @@
+---
+layout: base
+title: Getting Started with SpecLynx
+description: Take one OpenAPI document from broken to validated, customised, and parsed. Six steps through the Editor, VS Code, the CLI, an Overlay, and ApiDOM, with nothing to sign up for.
+permalink: /docs/guides/getting-started/
+sidebar_title: Getting started
+image:
+  path: /assets/images/docs/getting-started.webp
+  social: /assets/images/docs/getting-started.png
+  width: 1280
+  height: 520
+  alt: A cracked document on the left travels along a lit path through five stations, a browser window, a code editor, a terminal, stacked overlay layers, and a node tree, and arrives on the right as a clean document with a green check mark
+  caption: "One document, every SpecLynx tool: from two errors to a checked, customised, parsed spec."
+toc:
+  - title: 1. Get the sample spec
+    anchor: step-1-get-the-sample-spec
+  - title: 2. Fix the errors in the Editor
+    anchor: step-2-fix-the-errors-in-the-editor
+  - title: 3. Extend it in VS Code
+    anchor: step-3-extend-it-in-vs-code
+  - title: 4. Validate and gate CI
+    anchor: step-4-validate-from-the-terminal-and-gate-ci
+  - title: 5. Customise it with an Overlay
+    anchor: step-5-customise-it-with-an-overlay
+  - title: 6. Read it from your own code
+    anchor: step-6-read-it-from-your-own-code
+  - title: Next steps
+    anchor: next-steps
+---
+
+<div class="flex-1">
+<div class="flex">
+  {% include docs-sidebar.html %}
+
+  <!-- Main Content -->
+  <main class="flex-1 max-w-4xl px-6 py-12">
+    <nav class="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
+      <a href="{{ '/' | relative_url }}" class="hover:text-primary-light">Home</a>
+      <span class="mx-2">/</span>
+      <a href="{{ '/docs/' | relative_url }}" class="hover:text-primary-light">Docs</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-700">Getting started</span>
+    </nav>
+
+    <p class="text-primary-light text-xs font-bold uppercase tracking-wider mb-4">Guide &middot; 15 min</p>
+    <h1 class="text-4xl font-extrabold text-primary-dark mb-4">Getting started with SpecLynx</h1>
+    <p class="text-xl text-gray-600 mb-8">Take one OpenAPI document from broken to validated, customised, and parsed. Six steps, one file, nothing to sign up for.</p>
+
+    <figure class="mb-10">
+      <img src="{{ page.image.path | relative_url }}" width="{{ page.image.width }}" height="{{ page.image.height }}" class="rounded-lg w-full h-auto" alt="{{ page.image.alt | escape }}">
+      <figcaption class="text-center text-sm text-gray-500 mt-2">{{ page.image.caption | escape }}</figcaption>
+    </figure>
+
+    <p class="text-gray-700 mb-4">Every SpecLynx tool runs on the same engine, so this guide follows a single document through all of them. By the end you will have:</p>
+    <ul class="list-disc pl-6 space-y-1 text-gray-700 mb-8">
+      <li>seen the same two errors reported in the browser and in the terminal, and fixed them without leaving the browser,</li>
+      <li>added a response schema in VS Code with completion doing the typing,</li>
+      <li>a validate command that fails a CI job when the spec regresses,</li>
+      <li>an internal variant of the spec produced by an Overlay, without editing the original,</li>
+      <li>a few lines of JavaScript that read the document through ApiDOM.</li>
+    </ul>
+
+    <nav class="lg:hidden bg-gray-50 border border-gray-200 rounded-xl p-6 mb-12" aria-label="On this page">
+      <p class="font-bold text-primary-dark mb-3">On this page</p>
+      <ul class="space-y-1 text-gray-700">
+        {% for item in page.toc %}
+        <li><a href="#{{ item.anchor }}" class="text-primary-light underline hover:no-underline">{{ item.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+
+    <!-- Step 1 -->
+    <h2 id="step-1-get-the-sample-spec" class="text-2xl font-extrabold text-[#1D4F7C] mb-4">Step 1: Get the sample spec</h2>
+    <p class="text-gray-700 mb-4">Save this file as <code class="bg-gray-100 px-1 rounded">openapi.yaml</code>, or <a href="{{ '/assets/samples/getting-started/openapi.yaml' | relative_url }}" download class="text-primary-light underline hover:no-underline">download it</a>. It is a minimal Petstore with two deliberate mistakes: the <code class="bg-gray-100 px-1 rounded">info</code> object has no <code class="bg-gray-100 px-1 rounded">version</code>, and <code class="bg-gray-100 px-1 rounded">operationId</code> is a number instead of a string.</p>
+    <pre class="code-block mb-8"><code class="language-yaml">openapi: 3.1.0
+info:
+  title: Petstore API
+paths:
+  /pets:
+    get:
+      operationId: 1
+      summary: List all pets
+      responses:
+        '200':
+          description: A list of pets</code></pre>
+
+    <!-- Step 2 -->
+    <h2 id="step-2-fix-the-errors-in-the-editor" class="text-2xl font-extrabold text-[#1D4F7C] mb-4">Step 2: Fix the errors in the Editor</h2>
+    <p class="text-gray-700 mb-4">Open <a href="https://editor.speclynx.com" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">editor.speclynx.com</a> . It opens with a sample called <code class="bg-gray-100 px-1 rounded">petstore-3.1.yaml</code>; select all of it and paste your file over it. Nothing leaves your browser: the Editor is fully client-side, so there is no account and no upload.</p>
+    <p class="text-gray-700 mb-4">Both problems are underlined as soon as you paste, the Problems panel lists them with line and column, and the rendered documentation on the right updates as you type:</p>
+    <figure class="mb-6">
+      <img src="{{ '/assets/images/docs/getting-started/editor-errors.webp' | relative_url }}" width="1920" height="1046" alt="The SpecLynx Editor in the browser with the sample pasted into petstore-3.1.yaml. The Problems panel lists two errors: info must have required property version at line 2, and operationId must be a string at line 7. A rendered Petstore API preview is open on the right." class="rounded-lg shadow-md border border-gray-200 lightbox-trigger" loading="lazy">
+      <figcaption class="text-center text-sm text-gray-500 mt-2">The Editor flags both errors the moment the file is pasted in.</figcaption>
+    </figure>
+    <p class="text-gray-700 mb-4">Fix them in place:</p>
+    <ol class="list-decimal pl-6 space-y-2 text-gray-700 mb-4">
+      <li>Add a new line under <code class="bg-gray-100 px-1 rounded">title</code>, start typing <code class="bg-gray-100 px-1 rounded">ver</code>, and accept the completion for <code class="bg-gray-100 px-1 rounded">version</code>. Set it to <code class="bg-gray-100 px-1 rounded">1.0.0</code>.</li>
+      <li>Change <code class="bg-gray-100 px-1 rounded">operationId: 1</code> to <code class="bg-gray-100 px-1 rounded">operationId: listPets</code>.</li>
+    </ol>
+    <p class="text-gray-700 mb-4">The markers disappear and the preview now shows a proper operation. Copy the document back over your local <code class="bg-gray-100 px-1 rounded">openapi.yaml</code>; the rest of the guide works on the file. It should read:</p>
+    <pre class="code-block mb-4"><code class="language-yaml">openapi: 3.1.0
+info:
+  title: Petstore API
+  version: 1.0.0
+paths:
+  /pets:
+    get:
+      operationId: listPets
+      summary: List all pets
+      responses:
+        '200':
+          description: A list of pets</code></pre>
+    <p class="text-gray-700 mb-8">The Editor is the fastest way to inspect a spec you have been sent, or to sketch one before it lives in a repository. See the <a href="{{ '/editor/' | relative_url }}" class="text-primary-light underline hover:no-underline">Editor page</a> for what else it does.</p>
+
+    <!-- Step 3 -->
+    <h2 id="step-3-extend-it-in-vs-code" class="text-2xl font-extrabold text-[#1D4F7C] mb-4">Step 3: Extend it in VS Code</h2>
+    <p class="text-gray-700 mb-4">Once a spec lives in a repository you want the same intelligence in your editor. Install the <a href="https://marketplace.visualstudio.com/items?itemName=SpecLynx.vscode-openapi-toolkit" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">OpenAPI Toolkit</a> extension in VS Code and open <code class="bg-gray-100 px-1 rounded">openapi.yaml</code>. It runs the same engine as the Editor, so the Problems panel is empty, and it would show the two errors from step 1 at the same positions if you reopened the broken file.</p>
+    <p class="text-gray-700 mb-4">The response has no schema yet. Add one and let completion do the typing:</p>
+    <ol class="list-decimal pl-6 space-y-2 text-gray-700 mb-4">
+      <li>Under <code class="bg-gray-100 px-1 rounded">description: A list of pets</code>, start typing <code class="bg-gray-100 px-1 rounded">con</code> and accept <code class="bg-gray-100 px-1 rounded">content</code>. Keep going the same way for <code class="bg-gray-100 px-1 rounded">application/json</code> and <code class="bg-gray-100 px-1 rounded">schema</code>; each level offers only the keys that are valid there.</li>
+      <li>Make the schema an array whose items are a <code class="bg-gray-100 px-1 rounded">$ref</code>. When you type <code class="bg-gray-100 px-1 rounded">$ref:</code> the Toolkit lists every reusable schema in the document. There are none yet, so add a <code class="bg-gray-100 px-1 rounded">components</code> section with a <code class="bg-gray-100 px-1 rounded">Pet</code> schema, come back to the <code class="bg-gray-100 px-1 rounded">$ref</code>, and pick it from the list.</li>
+      <li>Hover the <code class="bg-gray-100 px-1 rounded">$ref</code> to preview the schema it points at, or use Go to Definition to jump there.</li>
+    </ol>
+    <figure class="mb-6">
+      <img src="{{ '/assets/images/docs/getting-started/ref-completion.webp' | relative_url }}" width="772" height="720" alt="The step 3 Petstore file open in the editor with the cursor after $ref. The completion list offers #/components/schemas/Pet first, then the Pet id and name properties and a path-based reference. The Problems panel below reads: No problems have been detected in the workspace." class="rounded-lg shadow-md border border-gray-200 lightbox-trigger" loading="lazy">
+      <figcaption class="text-center text-sm text-gray-500 mt-2">Reference completion offers the Pet schema you just added. Captured in the browser Editor, which runs the same OpenAPI Toolkit extension as VS Code.</figcaption>
+    </figure>
+    <p class="text-gray-700 mb-4">Your file should now read:</p>
+    <pre class="code-block mb-4"><code class="language-yaml">openapi: 3.1.0
+info:
+  title: Petstore API
+  version: 1.0.0
+paths:
+  /pets:
+    get:
+      operationId: listPets
+      summary: List all pets
+      responses:
+        '200':
+          description: A list of pets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pet'
+components:
+  schemas:
+    Pet:
+      type: object
+      required: [id, name]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string</code></pre>
+    <p class="text-gray-700 mb-8">The Problems panel stays empty. Completion, hover, go-to-definition, and live preview are covered on the <a href="{{ '/openapi-toolkit/' | relative_url }}" class="text-primary-light underline hover:no-underline">OpenAPI Toolkit page</a>.</p>
+
+    <!-- Step 4 -->
+    <h2 id="step-4-validate-from-the-terminal-and-gate-ci" class="text-2xl font-extrabold text-[#1D4F7C] mb-4">Step 4: Validate from the terminal and gate CI</h2>
+    <p class="text-gray-700 mb-4">Editors catch mistakes while you type. CI catches the ones that get committed anyway. You need Node.js 20 or newer; <code class="bg-gray-100 px-1 rounded">npx</code> fetches the CLI on first use, so there is nothing to install.</p>
+    <p class="text-gray-700 mb-4">To see what a failure looks like, run it against the broken original from step 1. <a href="{{ '/assets/samples/getting-started/openapi.yaml' | relative_url }}" download="broken.yaml" class="text-primary-light underline hover:no-underline">Download it again</a> as <code class="bg-gray-100 px-1 rounded">broken.yaml</code>:</p>
+    <!-- role="img" exposes the whole block via aria-label; descendants are presentational. -->
+    <div class="terminal mb-6" role="img" aria-label="Terminal running 'npx @speclynx/cli validate broken.yaml'. The report lists two errors — line 2: should always have a 'version' (code 3030501); line 7: operationId must be a string (code 3080500) — and ends with the summary: 2 problems, 2 errors.">
+      <div class="terminal-titlebar">
+        <span class="terminal-dot terminal-dot-red"></span>
+        <span class="terminal-dot terminal-dot-yellow"></span>
+        <span class="terminal-dot terminal-dot-green"></span>
+        <span class="terminal-title">bash</span>
+      </div>
+<pre class="terminal-body"><span class="terminal-prompt">$ npx @speclynx/cli validate broken.yaml</span>
+<span class="t-file">broken.yaml</span>
+  <span class="t-loc">2:1-2:5  </span>  <span class="t-error">error</span>  <span class="t-code">3030501</span>  <span class="t-msg">should always have a 'version'</span>
+  <span class="t-loc">7:20-7:21</span>  <span class="t-error">error</span>  <span class="t-code">3080500</span>  <span class="t-msg">operationId must be a string</span>
+
+<span class="t-fail">&#10006; 2 problems (2 errors)</span></pre>
+    </div>
+    <p class="text-gray-700 mb-4">The CLI auto-detects the document type and version, reports every problem with its exact location, and exits non-zero. Run it on your <code class="bg-gray-100 px-1 rounded">openapi.yaml</code> and it exits zero with <code class="bg-gray-100 px-1 rounded">No problems found</code>.</p>
+    <p class="text-gray-700 mb-4">That exit code is the whole CI story. Add one step to your pipeline; this is what it looks like in GitHub Actions:</p>
+    <pre class="code-block mb-4"><code class="language-yaml">- uses: actions/setup-node@v4
+  with:
+    node-version: 20
+- run: npx @speclynx/cli validate openapi.yaml --fail-severity warning</code></pre>
+    <p class="text-gray-700 mb-8">The <code class="bg-gray-100 px-1 rounded">--fail-severity warning</code> flag makes warnings fail the job too, not just errors. Add <code class="bg-gray-100 px-1 rounded">--format json</code> for machine-readable output. The same command works on AsyncAPI, Arazzo, and Overlay documents, and on URLs. The <a href="{{ '/cli/' | relative_url }}#validate-command" class="text-primary-light underline hover:no-underline">validate reference</a> covers every option, check category, and exit code.</p>
+
+    <!-- Step 5 -->
+    <h2 id="step-5-customise-it-with-an-overlay" class="text-2xl font-extrabold text-[#1D4F7C] mb-4">Step 5: Customise it with an Overlay</h2>
+    <p class="text-gray-700 mb-4">A spec often needs more than one shape: an internal edition with real server URLs, a public one without them, a partner one with extra descriptions. Editing copies by hand drifts. An <a href="https://spec.openapis.org/overlay/v1.0.0.html" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Overlay</a> is a small document that describes changes to apply to another document, so the original stays untouched.</p>
+    <p class="text-gray-700 mb-4">Save this as <code class="bg-gray-100 px-1 rounded">overlay.yaml</code> next to the spec, or <a href="{{ '/assets/samples/getting-started/overlay.yaml' | relative_url }}" download class="text-primary-light underline hover:no-underline">download it</a>. It adds a description to <code class="bg-gray-100 px-1 rounded">info</code> and a server to the root:</p>
+    <pre class="code-block mb-4"><code class="language-yaml">overlay: 1.0.0
+info:
+  title: Add a description and a server
+  version: 1.0.0
+actions:
+  - target: $.info
+    update:
+      description: Internal Petstore API
+  - target: $
+    update:
+      servers:
+        - url: https://api.petstore.example.com</code></pre>
+    <p class="text-gray-700 mb-4">Apply it. The result goes to standard output unless you pass <code class="bg-gray-100 px-1 rounded">-o</code>:</p>
+    <!-- role="img" exposes the whole block via aria-label; descendants are presentational. -->
+    <div class="terminal mb-6" role="img" aria-label="Terminal running 'npx @speclynx/cli overlay apply overlay.yaml openapi.yaml'. The output is the full Petstore spec from step 3 with a new description line under info, 'Internal Petstore API', and a new servers list at the end containing https://api.petstore.example.com.">
+      <div class="terminal-titlebar">
+        <span class="terminal-dot terminal-dot-red"></span>
+        <span class="terminal-dot terminal-dot-yellow"></span>
+        <span class="terminal-dot terminal-dot-green"></span>
+        <span class="terminal-title">bash</span>
+      </div>
+<pre class="terminal-body"><span class="terminal-prompt">$ npx @speclynx/cli overlay apply overlay.yaml openapi.yaml</span>
+openapi: 3.1.0
+info:
+  title: Petstore API
+  version: 1.0.0
+  <span class="t-add">description: Internal Petstore API</span>
+paths:
+  /pets:
+    get:
+      operationId: listPets
+      summary: List all pets
+      responses:
+        '200':
+          description: A list of pets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pet'
+components:
+  schemas:
+    Pet:
+      type: object
+      required: [id, name]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+<span class="t-add">servers:
+  - url: https://api.petstore.example.com</span></pre>
+    </div>
+    <p class="text-gray-700 mb-4">Key order, quoting, and indentation from the original are preserved. Only the two targeted changes appear. Write the result to a file to keep it:</p>
+    <pre class="code-block mb-4"><code class="language-bash">npx @speclynx/cli overlay apply overlay.yaml openapi.yaml -o openapi.internal.yaml</code></pre>
+    <p class="text-gray-700 mb-8">Already have two hand-edited copies of a spec? <code class="bg-gray-100 px-1 rounded">overlay diff</code> generates the Overlay between them, so you can delete the copy and keep the diff. Both commands are in the <a href="{{ '/cli/' | relative_url }}#overlay-apply-command" class="text-primary-light underline hover:no-underline">CLI reference</a>.</p>
+
+    <!-- Step 6 -->
+    <h2 id="step-6-read-it-from-your-own-code" class="text-2xl font-extrabold text-[#1D4F7C] mb-4">Step 6: Read it from your own code</h2>
+    <p class="text-gray-700 mb-4">Everything above runs on <a href="{{ '/apidom/' | relative_url }}" class="text-primary-light underline hover:no-underline">ApiDOM</a>, and you can call it directly. Install the two packages and put this in <code class="bg-gray-100 px-1 rounded">parse.mjs</code> next to your spec:</p>
+    <pre class="code-block mb-4"><code class="language-bash">npm install @speclynx/apidom-reference @speclynx/apidom-core</code></pre>
+    <pre class="code-block mb-4"><code class="language-javascript">import { parse } from '@speclynx/apidom-reference';
+import FileResolver from '@speclynx/apidom-reference/resolve/resolvers/file';
+import { toValue } from '@speclynx/apidom-core';
+
+const result = await parse('./openapi.yaml', {
+  resolve: { resolvers: [new FileResolver({ fileAllowList: ['*.yaml'] })] },
+});
+
+console.log(toValue(result.api.info.title));   // "Petstore API"
+console.log(toValue(result.api.info.version)); // "1.0.0"
+
+result.api.paths.forEach((pathItem, path) => {
+  console.log(toValue(path), toValue(pathItem.get('get').get('operationId')));
+}); // "/pets listPets"</code></pre>
+    <p class="text-gray-700 mb-4">Run it with <code class="bg-gray-100 px-1 rounded">node parse.mjs</code>. Local file access is allow-listed for safety, which is why the <code class="bg-gray-100 px-1 rounded">FileResolver</code> is passed in; parsing from a URL needs no configuration at all.</p>
+    <p class="text-gray-700 mb-8">The document type was detected automatically, and the result is a data model that keeps everything the file contained: comments, key order, and the exact position of every value. That is what lets the Editor and the CLI point at line 7, column 20, and what lets the Overlay step change two things without rewriting the rest. <a href="{{ '/apidom/data-model/' | relative_url }}" class="text-primary-light underline hover:no-underline">The Data Model</a> page explains what you are holding.</p>
+
+    <!-- Next steps -->
+    <h2 id="next-steps" class="text-2xl font-extrabold text-[#1D4F7C] mb-4">Next steps</h2>
+    <ul class="space-y-2 mb-10 text-gray-700">
+      <li>Point <code class="bg-gray-100 px-1 rounded">validate</code> at an AsyncAPI, Arazzo, or Overlay document. Nothing changes but the file.</li>
+      <li>Building an editor or a tool of your own? The <a href="{{ '/language-service/' | relative_url }}" class="text-primary-light underline hover:no-underline">Language Service</a> exposes the same validation, completion, and hover over the Language Server Protocol.</li>
+      <li>Go deeper on parsing: <a href="{{ '/apidom/parsing/' | relative_url }}" class="text-primary-light underline hover:no-underline">strict and non-strict modes, source maps, and style preservation</a>.</li>
+      <li>Stuck or curious? <a href="https://github.com/orgs/speclynx/discussions" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Ask in the discussions</a>.</li>
+    </ul>
+
+    <p class="text-sm text-gray-500 border-t border-gray-200 pt-6">
+      <a href="{{ '/docs/' | relative_url }}#guides" class="text-primary-light underline hover:no-underline">&larr; Back to guides</a>
+    </p>
+  </main>
+</div>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site.url }}{{ site.baseurl }}/" },
+    { "@type": "ListItem", "position": 2, "name": "Docs", "item": "{{ site.url }}{{ site.baseurl }}/docs/" },
+    { "@type": "ListItem", "position": 3, "name": "Getting started", "item": "{{ site.url }}{{ site.baseurl }}/docs/guides/getting-started/" }
+  ]
+}
+</script>

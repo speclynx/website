@@ -58,6 +58,12 @@ layout: none
 - Docs: {{ site.url }}{{ site.baseurl }}/apidom/
 - Google CodeWiki (AI-generated architecture reference by Google): https://codewiki.google/github.com/speclynx/apidom
 
+## Docs
+
+- Guides walk a problem end to end across the toolchain; tutorials solve one use case with one tool
+- Index: {{ site.url }}{{ site.baseurl }}/docs/
+- Getting started guide (one OpenAPI document through the Editor, VS Code, CLI, Overlay, and ApiDOM): {{ site.url }}{{ site.baseurl }}/docs/guides/getting-started/
+
 ## Blog
 
 - Hands-on tutorials, looks inside how SpecLynx tools are built, and takes on where API tooling is heading
