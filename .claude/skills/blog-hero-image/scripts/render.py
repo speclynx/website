@@ -7,8 +7,10 @@ Usage:
 
 Wraps the SVG in a bare HTML page, screenshots it with headless Chrome at
 1280x520, and (optionally) converts the PNG to WebP (quality=85, method=6)
-with Pillow. Before rendering it lints the SVG against the hero-image rules
-and prints warnings; lint findings never block rendering.
+with Pillow. When --webp is given it also writes an optimized PNG sibling
+next to it (slug.png) for social link previews, since Facebook and LinkedIn
+do not render WebP og:image. Before rendering it lints the SVG against the
+hero-image rules and prints warnings; lint findings never block rendering.
 """
 import argparse
 import os
@@ -112,6 +114,16 @@ def to_webp(png_path: str, webp_path: str) -> None:
     im.save(webp_path, "WEBP", quality=85, method=6)
 
 
+def to_social_png(png_path: str, out_path: str) -> None:
+    """Optimized 1280x520 PNG for og:image / twitter:image (WebP is not universally supported there)."""
+    from PIL import Image
+    im = Image.open(png_path).convert("RGB")
+    if im.size != (WIDTH, HEIGHT):
+        im = im.crop((0, 0, WIDTH, HEIGHT))
+    os.makedirs(os.path.dirname(os.path.abspath(out_path)), exist_ok=True)
+    im.save(out_path, "PNG", optimize=True)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("svg")
@@ -136,6 +148,10 @@ def main() -> int:
         to_webp(args.png, args.webp)
         size_kb = os.path.getsize(args.webp) / 1024
         print(f"webp: {args.webp} ({size_kb:.0f} KB)")
+        social = os.path.splitext(args.webp)[0] + ".png"
+        to_social_png(args.png, social)
+        size_kb = os.path.getsize(social) / 1024
+        print(f"png:  {social} ({size_kb:.0f} KB, social preview)")
     return 0
 
 

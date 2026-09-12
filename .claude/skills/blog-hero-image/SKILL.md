@@ -105,23 +105,32 @@ python3 .claude/skills/blog-hero-image/scripts/render.py <scratch>/<slug>.svg \
   --png <scratch>/<slug>.png --webp assets/images/blog/<slug>.webp
 ```
 
-`<slug>` matches the post's filename slug. Then set the post's front matter:
+`<slug>` matches the post's filename slug. The script writes the WebP and,
+next to it, an optimized `<slug>.png`: the PNG is only for social link
+previews (`og:image`), because Facebook and LinkedIn do not render WebP
+there. Commit both. Then set the post's front matter:
 
 ```yaml
 image:
   path: assets/images/blog/<slug>.webp
+  social: assets/images/blog/<slug>.png
   width: 1280
   height: 520
   alt: <what the picture literally shows, one sentence, no "image of">
   caption: "<short caption tying the scene to the article>"
 ```
 
+`path` is what the page, the blog cards, and our JSON-LD use; `social` is
+what `_includes/head.html` swaps into the SEO tag output. For a docs guide
+the same applies with `assets/images/docs/<slug>.webp` and a leading slash
+on both paths.
+
 Propose `alt` and `caption` and let the user adjust — both are image
 metadata, not article prose. `image` is required by the templates; the
 JSON-LD and blog index assume every post has it. Keep the SVG source in the
 scratchpad (or hand it to the user) — it isn't committed unless they ask.
 
-Sanity check before finishing: the WebP is 1280×520 and roughly 30–120 KB;
+Sanity check before finishing: the WebP is 1280×520 and roughly 30–120 KB, the PNG sibling exists and is under ~300 KB;
 the post renders at `/blog/<slug>/` with `bundle exec jekyll serve`; the
 card on `/blog/` still reads with the right side cropped.
 
