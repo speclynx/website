@@ -4,6 +4,7 @@ description: "Think of it as Babel.js, but for API specifications. ApiDOM is the
 date: 2025-12-23 10:00:00 +0100
 image:
   path: assets/images/blog/open-sourcing-apidom.webp
+  social: assets/images/blog/open-sourcing-apidom.png
   width: 1280
   height: 520
   alt: ApiDOM emerging from a broken black box in a burst of light, watched by a crowd

@@ -4,6 +4,7 @@ description: "OpenAPI Overlay targets are JSONPath expressions, but which JSONPa
 date: 2026-08-19 10:00:00 +0200
 image:
   path: assets/images/blog/overlay-jsonpath-dialects.webp
+  social: assets/images/blog/overlay-jsonpath-dialects.png
   width: 1280
   height: 520
   alt: Three JSONPath dialect labels (RFC 9535, JSONPath Plus, and Goessner), each firing a line that strikes one of the three stacked layers of the Overlay icon

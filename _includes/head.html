@@ -2,11 +2,26 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  {%- comment -%}
+    jekyll-seo-tag only knows page.image.path, which is the WebP shown on the page.
+    Social crawlers (Facebook, LinkedIn) do not render WebP, so when a page declares
+    image.social (a PNG sibling) we swap it into the tag's output: og:image,
+    twitter:image, and the plugin's JSON-LD all point at the PNG.
+  {%- endcomment -%}
   {% if page.collection == "posts" %}
-  {%- seo title=false -%}
-  <title>{{ page.title | escape }} | SpecLynx Blog</title>
+  {%- capture seo_html -%}{%- seo title=false -%}{%- endcapture -%}
   {% else %}
-  {%- seo -%}
+  {%- capture seo_html -%}{%- seo -%}{%- endcapture -%}
+  {% endif %}
+  {%- if page.image.social -%}
+  {%- assign hero_url = page.image.path | absolute_url -%}
+  {%- assign social_url = page.image.social | absolute_url -%}
+  {{ seo_html | replace: hero_url, social_url }}
+  {%- else -%}
+  {{ seo_html }}
+  {%- endif %}
+  {% if page.collection == "posts" %}
+  <title>{{ page.title | escape }} | SpecLynx Blog</title>
   {% endif %}
   <meta name="keywords" content="{{ site.keywords }}">
   {% if page.google_site_verification %}
