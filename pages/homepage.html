@@ -418,7 +418,7 @@ actions:
   <div class="container mx-auto px-4 max-w-6xl">
     <h2 class="text-3xl font-extrabold text-[#1D4F7C] mb-4">The tools</h2>
     <p class="text-gray-600 mb-12 max-w-2xl">
-      SpecLynx combines core tooling, developer workflows, and editing surfaces into one consistent stack.
+      SpecLynx combines core tooling, developer workflows, and editing surfaces into one consistent stack, plus a workflow toolkit built on top of it.
     </p>
 
     <div class="rounded-lg border border-gray-200 divide-y divide-gray-200 overflow-hidden shadow-sm">
@@ -452,7 +452,113 @@ actions:
         <span class="text-sm text-gray-500 flex-shrink-0">VS Code extension</span>
         <svg class="w-4 h-4 text-gray-400 group-hover:text-[#1a74a5] flex-shrink-0 self-center transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
       </a>
+      <a href="https://usearazzo.com" target="_blank" rel="noopener noreferrer" class="flex flex-wrap md:flex-nowrap items-baseline gap-x-6 gap-y-1 px-6 py-5 bg-white hover:bg-gray-50 transition-colors group">
+        <span class="w-44 flex-shrink-0 font-bold text-primary-dark group-hover:text-[#1a74a5] transition-colors">UseArazzo</span>
+        <span class="text-gray-600 flex-1">Validate, run, and trace Arazzo API workflows. Built on SpecLynx.</span>
+        <span class="text-sm text-gray-500 flex-shrink-0">Workflow toolkit</span>
+        <svg class="w-4 h-4 text-gray-400 group-hover:text-[#1a74a5] flex-shrink-0 self-center transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </a>
     </div>
+
+    <!-- Featured: UseArazzo, built on SpecLynx (links out to usearazzo.com) -->
+  <div id="usearazzo" class="usearazzo-panel mt-8 rounded-2xl p-8 md:p-12 lg:p-14 text-white">
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <div>
+        <div class="flex items-center gap-3 mb-6">
+          <img src="{{ '/assets/images/logos/usearazzo-logo.svg' | relative_url }}" alt="" class="w-10 h-10 rounded-lg" loading="lazy">
+          <p class="usearazzo-accent text-sm font-semibold uppercase tracking-wider">Featured product &middot; API workflows</p>
+        </div>
+        <h3 class="text-3xl md:text-4xl font-extrabold leading-tight mb-5">Run your API workflows, not just describe them.</h3>
+        <p class="text-gray-300 text-lg mb-8">
+          UseArazzo is the toolkit for Arazzo, the OpenAPI Initiative's spec for multi-step API workflows. Validate the document, run the workflow against your live APIs, and read the trace of every step. Built on SpecLynx.
+        </p>
+        <div class="flex flex-wrap items-center gap-4 mb-5">
+          <a href="https://usearazzo.com" target="_blank" rel="noopener noreferrer" class="usearazzo-cta font-bold py-3 px-6 rounded inline-block">
+            Explore UseArazzo
+          </a>
+          <a href="mailto:info@speclynx.com?subject=UseArazzo" class="usearazzo-cta-secondary font-bold py-3 px-6 rounded inline-block">
+            Talk to the maintainers
+          </a>
+        </div>
+        <p class="text-gray-400 text-sm">Free and open source under Apache 2.0.</p>
+      </div>
+
+      <!-- Illustration: a workflow run as UseArazzo traces it (stylized, not CLI output) -->
+      <!-- Scrolls horizontally on narrow screens (min-w) instead of shrinking to illegibility, like the pipeline diagram. -->
+      <div class="overflow-x-auto -mx-8 px-8 md:mx-0 md:px-0">
+      <svg viewBox="0 0 480 320" class="w-full min-w-[440px] max-w-lg mx-auto lg:max-w-none" role="img" aria-labelledby="ua-illus-title">
+        <title id="ua-illus-title">A three-step Arazzo workflow run: each step is called in order, one step is retried, and every step ends in success.</title>
+        <defs>
+          <marker id="ua-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#94C83D"/></marker>
+        </defs>
+        <text class="ua-muted" x="56" y="14">workflow &middot; placeOrder</text>
+        <path class="ua-rail" d="M28 30 V296"/>
+        <!-- step 1 -->
+        <g transform="translate(0,26)">
+          <rect class="ua-node" x="20" y="24" width="16" height="16" rx="4"/>
+          <rect class="ua-card" x="56" y="0" width="380" height="64" rx="12"/>
+          <text class="ua-id" x="76" y="28">findPetsByStatus</text>
+          <text class="ua-sub" x="76" y="49">GET /pet/findByStatus</text>
+          <rect class="ua-pill" x="352" y="20" width="68" height="24" rx="12"/>
+          <text class="ua-lbl" x="386" y="36" text-anchor="middle">&#10003; ok</text>
+        </g>
+        <!-- step 2 (retried once) -->
+        <g transform="translate(0,122)">
+          <rect class="ua-node" x="20" y="24" width="16" height="16" rx="4"/>
+          <rect class="ua-card" x="56" y="0" width="380" height="64" rx="12"/>
+          <text class="ua-id" x="76" y="28">placeOrder</text>
+          <text class="ua-sub" x="76" y="49">POST /store/order</text>
+          <rect class="ua-pill" x="298" y="20" width="122" height="24" rx="12"/>
+          <text class="ua-lbl" x="359" y="36" text-anchor="middle">&#10003; ok &middot; 2 attempts</text>
+          <path class="ua-loop" d="M436 46 C468 46 468 18 442 18" marker-end="url(#ua-arrow)"/>
+          <text class="ua-muted" x="458" y="70" text-anchor="middle">retry</text>
+        </g>
+        <!-- step 3 -->
+        <g transform="translate(0,218)">
+          <rect class="ua-node" x="20" y="24" width="16" height="16" rx="4"/>
+          <rect class="ua-card" x="56" y="0" width="380" height="64" rx="12"/>
+          <text class="ua-id" x="76" y="28">getOrderById</text>
+          <text class="ua-sub" x="76" y="49">GET /store/order/{orderId}</text>
+          <rect class="ua-pill" x="352" y="20" width="68" height="24" rx="12"/>
+          <text class="ua-lbl" x="386" y="36" text-anchor="middle">&#10003; ok</text>
+        </g>
+        <!-- end -->
+        <rect class="ua-node" x="20" y="288" width="16" height="16" rx="4"/>
+        <text class="ua-lbl" x="56" y="301">end &middot; workflow completed, 3 steps, 4 calls</text>
+      </svg>
+      </div>
+    </div>
+
+    <!-- The three jobs -->
+    <div class="grid sm:grid-cols-3 gap-8 mt-12 pt-10 border-t border-white/10">
+      <div>
+        <p class="usearazzo-accent font-mono text-sm font-bold mb-2">01</p>
+        <h4 class="text-lg font-bold mb-2">Validate</h4>
+        <p class="text-gray-300 text-sm">The document, against the Arazzo specification. Every violation, with the location that caused it.</p>
+      </div>
+      <div>
+        <p class="usearazzo-accent font-mono text-sm font-bold mb-2">02</p>
+        <h4 class="text-lg font-bold mb-2">Run</h4>
+        <p class="text-gray-300 text-sm">The workflow, against the live APIs described by your OpenAPI source descriptions.</p>
+      </div>
+      <div>
+        <p class="usearazzo-accent font-mono text-sm font-bold mb-2">03</p>
+        <h4 class="text-lg font-bold mb-2">Read the trace</h4>
+        <p class="text-gray-300 text-sm">Each step in run order: what succeeded, which action was selected, and how many attempts it took.</p>
+      </div>
+    </div>
+
+    <!-- Under the hood -->
+    <div class="flex flex-wrap items-center gap-2 mt-8">
+      <span class="text-gray-400 text-sm mr-1">Under the hood:</span>
+      <span class="usearazzo-chip">CLI</span>
+      <span class="usearazzo-chip">Validator with LSP diagnostics</span>
+      <span class="usearazzo-chip">Runner with goto / retry / end</span>
+      <span class="usearazzo-chip">Sub-workflows</span>
+      <span class="usearazzo-chip">dependsOn</span>
+      <span class="usearazzo-chip">Pluggable HTTP transport</span>
+    </div>
+  </div>
   </div>
 </section>
 
