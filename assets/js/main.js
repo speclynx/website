@@ -1,3 +1,12 @@
+// Prism's bash grammar knows `npm` but not `npx`, so every "npx @speclynx/cli ..."
+// snippet rendered as one flat token. Teach it npx before Prism highlights the page
+// (this script is deferred after prism-bash, and Prism highlights on DOMContentLoaded).
+if (window.Prism && Prism.languages.bash) {
+  Prism.languages.insertBefore('bash', 'function', {
+    'npx': { pattern: /\bnpx\b/, alias: 'function' }
+  });
+}
+
 // Mobile menu toggle
 function toggleMobileMenu() {
   const menu = document.getElementById('mobile-menu');
