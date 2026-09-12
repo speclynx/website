@@ -159,6 +159,15 @@ h4:hover .heading-anchor {
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
+/* "More on the way" placeholder card: dashed, flat, no hover lift */
+.product-card-placeholder,
+.product-card-placeholder:hover {
+    background: transparent;
+    border: 2px dashed #D1D5DB;
+    box-shadow: none;
+    transform: none;
+}
+
 .product-card-title {
     color: var(--color-primary-dark);
     font-size: 1.5rem;
@@ -305,6 +314,7 @@ h4:hover .heading-anchor {
 .t-code { color: #3DD6EE; }
 .t-msg { color: #E5E7EB; }
 .t-fail { color: #F87171; font-weight: 700; }
+.t-add { color: #34D399; }
 .t-warn { color: #FBBF24; }
 .t-warnsum { color: #FBBF24; font-weight: 700; }
 .t-ok { color: #34D399; }

@@ -1,62 +1,74 @@
 ---
-layout: default
-title: Get Started with SpecLynx
-description: Validate your first API spec in under five minutes with the SpecLynx CLI, then pick the surface that fits your workflow - browser editor, VS Code, or the ApiDOM library.
+layout: base
+title: Docs
+description: Guides and tutorials for SpecLynx - start with one OpenAPI document and take it through the Editor, VS Code, the CLI, Overlays, and ApiDOM.
 permalink: /docs/
 ---
 
-<section class="py-12 md:py-16">
-  <div class="container mx-auto px-4 max-w-3xl">
-    <nav class="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
-      <a href="{{ '/' | relative_url }}" class="hover:text-primary-light">Home</a>
-      <span class="mx-2">/</span>
-      <span class="text-gray-700">Docs</span>
-    </nav>
-
-    <h1 class="text-4xl font-extrabold text-primary-dark mb-4">Get started with SpecLynx</h1>
-    <p class="text-xl text-gray-600 mb-10">Validate your first API spec in under five minutes. One command, no account, nothing to configure.</p>
-
-    <h2 id="validate-your-first-spec" class="text-2xl font-extrabold text-[#1D4F7C] mb-4">1. Validate your first spec</h2>
-    <p class="text-gray-700 mb-4">Run the CLI against any OpenAPI, AsyncAPI, Arazzo, or Overlay document, a local file or a URL. You need Node.js 20 or newer; <code class="bg-gray-100 px-1 rounded">npx</code> fetches the CLI on first use, so there is nothing to install.</p>
-    <pre class="code-block mb-6"><code class="language-bash">npx @speclynx/cli validate openapi.yaml</code></pre>
-    <p class="text-gray-700 mb-4">SpecLynx auto-detects the document type and version, then reports every problem with its exact location:</p>
-    <!-- role="img" exposes the whole block via aria-label; descendants are presentational. -->
-    <div class="terminal mb-8" role="img" aria-label="Terminal running 'npx @speclynx/cli validate openapi.yaml'. The report lists two errors — line 3: should always have a 'version' (code 3030501); line 7: operationId must be a string (code 3080500) — and ends with the summary: 2 problems, 2 errors.">
-      <div class="terminal-titlebar">
-        <span class="terminal-dot terminal-dot-red"></span>
-        <span class="terminal-dot terminal-dot-yellow"></span>
-        <span class="terminal-dot terminal-dot-green"></span>
-        <span class="terminal-title">bash</span>
-      </div>
-<pre class="terminal-body"><span class="terminal-prompt">$ npx @speclynx/cli validate openapi.yaml</span>
-<span class="t-file">openapi.yaml</span>
-  <span class="t-loc">3:3-3:9  </span>  <span class="t-error">error</span>  <span class="t-code">3030501</span>  <span class="t-msg">should always have a 'version'</span>
-  <span class="t-loc">7:24-7:26</span>  <span class="t-error">error</span>  <span class="t-code">3080500</span>  <span class="t-msg">operationId must be a string</span>
-
-<span class="t-fail">&#10006; 2 problems (2 errors)</span></pre>
+<main>
+<!-- Header -->
+<section class="hero-section py-12 md:py-16">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <h1 class="text-4xl font-extrabold text-primary-dark mb-4">Docs</h1>
+    <p class="text-xl text-gray-600 max-w-3xl mb-8"><strong>Guides</strong> that walk a problem end to end across the toolchain, and <strong>tutorials</strong> that solve one use case with one tool, finished in a sitting.</p>
+    <p class="text-xs font-bold uppercase tracking-wider text-gray-500 mb-3">What are you looking for?</p>
+    <div class="flex flex-wrap gap-3">
+      <a href="#guides" class="primary-cta text-white font-bold py-2 px-5 rounded inline-block">Guides</a>
+      <a href="#tutorials" class="primary-cta text-white font-bold py-2 px-5 rounded inline-block">Tutorials</a>
     </div>
-
-    <h2 id="gate-your-ci" class="text-2xl font-extrabold text-[#1D4F7C] mb-4">2. Gate your CI with it</h2>
-    <p class="text-gray-700 mb-4">The exit code is non-zero when problems reach the failure threshold, so the same command drops straight into a pipeline. Tighten the threshold to fail on warnings too:</p>
-    <pre class="code-block mb-4"><code class="language-bash">npx @speclynx/cli validate openapi.yaml --fail-severity warning</code></pre>
-    <p class="text-gray-700 mb-8">Add <code class="bg-gray-100 px-1 rounded">--format json</code> for machine-readable output. The <a href="{{ '/cli/' | relative_url }}#validate-command" class="text-primary-light underline hover:no-underline">validate reference</a> covers every option, check category, and exit code.</p>
-
-    <h2 id="pick-your-surface" class="text-2xl font-extrabold text-[#1D4F7C] mb-4">3. Pick your surface</h2>
-    <p class="text-gray-700 mb-6">The same engine runs everywhere. Choose where you want it:</p>
-    <ul class="space-y-4 mb-10">
-      <li class="text-gray-700"><a href="https://editor.speclynx.com" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline font-semibold">Editor</a> &mdash; open a spec in the browser, nothing to install. <a href="{{ '/editor/' | relative_url }}" class="text-primary-light underline hover:no-underline">Editor guide</a></li>
-      <li class="text-gray-700"><a href="https://marketplace.visualstudio.com/items?itemName=SpecLynx.vscode-openapi-toolkit" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline font-semibold">OpenAPI Toolkit</a> &mdash; validation, completion, and preview inside VS Code. <a href="{{ '/openapi-toolkit/' | relative_url }}" class="text-primary-light underline hover:no-underline">Toolkit guide</a></li>
-      <li class="text-gray-700"><span class="font-semibold text-primary-dark">ApiDOM</span> &mdash; parse and query specs from your own code. <a href="{{ '/apidom/installation/' | relative_url }}" class="text-primary-light underline hover:no-underline">Installation guide</a></li>
-    </ul>
-
-    <h2 id="next-steps" class="text-2xl font-extrabold text-[#1D4F7C] mb-4">Next steps</h2>
-    <ul class="space-y-2 mb-10">
-      <li class="text-gray-700">Apply and diff <a href="{{ '/cli/' | relative_url }}#overlay-apply-command" class="text-primary-light underline hover:no-underline">Overlays from the CLI</a></li>
-      <li class="text-gray-700">Understand the <a href="{{ '/apidom/data-model/' | relative_url }}" class="text-primary-light underline hover:no-underline">ApiDOM data model</a> everything runs on</li>
-      <li class="text-gray-700">Stuck or curious? <a href="https://github.com/orgs/speclynx/discussions" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Ask in the discussions</a></li>
-    </ul>
   </div>
 </section>
+
+<!-- Guides -->
+<section id="guides" class="section-padding bg-white">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <h2 class="text-3xl font-extrabold text-[#1D4F7C] mb-4">Guides</h2>
+    <p class="text-gray-600 text-lg max-w-3xl mb-10">Longer reads that follow one document or one problem across the tools. Every command runs against the published packages today, and the sample files are yours to download.</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <article class="product-card !p-0 overflow-hidden flex flex-col">
+        <a href="{{ '/docs/guides/getting-started/' | relative_url }}" class="block" aria-hidden="true" tabindex="-1">
+          <img src="{{ '/assets/images/docs/getting-started.webp' | relative_url }}" width="1280" height="520" alt="" class="w-full h-auto">
+        </a>
+        <div class="p-6 flex flex-col flex-1">
+          <h3 class="product-card-title text-xl">
+            <a href="{{ '/docs/guides/getting-started/' | relative_url }}" class="hover:text-primary-light transition-colors">Getting started with SpecLynx</a>
+          </h3>
+          <p class="product-card-description flex-1">Take one broken OpenAPI document through the Editor, VS Code, the CLI, an Overlay, and ApiDOM. Every product, one thread, nothing to sign up for.</p>
+          <p>
+            <a href="{{ '/docs/guides/getting-started/' | relative_url }}" class="primary-cta text-white font-bold py-2 px-4 rounded inline-flex items-center">
+              Read guide
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+              </svg>
+            </a>
+          </p>
+        </div>
+      </article>
+      <div class="product-card product-card-placeholder flex flex-col items-center justify-center text-center">
+        <p class="font-bold text-gray-700 mb-2">More guides on the way</p>
+        <p class="text-sm text-gray-600">The next ones are being written. Follow <a href="https://github.com/orgs/speclynx/discussions" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Discussions</a> to hear when they land.</p>
+      </div>
+      <div class="product-card product-card-placeholder hidden lg:block" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Tutorials -->
+<section id="tutorials" class="section-padding bg-gray-50">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <h2 class="text-3xl font-extrabold text-[#1D4F7C] mb-4">Tutorials</h2>
+    <p class="text-gray-600 text-lg max-w-3xl mb-10">One use case, one tool, finished in a sitting. Each one ends with a working command, file, or script you can keep.</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="product-card product-card-placeholder flex flex-col items-center justify-center text-center min-h-[16rem]">
+        <p class="font-bold text-gray-700 mb-2">More tutorials on the way</p>
+        <p class="text-sm text-gray-600">The next ones are being written. Follow <a href="https://github.com/orgs/speclynx/discussions" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Discussions</a> to hear when they land.</p>
+      </div>
+      <div class="product-card product-card-placeholder hidden md:block" aria-hidden="true"></div>
+      <div class="product-card product-card-placeholder hidden lg:block" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+</main>
 
 <script type="application/ld+json">
 {

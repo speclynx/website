@@ -1,0 +1,12 @@
+<!-- Sticky Sidebar: outline of the current guide, driven by page.toc -->
+<aside class="hidden lg:block w-64 flex-shrink-0">
+  <nav class="sticky top-[82px] p-6 space-y-4 text-sm" aria-label="{{ page.sidebar_title | default: page.title }}">
+    <a href="{{ '/docs/' | relative_url }}#guides" class="block text-gray-500 hover:text-primary-light">&larr; Guides</a>
+    <p class="font-bold text-primary-dark">{{ page.sidebar_title | default: page.title }}</p>
+    <ol class="space-y-2">
+      {% for item in page.toc %}
+      <li><a href="#{{ item.anchor }}" class="block text-gray-600 hover:text-primary-light">{{ item.title }}</a></li>
+      {% endfor %}
+    </ol>
+  </nav>
+</aside>
