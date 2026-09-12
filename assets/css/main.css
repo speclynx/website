@@ -852,3 +852,58 @@ h4:hover .heading-anchor {
     animation: terminal-blink 1s steps(2, start) infinite;
 }
 @keyframes terminal-blink { to { visibility: hidden; } }
+
+/* UseArazzo featured band: a dark panel with UseArazzo's own accent (brand green #94C83D),
+   so it reads as a distinct product rather than another SpecLynx section. Green on the navy
+   panel is ~7:1; the CTA puts dark text on the bright green (8.4:1). */
+.usearazzo-panel {
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 88% -10%, rgba(148, 200, 61, 0.32) 0%, rgba(148, 200, 61, 0) 42%),
+        radial-gradient(circle at 0% 110%, rgba(26, 116, 165, 0.45) 0%, rgba(26, 116, 165, 0) 40%),
+        var(--color-primary-dark);
+}
+
+.usearazzo-accent { color: #94C83D; }
+
+.usearazzo-cta {
+    background-color: #94C83D;
+    color: #17210D;
+    transition: background-color 0.2s ease;
+}
+
+.usearazzo-cta:hover {
+    background-color: #A8D65A;
+}
+
+.usearazzo-cta-secondary {
+    border: 2px solid rgba(255, 255, 255, 0.55);
+    color: #ffffff;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.usearazzo-cta-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+}
+
+.usearazzo-chip {
+    display: inline-block;
+    padding: 0.25rem 0.7rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.06);
+    color: #d1d5db;
+    font-size: 0.8rem;
+}
+
+#usearazzo .ua-card { fill: rgba(255, 255, 255, 0.06); stroke: rgba(255, 255, 255, 0.16); stroke-width: 1.5; }
+#usearazzo .ua-id { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-weight: 700; font-size: 15px; fill: #ffffff; }
+#usearazzo .ua-sub { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; fill: #9FB3C8; }
+#usearazzo .ua-lbl { font-family: inherit; font-size: 12px; font-weight: 600; fill: #C6E89A; }
+#usearazzo .ua-muted { font-family: inherit; font-size: 12px; fill: #9FB3C8; }
+#usearazzo .ua-pill { fill: rgba(148, 200, 61, 0.16); stroke: #94C83D; stroke-width: 1.2; }
+#usearazzo .ua-node { fill: #94C83D; }
+#usearazzo .ua-rail { stroke: rgba(148, 200, 61, 0.55); stroke-width: 2; fill: none; }
+#usearazzo .ua-loop { stroke: #94C83D; stroke-width: 2; fill: none; stroke-dasharray: 4 4; }
