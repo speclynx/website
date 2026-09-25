@@ -130,49 +130,69 @@ actions:
       </div>
     </div>
 
-    <!-- Testimonials: PLACEHOLDERS ONLY. Never publish invented quotes -
-         replace each card with a real, attributed quote before committing,
-         or comment this grid out. Each placeholder names the kind of quote
-         to collect. -->
+    <!-- Testimonials: real, attributed quotes only. Never publish invented quotes.
+         Each card has a matching Review in the JSON-LD below. -->
     <p class="text-gray-500 text-xs uppercase tracking-wider mt-16 mb-6">Testimonials</p>
-    <div class="grid md:grid-cols-3 gap-8">
+    <div class="grid md:grid-cols-2 gap-8">
       <figure class="product-card relative overflow-hidden flex flex-col">
         <div class="absolute top-0 left-0 right-0 h-1 bg-primary-dark"></div>
         <div class="text-primary-light text-5xl font-serif leading-none mb-3" aria-hidden="true">&ldquo;</div>
-        <blockquote class="text-gray-700 mb-6 flex-1">[Quote from a platform team: which per-format tools SpecLynx replaced in their CI, and what got simpler.]</blockquote>
+        <blockquote class="text-gray-700 mb-6 flex-1">Since my days at Apiary and Swagger, I've been looking for OpenAPI tooling I'd actually recommend. SpecLynx is it, and no wonder: it's built by many of the same people. The editor, CLI, and VS Code extension share one engine, so the whole toolchain just makes sense. I'll be using it in my consulting and training.</blockquote>
         <figcaption class="flex items-center gap-3 border-t border-gray-200 pt-4">
-          <svg class="w-10 h-10 rounded-full flex-shrink-0" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" fill="#092B4E"/><circle cx="14" cy="15" r="9" fill="#1a74a5"/><rect x="18" y="20" width="18" height="18" rx="4" fill="#EFF6FF" opacity="0.9"/></svg>
+          <img src="{{ '/assets/images/testimonials/emmanuel-paraskakis.webp' | relative_url }}" alt="" width="40" height="40" class="w-10 h-10 rounded-full flex-shrink-0 object-cover" loading="lazy">
           <span>
-            <span class="block text-sm font-semibold text-primary-dark">[Name]</span>
-            <span class="block text-sm text-gray-500">[Role, Company]</span>
+            <span class="block text-sm font-semibold text-primary-dark">Emmanuel Paraskakis</span>
+            <span class="block text-sm text-gray-500">Consultant, Trainer, Advisor</span>
+            <span class="block text-sm text-gray-500">Founder, <a href="https://www.level250.com/" target="_blank" rel="noopener noreferrer" class="underline hover:no-underline">Level 250</a></span>
           </span>
         </figcaption>
       </figure>
       <figure class="product-card relative overflow-hidden flex flex-col">
         <div class="absolute top-0 left-0 right-0 h-1 bg-[#1a74a5]"></div>
         <div class="text-primary-light text-5xl font-serif leading-none mb-3" aria-hidden="true">&ldquo;</div>
-        <blockquote class="text-gray-700 mb-6 flex-1">[Quote from an API author: catching spec errors in the editor or VS Code before they cost review time.]</blockquote>
+        <blockquote class="text-gray-700 mb-6 flex-1">When I started AsyncAPI, the hardest part wasn't the spec. It was the tooling around it: every standard got its own parser, validator and set of quirks. SpecLynx is the toolchain I wish had existed back then, with one consistent model across OpenAPI, AsyncAPI and Arazzo.</blockquote>
         <figcaption class="flex items-center gap-3 border-t border-gray-200 pt-4">
-          <svg class="w-10 h-10 rounded-full flex-shrink-0" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" fill="#1a74a5"/><path d="M0 40 L20 8 L40 40 Z" fill="#092B4E"/><circle cx="28" cy="13" r="7" fill="#EFF6FF" opacity="0.9"/></svg>
+          <img src="{{ '/assets/images/testimonials/fran-mendez.webp' | relative_url }}" alt="" width="40" height="40" class="w-10 h-10 rounded-full flex-shrink-0 object-cover" loading="lazy">
           <span>
-            <span class="block text-sm font-semibold text-primary-dark">[Name]</span>
-            <span class="block text-sm text-gray-500">[Role, Company]</span>
-          </span>
-        </figcaption>
-      </figure>
-      <figure class="product-card relative overflow-hidden flex flex-col">
-        <div class="absolute top-0 left-0 right-0 h-1 bg-primary-dark"></div>
-        <div class="text-primary-light text-5xl font-serif leading-none mb-3" aria-hidden="true">&ldquo;</div>
-        <blockquote class="text-gray-700 mb-6 flex-1">[Quote from a tool builder: what they built on ApiDOM or the Language Service, and why lossless parsing mattered.]</blockquote>
-        <figcaption class="flex items-center gap-3 border-t border-gray-200 pt-4">
-          <svg class="w-10 h-10 rounded-full flex-shrink-0" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" fill="#092B4E"/><rect x="-6" y="18" width="30" height="30" rx="6" fill="#1a74a5" transform="rotate(-15 9 33)"/><circle cx="30" cy="12" r="8" fill="#EFF6FF" opacity="0.9"/></svg>
-          <span>
-            <span class="block text-sm font-semibold text-primary-dark">[Name]</span>
-            <span class="block text-sm text-gray-500">[Role, Company]</span>
+            <span class="block text-sm font-semibold text-primary-dark">Fran Mendez</span>
+            <span class="block text-sm text-gray-500">AsyncAPI author</span>
+            <span class="block text-sm text-gray-500">Building <a href="https://usecommune.com/" target="_blank" rel="noopener noreferrer" class="underline hover:no-underline">usecommune.com</a></span>
           </span>
         </figcaption>
       </figure>
     </div>
+    <!-- Testimonials JSON-LD: one Review per quote above.
+         Keep reviewBody and the author details in sync with the visible cards. -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "Review",
+        "itemReviewed": { "@id": "{{ '/' | absolute_url }}" },
+        "reviewBody": "Since my days at Apiary and Swagger, I've been looking for OpenAPI tooling I'd actually recommend. SpecLynx is it, and no wonder: it's built by many of the same people. The editor, CLI, and VS Code extension share one engine, so the whole toolchain just makes sense. I'll be using it in my consulting and training.",
+        "author": {
+          "@type": "Person",
+          "name": "Emmanuel Paraskakis",
+          "jobTitle": ["Consultant", "Trainer", "Advisor", "Founder"],
+          "image": "{{ '/assets/images/testimonials/emmanuel-paraskakis.webp' | absolute_url }}",
+          "worksFor": { "@type": "Organization", "name": "Level 250", "url": "https://www.level250.com/" }
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Review",
+        "itemReviewed": { "@id": "{{ '/' | absolute_url }}" },
+        "reviewBody": "When I started AsyncAPI, the hardest part wasn't the spec. It was the tooling around it: every standard got its own parser, validator and set of quirks. SpecLynx is the toolchain I wish had existed back then, with one consistent model across OpenAPI, AsyncAPI and Arazzo.",
+        "author": {
+          "@type": "Person",
+          "name": "Fran Mendez",
+          "jobTitle": "AsyncAPI author",
+          "image": "{{ '/assets/images/testimonials/fran-mendez.webp' | absolute_url }}",
+          "worksFor": { "@type": "Organization", "name": "usecommune.com", "url": "https://usecommune.com/" }
+        }
+      }
+    ]
+    </script>
   </div>
 </section>
 
