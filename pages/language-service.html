@@ -83,12 +83,17 @@ permalink: /language-service/
       <p class="text-xl text-gray-600 mb-6">Specification-aware intelligence for editors and platforms</p>
 
       <p class="text-gray-700 text-lg mb-6">
-        SpecLynx ApiDOM Language Service (<code class="bg-gray-100 px-2 py-1 rounded">@speclynx/apidom-ls</code>) is a library implementing LSP-aligned features for working with API specifications — validation, completion, navigation, and more — ready to integrate into editors, platforms, and internal tooling.
+        SpecLynx API Language Service (<code class="bg-gray-100 px-2 py-1 rounded">@speclynx/api-languageservice</code>) is a library implementing LSP-aligned features for working with API specifications — validation, completion, navigation, and more — ready to integrate into editors, platforms, and internal tooling.
       </p>
 
-      <a href="https://www.npmjs.com/package/@speclynx/apidom-ls" target="_blank" rel="noopener noreferrer" class="primary-cta text-white font-bold py-3 px-6 rounded inline-block mb-8">
-        View on npm
-      </a>
+      <div class="flex flex-wrap gap-4 mb-8">
+        <a href="https://www.npmjs.com/package/@speclynx/api-languageservice" target="_blank" rel="noopener noreferrer" class="primary-cta text-white font-bold py-3 px-6 rounded inline-block">
+          View on npm
+        </a>
+        <a href="https://github.com/speclynx/api-languageservice" target="_blank" rel="noopener noreferrer" class="border-2 border-primary-dark text-primary-dark font-bold py-3 px-6 rounded inline-block hover:bg-gray-100 transition-colors">
+          View on GitHub
+        </a>
+      </div>
 
       <div class="bg-blue-50 border-l-4 border-primary-light p-4 mb-6">
         <p class="text-gray-700">
@@ -214,7 +219,7 @@ permalink: /language-service/
       <p class="text-gray-700 mb-4">
         Locates all uses of a symbol across the specification.
       </p>
-      <pre class="code-block"><code class="language-javascript">const references = await languageService.doFindReferences(document, params);
+      <pre class="code-block"><code class="language-javascript">const references = await languageService.doProvideReferences(document, params);
 // Returns: Location[] of all references</code></pre>
     </section>
 
@@ -224,8 +229,8 @@ permalink: /language-service/
       <p class="text-gray-700 mb-4">
         Generates outlines and breadcrumbs for document navigation. Provides a hierarchical view of the specification structure.
       </p>
-      <pre class="code-block"><code class="language-javascript">const symbols = await languageService.doProvideDocumentSymbols(document);
-// Returns: DocumentSymbol[] hierarchy</code></pre>
+      <pre class="code-block"><code class="language-javascript">const symbols = await languageService.doFindDocumentSymbols(document);
+// Returns: SymbolInformation[]</code></pre>
     </section>
 
     <!-- Semantic Tokens -->
@@ -254,7 +259,7 @@ permalink: /language-service/
       <p class="text-gray-700 mb-4">
         Standardizes document structure with consistent indentation and formatting.
       </p>
-      <pre class="code-block"><code class="language-javascript">const edits = await languageService.doFormat(document, options);
+      <pre class="code-block"><code class="language-javascript">const edits = await languageService.doFormatting(document, options);
 // Returns: TextEdit[] to apply formatting</code></pre>
     </section>
 
@@ -264,8 +269,10 @@ permalink: /language-service/
       <p class="text-gray-700 mb-4">
         Switches between JSON and YAML formats while preserving the specification structure.
       </p>
-      <pre class="code-block"><code class="language-javascript">const converted = await languageService.doConvertFormat(document, targetFormat);
-// Returns: Converted document content</code></pre>
+      <pre class="code-block"><code class="language-javascript">import { Format } from '@speclynx/api-languageservice';
+
+const converted = await languageService.doConversion(document, Format.YAML, Format.JSON);
+// Returns: { success, result, error }, where result is the converted document</code></pre>
     </section>
 
     <!-- Dereferencing -->
@@ -281,10 +288,10 @@ permalink: /language-service/
     <!-- Installation -->
     <section id="installation" class="mb-16">
       <h2 class="text-2xl font-bold text-primary-dark mb-4">Installation</h2>
-      <pre class="code-block mb-6"><code class="language-bash">npm install @speclynx/apidom-ls</code></pre>
+      <pre class="code-block mb-6"><code class="language-bash">npm install @speclynx/api-languageservice</code></pre>
 
       <h3 id="quick-start" class="text-lg font-semibold text-primary-dark mb-3">Quick Start</h3>
-      <pre class="code-block"><code class="language-javascript">import { getLanguageService } from '@speclynx/apidom-ls';
+      <pre class="code-block"><code class="language-javascript">import { getLanguageService } from '@speclynx/api-languageservice';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 
 // Create the language service
@@ -322,7 +329,7 @@ languageService.terminate();</code></pre>
       <p class="text-gray-700 mb-4">
         The language service accepts configuration options for customization:
       </p>
-      <pre class="code-block mb-6"><code class="language-javascript">import { getLanguageService, LogLevel } from '@speclynx/apidom-ls';
+      <pre class="code-block mb-6"><code class="language-javascript">import { getLanguageService, LogLevel } from '@speclynx/api-languageservice';
 
 const languageService = getLanguageService({
   logLevel: LogLevel.WARN,
@@ -330,8 +337,8 @@ const languageService = getLanguageService({
   validatorProviders: [...],
   completionProviders: [...],
   hoverProviders: [...],
-  // Link following in hover
-  hoverFollowLinks: true,
+  // "follow link" entry when hovering URL values
+  hoverFollowLinkEntry: true,
 });</code></pre>
 
       <h3 id="configuration-options" class="text-lg font-semibold text-primary-dark mb-3">Configuration Options</h3>
@@ -361,8 +368,8 @@ const languageService = getLanguageService({
               <td class="px-4 py-2">Custom hover documentation providers</td>
             </tr>
             <tr>
-              <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">hoverFollowLinks</code></td>
-              <td class="px-4 py-2">Enable link following in hover tooltips</td>
+              <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">hoverFollowLinkEntry</code></td>
+              <td class="px-4 py-2">Add a &ldquo;follow link&rdquo; entry to hover tooltips on URL values</td>
             </tr>
           </tbody>
         </table>
@@ -389,7 +396,7 @@ const languageService = getLanguageService({
         <div class="text-center text-gray-400 text-2xl mb-3">&#8595;</div>
         <div class="border-2 border-primary-light bg-blue-50 rounded-lg p-4 text-center mb-3">
           <p class="font-bold text-primary-dark">SpecLynx Language Service</p>
-          <p class="text-sm text-gray-600">@speclynx/apidom-ls</p>
+          <p class="text-sm text-gray-600">@speclynx/api-languageservice</p>
         </div>
         <div class="text-center text-gray-400 text-2xl mb-3">&#8595;</div>
         <div class="border-2 border-gray-300 rounded-lg p-4 text-center">
@@ -468,7 +475,7 @@ const languageService = getLanguageService({
         </div>
         <div>
           <h3 class="font-semibold text-gray-900 mb-2">Can I use Language Service outside of VS Code?</h3>
-          <p class="text-gray-700">Yes. Language Service is a standalone npm package (<code>@speclynx/apidom-ls</code>) that implements the Language Server Protocol. You can integrate it into any editor or tool that supports LSP, or use it programmatically in your own applications.</p>
+          <p class="text-gray-700">Yes. Language Service is a standalone npm package (<code>@speclynx/api-languageservice</code>) that implements the Language Server Protocol. You can integrate it into any editor or tool that supports LSP, or use it programmatically in your own applications.</p>
         </div>
         <div>
           <h3 class="font-semibold text-gray-900 mb-2">What LSP features are supported?</h3>
@@ -498,7 +505,7 @@ const languageService = getLanguageService({
           "name": "Can I use Language Service outside of VS Code?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. Language Service is a standalone npm package (@speclynx/apidom-ls) that implements the Language Server Protocol. You can integrate it into any editor or tool that supports LSP, or use it programmatically in your own applications."
+            "text": "Yes. Language Service is a standalone npm package (@speclynx/api-languageservice) that implements the Language Server Protocol. You can integrate it into any editor or tool that supports LSP, or use it programmatically in your own applications."
           }
         },
         {
