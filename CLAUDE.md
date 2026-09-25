@@ -10,7 +10,7 @@ Five products:
 - **Editor** — Browser-based OpenAPI editor at `editor.speclynx.com` (fully client-side, open source)
 - **OpenAPI Toolkit** — Free VS Code extension for API spec authoring (validation, completion, hover, preview, linting)
 - **CLI** — Command-line tool (`@speclynx/cli`) currently shipping `overlay apply`, `overlay diff`, and `validate` (validation + linting for OpenAPI, AsyncAPI, Arazzo, Overlay; single file or URL per run); dereference, bundle, and convert are on the roadmap
-- **Language Service** — LSP-compatible npm library (`@speclynx/apidom-ls`) for API spec intelligence
+- **Language Service** — LSP-compatible npm library (`@speclynx/api-languageservice`) for API spec intelligence
 - **ApiDOM** — Semantic parser for API specifications (OpenAPI, AsyncAPI, Arazzo, JSON Schema)
 
 ## Tech Stack

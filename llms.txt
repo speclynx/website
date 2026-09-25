@@ -42,9 +42,10 @@ layout: none
 ### Language Service
 - LSP-compatible library for API specification intelligence
 - 12+ LSP features: validation, completion, hover, go-to-definition, find references, document symbols, semantic tokens, code actions, formatting
-- npm package: @speclynx/apidom-ls
+- npm package: @speclynx/api-languageservice (formerly @speclynx/apidom-ls)
 - Integrates with any LSP-compatible editor or tool
 - Free, open source (Apache 2.0)
+- GitHub: https://github.com/speclynx/api-languageservice
 - Docs: {{ site.url }}{{ site.baseurl }}/language-service/
 
 ### ApiDOM
