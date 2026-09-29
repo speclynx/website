@@ -8,9 +8,11 @@
     --color-bg-light: #F9FAFB;
 }
 
-/* Prevent horizontal scroll */
+/* Prevent horizontal scroll. clip, not hidden: hidden on html and body turns body
+   into its own scroll container, so the page itself never scrolls (mobile toolbars
+   stay expanded, window scroll events never fire) */
 html, body {
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 /* Smooth scroll for internal links */

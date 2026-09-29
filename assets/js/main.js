@@ -46,14 +46,14 @@ document.addEventListener('DOMContentLoaded', function() {
       lightboxImg.src = this.currentSrc || this.src;
       lightboxImg.alt = this.alt;
       lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
     });
   });
 
   // Close lightbox
   function closeLightbox() {
     lightbox.classList.remove('active');
-    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
   }
 
   lightboxClose.addEventListener('click', closeLightbox);
@@ -131,10 +131,8 @@ document.addEventListener('DOMContentLoaded', function() {
       sections.forEach(function(section) {
         if (section.target.getBoundingClientRect().top <= offset) next = section.link;
       });
-      // Short last sections never reach the offset; at the page bottom, the last one is in view.
-      // overflow-x: hidden on html and body can make body the scroller instead of the window.
-      const scroller = document.body.scrollHeight > document.body.clientHeight + 1 ? document.body : document.scrollingElement;
-      if (scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight - 2) {
+      // Short last sections never reach the offset; at the page bottom, the last one is in view
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
         next = sections[sections.length - 1].link;
       }
       if (next === active) return;
@@ -145,12 +143,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     let ticking = false;
-    // Capture phase catches scrolling on body as well as on the window
-    document.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function() {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(function() { ticking = false; updateActive(); });
-    }, { capture: true, passive: true });
+    }, { passive: true });
     window.addEventListener('resize', updateActive);
     updateActive();
   });

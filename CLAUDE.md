@@ -81,6 +81,7 @@ llms.txt                         # LLM crawler discovery file
 - Tailwind utilities for layout, combined with custom classes (`.primary-cta`, `.product-card`, `.hero-section`)
 - Standard container: `class="container mx-auto px-4 max-w-6xl"`
 - Color `--color-primary-light` (#1a74a5) chosen to pass WCAG AA 4.5:1 contrast on both white and `#EFF6FF` hero backgrounds
+- `html, body { overflow-x: clip }` stops sideways scrolling. Never use `hidden` there: on both elements it makes `<body>` its own scroll container, so the page never scrolls (mobile toolbars stay expanded, `window` scroll events never fire, and `sticky` breaks). For the same reason `<body>` is `min-h-full`, not `h-full`, and the lightbox locks scrolling on `<html>`, not `<body>`
 
 ## Inline Links in Body Text
 
