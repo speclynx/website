@@ -94,6 +94,10 @@ All `<h3>` elements on product pages have descriptive IDs matching their text (e
 
 `scroll-margin-top: 80px` on `[id]` elements prevents anchors from hiding under the sticky header.
 
+## Page Sidebars
+
+Product pages, ApiDOM pages, and guide pages share one sidebar pattern: `<aside class="page-sidebar">` with a `.page-sidebar-toggle` button and a `nav#page-sidebar-nav.page-sidebar-nav`, inside a `flex flex-col lg:flex-row` wrapper. From `lg` up it is the sticky left column (toggle hidden). Below `lg` it becomes a sticky bar under the header ("On this page › <section in view>", or "ApiDOM docs › <current page>") that expands into the same nav; `main.js` handles toggling, `aria-expanded`, and closing on link click, outside click, or Escape. `main.js` also tracks the section in view: it sets `aria-current="location"` on the matching sidebar link (highlighted on desktop too) and shows its text in `.page-sidebar-current`. ApiDOM sidebar links mark the current page with `aria-current="page"`. The bar's measured height goes into `--page-sidebar-bar`, which the CSS uses for anchor `scroll-margin-top` and the open menu's `100dvh` max-height. Never hide a sidebar with `hidden lg:block` again.
+
 ## Quality Checks
 
 ### W3C HTML Validation
@@ -198,7 +202,7 @@ Structure mirrors usearazzo.com/docs: a landing page at `/docs/` with **Guides**
 - Every **Get started** CTA (nav desktop + mobile, homepage hero + pipeline section, manifesto) links to the getting-started guide. Plain **Docs** links (nav, footer) go to `/docs/`
 - Terminal mocks use `.t-add` (green) for lines an operation added to a document
 - The docs landing uses `layout: base` with full-bleed sections whose backgrounds alternate (hero gradient header, then `bg-white` / `bg-gray-50` per section, like the homepage). Keep alternating as sections are added
-- Guide pages use `layout: base` with `_includes/docs-sidebar.html` on the left (same wrapper as ApiDOM pages). The sidebar is specific to the current guide: a back link to `/docs/#guides` ("← Guides", also used for the "Back to guides" link at the foot of the page), the guide title (`sidebar_title` front matter, falls back to `title`), and the guide's section anchors from a `toc` list in front matter (`title` + `anchor` per item). The in-page "On this page" box renders the same `toc` and is `lg:hidden`, so it only appears when the sidebar is hidden. Keep `toc` anchors in sync with the heading IDs
+- Guide pages use `layout: base` with `_includes/docs-sidebar.html` on the left (same wrapper as ApiDOM pages). The sidebar is specific to the current guide: a back link to `/docs/#guides` ("← Guides", also used for the "Back to guides" link at the foot of the page), the guide title (`sidebar_title` front matter, falls back to `title`), and the guide's section anchors from a `toc` list in front matter (`title` + `anchor` per item). On mobile the sidebar collapses into the page-sidebar bar (see Page Sidebars), so there is no separate in-page contents box. Keep `toc` anchors in sync with the heading IDs
 
 ## Naming Conventions
 
