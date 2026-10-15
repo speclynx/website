@@ -128,6 +128,7 @@ permalink: /cli/
       <ul class="text-gray-700 space-y-1 mb-6 ml-4">
         <li>&#10003; Overlay 1.0.0</li>
         <li>&#10003; Overlay 1.1.0</li>
+        <li>&#10003; Overlay 1.2.0</li>
       </ul>
 
       <h4 id="overlay-apply-arguments" class="text-base font-semibold text-primary-dark mb-3">Arguments</h4>
@@ -210,7 +211,7 @@ permalink: /cli/
 
       <h3 id="overlay-diff-command" class="text-lg font-semibold text-primary-dark mb-3">overlay diff</h3>
       <p class="text-gray-700 mb-4">
-        Generate an <a href="https://spec.openapis.org/overlay/latest.html" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Overlay 1.x</a> document by comparing two API specifications. The produced overlay, when applied to the <em>before</em> document, transforms it into the <em>after</em> document &mdash; perfect for tracking API evolution as discrete, reusable overlay files.
+        Generate an <a href="https://spec.openapis.org/overlay/latest.html" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Overlay 1.x</a> document by comparing two API specifications. The produced overlay, when applied to the <em>before</em> document, transforms it into the <em>after</em> document &mdash; perfect for tracking API evolution as discrete, reusable overlay files. The generated document declares Overlay 1.2.0 by default; use <code class="bg-gray-100 px-1 rounded">--overlay-version</code> to target an older version.
       </p>
 
       <pre class="code-block mb-6"><code class="language-bash">speclynx overlay diff [options] &lt;before&gt; &lt;after&gt;</code></pre>
@@ -255,6 +256,10 @@ permalink: /cli/
               <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">-f, --format &lt;format&gt;</code></td>
               <td class="px-4 py-2">Output format: <code class="bg-gray-100 px-1 rounded">json</code> or <code class="bg-gray-100 px-1 rounded">yaml</code> (inferred from input by default)</td>
             </tr>
+            <tr class="border-b">
+              <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">--overlay-version &lt;version&gt;</code></td>
+              <td class="px-4 py-2">Overlay version of the generated document: <code class="bg-gray-100 px-1 rounded">1.0.0</code>, <code class="bg-gray-100 px-1 rounded">1.1.0</code>, or <code class="bg-gray-100 px-1 rounded">1.2.0</code> (default: <code class="bg-gray-100 px-1 rounded">1.2.0</code>)</td>
+            </tr>
             <tr>
               <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">--fail-on-empty</code></td>
               <td class="px-4 py-2">Exit with code 1 when both documents are identical &mdash; useful for CI</td>
@@ -273,6 +278,9 @@ permalink: /cli/
 
       <p class="text-gray-600 text-sm mb-2">Force a specific output format:</p>
       <pre class="code-block mb-4"><code class="language-bash">speclynx overlay diff openapi-v1.yaml openapi-v2.yaml -f json</code></pre>
+
+      <p class="text-gray-600 text-sm mb-2">Generate an Overlay 1.1.0 document for tools that don't support 1.2.0 yet:</p>
+      <pre class="code-block mb-4"><code class="language-bash">speclynx overlay diff openapi-v1.json openapi-v2.json --overlay-version 1.1.0</code></pre>
 
       <p class="text-gray-600 text-sm mb-2">Fail the build when two specs are identical:</p>
       <pre class="code-block mb-4"><code class="language-bash">speclynx overlay diff openapi-v1.json openapi-v2.json --fail-on-empty</code></pre>
@@ -431,7 +439,7 @@ permalink: /cli/
         </div>
         <div class="bg-gray-50 p-4 rounded-lg">
           <h3 id="overlay-tooling" class="font-semibold text-primary-dark mb-2">Overlay Tooling</h3>
-          <p class="text-gray-600 text-sm">Apply and diff Overlay 1.0.0 / 1.1.0 documents, and chain multiple overlays in a single command.</p>
+          <p class="text-gray-600 text-sm">Apply and diff Overlay 1.0.0 / 1.1.0 / 1.2.0 documents, and chain multiple overlays in a single command.</p>
         </div>
         <div class="bg-gray-50 p-4 rounded-lg">
           <h3 id="local-or-remote" class="font-semibold text-primary-dark mb-2">Local or Remote, JSON or YAML</h3>
