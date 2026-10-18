@@ -73,6 +73,8 @@ assets/
   samples/getting-started/       # Downloadable sample spec + overlay used by the getting-started guide
 robots.txt                       # Sitemap directive (uses Jekyll variables)
 llms.txt                         # LLM crawler discovery file
+AUDIENCE-NOTES.md                # Who the content is for (research input; not built)
+CONCEPT-CATALOG.md               # Durable content themes (content output; not built)
 ```
 
 ## CSS Conventions
@@ -194,7 +196,7 @@ Key conventions for ApiDOM content:
 
 Structure mirrors usearazzo.com/docs: a landing page at `/docs/` with **Guides** and **Tutorials** as card grids. Headings and intros are left-aligned like the rest of the site (only the text inside placeholder cards is centered); the header has a "What are you looking for?" pill row linking to the sections. Every grid row is filled to three: real cards, then one dashed `.product-card-placeholder` with centered "More guides/tutorials on the way" text (linking to Discussions), then empty dashed placeholders (`aria-hidden`, hidden below the breakpoint where they would wrap) so the row never looks half-empty. This matches usearazzo.com exactly. No API reference section yet; a reference section is planned, and the landing intro does not mention reference docs.
 
-- Guides are long-form, problem-first, and may span several products. Tutorials (when added) are one use case, one tool, finishable in a sitting. Route new docs work through the `developer-marketing` skill
+- Guides are long-form, problem-first, and may span several products. Tutorials (when added) are one use case, one tool, finishable in a sitting. Route new docs work through the `developer-marketing` skill (stance, DX) and the `content-strategy` skill (angles, concepts, guide-to-tutorial repurposing)
 - The ApiDOM pages (`/apidom/...`) are product documentation, not guides; they are not listed on the docs landing. Product pages never move
 - `/docs/guides/getting-started/` follows one sample OpenAPI document through all five products: fix the two errors in the Editor (step 2; the reader pastes over the `petstore-3.1.yaml` fixture the Editor opens with, since the Editor cannot load from a URL), extend the fixed file with a response schema and a `components` `Pet` schema in VS Code (step 3), CLI validate + CI (step 4, validates the broken original as `broken.yaml`), CLI overlay apply (step 5), ApiDOM (step 6). Each step moves the same document forward; no step is throwaway. It only uses shipped CLI commands. All terminal output and the ApiDOM snippet were run for real; re-run them if the CLI or packages change
 - Guides get a hero image like blog posts (same `blog-hero-image` skill and rules), stored in `assets/images/docs/<slug>.webp` with a `<slug>.png` sibling, declared in the guide's `image` front matter (`path` = WebP, `social` = PNG, same social-preview mechanism as blog posts), shown in a `<figure>` under the guide intro and as the thumbnail on its landing card
