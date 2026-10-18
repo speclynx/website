@@ -824,6 +824,87 @@ h4:hover .heading-anchor {
     vertical-align: top;
 }
 
+/* Native title tooltips on table terms: dotted underline as the hover cue. */
+.post-content abbr[title] {
+    text-decoration: underline dotted;
+    cursor: help;
+}
+
+/* Side-by-side file comparison: one grid row per line pair, so both sides stay
+   aligned even when a long line wraps. Below md the two files stack (CSS order)
+   and the alignment gaps and gutter markers are dropped. */
+.post-content .code-compare {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 1.25rem;
+    padding: 0.75rem 0;
+    border-radius: 0.5rem;
+    background: #2d2d2d;
+    color: #ccc;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 0.75rem;
+    line-height: 1.6;
+}
+
+.post-content .code-compare .cmp-l,
+.post-content .code-compare .cmp-r {
+    /* Indentation comes in as --i (leading spaces stripped), so a wrapped
+       line hangs 2ch deeper than its own YAML nesting instead of at column 0. */
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    padding: 0 1rem 0 calc(1rem + (var(--i, 0) + 2) * 1ch);
+    text-indent: -2ch;
+    border-left: 3px solid transparent;
+}
+
+.post-content .code-compare .cmp-head {
+    padding: 0.25rem 1rem 0.5rem;
+    color: #999;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+@media (max-width: 767px) {
+    .post-content .code-compare .cmp-head-l { order: 1; }
+    .post-content .code-compare .cmp-l { order: 2; }
+    .post-content .code-compare .cmp-head-r { order: 3; padding-top: 1rem; }
+    .post-content .code-compare .cmp-r { order: 4; }
+    .post-content .code-compare .cmp-gap,
+    .post-content .code-compare .cmp-g,
+    .post-content .code-compare .cmp-head-g { display: none; }
+}
+
+.post-content .code-compare .cmp-del {
+    background: rgba(248, 113, 113, 0.16);
+    border-left-color: #f87171;
+}
+
+.post-content .code-compare .cmp-add {
+    background: rgba(74, 222, 128, 0.14);
+    border-left-color: #4ade80;
+}
+
+@media (min-width: 768px) {
+    .post-content .code-compare {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 1.75rem minmax(0, 1fr);
+    }
+
+    .post-content .code-compare .cmp-gap {
+        background: repeating-linear-gradient(-45deg, transparent 0 4px, rgba(255, 255, 255, 0.05) 4px 8px);
+    }
+
+}
+
+/* From lg up the comparison breaks out of the 48rem text column. */
+@media (min-width: 1024px) {
+    .post-content .code-compare {
+        width: min(78rem, calc(100vw - 4rem));
+        margin-left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
 /* Lightbox */
 .lightbox {
     display: none;
