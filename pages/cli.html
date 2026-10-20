@@ -68,10 +68,10 @@ permalink: /cli/
         <h1 class="text-4xl font-extrabold text-primary-dark">SpecLynx CLI</h1>
         <span class="badge badge-primary">Command line</span>
       </div>
-      <p class="text-xl text-gray-600 mb-6">Validate, overlay, and reshape your API specs &mdash; one consistent toolchain, from the command line.</p>
+      <p class="text-xl text-gray-600 mb-6">Validate, overlay, and reshape your API specs with one consistent toolchain, from the command line.</p>
 
       <p class="text-gray-700 text-lg mb-6">
-        SpecLynx CLI is a command-line tool for working with API specifications. Validate OpenAPI, AsyncAPI, Arazzo, and Overlay documents, and apply or diff <a href="https://spec.openapis.org/overlay/latest.html" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Overlay</a> documents &mdash; all from your terminal or CI/CD pipeline.
+        SpecLynx CLI is a command-line tool for working with API specifications. Validate OpenAPI, AsyncAPI, Arazzo, and Overlay documents, and apply or diff <a href="https://spec.openapis.org/overlay/latest.html" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Overlay</a> documents, all from your terminal or CI/CD pipeline.
       </p>
 
       <div class="mb-6">
@@ -92,7 +92,7 @@ permalink: /cli/
 
       <div class="bg-blue-50 border-l-4 border-primary-light p-4 mb-6">
         <p class="text-gray-700">
-          <strong>Early release:</strong> SpecLynx CLI currently ships the <code class="bg-gray-100 px-1 rounded">overlay apply</code>, <code class="bg-gray-100 px-1 rounded">overlay diff</code>, and <code class="bg-gray-100 px-1 rounded">validate</code> commands. More commands &mdash; dereference, bundle, and convert &mdash; are coming soon.
+          <strong>Early release:</strong> SpecLynx CLI currently ships the <code class="bg-gray-100 px-1 rounded">overlay apply</code>, <code class="bg-gray-100 px-1 rounded">overlay diff</code>, and <code class="bg-gray-100 px-1 rounded">validate</code> commands. More commands (dereference, bundle, and convert) are coming soon.
         </p>
       </div>
     </section>
@@ -211,7 +211,7 @@ speclynx validate --help         # show validate options</code></pre>
       <p class="text-gray-600 text-sm mb-2">Chain multiple overlays:</p>
       <pre class="code-block mb-4"><code class="language-bash">speclynx overlay apply first.json openapi.json --overlay second.json --overlay third.json</code></pre>
 
-      <p class="text-gray-600 text-sm mb-2">Strict mode &mdash; fail if any action targets match nothing:</p>
+      <p class="text-gray-600 text-sm mb-2">Strict mode, to fail if any action targets match nothing:</p>
       <pre class="code-block mb-4"><code class="language-bash">speclynx overlay apply overlay.json openapi.json --strict</code></pre>
 
       <p class="text-gray-600 text-sm mb-2">Show a trace of each action and how many nodes it matched (written to stderr, so stdout stays a clean document):</p>
@@ -224,7 +224,7 @@ speclynx validate --help         # show validate options</code></pre>
 
       <h3 id="overlay-diff-command" class="text-lg font-semibold text-primary-dark mb-3">overlay diff</h3>
       <p class="text-gray-700 mb-4">
-        Generate an <a href="https://spec.openapis.org/overlay/latest.html" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Overlay 1.x</a> document by comparing two API specifications. The produced overlay, when applied to the <em>before</em> document, transforms it into the <em>after</em> document &mdash; perfect for tracking API evolution as discrete, reusable overlay files. The generated document declares Overlay 1.2.0 by default; use <code class="bg-gray-100 px-1 rounded">--overlay-version</code> to target an older version.
+        Generate an <a href="https://spec.openapis.org/overlay/latest.html" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Overlay 1.x</a> document by comparing two API specifications. The produced overlay, when applied to the <em>before</em> document, transforms it into the <em>after</em> document. That makes it perfect for tracking API evolution as discrete, reusable overlay files. The generated document declares Overlay 1.2.0 by default; use <code class="bg-gray-100 px-1 rounded">--overlay-version</code> to target an older version.
       </p>
 
       <pre class="code-block mb-6"><code class="language-bash">speclynx overlay diff [options] &lt;before&gt; &lt;after&gt;</code></pre>
@@ -275,7 +275,7 @@ speclynx validate --help         # show validate options</code></pre>
             </tr>
             <tr>
               <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">--fail-on-empty</code></td>
-              <td class="px-4 py-2">Exit with code 1 when both documents are identical &mdash; useful for CI</td>
+              <td class="px-4 py-2">Exit with code 1 when both documents are identical (useful for CI)</td>
             </tr>
           </tbody>
         </table>
@@ -302,21 +302,21 @@ speclynx validate --help         # show validate options</code></pre>
 
       <h3 id="validate-command" class="text-lg font-semibold text-primary-dark mb-3">validate</h3>
       <p class="text-gray-700 mb-4">
-        Validate an API document &mdash; a local file or a remote URL &mdash; against its specification. SpecLynx CLI auto-detects the document type and reports problems as color-coded, human-readable diagnostics &mdash; or as a machine-readable JSON array for CI/CD.
+        Validate an API document, from a local file or a remote URL, against its specification. SpecLynx CLI auto-detects the document type and reports problems as color-coded, human-readable diagnostics, or as a machine-readable JSON array for CI/CD.
       </p>
 
       <pre class="code-block mb-6"><code class="language-bash">speclynx validate [options] &lt;uri&gt;</code></pre>
 
       <p class="text-gray-600 text-sm mb-3">Problems are reported as a color-coded <code class="bg-gray-100 px-1 rounded">location&nbsp;&nbsp;severity&nbsp;&nbsp;code&nbsp;&nbsp;message</code> table, ending with a severity-count summary:</p>
       <!-- role="img" exposes the whole block via aria-label; descendants are presentational, so no aria-hidden needed. -->
-      <div class="terminal mb-8" role="img" aria-label="Terminal running 'speclynx validate openapi.json'. The report lists two errors — line 3: should always have a 'version' (code 3030501); line 7: operationId must be a string (code 3080500) — and ends with the summary: 2 problems, 2 errors.">
+      <div class="terminal mb-8" role="img" aria-label="Terminal running 'speclynx validate openapi.json'. The report lists two errors (line 3: should always have a 'version', code 3030501; line 7: operationId must be a string, code 3080500) and ends with the summary: 2 problems, 2 errors.">
         <div class="terminal-titlebar">
           <span class="terminal-dot terminal-dot-red"></span>
           <span class="terminal-dot terminal-dot-yellow"></span>
           <span class="terminal-dot terminal-dot-green"></span>
           <span class="terminal-title">bash</span>
         </div>
-        <!-- terminal-body uses white-space: pre — keep lines flush-left; source indentation would render literally. -->
+        <!-- terminal-body uses white-space: pre, so keep lines flush-left; source indentation would render literally. -->
 <pre class="terminal-body"><span class="terminal-prompt">$ speclynx validate openapi.json</span>
 <span class="t-file">openapi.json</span>
   <span class="t-loc">3:3-3:9  </span>  <span class="t-error">error</span>  <span class="t-code">3030501</span>  <span class="t-msg">should always have a 'version'</span>
@@ -336,9 +336,9 @@ speclynx validate --help         # show validate options</code></pre>
       <h4 id="validate-checks" class="text-base font-semibold text-primary-dark mb-3">What Gets Checked</h4>
       <p class="text-gray-700 mb-3">Three categories of checks run against every document:</p>
       <ul class="text-gray-700 space-y-2 mb-6 ml-4 list-disc list-outside pl-4">
-        <li><strong>Semantic validation</strong> &mdash; checks the document against the <em>meaning</em> of its specification, not just its JSON/YAML syntax: required fields are present, values have the correct types, and objects are shaped as the spec requires.</li>
-        <li><strong>Reference validation</strong> &mdash; checks that every local (<code class="bg-gray-100 px-1 rounded">#/...</code>) <code class="bg-gray-100 px-1 rounded">$ref</code> resolves to something that actually exists.</li>
-        <li><strong>Semantic linting</strong> &mdash; applies style and best-practice rules on top of validation, such as flagging an empty <code class="bg-gray-100 px-1 rounded">enum</code>.</li>
+        <li><strong>Semantic validation</strong> checks the document against the <em>meaning</em> of its specification, not just its JSON/YAML syntax: required fields are present, values have the correct types, and objects are shaped as the spec requires.</li>
+        <li><strong>Reference validation</strong> checks that every local (<code class="bg-gray-100 px-1 rounded">#/...</code>) <code class="bg-gray-100 px-1 rounded">$ref</code> resolves to something that actually exists.</li>
+        <li><strong>Semantic linting</strong> applies style and best-practice rules on top of validation, such as flagging an empty <code class="bg-gray-100 px-1 rounded">enum</code>.</li>
       </ul>
       <p class="text-gray-700 mb-6">JSON Schema (AJV) validation is an additional opt-in layer, enabled with <code class="bg-gray-100 px-1 rounded">--json-schema-validation</code>. It validates the document against the official JSON Schema for its specification and covers OpenAPI 2.0, 3.0, and 3.1, AsyncAPI 2.x, Arazzo, and Overlay.</p>
 
@@ -447,12 +447,12 @@ speclynx validate --help         # show validate options</code></pre>
             </tr>
             <tr>
               <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">1</code></td>
-              <td class="px-4 py-2">A diagnostic at or above <code class="bg-gray-100 px-1 rounded">--fail-severity</code> was found (the document is invalid), <em>or</em> a hard error occurred &mdash; missing input, an unresolvable <code class="bg-gray-100 px-1 rounded">$ref</code>, an unwritable or input-colliding <code class="bg-gray-100 px-1 rounded">-o</code> path, or an internal failure.</td>
+              <td class="px-4 py-2">A diagnostic at or above <code class="bg-gray-100 px-1 rounded">--fail-severity</code> was found (the document is invalid), <em>or</em> a hard error occurred: missing input, an unresolvable <code class="bg-gray-100 px-1 rounded">$ref</code>, an unwritable or input-colliding <code class="bg-gray-100 px-1 rounded">-o</code> path, or an internal failure.</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <p class="text-gray-600 text-sm mb-6">Hard errors are reported on stderr with an <code class="bg-gray-100 px-1 rounded">Error:</code> prefix and write no diagnostics to stdout. So &mdash; without <code class="bg-gray-100 px-1 rounded">-o</code> &mdash; a non-zero exit with <strong>empty stdout</strong> means the run failed, while a non-zero exit <strong>with diagnostics</strong> means the document is invalid.</p>
+      <p class="text-gray-600 text-sm mb-6">Hard errors are reported on stderr with an <code class="bg-gray-100 px-1 rounded">Error:</code> prefix and write no diagnostics to stdout. So, without <code class="bg-gray-100 px-1 rounded">-o</code>, a non-zero exit with <strong>empty stdout</strong> means the run failed, while a non-zero exit <strong>with diagnostics</strong> means the document is invalid.</p>
     </section>
 
     <!-- Features -->
@@ -535,11 +535,11 @@ speclynx validate --help         # show validate options</code></pre>
         </div>
         <div>
           <h3 class="font-semibold text-gray-900 mb-2">What is an Overlay document?</h3>
-          <p class="text-gray-700">An Overlay is a specification defined by the OpenAPI Initiative that describes modifications to an existing API definition. It lets you apply targeted changes &mdash; like adding descriptions, updating metadata, or injecting security schemes &mdash; without editing the original file.</p>
+          <p class="text-gray-700">An Overlay is a specification defined by the OpenAPI Initiative that describes modifications to an existing API definition. It lets you apply targeted changes, like adding descriptions, updating metadata, or injecting security schemes, without editing the original file.</p>
         </div>
         <div>
           <h3 class="font-semibold text-gray-900 mb-2">How does SpecLynx CLI relate to the other SpecLynx tools?</h3>
-          <p class="text-gray-700">SpecLynx CLI is built on the same foundation as the rest of the ecosystem &mdash; ApiDOM and the Language Service. The Editor and OpenAPI Toolkit are visual tools; the CLI brings the same capabilities to your terminal and CI/CD pipelines.</p>
+          <p class="text-gray-700">SpecLynx CLI is built on the same foundation as the rest of the ecosystem: ApiDOM and the Language Service. The Editor and OpenAPI Toolkit are visual tools; the CLI brings the same capabilities to your terminal and CI/CD pipelines.</p>
         </div>
       </div>
     </section>
@@ -577,7 +577,7 @@ speclynx validate --help         # show validate options</code></pre>
           "name": "What is an Overlay document?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "An Overlay is a specification defined by the OpenAPI Initiative that describes modifications to an existing API definition. It lets you apply targeted changes — like adding descriptions, updating metadata, or injecting security schemes — without editing the original file."
+            "text": "An Overlay is a specification defined by the OpenAPI Initiative that describes modifications to an existing API definition. It lets you apply targeted changes, like adding descriptions, updating metadata, or injecting security schemes, without editing the original file."
           }
         },
         {
@@ -585,7 +585,7 @@ speclynx validate --help         # show validate options</code></pre>
           "name": "How does SpecLynx CLI relate to the other SpecLynx tools?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "SpecLynx CLI is built on the same foundation as the rest of the ecosystem — ApiDOM and the Language Service. The Editor and OpenAPI Toolkit are visual tools; the CLI brings the same capabilities to your terminal and CI/CD pipelines."
+            "text": "SpecLynx CLI is built on the same foundation as the rest of the ecosystem: ApiDOM and the Language Service. The Editor and OpenAPI Toolkit are visual tools; the CLI brings the same capabilities to your terminal and CI/CD pipelines."
           }
         }
       ]
