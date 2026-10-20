@@ -110,7 +110,12 @@ permalink: /cli/
       <pre class="code-block mb-6"><code class="language-bash">npx @speclynx/cli overlay apply overlay.json openapi.json</code></pre>
 
       <h3 id="verify-installation" class="text-lg font-semibold text-primary-dark mb-3">Verify Installation</h3>
-      <pre class="code-block mb-2"><code class="language-bash">speclynx --help</code></pre>
+      <pre class="code-block mb-4"><code class="language-bash">speclynx --help</code></pre>
+      <p class="text-gray-700 mb-3">Every command and subcommand has its own help:</p>
+      <pre class="code-block mb-2"><code class="language-bash">speclynx overlay --help          # list overlay subcommands
+speclynx overlay apply --help    # show overlay apply options
+speclynx overlay diff --help     # show overlay diff options
+speclynx validate --help         # show validate options</code></pre>
     </section>
 
     <!-- Commands: Overlay Apply -->
@@ -126,10 +131,12 @@ permalink: /cli/
 
       <p class="text-gray-700 mb-2">Supported Overlay versions:</p>
       <ul class="text-gray-700 space-y-1 mb-6 ml-4">
-        <li>&#10003; Overlay 1.0.0</li>
-        <li>&#10003; Overlay 1.1.0</li>
-        <li>&#10003; Overlay 1.2.0</li>
+        <li>&#10003; <a href="https://spec.openapis.org/overlay/v1.0.0.html" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Overlay 1.0.0</a></li>
+        <li>&#10003; <a href="https://spec.openapis.org/overlay/v1.1.0.html" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Overlay 1.1.0</a></li>
+        <li>&#10003; <a href="https://spec.openapis.org/overlay/v1.2.0.html" target="_blank" rel="noopener noreferrer" class="text-primary-light underline hover:no-underline">Overlay 1.2.0</a></li>
       </ul>
+
+      <p class="text-gray-700 mb-6">Overlay 1.2.0 Reusable Action References (<code class="bg-gray-100 px-1 rounded">$ref: '#/components/actions/&lt;name&gt;'</code>) are resolved before the actions are applied. Only references within the same overlay document are supported.</p>
 
       <h4 id="overlay-apply-arguments" class="text-base font-semibold text-primary-dark mb-3">Arguments</h4>
       <div class="overflow-x-auto mb-6">
@@ -173,7 +180,7 @@ permalink: /cli/
             </tr>
             <tr class="border-b">
               <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">-f, --format &lt;format&gt;</code></td>
-              <td class="px-4 py-2">Output format: <code class="bg-gray-100 px-1 rounded">json</code> or <code class="bg-gray-100 px-1 rounded">yaml</code> (auto-detected by default)</td>
+              <td class="px-4 py-2">Output format: <code class="bg-gray-100 px-1 rounded">json</code> or <code class="bg-gray-100 px-1 rounded">yaml</code> (auto-detected from the target's file extension)</td>
             </tr>
             <tr class="border-b">
               <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">--strict</code></td>
@@ -181,7 +188,7 @@ permalink: /cli/
             </tr>
             <tr>
               <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">--verbose</code></td>
-              <td class="px-4 py-2">Display detailed trace information</td>
+              <td class="px-4 py-2">Print a trace of each applied action to stderr</td>
             </tr>
           </tbody>
         </table>
@@ -206,6 +213,12 @@ permalink: /cli/
 
       <p class="text-gray-600 text-sm mb-2">Strict mode &mdash; fail if any action targets match nothing:</p>
       <pre class="code-block mb-4"><code class="language-bash">speclynx overlay apply overlay.json openapi.json --strict</code></pre>
+
+      <p class="text-gray-600 text-sm mb-2">Show a trace of each action and how many nodes it matched (written to stderr, so stdout stays a clean document):</p>
+      <pre class="code-block mb-4"><code class="language-bash">speclynx overlay apply overlay.json openapi.json --verbose</code></pre>
+      <pre class="code-block mb-4"><code class="language-bash">Overlay: overlay.json -&gt; openapi.json
+  [ok] update $.info (1 matches)
+  Overlay was successfully applied</code></pre>
 
       <hr class="my-10 border-gray-200">
 
@@ -254,11 +267,11 @@ permalink: /cli/
             </tr>
             <tr class="border-b">
               <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">-f, --format &lt;format&gt;</code></td>
-              <td class="px-4 py-2">Output format: <code class="bg-gray-100 px-1 rounded">json</code> or <code class="bg-gray-100 px-1 rounded">yaml</code> (inferred from input by default)</td>
+              <td class="px-4 py-2">Output format: <code class="bg-gray-100 px-1 rounded">json</code> or <code class="bg-gray-100 px-1 rounded">yaml</code> (auto-detected from the <code class="bg-gray-100 px-1 rounded">&lt;before&gt;</code> file extension)</td>
             </tr>
             <tr class="border-b">
               <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">--overlay-version &lt;version&gt;</code></td>
-              <td class="px-4 py-2">Overlay version of the generated document: <code class="bg-gray-100 px-1 rounded">1.0.0</code>, <code class="bg-gray-100 px-1 rounded">1.1.0</code>, or <code class="bg-gray-100 px-1 rounded">1.2.0</code> (default: <code class="bg-gray-100 px-1 rounded">1.2.0</code>)</td>
+              <td class="px-4 py-2">Overlay version of the generated document: <code class="bg-gray-100 px-1 rounded">1.1.0</code> or <code class="bg-gray-100 px-1 rounded">1.2.0</code> (default: <code class="bg-gray-100 px-1 rounded">1.2.0</code>). Overlay 1.0.0 is not supported, because the generated actions rely on 1.1.0 semantics (updating primitive values, concatenating arrays)</td>
             </tr>
             <tr>
               <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">--fail-on-empty</code></td>
@@ -324,9 +337,10 @@ permalink: /cli/
       <p class="text-gray-700 mb-3">Three categories of checks run against every document:</p>
       <ul class="text-gray-700 space-y-2 mb-6 ml-4 list-disc list-outside pl-4">
         <li><strong>Semantic validation</strong> &mdash; checks the document against the <em>meaning</em> of its specification, not just its JSON/YAML syntax: required fields are present, values have the correct types, and objects are shaped as the spec requires.</li>
-        <li><strong>Reference validation</strong> &mdash; checks that every <code class="bg-gray-100 px-1 rounded">$ref</code> resolves to something that actually exists.</li>
+        <li><strong>Reference validation</strong> &mdash; checks that every local (<code class="bg-gray-100 px-1 rounded">#/...</code>) <code class="bg-gray-100 px-1 rounded">$ref</code> resolves to something that actually exists.</li>
         <li><strong>Semantic linting</strong> &mdash; applies style and best-practice rules on top of validation, such as flagging an empty <code class="bg-gray-100 px-1 rounded">enum</code>.</li>
       </ul>
+      <p class="text-gray-700 mb-6">JSON Schema (AJV) validation is an additional opt-in layer, enabled with <code class="bg-gray-100 px-1 rounded">--json-schema-validation</code>. It validates the document against the official JSON Schema for its specification and covers OpenAPI 2.0, 3.0, and 3.1, AsyncAPI 2.x, Arazzo, and Overlay.</p>
 
       <h4 id="validate-arguments" class="text-base font-semibold text-primary-dark mb-3">Arguments</h4>
       <div class="overflow-x-auto mb-6">
@@ -340,7 +354,7 @@ permalink: /cli/
           <tbody class="text-gray-700">
             <tr>
               <td class="px-4 py-2 font-medium"><code class="bg-gray-100 px-1 rounded">&lt;uri&gt;</code></td>
-              <td class="px-4 py-2">Local path or URL to the API document (JSON or YAML)</td>
+              <td class="px-4 py-2">Path or URL to the API document (JSON or YAML): a local file path, a <code class="bg-gray-100 px-1 rounded">file://</code> URL, or an <code class="bg-gray-100 px-1 rounded">http(s)://</code> URL</td>
             </tr>
           </tbody>
         </table>
@@ -382,6 +396,18 @@ permalink: /cli/
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <h4 id="validate-output" class="text-base font-semibold text-primary-dark mb-3">Output</h4>
+      <ul class="text-gray-700 space-y-2 mb-6 ml-4 list-disc list-outside pl-4">
+        <li>Diagnostics go to stdout, or to a file with <code class="bg-gray-100 px-1 rounded">-o, --output</code>. The file is created or overwritten, and the exit code is the same either way.</li>
+        <li>The output path must differ from the input file: the command refuses to overwrite the document being validated.</li>
+        <li>The default <code class="bg-gray-100 px-1 rounded">stylish</code> report is color-coded. Colors are turned off automatically when stdout is not a terminal or when writing to a file with <code class="bg-gray-100 px-1 rounded">-o</code>; set <code class="bg-gray-100 px-1 rounded">FORCE_COLOR=0</code> to turn them off in a terminal.</li>
+        <li><code class="bg-gray-100 px-1 rounded">--format json</code> writes the raw diagnostics array for machine consumption.</li>
+        <li>stderr is reserved for hard errors, such as a missing input file or an unwritable output path.</li>
+      </ul>
+      <div class="bg-blue-50 border-l-4 border-primary-light p-4 mb-6">
+        <p class="text-gray-700"><strong>Note:</strong> the <code class="bg-gray-100 px-1 rounded">code</code> value of reference-validation diagnostics is not stable across runs. If you snapshot or diff the <code class="bg-gray-100 px-1 rounded">--format json</code> output, don't rely on it for reference errors.</p>
       </div>
 
       <h4 id="validate-examples" class="text-base font-semibold text-primary-dark mb-3">Usage Examples</h4>
@@ -439,7 +465,7 @@ permalink: /cli/
         </div>
         <div class="bg-gray-50 p-4 rounded-lg">
           <h3 id="overlay-tooling" class="font-semibold text-primary-dark mb-2">Overlay Tooling</h3>
-          <p class="text-gray-600 text-sm">Apply and diff Overlay 1.0.0 / 1.1.0 / 1.2.0 documents, and chain multiple overlays in a single command.</p>
+          <p class="text-gray-600 text-sm">Apply Overlay 1.0.0 / 1.1.0 / 1.2.0 documents, chain multiple overlays in a single command, and generate Overlay 1.1.0 / 1.2.0 documents from a diff.</p>
         </div>
         <div class="bg-gray-50 p-4 rounded-lg">
           <h3 id="local-or-remote" class="font-semibold text-primary-dark mb-2">Local or Remote, JSON or YAML</h3>
