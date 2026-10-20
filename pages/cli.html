@@ -402,7 +402,7 @@ speclynx validate --help         # show validate options</code></pre>
       <ul class="text-gray-700 space-y-2 mb-6 ml-4 list-disc list-outside pl-4">
         <li>Diagnostics go to stdout, or to a file with <code class="bg-gray-100 px-1 rounded">-o, --output</code>. The file is created or overwritten, and the exit code is the same either way.</li>
         <li>The output path must differ from the input file: the command refuses to overwrite the document being validated.</li>
-        <li>The default <code class="bg-gray-100 px-1 rounded">stylish</code> report is color-coded. Colors are turned off automatically when stdout is not a terminal or when writing to a file with <code class="bg-gray-100 px-1 rounded">-o</code>; set <code class="bg-gray-100 px-1 rounded">FORCE_COLOR=0</code> to turn them off in a terminal.</li>
+        <li>The default <code class="bg-gray-100 px-1 rounded">stylish</code> report is color-coded. Colors are turned off automatically when stdout is not a terminal or when writing to a file with <code class="bg-gray-100 px-1 rounded">-o</code>, and when <code class="bg-gray-100 px-1 rounded">NO_COLOR</code> or <code class="bg-gray-100 px-1 rounded">NODE_DISABLE_COLORS</code> is set. As in Node.js, <code class="bg-gray-100 px-1 rounded">FORCE_COLOR</code> overrides both: <code class="bg-gray-100 px-1 rounded">FORCE_COLOR=1</code> forces colors, <code class="bg-gray-100 px-1 rounded">FORCE_COLOR=0</code> turns them off.</li>
         <li><code class="bg-gray-100 px-1 rounded">--format json</code> writes the raw diagnostics array for machine consumption.</li>
         <li>stderr is reserved for hard errors, such as a missing input file or an unwritable output path.</li>
       </ul>
